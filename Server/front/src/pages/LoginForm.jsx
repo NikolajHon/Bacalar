@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/LoginForm.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+    const navigate = useNavigate(); // Добавляем хук useNavigate
 
     useEffect(() => {
         // Add 'fade-in' class after component mounts
@@ -29,7 +30,7 @@ const LoginForm = () => {
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
             console.log(response.data);
-            alert('Login successful');
+            navigate('/mainscreen');
         } catch (error) {
             console.error('There was an error logging in!', error);
             alert(error.response.data || 'Login failed');
@@ -63,13 +64,12 @@ const LoginForm = () => {
                 <button type="submit">Login</button>
             </form>
             <div className="social-login">
-                <p>Or Sign In Using</p>
+                <p>Don't have an account? <Link to="/register" className="register-link">Sign Up</Link></p>
                 <div className="social-icons">
                     <i className="fab fa-instagram"></i>
                     <i className="fab fa-github"></i>
                     <i className="fab fa-google"></i>
                 </div>
-                <p>Don't have an account? <Link to="/register" className="register-link">Sign Up</Link></p>
             </div>
         </div>
     );

@@ -51,7 +51,7 @@ public class UserController {
 //P@ssw0rd1
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
-        // Проверка наличия пользователя с такой же почтой
+
         User existingUser = userService.findByEmail(user.getEmail());
         if (existingUser != null) {
             return ResponseEntity.status(409).body("User with this email already exists.");
