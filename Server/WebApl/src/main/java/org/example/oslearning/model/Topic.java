@@ -20,6 +20,10 @@ public class Topic {
 
     private String description;
 
+    @Lob
+    @Column(name = "content", columnDefinition = "BLOB")
+    private byte[] content;
+
     @OneToMany(mappedBy = "topic")
     private Set<Subtopic> subtopics;
 
@@ -45,6 +49,14 @@ public class Topic {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 
     public Set<Subtopic> getSubtopics() {

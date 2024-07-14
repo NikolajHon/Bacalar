@@ -1,5 +1,4 @@
-// src/components/TopicList.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/TopicList.css';
@@ -13,31 +12,25 @@ const TopicList = () => {
                 const response = await axios.get('http://localhost:8080/api/topics');
                 setTopics(response.data);
             } catch (error) {
-                console.error('There was an error fetching the topics!', error);
+                console.error('Error fetching topics', error);
             }
         };
 
         fetchTopics();
-
-        // Add 'fade-in' class after component mounts
-        const container = document.querySelector('.topic-list-container');
-        container.classList.add('fade-in');
     }, []);
 
     return (
-        <div className="topic-list-container">
+        <div className="topic-list fade-in">
             <h2>Topics</h2>
-            <ul>
-                {topics.map((topic) => (
-                    <li key={topic.id}>
-                        <h3>{topic.title}</h3>
-                        <p>{topic.description}</p>
-                        <Link to={`/lesson/${topic.id}`}>
-                            <button>Go to Lesson</button>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            {topics.map(topic => (
+                <div key={topic.id} className="topic-item">
+                    <h3>{topic.name}</h3>
+                    <p>{topic.description}</p>
+                    <Link to={`/lessons/${topic.id}`} className="lesson-link">
+                        Go to lesson
+                    </Link>
+                </div>
+            ))}
         </div>
     );
 };
