@@ -21,12 +21,13 @@ public class Topic {
     private String description;
 
     @Lob
-    @Column(name = "content", columnDefinition = "BLOB")
+    @Column(name = "content", columnDefinition = "BYTEA")
     private byte[] content;
 
     @OneToMany(mappedBy = "topic")
     private Set<Subtopic> subtopics;
 
+    // Getters and setters if not using Lombok
     public Long getId() {
         return id;
     }
