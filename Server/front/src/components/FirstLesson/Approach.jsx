@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../styles/FirstLessons/Postup.css';
+import '../../styles/FirstLessons/Approach.css';
 
-const Postup = () => {
+const Approach = () => {
     return (
         <div className="postup-container">
             <h2>POSTUP:</h2>
@@ -23,4 +23,4 @@ const Postup = () => {
     );
 }
 
-export default Postup;
+export default Approach;
