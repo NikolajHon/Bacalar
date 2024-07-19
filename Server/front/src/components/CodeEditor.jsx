@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import AceEditor from 'react-ace';
+import MonacoEditor from '@monaco-editor/react';
 import axios from 'axios';
-import 'ace-builds/src-noconflict/mode-c_cpp';
-import 'ace-builds/src-noconflict/theme-github';
-import '../styles/CodeEditor.css'
+import '../styles/CodeEditor.css'; // Подключите ваш файл стилей
 
 const CodeEditor = () => {
     const [code, setCode] = useState('');
@@ -16,23 +14,33 @@ const CodeEditor = () => {
                     'Content-Type': 'text/plain',
                 },
             });
-            setOutput(response.data.output); // Установка только значения output
+            const result = response.data;
+            if (result.error) {
+                setOutput(`Error: ${result.error}`);
+            } else {
+                setOutput(`Output: ${result.output}\nErrors: ${result.error}`);
+            }
         } catch (error) {
-            setOutput('Error running code: ' + (error.response ? error.response.data : error.message));
+            setOutput('Error running code: ' + (error.response ? error.response.data.error : error.message));
         }
     };
 
     return (
         <div>
-            <AceEditor
-                mode="c_cpp"
-                theme="github"
-                onChange={(newValue) => setCode(newValue)}
-                name="C_CODE_EDITOR"
-                editorProps={{ $blockScrolling: true }}
-                value={code}
-                width="100%"
+            <MonacoEditor
                 height="200px"
+                language="cpp"
+                theme="vs-dark"
+                value={code}
+                onChange={(newValue) => setCode(newValue)}
+                options={{
+                    selectOnLineNumbers: true,
+                    automaticLayout: true,
+                    scrollBeyondLastLine: false,
+                    readOnly: false,
+                    fontSize: 14,
+                    minimap: { enabled: false },
+                }}
             />
             <button onClick={handleRun}>Run Code</button>
             <div className="output-window">
