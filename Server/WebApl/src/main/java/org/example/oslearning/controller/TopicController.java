@@ -26,14 +26,6 @@ public class TopicController {
         return topicService.getTopicById(id);
     }
 
-    @GetMapping("/{id}/content")
-    public ResponseEntity<byte[]> getTopicContent(@PathVariable Long id) {
-        Topic topic = topicService.getTopicById(id);
-        byte[] content = topic.getContent();
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_PDF) // предположим, что содержимое в формате PDF
-                .body(content);
-    }
 
     @PostMapping
     public Topic createTopic(@RequestBody Topic topic) {

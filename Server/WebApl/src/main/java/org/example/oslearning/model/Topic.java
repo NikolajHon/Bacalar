@@ -20,12 +20,6 @@ public class Topic {
 
     private String description;
 
-    @Lob
-    @Column(name = "content", columnDefinition = "BYTEA")
-    private byte[] content;
-
-    @OneToMany(mappedBy = "topic")
-    private Set<Subtopic> subtopics;
 
     // Getters and setters if not using Lombok
     public Long getId() {
@@ -52,19 +46,5 @@ public class Topic {
         this.description = description;
     }
 
-    public byte[] getContent() {
-        return content;
-    }
 
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public Set<Subtopic> getSubtopics() {
-        return subtopics;
-    }
-
-    public void setSubtopics(Set<Subtopic> subtopics) {
-        this.subtopics = subtopics;
-    }
 }
