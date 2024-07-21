@@ -1,7 +1,5 @@
 .first-lessons-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 0 auto;
     padding: 20px;
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     width: 100%;
