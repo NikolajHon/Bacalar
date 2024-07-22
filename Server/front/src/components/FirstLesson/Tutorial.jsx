@@ -114,8 +114,13 @@ void perror(const char *s);`}
 {`#include <string.h>
 char *strerror(int errnum);`}
                     </pre>
-                    <p>Funkcia <code>strerror()</code> vracia reťazec opisujúci číslo chyby, ktoré je jej argumentom. Hlavičkový súbor <code>string.h</code> je potrebný pri použití funkcie <code>strerror()</code>.</p>
-                    <p><strong>Príklad</strong> otvorenia súboru a vypísania chybového hlásenia v prípade vyskytnutia sa chyby. V príklade sme použili službu <code>open()</code>, s ktorou sa Sofia detailnejšie zoznámi na niektorom z ďalších cvičení. Pre tento príklad jej stačí vedieť, že toto službu otvára súbor.</p>
+                    <p>Funkcia <code>strerror()</code> vracia reťazec opisujúci číslo chyby, ktoré je jej argumentom.
+                        Hlavičkový súbor <code>string.h</code> je potrebný pri použití funkcie <code>strerror()</code>.
+                    </p>
+                    <p><strong>Príklad</strong> otvorenia súboru a vypísania chybového hlásenia v prípade vyskytnutia sa
+                        chyby. V príklade sme použili službu <code>open()</code>, s ktorou sa Sofia detailnejšie zoznámi
+                        na niektorom z ďalších cvičení. Pre tento príklad jej stačí vedieť, že toto službu otvára súbor.
+                    </p>
                     <pre>
 {`#include <fcntl.h>
 #include <string.h>
@@ -135,6 +140,14 @@ int main() {
     return 0;
 }`}
                     </pre>
+                    <footer className="footer">
+                        <p>&copy; 2023 Уроки UNIX/Linux. Все права защищены.</p>
+                        <nav>
+                            <a href="https://github.com/NikolajHon">Политика конфиденциальности</a>
+                            <a href="https://github.com/NikolajHon">Условия использования</a>
+                            <a href="https://github.com/NikolajHon">Контакты</a>
+                        </nav>
+                    </footer>
                 </div>
                 <div className="version">
                     <p>Sofia verzia 2016</p>

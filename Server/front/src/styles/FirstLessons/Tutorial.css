@@ -13,12 +13,12 @@ body {
 }
 
 .header h2 {
-    background-color: #22819E;  /* Teal */
-    color: #FFFFFF;  /* White */
+    background-color: #22819E;
+    color: #FFFFFF;
     text-align: center;
     margin: 0;
     padding: 15px;
-    border-bottom: 1px solid #B9E0FF;  /* Light Blue */
+    border-bottom: 1px solid #B9E0FF;
 }
 
 .info-table {
@@ -30,19 +30,19 @@ body {
 .info-table th,
 .info-table td {
     padding: 10px;
-    border: 1px solid #B9E0FF;  /* Light Blue */
+    border: 1px solid #B9E0FF;
     vertical-align: top;
 }
 
 .info-table th {
-    background-color: #22819E;  /* Teal */
-    color: #FFFFFF;  /* White */
+    background-color: #22819E;
+    color: #FFFFFF;
     text-align: left;
 }
 
 .section-title {
     width: 25%;
-    background-color: #E4EBF5;  /* Very Light Blue */
+    background-color: #E4EBF5;
     font-weight: bold;
 }
 
@@ -51,17 +51,17 @@ body {
 }
 
 .section h3 {
-    background-color: #22819E;  /* Teal */
-    color: #FFFFFF;  /* White */
+    background-color: #22819E;
+    color: #FFFFFF;
     margin: 0;
     padding: 10px;
-    border-bottom: 1px solid #B9E0FF;  /* Light Blue */
+    border-bottom: 1px solid #B9E0FF;
 }
 
 .subsection h4,
 .subsection h5 {
     margin: 10px 0;
-    color: #22819E;  /* Teal */
+    color: #22819E;
 }
 
 ul {
@@ -70,12 +70,12 @@ ul {
 
 p, ul, pre {
     margin: 10px 0;
-    color: #22819E;  /* Teal */
+    color: #22819E;
 }
 
 pre {
-    background-color: #00131A;  /* Very Dark Blue */
-    color: #FFFFFF;  /* White */
+    background-color: #00131A;
+    color: #FFFFFF;
     padding: 10px;
     border-radius: 5px;
     overflow-x: auto;
@@ -95,5 +95,21 @@ pre {
 .version {
     text-align: right;
     font-style: italic;
-    color: #22819E;  /* Teal */
+    color: #22819E;
+}
+.footer {
+    background-color: #22819E;
+    padding: 20px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.footer nav a {
+    color: #FFFFFF;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer nav a:hover {
+    text-decoration: underline;
 }
