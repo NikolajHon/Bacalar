@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MonacoEditor from '@monaco-editor/react';
 import axios from 'axios';
 import { ResizableBox } from 'react-resizable';
-import 'react-resizable/css/styles.css'; // Подключите стили для react-resizable
-import '../../styles/CodeEditor.css'; // Подключите ваш файл стилей
+import { Terminal } from '@xterm/xterm';
+import { FitAddon } from '@xterm/addon-fit';
+import '@xterm/xterm/css/xterm.css';
+import 'react-resizable/css/styles.css';
+import '../../styles/CodeEditor.css';
 
 const CodeEditor = () => {
     const [code, setCode] = useState('');
     const [output, setOutput] = useState('');
+    const terminalRef = useRef(null);
+    const terminal = useRef(null);
+    const fitAddon = useRef(new FitAddon());
+
+    useEffect(() => {
+        if (terminalRef.current) {
+            terminal.current = new Terminal();
+            terminal.current.loadAddon(fitAddon.current);
+            terminal.current.open(terminalRef.current);
+            fitAddon.current.fit();
+
+            axios.post('http://localhost:8080/api/startTerminal').then((response) => {
+                const ws = new WebSocket(response.data.terminalUrl);
+                ws.onopen = () => {
+                    terminal.current.writeln('WebSocket connection established');
+                };
+                ws.onmessage = (event) => {
+                    terminal.current.write(event.data);
+                };
+
+                terminal.current.onData((data) => {
+                    ws.send(data);
+                });
+            });
+
+            return () => {
+                terminal.current.dispose();
+            };
+        }
+    }, []);
 
     const handleRun = async () => {
         try {
@@ -17,7 +50,7 @@ const CodeEditor = () => {
                 },
             });
             const result = response.data;
-            setOutput(result); // Устанавливаем полный результат в output
+            setOutput(result);
         } catch (error) {
             setOutput('Error running code: ' + (error.response ? error.response.data : error.message));
         }
@@ -26,25 +59,25 @@ const CodeEditor = () => {
     return (
         <div className="code-editor-container">
             <h2>Задание:</h2>
-            <p>Напишите программу на языке C, которая пытается открыть файл с именем "testfile.txt" и выводит сообщение об ошибке, если файл не может быть открыт. Используйте функции errno и perror для обработки ошибок.</p>
-            <p>Пример кода:</p>
+            <p>Напишите программу на языке C, которая сохраняет содержимое структурированной переменной в файл с помощью функции write() и затем считывает их с помощью read().</p>
+
             <pre>{`#include <stdio.h>
-#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct {
+    int id;
+    char name[50];
+} Record;
 
 int main() {
-    FILE *file;
-
-    // Попытка открыть файл
-    file = fopen("testfile.txt", "r");
-    if (file == NULL) {
-        // Обработка ошибки открытия файла
+    Record record = {123, "Test Name"};
+    FILE *file = fopen("output.dat", "wb");
+    if (!file) {
         perror("Ошибка открытия файла");
         return 1;
     }
-
-    // Закрытие файла, если он был успешно открыт
+    fwrite(&record, sizeof(Record), 1, file);
     fclose(file);
-    printf("Файл успешно открыт и закрыт.\\n");
     return 0;
 }`}</pre>
 
@@ -74,8 +107,9 @@ int main() {
             </ResizableBox>
             <button onClick={handleRun}>Run Code</button>
             <div className="output-window">
-                <pre>{output}</pre> {/* Отображение полного результата */}
+                <pre>{output}</pre>
             </div>
+            <div ref={terminalRef} className="terminal-container"></div>
         </div>
     );
 };

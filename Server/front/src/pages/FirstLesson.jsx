@@ -2,7 +2,7 @@ import React from 'react';
 import Table from '../components/FirstLesson/Table';
 import Approach from '../components/FirstLesson/Approach';
 import Section from '../components/FirstLesson/Section';
-import CodeEditor from "../components/FirstLesson/CodeEditor";
+import Tutorial from "../components/FirstLesson/Tutorial";
 import '../styles/FirstLesson.css';
 
 const FirstLessons = () => {
@@ -11,7 +11,7 @@ const FirstLessons = () => {
             <Table />
             <Approach />
             <Section />
-            <CodeEditor />
+            <Tutorial/>
         </div>
     );
 };
