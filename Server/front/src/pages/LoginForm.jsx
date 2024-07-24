@@ -9,7 +9,7 @@ const LoginForm = () => {
         email: '',
         password: '',
     });
-    const navigate = useNavigate(); // Добавляем хук useNavigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Add 'fade-in' class after component mounts
@@ -38,37 +38,39 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="login-form">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="input-container">
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-            <div className="social-login">
-                <p>Don't have an account? <Link to="/register" className="register-link">Sign Up</Link></p>
-                <div className="social-icons">
-                    <i className="fab fa-instagram"></i>
-                    <i className="fab fa-github"></i>
-                    <i className="fab fa-google"></i>
+        <div className="login-container">
+            <div className="login-form">
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="input-container">
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div className="social-login">
+                    <p>Don't have an account? <Link to="/register" className="register-link">Sign Up</Link></p>
+                    <div className="social-icons">
+                        <i className="fab fa-instagram"></i>
+                        <i className="fab fa-github"></i>
+                        <i className="fab fa-google"></i>
+                    </div>
                 </div>
             </div>
         </div>

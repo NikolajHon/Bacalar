@@ -1,13 +1,11 @@
 package org.example.oslearning.model;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "Person")
-
 public class User {
 
     @Id
@@ -18,6 +16,11 @@ public class User {
     private String password;
     private String email;
     private boolean enabled = false;
+
+    // Добавлено новое поле rating
+    private int rating = 0;
+
+    // Геттеры и сеттеры
 
     public Long getId() {
         return id;
@@ -57,5 +60,13 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

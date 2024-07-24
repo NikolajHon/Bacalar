@@ -1,13 +1,9 @@
 package org.example.oslearning.service.impl;
 
 import org.example.oslearning.model.User;
-import org.example.oslearning.model.VerificationToken;
 import org.example.oslearning.repository.UserRepository;
-import org.example.oslearning.service.EmailService;
 import org.example.oslearning.service.UserService;
-import org.example.oslearning.service.VerificationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,17 +14,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-
-    @Autowired
-    private VerificationTokenService verificationTokenService;
     @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
 
+    @Override
     public User saveUser(User user) {
         return userRepository.save(user);
     }
@@ -46,5 +37,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<User> getFiveBest(){
+        return userRepository.findTopFiveUsers();
     }
 }

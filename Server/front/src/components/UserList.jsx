@@ -9,7 +9,7 @@ const UserList = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/users');
+                const response = await axios.get('http://localhost:8080/api/users/top-five');
                 setUsers(response.data);
             } catch (error) {
                 console.error('There was an error fetching the users!', error);
@@ -20,17 +20,19 @@ const UserList = () => {
 
         // Add 'fade-in' class after component mounts
         const container = document.querySelector('.user-list-container');
-        container.classList.add('fade-in');
+        if (container) {
+            container.classList.add('fade-in');
+        }
     }, []);
 
     return (
         <div className="user-list-container">
-            <h2>Users</h2>
+            <h2>Top Users</h2>
             <ul>
-                {users.map((user) => (
-                    <li key={user.id}>
+                {users.map((user, index) => (
+                    <li key={user.id} className={`user-item place-${index + 1}`}>
                         <h3>{user.username}</h3>
-                        <p>{user.email}</p>
+                        <p>Rating: {user.rating}</p>
                     </li>
                 ))}
             </ul>

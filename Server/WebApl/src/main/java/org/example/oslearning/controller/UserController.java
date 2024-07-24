@@ -48,10 +48,9 @@ public class UserController {
 
         return ResponseEntity.ok("User confirmed successfully.");
     }
-//P@ssw0rd1
+
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
-
         User existingUser = userService.findByEmail(user.getEmail());
         if (existingUser != null) {
             return ResponseEntity.status(409).body("User with this email already exists.");
@@ -84,7 +83,6 @@ public class UserController {
         return ResponseEntity.ok("User registered. Please check your email to verify your account.");
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
         User user = userService.findByEmail(loginRequest.getEmail());
@@ -108,11 +106,6 @@ public class UserController {
 
         return ResponseEntity.ok("Login successful.");
     }
-
-
-
-
-
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -140,5 +133,8 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-
+    @GetMapping("/top-five")
+    public List<User> getTopFiveUsers() {
+        return userService.getFiveBest();
+    }
 }
