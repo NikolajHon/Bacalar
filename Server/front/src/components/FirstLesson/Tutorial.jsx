@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/FirstLessons/Tutorial.css';
 import diagramImage from '../../images/stderr.png';
 
 const Tutorial = () => {

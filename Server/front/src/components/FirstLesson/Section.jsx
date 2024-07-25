@@ -1,5 +1,4 @@
 import React from 'react';
-import '../..//styles/FirstLessons/Section.css';
 
 const Section = () => {
     return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/FirstLessons/Approach.css';
 
 const Approach = () => {
     return (

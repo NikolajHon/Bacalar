@@ -1,6 +1,13 @@
 
+.registration-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0056b3;
+}
 .registration-form {
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 10px;
     padding: 40px 40px;
     width: 100%;
