@@ -1,0 +1,53 @@
+/* styles for table */
+.second-lessons-page {
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    width: 100%;
+    max-width: 800px;
+    gap: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.second-lessons-page > * {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px; /* Space between components */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+th {
+    background-color: #f1f1f1;
+    text-align: left;
+}
+.section-title {
+    width: 25%;
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+.terminal-command {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+td a {
+    word-break: break-all; /* Или используйте break-word */
+    overflow-wrap: break-word;
+}
+
+/*  */
