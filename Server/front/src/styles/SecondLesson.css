@@ -5,7 +5,7 @@ body{
 .second-lessons-page {
     margin: 0 auto;
     padding: 20px;
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    box-sizing: border-box;
     width: 100%;
     max-width: 800px;
     gap: 20px;
@@ -22,20 +22,23 @@ body{
 .second-lessons-page > * {
     width: 100%;
     max-width: 800px;
-    margin-bottom: 20px; /* Space between components */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    margin-bottom: 20px;
+    box-sizing: border-box; 
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    
 }
 
 th, td {
-    padding: 10px !important;
-    border: 3px solid #050505 !important;
-    vertical-align: top !important;
+    padding: 10px ;
+    border: 3px solid #050505 ;
+    vertical-align: top ;
+    
 }
+
 
 
 
@@ -52,7 +55,7 @@ th, td {
     font-family: monospace;
 }
 td a {
-    word-break: break-all; /* Или используйте break-word */
+    word-break: break-all; 
     overflow-wrap: break-word;
 }
 /*  */
@@ -71,7 +74,7 @@ td a {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
-    white-space: pre-wrap; /* Перенос длинных строк */
+    white-space: pre-wrap; 
     font-family: monospace;
     font-size: 1em;
 }
@@ -96,4 +99,7 @@ td a {
 
 .syntax-section em {
     font-style: italic;
+}
+.command-table{
+    text-align: center;
 }

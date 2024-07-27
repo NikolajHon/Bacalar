@@ -20,16 +20,8 @@ body{
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
-.lesson-overview table {
-    width: 100%; /* Ensure the table takes the full width of its container */
-    border-collapse: collapse; /* Collapse table borders */
-}
 
-.lesson-overview th, .lesson-overview td {
-    padding: 10px;
-    border: 1px solid #ccc; /* Add border for better visibility */
-    text-align: left; /* Align text to the left */
-}
+
 
 .postup-container, .section-container {
     width: 100%;

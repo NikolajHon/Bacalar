@@ -280,8 +280,8 @@ main () /*kopíruje vstup na výstup*/
                                         <ul>
                                             <li>parametrom <i>flags</i> a <i>mode</i></li>
                                             <li>významu súvisiacich služieb
-                                            ( <i>create()</i>, <i>lseek()</i>, <i>read()</i>,
-                                            <i>umask()</i> ) </li>
+                                                ( <i>create()</i>, <i>lseek()</i>, <i>read()</i>,
+                                                <i>umask()</i> ) </li>
                                             <li>chybovým hláseniam</li>
                                         </ul>
                                     </td>
@@ -303,10 +303,10 @@ main () /*kopíruje vstup na výstup*/
                         <tr>
                             <td className="section-title"> Scenár</td>
                             <td>Sofia pri riešení svojej úlohy zistila, že pred prácou so súborom
-                            potrebuje daný súbor otvoriť. Použije na to službu <i>open()</i>, ale pre
-                            efektívnu prácu so súborom potrebuje sa naučiť pracovať s tzv.
-                            flagmi. Keď ukončí prácu so súborom, tak ho zatvorí pomocou
-                            služby <i>close()</i>.
+                                potrebuje daný súbor otvoriť. Použije na to službu <i>open()</i>, ale pre
+                                efektívnu prácu so súborom potrebuje sa naučiť pracovať s tzv.
+                                flagmi. Keď ukončí prácu so súborom, tak ho zatvorí pomocou
+                                služby <i>close()</i>.
                             </td>
                         </tr>
                     </tbody>
@@ -333,7 +333,72 @@ main () /*kopíruje vstup na výstup*/
                     Služba <i>open()</i> otvorí súbor uvedený v parametri <i>pathname</i> pre čítanie alebo zápis,
                     podľa toho, ako je to špecifikované argumentom <i>flags</i> a akú návratovú hodnotu vráti
                     deskriptor pre otvorený súbor.
+                    <h4>KROK3 - pochopiť účel parametrov <i>flags</i> a <i>mode</i>:</h4>
+                    Parameter <i>flags</i> môže byť (okrem iného) špecifikovaný jednou alebo kombináciou
+                    viacerých z nasledujúcich položiek:
+                    <table className='command-table'>
+                        <tr>
+                            <td>O_RDONLY </td>
+                            <td>Otvoriť súbor len pre čítanie </td>
+                        </tr>
+                        <tr>
+                            <td>O_WRONLY</td>
+                            <td>Otvoriť súbor len pre zápis </td>
+                        </tr>
+                        <tr>
+                            <td>O_RDWR</td>
+                            <td>Otvoriť súbor pre zápis aj čítanie</td>
+                        </tr>
+                        <tr>
+                            <td>O_APPEND</td>
+                            <td>Doplnenie pre každý zápis</td>
+                        </tr>
+                        <tr>
+                            <td>O_CREAT</td>
+                            <td>Vytvoriť súbor ak neexistuje</td>
+                        </tr>
+                        <tr>
+                            <td>O_TRUNC</td>
+                            <td>Skrátiť veľkosť súboru na 0</td>
+                        </tr>
+                        <tr>
+                            <td>O_EXCL</td>
+                            <td>Chyba, ak súbor už existuje</td>
+                        </tr>
+                    </table>
+                    Ak otváraný súbor ešte neexistuje, je možné jeho prístupové práva (tejto problematike
+                    sa budeme venovať neskôr) nastaviť parametrom <i>mode</i>. Parameter <i>mode</i> je tvorený
+                    jednou alebo kombináciou viacerých z nasledujúcich položiek, definovaných v
+                    <i>sys/inode.h</i>:
+                    <table>
+                        <tr>
+                            <td>IREAD</td>
+                            <td>00400</td>
+                            <td>čítanie pre majiteľa</td>
+                        </tr>
+                        <tr>
+                            <td>IWRITE</td>
+                            <td>00200</td>
+                            <td>zápis pre majiteľa </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
                 </p>
+
             </div>
 
         </div>
