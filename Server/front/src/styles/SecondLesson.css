@@ -1,4 +1,7 @@
 /* styles for table */
+body{
+    background-color: #ffffff;
+}
 .second-lessons-page {
     margin: 0 auto;
     padding: 20px;
@@ -6,9 +9,14 @@
     width: 100%;
     max-width: 800px;
     gap: 20px;
-    background-color: #f0f0f0;
+    background-color: #d3d3d3;
     border-radius: 5px;
     margin-top: 20px;
+}
+.second-lessons-page>*{
+    background-color: #e0e0e0;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .second-lessons-page > * {
@@ -24,15 +32,13 @@ table {
 }
 
 th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    vertical-align: top;
+    padding: 10px !important;
+    border: 3px solid #050505 !important;
+    vertical-align: top !important;
 }
 
-th {
-    background-color: #f1f1f1;
-    text-align: left;
-}
+
+
 .section-title {
     width: 25%;
     background-color: #e0e0e0;
@@ -49,5 +55,45 @@ td a {
     word-break: break-all; /* Или используйте break-word */
     overflow-wrap: break-word;
 }
-
 /*  */
+.syntax-section {
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+.syntax-section strong {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.syntax-section pre {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    white-space: pre-wrap; /* Перенос длинных строк */
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.syntax-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.syntax-section li {
+    margin-bottom: 10px;
+}
+
+.syntax-section code {
+    background-color: #e6e6e6;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.syntax-section em {
+    font-style: italic;
+}
