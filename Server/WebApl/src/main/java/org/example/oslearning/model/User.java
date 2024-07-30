@@ -16,11 +16,11 @@ public class User {
     private String password;
     private String email;
     private boolean enabled = false;
-
-    // Добавлено новое поле rating
     private int rating = 0;
 
-    // Геттеры и сеттеры
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 
     public Long getId() {
         return id;
@@ -68,5 +68,13 @@ public class User {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

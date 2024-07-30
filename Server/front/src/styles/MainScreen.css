@@ -67,7 +67,7 @@
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
-.MuiBox-root.css-i9gxme{
+.app-bar{
     grid-column: 1/4;
     grid-row: 1;
 }
@@ -84,14 +84,14 @@
     width: 80%;
 }
 .test-link {
-    display: inline-block; /* Блоковая модель для ссылки */
+    display: inline-block; 
     
-    margin-top: 10px; /* Отступ сверху */
-    padding: 10px 20px; /* Внутренний отступ для кнопки */
-    background-color: #bcbec0; /* Цвет фона кнопки */
-    color: white; /* Цвет текста */
-    text-decoration: none; /* Убираем подчеркивание */
-    border-radius: 5px; /* Закругленные углы кнопки */
-    transition: background-color 0.3s ease; /* Плавный переход для фона */
+    margin-top: 10px;
+    padding: 10px 20px; 
+    background-color: #bcbec0; 
+    color: white; 
+    text-decoration: none;
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
     
 }
