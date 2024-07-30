@@ -8,10 +8,13 @@ import FourthSubtopic from '../components/SeconLessonComponent/FourthSubtopic';
 import FifthSubtopic from '../components/SeconLessonComponent/FifthSubtopic';
 import SixthSubtopic from '../components/SeconLessonComponent/SixthSubtopic';
 import SeventhSubtopic from '../components/SeconLessonComponent/SeventhSubtopic';
+import { AppBar } from '@mui/material';
 const SecondLesson = () => {
     return (
+        
         <div className="second-lessons-page">
             <h1>Práca so súbormi v OS UNIX/Linux</h1>
+            
             <LessonOverview />
             <FirstSubtopic />
             <SecondSubtopic />

@@ -5,6 +5,7 @@ import FirstLesson from './pages/FirstLesson';
 import SecondLesson from './pages/SecondLesson';
 import LoginForm from './pages/LoginForm';
 import MainScreen from './pages/MainScreen';
+import LessonQuestions from './pages/LessonQuestions'
 import './App.css';
 
 const App = () => {
@@ -17,6 +18,8 @@ const App = () => {
                 <Route path="/lessons/introduction" element={<FirstLesson />} />
                 <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
                 <Route path="/" element={<LoginForm />} />
+                <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
+                
             </Routes>
         </Router>
     );

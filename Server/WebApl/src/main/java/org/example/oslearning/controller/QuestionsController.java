@@ -1,24 +1,25 @@
 package org.example.oslearning.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.oslearning.model.Answer;
 import org.example.oslearning.model.Question;
 import org.example.oslearning.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/question")
+@RequestMapping("/api/questions")
 @RequiredArgsConstructor
 public class QuestionsController {
-@Autowired
-    private  QuestionService questionService;
+
+    @Autowired
+    private QuestionService questionService;
 
     @GetMapping("/lesson/{lessonId}")
-    public List<Question> getAllQuestionToLesson(@PathVariable int lessonId) {
-        return questionService.getAllQuestionToLesson(lessonId);
+    public List<Question> getAllQuestionsByLessonId(@PathVariable Long lessonId) {
+        return questionService.getAllQuestionsByLessonId(lessonId);
     }
 
     @DeleteMapping("/{id}")
@@ -26,30 +27,27 @@ public class QuestionsController {
         questionService.deleteQuestion(id);
     }
 
-    @PostMapping
-    public Question saveQuestion(@RequestBody QuestionRequest questionRequest) {
-        Question question = new Question();
-        question.setText(questionRequest.getText());
-        question.setLessonId(questionRequest.getLessonId());
-        question.setType(questionRequest.getType());
-        question.setVariants(questionRequest.getVariants());
+    @PostMapping()
+    public List<Question> saveQuestions(@RequestBody List<QuestionRequest> questionRequests) {
+        List<Question> questions = questionRequests.stream()
+                .map(request -> {
+                    Question question = new Question();
+                    question.setText(request.getText());
+                    question.setLessonId(Long.valueOf(request.getLessonId()));
+                    question.setAnswer(request.getAnswer().getText());
+                    return question;
+                })
+                .collect(Collectors.toList());
 
-        Question savedQuestion = questionService.saveQuestion(question);
-
-        if (questionRequest.getAnswer() != null) {
-            Answer answer = new Answer();
-            answer.setText(questionRequest.getAnswer().getText());
-            answer.setQuestion(savedQuestion);
-            questionService.saveAnswer(answer);
-        }
-
-        return savedQuestion;
+        return questionService.saveQuestions(questions);
     }
 
-    @PostMapping("/{questionId}/answer")
-    public Answer saveAnswer(@PathVariable Long questionId, @RequestBody Answer answer) {
-        Question question = questionService.findById(questionId);
-        answer.setQuestion(question);
-        return questionService.saveAnswer(answer);
+    @GetMapping("/{id}")
+    public Question getQuestionById(@PathVariable Long id) {
+        return questionService.findById(id);
+    }
+    @PostMapping("/delete")
+    public void deleteData(){
+        questionService.deleteData();
     }
 }

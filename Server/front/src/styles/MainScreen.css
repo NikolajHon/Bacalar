@@ -1,3 +1,4 @@
+
 .topic-list {
     width: 50%; /* Ширина блока на половину экрана */
     margin: 0 auto; /* Центрирование блока по горизонтали */
@@ -19,7 +20,7 @@
     display: inline-block; /* Блоковая модель для ссылки */
     margin-top: 10px; /* Отступ сверху */
     padding: 10px 20px; /* Внутренний отступ для кнопки */
-    background-color: #007bff; /* Цвет фона кнопки */
+    background-color: #bcbec0; /* Цвет фона кнопки */
     color: white; /* Цвет текста */
     text-decoration: none; /* Убираем подчеркивание */
     border-radius: 5px; /* Закругленные углы кнопки */
@@ -30,7 +31,7 @@
     background-color: #0056b3; /* Изменение фона при наведении */
 }
 .main-div{
-    background-color: #0056b3;
+    background-color: #ffffff;;
 }
 .topic-item {
     opacity: 0;
@@ -81,4 +82,16 @@
     grid-column: 3;
     grid-row: 2;
     width: 80%;
+}
+.test-link {
+    display: inline-block; /* Блоковая модель для ссылки */
+    
+    margin-top: 10px; /* Отступ сверху */
+    padding: 10px 20px; /* Внутренний отступ для кнопки */
+    background-color: #bcbec0; /* Цвет фона кнопки */
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы кнопки */
+    transition: background-color 0.3s ease; /* Плавный переход для фона */
+    
 }

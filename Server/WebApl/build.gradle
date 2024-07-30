@@ -20,7 +20,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.projectlombok:lombok:1.18.30'
-    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // implementation 'org.springframework.boot:spring-boot-starter-websocket' // Удалено
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.passay:passay:1.6.0'

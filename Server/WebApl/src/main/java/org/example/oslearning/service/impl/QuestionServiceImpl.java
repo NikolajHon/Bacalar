@@ -1,8 +1,6 @@
 package org.example.oslearning.service.impl;
 
-import org.example.oslearning.model.Answer;
 import org.example.oslearning.model.Question;
-import org.example.oslearning.repository.AnswerRepository;
 import org.example.oslearning.repository.QuestionRepository;
 import org.example.oslearning.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +15,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
 
-    @Autowired
-    private AnswerRepository answerRepository;
-
     @Override
-    public List<Question> getAllQuestionToLesson(int lessonId) {
-        return questionRepository.getAllQuestionToLesson(lessonId);
+    public List<Question> getAllQuestionsByLessonId(Long lessonId) {
+        return questionRepository.findByLessonId(lessonId);
     }
 
     @Override
@@ -40,9 +35,12 @@ public class QuestionServiceImpl implements QuestionService {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         return optionalQuestion.orElse(null);
     }
-
     @Override
-    public Answer saveAnswer(Answer answer) {
-        return answerRepository.save(answer);
+    public List<Question> saveQuestions(List<Question> questions) {
+        return questionRepository.saveAll(questions);
+    }
+    @Override
+    public void deleteData(){
+        questionRepository.deleteAll();
     }
 }

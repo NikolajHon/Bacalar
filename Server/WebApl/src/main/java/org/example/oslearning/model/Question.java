@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Entity
 @NoArgsConstructor
@@ -14,21 +12,8 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
-    private int lessonId;
-    private String type; // test or assignment
-    @ElementCollection
-    private List<String> variants;
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Answer> answers;
-
-    // Getters and Setters
-    public int getLessonId() {
-        return lessonId;
-    }
-
-    public void setLessonId(int lessonId) {
-        this.lessonId = lessonId;
-    }
+    private Long lessonId;
+    private String answer;
 
     public Long getId() {
         return id;
@@ -46,27 +31,19 @@ public class Question {
         this.text = text;
     }
 
-    public String getType() {
-        return type;
+    public Long getLessonId() {
+        return lessonId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLessonId(Long lessonId) {
+        this.lessonId = lessonId;
     }
 
-    public List<String> getVariants() {
-        return variants;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setVariants(List<String> variants) {
-        this.variants = variants;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }
