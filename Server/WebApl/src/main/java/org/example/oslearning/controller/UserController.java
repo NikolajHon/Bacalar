@@ -15,8 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -84,28 +83,30 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Map<String, String>> loginUser(@RequestBody LoginRequest loginRequest) {
         User user = userService.findByEmail(loginRequest.getEmail());
 
         if (user == null) {
-            return ResponseEntity.status(404).body("No user found with this email.");
+            return ResponseEntity.status(404).body(Map.of("error", "No user found with this email."));
         }
 
-        System.out.println("User found: " + user.getEmail());
-        System.out.println("Provided password: " + loginRequest.getPassword());
-        System.out.println("Stored password: " + user.getPassword());
-
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            System.out.println("Passwords do not match");
-            return ResponseEntity.status(401).body("Invalid password.");
+            return ResponseEntity.status(401).body(Map.of("error", "Invalid password."));
         }
 
         if (!user.isEnabled()) {
-            return ResponseEntity.status(403).body("User has not completed email verification.");
+            return ResponseEntity.status(403).body(Map.of("error", "User has not completed email verification."));
         }
 
-        return ResponseEntity.ok("Login successful.");
+        // Возвращаем имя пользователя и ID при успешном входе
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Login successful.");
+        response.put("username", user.getUsername());
+        response.put("userId", String.valueOf(user.getId())); // Преобразуем ID в строку
+
+        return ResponseEntity.ok(response);
     }
+
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -136,5 +137,20 @@ public class UserController {
     @GetMapping("/top-five")
     public List<User> getTopFiveUsers() {
         return userService.getFiveBest();
+    }
+    @PostMapping("/changeRating")
+    public ResponseEntity<String> changeUserRating(@RequestParam Long userId, @RequestParam int ratingChange) {
+        Optional<User> userOptional = userService.findById(userId);
+
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.status(404).body("User not found.");
+        }
+
+        User user = userOptional.get();
+        int newRating = user.getRating() + ratingChange;
+        user.changeRating(newRating);
+        userService.save(user);
+
+        return ResponseEntity.ok("User rating updated successfully. New rating: " + newRating);
     }
 }
