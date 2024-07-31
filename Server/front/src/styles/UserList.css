@@ -25,7 +25,6 @@
 /* Заголовок списка пользователей */
 .user-list-container h2 {
     text-align: center;
-    color: #333;
     margin-bottom: 20px;
 }
 
@@ -52,10 +51,5 @@
 /* Заголовок пользователя */
 .user-list-container h3 {
     margin: 0;
-    color: #007bff;
 }
 
-/* Email пользователя */
-.user-list-container p {
-    color: #555;
-}

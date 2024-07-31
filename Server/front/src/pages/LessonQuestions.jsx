@@ -50,7 +50,7 @@ const LessonQuestions = () => {
 
         // Обновление рейтинга
         const ratingIncrease = correctAnswersCount * 5;
-        const newRating = user.rating + ratingIncrease;
+        const newRating = ratingIncrease;
 
         // Логирование перед отправкой запроса
         console.log('Updating rating for userId:', user.id, 'with increase of:', ratingIncrease);
@@ -69,23 +69,28 @@ const LessonQuestions = () => {
 
 
     return (
-        <div className="questions-container">
-            <AppBar />
-            <h2>Questions for Lesson {lessonId}</h2>
-            {questions.map((question, index) => (
-                <div key={question.id} className="question-item">
-                    <h3>{question.text}</h3>
-                    <input
-                        type="text"
-                        value={answers[question.id] || ''}
-                        onChange={(e) => handleChange(e, question.id)}
-                    />
-                    {feedback[question.id] && (
-                        <p>{feedback[question.id]}</p>
-                    )}
-                </div>
-            ))}
-            <button onClick={checkAnswers}>Check Answers</button>
+        <div>
+            <div>
+                <AppBar />
+            </div>
+            <div className="questions-container">
+
+                <h2>Questions for Lesson {lessonId}</h2>
+                {questions.map((question, index) => (
+                    <div key={question.id} className="question-item">
+                        <h3>{question.text}</h3>
+                        <input
+                            type="text"
+                            value={answers[question.id] || ''}
+                            onChange={(e) => handleChange(e, question.id)}
+                        />
+                        {feedback[question.id] && (
+                            <p>{feedback[question.id]}</p>
+                        )}
+                    </div>
+                ))}
+                <button onClick={checkAnswers}>Check Answers</button>
+            </div>
         </div>
     );
 };

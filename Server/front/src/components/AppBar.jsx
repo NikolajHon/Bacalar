@@ -1,22 +1,28 @@
-// AppBar.jsx
 import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../contexts/UserContext'; // Проверьте путь
+import { UserContext } from '../contexts/UserContext';
 import '../styles/AppBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const AppBar = ({ title }) => {
-    const [isDarkTheme, setIsDarkTheme] = useState(false);
     const { user } = useContext(UserContext);
 
+    const [isDarkTheme, setIsDarkTheme] = useState(() => {
+        // Загружаем состояние темы из localStorage
+        const storedTheme = localStorage.getItem('theme');
+        return storedTheme === 'dark';
+    });
+
     useEffect(() => {
+        // Применяем тему при изменении isDarkTheme
         document.body.classList.toggle('dark-theme', isDarkTheme);
+        // Сохраняем состояние темы в localStorage
+        localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
     }, [isDarkTheme]);
 
     const toggleTheme = () => {
         setIsDarkTheme(!isDarkTheme);
     };
-
 
     return (
         <div className="app-bar">

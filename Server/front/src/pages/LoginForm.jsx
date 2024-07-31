@@ -1,10 +1,13 @@
 // src/components/LoginForm.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../styles/LoginForm.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 const LoginForm = () => {
+    const { setUser } = useContext(UserContext);
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -29,7 +32,10 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
-            console.log(response.data);
+            const { username, userId } = response.data; // Получаем username и userId из ответа сервера
+            setUser({ id: userId, name: username, rating: 0 }); // Установка имени и id пользователя в контекст
+            console.log('Logged in user:', username);
+            console.log('Id is :' , userId)
             navigate('/mainscreen');
         } catch (error) {
             console.error('There was an error logging in!', error);
