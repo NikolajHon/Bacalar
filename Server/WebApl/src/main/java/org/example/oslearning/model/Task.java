@@ -1,31 +1,25 @@
 package org.example.oslearning.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
 
-import java.util.Set;
-
-@Entity
 @Data
-@NoArgsConstructor
-public class Subtopic {
+@Entity
+@Table(name = "Task")
+public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     private String title;
-
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "topic_id")
-    private Topic topic;
+    private LocalDateTime publicationTime;
+    private LocalDateTime deadline;
 
-    @OneToMany(mappedBy = "subtopic")
-    private Set<Assignment> assignments;
+    private Long lessonId;
 
     public Long getId() {
         return id;
@@ -51,19 +45,27 @@ public class Subtopic {
         this.description = description;
     }
 
-    public Topic getTopic() {
-        return topic;
+    public LocalDateTime getPublicationTime() {
+        return publicationTime;
     }
 
-    public void setTopic(Topic topic) {
-        this.topic = topic;
+    public void setPublicationTime(LocalDateTime publicationTime) {
+        this.publicationTime = publicationTime;
     }
 
-    public Set<Assignment> getAssignments() {
-        return assignments;
+    public LocalDateTime getDeadline() {
+        return deadline;
     }
 
-    public void setAssignments(Set<Assignment> assignments) {
-        this.assignments = assignments;
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public Long getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(Long lessonId) {
+        this.lessonId = lessonId;
     }
 }

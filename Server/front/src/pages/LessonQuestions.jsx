@@ -69,7 +69,7 @@ const LessonQuestions = () => {
 
 
     return (
-        <div>
+        <div className='main-questions'>
             <div>
                 <AppBar />
             </div>
