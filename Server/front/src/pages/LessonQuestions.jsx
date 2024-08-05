@@ -1,10 +1,10 @@
-// src/components/LessonQuestions.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../styles/LessonQuestions.css';
 import AppBar from '../components/AppBar';
 import { UserContext } from '../contexts/UserContext';
+import QuestionTable from '../components/QuestionTable';
 
 const LessonQuestions = () => {
     const { lessonId } = useParams();
@@ -12,6 +12,7 @@ const LessonQuestions = () => {
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState({});
     const [feedback, setFeedback] = useState({});
+    const [highlightedQuestion, setHighlightedQuestion] = useState(null);
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -48,14 +49,9 @@ const LessonQuestions = () => {
 
         setFeedback(newFeedback);
 
-        // Обновление рейтинга
         const ratingIncrease = correctAnswersCount * 5;
         const newRating = ratingIncrease;
 
-        // Логирование перед отправкой запроса
-        console.log('Updating rating for userId:', user.id, 'with increase of:', ratingIncrease);
-
-        // Отправка нового рейтинга на сервер
         axios.post(`http://localhost:8080/api/users/changeRating?userId=${user.id}&ratingChange=${ratingIncrease}`)
             .then((response) => {
                 setUser({ ...user, rating: newRating });
@@ -67,17 +63,26 @@ const LessonQuestions = () => {
 
     };
 
+    const handleHighlight = (questionId) => {
+        setHighlightedQuestion(questionId);
+        setTimeout(() => {
+            setHighlightedQuestion(null);
+        }, 2000);
+    };
 
     return (
         <div className='main-questions'>
-            <div>
+            <div className='app-bar'>
                 <AppBar />
             </div>
-            <div className="questions-container">
-
+            <div className="navigation">
+                <h3>Навигация в тесте</h3>
+                <QuestionTable questions={questions} answers={answers} feedback={feedback} onHighlight={handleHighlight} />
+            </div>
+            <div className="questions-section">
                 <h2>Questions for Lesson {lessonId}</h2>
-                {questions.map((question, index) => (
-                    <div key={question.id} className="question-item">
+                {questions.map((question) => (
+                    <div key={question.id} id={`question-${question.id}`} className={`question-item ${highlightedQuestion === question.id ? 'highlight' : ''}`}>
                         <h3>{question.text}</h3>
                         <input
                             type="text"
@@ -85,7 +90,7 @@ const LessonQuestions = () => {
                             onChange={(e) => handleChange(e, question.id)}
                         />
                         {feedback[question.id] && (
-                            <p>{feedback[question.id]}</p>
+                            <p className="feedback">{feedback[question.id]}</p>
                         )}
                     </div>
                 ))}

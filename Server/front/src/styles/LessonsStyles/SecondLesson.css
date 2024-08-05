@@ -1,0 +1,187 @@
+/* styles for table */
+body{
+    background-color: #ffffff;
+}
+.second-lessons-page {
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    gap: 20px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.second-lessons-page>*{
+    background-color: #e0e0e0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.second-lessons-page > * {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    box-sizing: border-box; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+th, td {
+    padding: 10px ;
+    border: 3px solid #050505 ;
+    vertical-align: top ;
+    
+}
+
+
+.terminal-command {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+td a {
+    word-break: break-all; 
+    overflow-wrap: break-word;
+}
+/*  */
+.syntax-section {
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+.syntax-section strong {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.syntax-section pre {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    white-space: pre-wrap; 
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.syntax-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.syntax-section li {
+    margin-bottom: 10px;
+}
+
+.syntax-section code {
+    background-color: #e6e6e6;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.syntax-section em {
+    font-style: italic;
+}
+.command-table{
+    text-align: center;
+}
+
+.lesson-content h3 {
+    border-bottom: 1px solid #666; /* Line separator under the heading */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.content-list {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+}
+
+.content-item {
+    margin-bottom: 10px;
+    font-size: 16px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.content-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px; /* Height of the line before the text */
+    width: 1px; /* Thickness of the line */
+    background-color: #666; /* Line color */
+}
+.main-second{
+    display: grid;
+    grid-template-columns: 1fr, 2fr, 2fr, 1fr;
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.app-bar{
+    grid-column: 1/5;
+    grid-row: 1;
+}
+.second-lessons-page{
+    grid-column: 1/3;
+    grid-row: 2/5;
+}
+.lesson-content{
+    grid-column: 3;
+    grid-row: 2;
+}
+.dark-theme .second-lessons-page{
+    background-color: #111828;
+}
+.dark-theme .second-lessons-page div{
+    background-color: #111828;
+}
+.dark-theme .main-container{
+    background-color: #111828;;
+}
+.main-second .second-lessons-page>*{
+    border: 1px solid #fcfdff;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #1e1e1e;
+}
+.footer button {
+    padding: 10px 20px;
+    border: 2px solid #f1f1f1;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #f1f1f1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer button.primary {
+    background-color: #2ca28d;
+    border: none;
+}
+.footer button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.footer button.primary:hover {
+    background-color: #238b7a;
+}

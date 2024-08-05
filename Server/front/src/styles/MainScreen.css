@@ -138,10 +138,20 @@
 }
 
 .lesson-link:hover, .test-link:hover {
-    background-color: #1f2020; /* Цвет фона при наведении */
+    background-color: #0a524d; /* Цвет фона при наведении */
 }
 .colon {
     text-align: center; 
     margin: 0 auto;
     padding: 10px; 
+}
+.dark-theme .test-link,
+.dark-theme .lesson-link{
+    background-color: #0f7770;
+}
+.dark-theme .test-link:hover{
+    background-color: #0a524d;
+}
+.dark-theme .lesson-link:hover{
+    background-color: #0a524d;
 }

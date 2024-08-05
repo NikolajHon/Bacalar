@@ -61,3 +61,88 @@ button:hover {
     background-color: #1b2435;
     border-radius: 20px;
 }
+/* src/styles/QuestionTable.css */
+.question-table-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.question-box {
+    width: 30px;
+    height: 30px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.question-box.yellow {
+    background-color: rgb(121, 121, 33);
+    color: black;
+}
+
+.question-box.green {
+    background-color: #63c071;
+}
+
+.question-box.red {
+    background-color: rgb(131, 39, 39);
+}
+.navigation {
+    width: 75%;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    border-radius: 10px; 
+    border: 2px solid white; 
+}
+.main-questions{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.app-bar{
+    grid-column: 1/5;
+    grid-row: 1;
+}
+.questions-section{
+    grid-column: 1/4;
+    grid-row: 2;
+}
+.navigation{
+    grid-column: 4;
+    grid-row: 2
+}
+.questions-section{
+    margin-left: 60px;
+    margin-bottom: 60px;
+}
+.navigation {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    position: sticky;
+    top: 0; /* Привязать к верхней части */
+    height: 250px;
+    overflow-y: auto; 
+    margin-top: 65px;
+}
+.question-item {
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease; /* Переход для фона */
+}
+
+.question-item.highlight {
+    background-color: #3a506b; /* Подсветка */
+    transition: background-color 1s ease; /* Переход для фона */
+}
+.main-questions {
+    scroll-behavior: smooth; 
+}

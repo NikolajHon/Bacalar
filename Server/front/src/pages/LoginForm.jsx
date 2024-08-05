@@ -15,7 +15,6 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Add 'fade-in' class after component mounts
         const form = document.querySelector('.login-form');
         form.classList.add('fade-in');
     }, []);
@@ -32,8 +31,8 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
-            const { username, userId } = response.data; // Получаем username и userId из ответа сервера
-            setUser({ id: userId, name: username, rating: 0 }); // Установка имени и id пользователя в контекст
+            const { username, userId } = response.data; 
+            setUser({ id: userId, name: username, rating: 0 });
             console.log('Logged in user:', username);
             console.log('Id is :' , userId)
             navigate('/mainscreen');
