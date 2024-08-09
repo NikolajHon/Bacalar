@@ -1,8 +1,8 @@
 import React from 'react';
-import TopicList from '../components/TopicList';
-import UserList from '../components/UserList';
-import AppBar from '../components/AppBar';
-import '../styles/MainScreen.css';
+import TopicList from '../../components/TopicList';
+import UserList from '../../components/UserList';
+import AppBar from '../../components/AppBar';
+import '../../styles/MainScreen.css';
 
 const MainScreen = () => {
     return (

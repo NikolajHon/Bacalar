@@ -31,11 +31,15 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
-            const { username, userId } = response.data; 
-            setUser({ id: userId, name: username, rating: 0 });
+            const { username, userId, role} = response.data; 
+            setUser({ id: userId, name: username, rating: 0 , role: role});
             console.log('Logged in user:', username);
             console.log('Id is :' , userId)
-            navigate('/mainscreen');
+            if(role == "ROLE_ADMIN"){
+                navigate('/teacher/mainscreen');
+            }else{
+                navigate('/student/mainscreen');
+            }
         } catch (error) {
             console.error('There was an error logging in!', error);
             alert(error.response.data || 'Login failed');

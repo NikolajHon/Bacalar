@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import '../styles/LessonQuestions.css';
-import AppBar from '../components/AppBar';
-import { UserContext } from '../contexts/UserContext';
+import '../../styles/LessonQuestions.css';
+import AppBar from '../../components/AppBar';
+import { UserContext } from '../../contexts/UserContext';
 import MonacoEditor from "@monaco-editor/react";
 
 const Tasks = () => {

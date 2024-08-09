@@ -81,6 +81,9 @@ button:hover {
     border: 1px solid #000;
     cursor: pointer;
 }
+.question-box{
+    border-radius: 10px;
+}
 
 .question-box.yellow {
     background-color: rgb(121, 121, 33);

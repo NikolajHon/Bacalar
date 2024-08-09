@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import '../styles/LessonQuestions.css';
-import AppBar from '../components/AppBar';
-import { UserContext } from '../contexts/UserContext';
-import QuestionTable from '../components/QuestionTable';
+import '../../styles/LessonQuestions.css';
+import AppBar from '../../components/AppBar';
+import { UserContext } from '../../contexts/UserContext';
+import QuestionTable from '../../components/QuestionTable';
 
 const LessonQuestions = () => {
     const { lessonId } = useParams();

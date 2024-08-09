@@ -98,12 +98,11 @@ public class UserController {
             return ResponseEntity.status(403).body(Map.of("error", "User has not completed email verification."));
         }
 
-        // Возвращаем имя пользователя и ID при успешном входе
         Map<String, String> response = new HashMap<>();
         response.put("message", "Login successful.");
         response.put("username", user.getUsername());
-        response.put("userId", String.valueOf(user.getId())); // Преобразуем ID в строку
-
+        response.put("userId", String.valueOf(user.getId()));
+        response.put("role", String.valueOf(user.getRole()));
         return ResponseEntity.ok(response);
     }
 
@@ -147,10 +146,9 @@ public class UserController {
         }
 
         User user = userOptional.get();
-        int newRating = user.getRating() + ratingChange;
-        user.changeRating(newRating);
+        user.changeRating(ratingChange);
         userService.save(user);
 
-        return ResponseEntity.ok("User rating updated successfully. New rating: " + newRating);
+        return ResponseEntity.ok("User rating updated successfully. New rating: " + user.getRating());
     }
 }

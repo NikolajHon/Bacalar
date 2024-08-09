@@ -1,15 +1,16 @@
 import React from 'react';
-import '../../styles/LessonsStyles/SecondLesson.css';
-import SecondSubtopic from '../../components/SecondLessonComponent/SecondSubtopic';
-import FirstSubtopic from '../../components/SecondLessonComponent/FirstSubtopic';
-import LessonOverview from '../../components/SecondLessonComponent/LessonOverview';
-import ThirdSubtopic from '../../components/SecondLessonComponent/ThirdSubtopic';
-import FourthSubtopic from '../../components/SecondLessonComponent/FourthSubtopic';
-import FifthSubtopic from '../../components/SecondLessonComponent/FifthSubtopic';
-import SixthSubtopic from '../../components/SecondLessonComponent/SixthSubtopic';
-import SeventhSubtopic from '../../components/SecondLessonComponent/SeventhSubtopic';
-import AppBar from '../../components/AppBar';
-import LessonContent from '../../components/LessonContent';
+import '../../../styles/LessonsStyles/SecondLesson.css';
+import SecondSubtopic from '../../../components/SecondLessonComponent/SecondSubtopic'
+// import SecondSubtopic from '../../components/SecondLessonComponent/SecondSubtopic';
+import FirstSubtopic from '../../../components/SecondLessonComponent/FirstSubtopic';
+import LessonOverview from '../../../components/SecondLessonComponent/LessonOverview';
+import ThirdSubtopic from '../../../components/SecondLessonComponent/ThirdSubtopic';
+import FourthSubtopic from '../../../components/SecondLessonComponent/FourthSubtopic';
+import FifthSubtopic from '../../../components/SecondLessonComponent/FifthSubtopic';
+import SixthSubtopic from '../../../components/SecondLessonComponent/SixthSubtopic';
+import SeventhSubtopic from '../../../components/SecondLessonComponent/SeventhSubtopic';
+import AppBar from '../../../components/AppBar';
+import LessonContent from '../../../components/LessonContent';
 const SecondLesson = () => {
     return (
         <div className='main-second'>

@@ -1,0 +1,113 @@
+.discussion-detail-container {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.discussion-detail-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.discussion-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.discussion-meta {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.discussion-content {
+    margin: 20px 0;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.comment-list {
+    margin-top: 30px;
+}
+
+.comment-item {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    margin-bottom: 10px;
+}
+
+.comment-meta {
+    font-size: 0.8em;
+    color: #999;
+}
+.dark-theme .discussion-detail-container{
+    background-color: #111828;
+    border: 1px solid #fcfdff;
+}
+.dark-theme .comment-item{
+    background-color: #1b263a;
+}
+/* styles/forum/DiscussionDetail.css */
+
+.new-comment-form-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0;
+}
+
+.new-comment-form-container.show {
+    max-height: 300px; /* Устанавливаем подходящую высоту */
+    opacity: 1;
+}
+
+.toggle-form-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggle-form-button:hover {
+    background-color: #0056b3;
+}
+
+form textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}

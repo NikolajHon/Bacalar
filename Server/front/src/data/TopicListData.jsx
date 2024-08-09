@@ -1,69 +1,69 @@
-const data=[
+const data = [
     {
-        h3:"Введение в операционные системы",
-        p:"Основные функции ОС, история и развитие, типы ОС",
+        h3: "Introduction to Operating Systems",
+        p: "Basic functions of OS, history and development, types of OS",
         Link: "introduction"
     },
     {
-        h3:"Процессы и потоки",
-        p:"Понятия процессов и потоков, управление процессами, планирование и приоритеты.",
+        h3: "Processes and Threads",
+        p: "Concepts of processes and threads, process management, scheduling, and priorities.",
         Link: "processes-and-threads"
     },
     {
-        h3:"Управление памятью",
-        p:"Механизмы распределения памяти, виртуальная память, страничная и сегментная организация",
-        Link: "imemory-management"
+        h3: "Memory Management",
+        p: "Memory allocation mechanisms, virtual memory, paging, and segmentation",
+        Link: "memory-management"
     },
     {
-        h3:"Файловые системы",
-        p:"Структура и организация файловых систем, методы доступа к данным, управление файловой системой",
+        h3: "File Systems",
+        p: "Structure and organization of file systems, data access methods, file system management",
         Link: "file-systems"
     },
     {
-        h3:"Ввод/вывод и драйверы устройств",
-        p:"Аппаратные и программные аспекты ввода/вывода, драйверы устройств.",
+        h3: "I/O Systems and Device Drivers",
+        p: "Hardware and software aspects of I/O, device drivers.",
         Link: "io-systems-and-drivers"
     },
     {
-        h3:"Безопасность и защита",
-        p:"Основы безопасности ОС, методы аутентификации, управление доступом, защита данных",
+        h3: "Security and Protection",
+        p: "Fundamentals of OS security, authentication methods, access control, data protection",
         Link: "security-and-protection"
     },
     {
-        h3:"Сетевые операционные системы",
-        p:"Основы сетевых взаимодействий, протоколы, сетевые службы",
+        h3: "Network Operating Systems",
+        p: "Basics of network interactions, protocols, network services",
         Link: "network-os"
     },
     {
-        h3:"Виртуализация",
-        p:"Концепции виртуальных машин, гипервизоры, преимущества виртуализации",
+        h3: "Virtualization",
+        p: "Concepts of virtual machines, hypervisors, benefits of virtualization",
         Link: "virtualization"
     },
     {
-        h3:"Реальные операционные системы",
-        p:"Особенности ОС реального времени, управление ресурсами и временем выполнения задач.",
+        h3: "Real-Time Operating Systems",
+        p: "Features of real-time OS, resource and time management.",
         Link: "real-time-os"
     },
     {
-        h3:"Обработка прерываний и системных вызовов",
-        p:"Механизмы обработки прерываний, системные вызовы и их роль",
+        h3: "Interrupts and System Calls",
+        p: "Mechanisms for handling interrupts, system calls and their role",
         Link: "interrupts-and-system-calls"
     },
     {
-        h3:"Мультиплатформенные и встраиваемые операционные системы",
-        p:"ОС для различных архитектур, особенности мобильных и встраиваемых систем",
+        h3: "Multiplatform and Embedded Operating Systems",
+        p: "OS for various architectures, features of mobile and embedded systems",
         Link: "multiplatform-and-embedded-os"
     },
     {
-        h3:"Оптимизация производительности",
-        p:"Методы повышения эффективности работы ОС, управление энергопотреблением.",
+        h3: "Performance Optimization",
+        p: "Methods to improve OS efficiency, power management.",
         Link: "performance-optimization"
     },
     {
-        h3:"Разработка и отладка ОС",
-        p:"Основы создания операционных систем, методы отладки и тестирования",
+        h3: "OS Development and Debugging",
+        p: "Fundamentals of OS creation, debugging and testing methods",
         Link: "os-development-and-debugging"
     }
-    
-]
-export default data
+];
+
+export default data;

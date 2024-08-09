@@ -1,30 +1,40 @@
-// src/App.js
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Registration from './pages/Registration';
-import FirstLesson from './pages/Lessons/FirstLesson';
-import SecondLesson from './pages/Lessons/SecondLesson';
-import LoginForm from './pages/LoginForm';
-import MainScreen from './pages/MainScreen';
-import LessonQuestions from './pages/LessonQuestions';
-import Tasks from './pages/Tasks';
-import { UserProvider } from './contexts/UserContext'; // Добавьте этот импорт
+import { UserProvider } from './contexts/UserContext';
 import './App.css';
+
+const Registration = lazy(() => import('./pages/Registration'));
+const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));
+const SecondLesson = lazy(() => import('./pages/studentPages/Lessons/SecondLesson'));
+const LoginForm = lazy(() => import('./pages/LoginForm'));
+const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreen'));
+const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreen'));
+const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'));
+const Tasks = lazy(() => import('./pages/studentPages/Tasks'));
+
+// Новые страницы форума
+const ForumPage = lazy(() => import('./pages/forum/ForumPage'));
+const DiscussionPage = lazy(() => import('./pages/forum/DiscussionPage'));
 
 const App = () => {
     return (
-        <UserProvider> {/* Оберните все в UserProvider */}
+        <UserProvider>
             <Router>
-                <Routes>
-                    <Route path="/register" element={<Registration />} />
-                    <Route path="/login" element={<LoginForm />} />
-                    <Route path="/mainscreen" element={<MainScreen />} />
-                    <Route path="/lessons/introduction" element={<FirstLesson />} />
-                    <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
-                    <Route path="/" element={<LoginForm />} />
-                    <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
-                    <Route path="/lessons/tasks/:lessonId" element={<Tasks/>} />
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path="/register" element={<Registration />} />
+                        <Route path="/login" element={<LoginForm />} />
+                        <Route path="/student/mainscreen" element={<StudentMainScreen />} />
+                        <Route path="/teacher/mainscreen" element={<TeacherMainScreen />} />
+                        <Route path="/lessons/introduction" element={<FirstLesson />} />
+                        <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
+                        <Route path="/" element={<LoginForm />} />
+                        <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
+                        <Route path="/lessons/tasks/:lessonId" element={<Tasks />} />
+                        <Route path="/forum" element={<ForumPage />} />
+                        <Route path="/discussion/:id" element={<DiscussionPage />} />
+                    </Routes>
+                </Suspense>
             </Router>
         </UserProvider>
     );
