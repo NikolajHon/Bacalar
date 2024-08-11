@@ -1,7 +1,6 @@
-// src/components/LoginForm.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import '../styles/LoginForm.css';
+import '../styles/FormStyles.css'; // Подключаем общий файл стилей
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 
@@ -15,7 +14,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const form = document.querySelector('.login-form');
+        const form = document.querySelector('.form-box');
         form.classList.add('fade-in');
     }, []);
 
@@ -31,13 +30,11 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
-            const { username, userId, role} = response.data; 
-            setUser({ id: userId, name: username, rating: 0 , role: role});
-            console.log('Logged in user:', username);
-            console.log('Id is :' , userId)
-            if(role == "ROLE_ADMIN"){
+            const { username, userId, role } = response.data;
+            setUser({ id: userId, name: username, rating: 0, role: role });
+            if (role === "ROLE_ADMIN") {
                 navigate('/teacher/mainscreen');
-            }else{
+            } else {
                 navigate('/student/mainscreen');
             }
         } catch (error) {
@@ -47,8 +44,8 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-form">
+        <div className="form-container">
+            <div className="form-box">
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="input-container">

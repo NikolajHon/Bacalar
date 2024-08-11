@@ -20,7 +20,7 @@ const NewCommentForm = ({ discussionId, onClose, onCommentAdded }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newComment),
     }).then(() => {
-      setContent(''); // Очистить форму после отправки
+      setContent('');
       onCommentAdded(); // Вызвать функцию обновления комментариев
       onClose(); // Закрыть модальное окно
     }).catch(error => {

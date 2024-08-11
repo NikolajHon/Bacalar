@@ -1,6 +1,8 @@
 package org.example.oslearning.service.impl;
 
+import org.example.oslearning.model.Group;
 import org.example.oslearning.model.User;
+import org.example.oslearning.repository.GroupRepository;
 import org.example.oslearning.repository.UserRepository;
 import org.example.oslearning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private GroupRepository groupRepository;
     @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
@@ -51,5 +55,14 @@ public class UserServiceImpl implements UserService {
 
     public void save(User user) {
         userRepository.save(user);
+    }
+
+
+    @Override
+    public User assignUserToGroup(Long userId, Long groupId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Group group = groupRepository.findById(groupId).orElseThrow(() -> new IllegalArgumentException("Group not found"));
+        user.setGroup(group);
+        return userRepository.save(user);
     }
 }

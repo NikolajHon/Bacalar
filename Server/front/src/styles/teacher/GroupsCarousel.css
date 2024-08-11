@@ -1,0 +1,36 @@
+.groups-carousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.group-card {
+    background-color: #1c2942;
+    border-radius: 8px;
+    border: 1px solid #007bff;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.group-card:hover {
+    background-color: #162238;
+    transform: scale(1.05);
+}
+
+.group-title {
+    font-size: 1.2em;
+    color: #ecf0f1;
+    margin-bottom: 10px;
+}
+
+.group-meta {
+    font-size: 0.9em;
+    color: #bdc3c7;
+}
+
+.group-meta span {
+    display: block;
+    margin-bottom: 5px;
+}

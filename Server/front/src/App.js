@@ -2,6 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
 import './App.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 const Registration = lazy(() => import('./pages/Registration'));
 const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));

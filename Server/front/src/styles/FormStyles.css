@@ -1,40 +1,39 @@
-
-.registration-page{
+/* Общие стили для контейнера форм */
+.form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #0056b3;
+    background-color: #111828;
 }
-.registration-form {
-    background-color: #ffffff;
+
+/* Общие стили для форм */
+.form-box {
+    background-color: #202938;
+    border: 1px solid #ccc;
     border-radius: 10px;
     padding: 40px 40px;
-    width: 100%;
     max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.registration-form.fade-in {
+.form-box.fade-in {
     opacity: 1;
     transform: translateY(0);
 }
 
-.registration-form h2 {
+.form-box h2 {
     margin-bottom: 30px;
     font-size: 24px;
-    color: #333;
+    color: #ffffff;
+    text-align: center;
 }
 
-.registration-form form {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Общие стили для input и label */
 .input-container {
     margin-bottom: 20px;
     text-align: left;
@@ -43,7 +42,7 @@
 .input-container label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    color: #ffffff;
 }
 
 .input-container input {
@@ -55,40 +54,41 @@
     box-sizing: border-box;
 }
 
-.registration-form button {
+/* Общие стили для кнопок */
+.form-box button {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: #295c34;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.registration-form button:hover {
+.form-box button:hover {
     background-color: #0056b3;
 }
 
+/* Общие стили для социальных иконок */
 .social-login {
+    text-align: center;
     margin-top: 20px;
 }
 
 .social-login p {
-    margin: 0;
-    color: #555;
+    margin-bottom: 10px;
+    color: #5a5555;
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    gap: 15px;
 }
 
 .social-icons i {
     font-size: 24px;
-    color: #555;
-    margin: 0 10px;
     cursor: pointer;
     transition: color 0.3s ease;
 }

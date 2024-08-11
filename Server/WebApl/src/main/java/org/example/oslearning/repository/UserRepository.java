@@ -14,4 +14,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u ORDER BY u.rating DESC")
     List<User> findTopFiveUsers();
     Optional<User> findById(Long id);
+
 }

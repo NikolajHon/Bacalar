@@ -15,6 +15,7 @@ public interface UserService {
     List<User> getFiveBest();
     void save(User user);
     Optional<User> findById(Long id);
+    User assignUserToGroup(Long userId, Long groupId);
 
 
 

@@ -151,4 +151,9 @@ public class UserController {
 
         return ResponseEntity.ok("User rating updated successfully. New rating: " + user.getRating());
     }
+    @PutMapping("/{userId}/group/{groupId}")
+    public User assignUserToGroup(@PathVariable Long userId, @PathVariable Long groupId) {
+        return userService.assignUserToGroup(userId, groupId);
+    }
+
 }

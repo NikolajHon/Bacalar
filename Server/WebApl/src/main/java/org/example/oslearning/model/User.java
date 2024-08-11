@@ -1,5 +1,6 @@
 package org.example.oslearning.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    @JsonIgnore
+    private Group group;
+
+    // Getters and setters
 
     public Long getId() {
         return id;
@@ -77,8 +85,16 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
-    public void changeRating(int rating){
-        this.rating = this.rating + rating;
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public void changeRating(int rating) {
+        this.rating = this.rating + rating;
     }
 }

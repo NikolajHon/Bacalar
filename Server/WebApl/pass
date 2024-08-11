@@ -1,1 +1,8 @@
 P@ssword1
+{
+    "username": "adminuser",
+    "password": "SecurePass123!",
+    "email": "goncharenkokolyask@gmail.com",
+    "enabled": true,
+    "role": "ROLE_ADMIN"
+}
