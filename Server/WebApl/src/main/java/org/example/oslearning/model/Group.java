@@ -16,8 +16,20 @@ public class Group {
 
     private Character name;
 
+    @ManyToOne
+    @JoinColumn(name = "teacher")
+    private User teacher;
+
     @OneToMany(mappedBy = "group")
     private Set<User> students;
+
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
+    }
 
     public Long getId() {
         return id;

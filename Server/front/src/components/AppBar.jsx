@@ -9,15 +9,24 @@ const AppBar = ({ title }) => {
     const { user } = useContext(UserContext);
 
     const [isDarkTheme, setIsDarkTheme] = useState(() => {
-        // Загружаем состояние темы из localStorage
         const storedTheme = localStorage.getItem('theme');
         return storedTheme === 'dark';
     });
 
+    const [currentTime, setCurrentTime] = useState(() => {
+        return new Date().toLocaleString();
+    });
+
     useEffect(() => {
-        // Применяем тему при изменении isDarkTheme
+        const intervalId = setInterval(() => {
+            setCurrentTime(new Date().toLocaleString());
+        }, 1000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
+    useEffect(() => {
         document.body.classList.toggle('dark-theme', isDarkTheme);
-        // Сохраняем состояние темы в localStorage
         localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
     }, [isDarkTheme]);
 
@@ -32,7 +41,10 @@ const AppBar = ({ title }) => {
             </div>
             <div className="app-bar-title">{title}</div>
 
-            {/* Добавляем кнопку для перехода на форум */}
+            <div className="time-date">
+                {currentTime}
+            </div>
+
             <div className="forum-button">
                 <Link to="/forum">Forum</Link>
             </div>

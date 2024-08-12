@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import '../../styles/teacher/GroupsCarousel.css';
 
-const GroupsCarousel = ({ groups }) => {
+const GroupsCarousel = ({ groups, onCardClick }) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -27,9 +27,14 @@ const GroupsCarousel = ({ groups }) => {
 
     return (
         <div className="groups-carousel">
+            <h1>List of Groups</h1>
             <Slider {...settings}>
                 {groups.map(group => (
-                    <div key={group.id} className="group-card">
+                    <div 
+                        key={group.id} 
+                        className="group-card"
+                        onClick={() => onCardClick(group.id)}
+                    >
                         <div className="group-title">{group.name}</div>
                         <div className="group-meta">
                             <span>Number of Students: {group.studentsCount}</span>
