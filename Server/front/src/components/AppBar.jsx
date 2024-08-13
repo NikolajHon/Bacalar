@@ -35,7 +35,7 @@ const AppBar = ({ title }) => {
     };
 
     return (
-        <div className="app-bar">
+        <div className='app-bar'>
             <div className="theme-toggle" onClick={toggleTheme}>
                 <FontAwesomeIcon icon={isDarkTheme ? faMoon : faSun} />
             </div>

@@ -28,9 +28,7 @@ const MainScreen = () => {
 
     return (
         <div>
-            <div className='app-bar'>
-                <AppBar/>
-            </div>
+            <AppBar/>
             <div className='groups-page'>   
                 <GroupsCarousel groups={groups} onCardClick={handleCardClick} />
             </div>

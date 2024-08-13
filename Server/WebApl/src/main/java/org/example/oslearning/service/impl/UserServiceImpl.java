@@ -65,4 +65,9 @@ public class UserServiceImpl implements UserService {
         user.setGroup(group);
         return userRepository.save(user);
     }
+    @Override
+    public List<User> searchUsersByName(String username) {
+        return userRepository.findByUsernameContainingIgnoreCase(username);
+    }
+
 }

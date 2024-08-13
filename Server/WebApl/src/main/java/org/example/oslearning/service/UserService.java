@@ -16,6 +16,7 @@ public interface UserService {
     void save(User user);
     Optional<User> findById(Long id);
     User assignUserToGroup(Long userId, Long groupId);
+    List<User> searchUsersByName(String name);
 
 
 
