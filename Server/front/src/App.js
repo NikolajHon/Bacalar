@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
+import CarouselCard from './components/teacher/Carousel/CarouselCard';
 import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -36,6 +37,7 @@ const App = () => {
                         <Route path="/lessons/tasks/:lessonId" element={<Tasks />} />
                         <Route path="/forum" element={<ForumPage />} />
                         <Route path="/discussion/:id" element={<DiscussionPage />} />
+                        <Route path="/carousel" element={<CarouselCard/>}/>
                     </Routes>
                 </Suspense>
             </Router>

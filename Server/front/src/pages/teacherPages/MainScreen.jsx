@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GroupsCarousel from '../../components/teacher/GroupsCarousel';
+import CarouselCard from '../../components/teacher/Carousel/CarouselCard'
 import StudentList from '../../components/teacher/StudentList';
 import AppBar from '../../components/AppBar';
 
@@ -30,7 +30,7 @@ const MainScreen = () => {
         <div>
             <AppBar/>
             <div className='groups-page'>   
-                <GroupsCarousel groups={groups} onCardClick={handleCardClick} />
+                <CarouselCard groups={groups} onCardClick={handleCardClick} />
             </div>
             {isModalOpen && <StudentList groupId={selectedGroupId} onClose={closeModal} />}
         </div>

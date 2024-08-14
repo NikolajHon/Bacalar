@@ -58,3 +58,26 @@ li.no-students {
     color: #bbb;
     cursor: default;
 }
+/* Стили для кнопок, чтобы они выглядели как на первой фотографии */
+button, .student-button {
+    background-color: #1f1f1f; /* Замените цвет на нужный */
+    color: #ffffff; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px; 
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+button:hover, .student-button:hover {
+    background-color: #006666; 
+    transform: scale(1.05); 
+}
+
+.student-button {
+    width: 100%; 
+    margin-bottom: 10px;
+}
