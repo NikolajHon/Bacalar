@@ -1,6 +1,7 @@
 package org.example.oslearning.controller;
 
 import org.example.oslearning.model.Group;
+import org.example.oslearning.model.User;
 import org.example.oslearning.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -54,4 +55,9 @@ public class GroupController {
         groupService.deleteGroup(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{id}/students")
+    public List<User> getStudentsByGroupId(@PathVariable Long id) {
+        return groupService.getStudentsByGroupId(id);
+    }
+
 }

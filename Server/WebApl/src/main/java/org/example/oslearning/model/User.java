@@ -97,4 +97,18 @@ public class User {
     public void changeRating(int rating) {
         this.rating = this.rating + rating;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", rating=" + rating +
+                ", role=" + role +
+                ", group=" + group +
+                '}';
+    }
 }

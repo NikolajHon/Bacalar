@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styles/teacher/StudentSearchModal.css'; // Убедитесь, что у вас есть CSS для стилизации
+import '../../styles/teacher/StudentSearchModal.css';
 
 export default function StudentSearchModal({ groupId, onClose }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -11,7 +11,7 @@ export default function StudentSearchModal({ groupId, onClose }) {
         axios.get('http://localhost:8080/api/users')
             .then(response => {
                 setStudents(response.data);
-                setFilteredStudents(response.data); // Изначально показываем всех студентов
+                setFilteredStudents(response.data);
             })
             .catch(error => console.error('Ошибка при получении студентов:', error));
     }, []);
@@ -19,7 +19,7 @@ export default function StudentSearchModal({ groupId, onClose }) {
     useEffect(() => {
         setFilteredStudents(
             students.filter(student =>
-                student.name?.toLowerCase().includes(searchTerm.toLowerCase())
+                student.username?.toLowerCase().includes(searchTerm.toLowerCase())
             )
         );
     }, [searchTerm, students]);
@@ -41,22 +41,22 @@ export default function StudentSearchModal({ groupId, onClose }) {
         <div className="modal">
             <div className="modal-content">
                 <span className="close-button" onClick={onClose}>×</span>
-                <h2>Добавить студента в группу {groupId}</h2>
+                <h2>Add Student to Group {groupId}</h2>
                 <input 
                     type="text" 
-                    placeholder="Поиск студентов по имени" 
+                    placeholder="Search students by name" 
                     value={searchTerm} 
                     onChange={handleSearchChange}
                 />
-                <ul className="student-list">
+                <ul>
                     {filteredStudents.length > 0 ? (
                         filteredStudents.map(student => (
                             <li key={student.id} onClick={() => handleAddStudent(student.id)}>
-                                {student.name}
+                                {student.username}
                             </li>
                         ))
                     ) : (
-                        <li>Студенты не найдены</li>
+                        <li className="no-students">No students found</li>
                     )}
                 </ul>
             </div>

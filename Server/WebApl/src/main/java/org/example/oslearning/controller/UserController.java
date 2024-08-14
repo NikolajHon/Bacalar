@@ -109,6 +109,7 @@ public class UserController {
 
     @GetMapping
     public List<User> getAllUsers() {
+        System.out.println(userService.getAllUsers().toString());
         return userService.getAllUsers();
     }
 
@@ -156,6 +157,7 @@ public class UserController {
     public User assignUserToGroup(@PathVariable Long userId, @PathVariable Long groupId) {
         return userService.assignUserToGroup(userId, groupId);
     }
+
 
     @GetMapping("/search")
     public List<User> searchUsers(@RequestParam String name) {

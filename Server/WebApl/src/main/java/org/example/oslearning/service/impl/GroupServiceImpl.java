@@ -9,6 +9,7 @@ import org.example.oslearning.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,16 @@ public class GroupServiceImpl implements GroupService {
         }
 
         groupRepository.deleteById(groupId);
+    }
+    public List<User> getStudentsByGroupId(Long groupId) {
+        Optional<Group> groupOptional = groupRepository.findById(groupId);
+
+        if (groupOptional.isPresent()) {
+            Group group = groupOptional.get();
+            return new ArrayList<>(group.getStudents());
+        } else {
+            throw new RuntimeException("Group not found");
+        }
     }
 
 }
