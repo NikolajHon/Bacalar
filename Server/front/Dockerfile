@@ -1,26 +1,27 @@
-# Указываем базовый образ
-FROM node:14
+# Dockerfile для Frontend
 
-# Устанавливаем рабочую директорию внутри контейнера
+# Используем Node.js образ для сборки приложения
+FROM node:14 AS build
+
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и package-lock.json
+# Копируем package.json и устанавливаем зависимости
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем остальные файлы
+# Копируем весь проект и строим его
 COPY . .
-
-# Строим приложение
 RUN npm run build
 
-# Используем Nginx для сервировки статики
+# Используем nginx для обслуживания статических файлов
 FROM nginx:alpine
-COPY --from=build-stage /app/build /usr/share/nginx/html
 
-# Открываем порт
+# Копируем статические файлы в nginx
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Экспонируем порт
 EXPOSE 80
 
+# Запуск nginx
 CMD ["nginx", "-g", "daemon off;"]

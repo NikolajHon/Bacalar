@@ -1,4 +1,4 @@
-/* Slider.css */
+/* General Styles */
 .slider-container {
     border: 1px solid #ccc;
     display: flex;
@@ -6,51 +6,58 @@
     align-items: center;
     height: 400px;
     position: relative;
-  }
-  
-  .slider {
+    width: 70%;
+}
+
+.slider {
     display: flex;
     position: relative;
     width: 300px;
     justify-content: center;
     align-items: center;
-  }
-  
-  .slider-card {
+}
+
+/* Card Styles */
+.slider-card {
     position: absolute;
     width: 200px;
     height: 300px;
-    background-color: #e0f7fa;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
     cursor: pointer;
     z-index: 1;
-  }
-  
-  .slider-card.prev {
+    background-color: #e0f7fa;
+}
+
+.slider-card.prev {
     transform: translateX(-120%) scale(0.8);
     opacity: 0.7;
     z-index: 0;
-  }
-  
-  .slider-card.next {
+}
+
+.slider-card.next {
     transform: translateX(120%) scale(0.8);
     opacity: 0.7;
     z-index: 0;
-  }
-  
-  .slider-card.active {
+}
+
+.slider-card.active {
     transform: translateX(0) scale(1);
     opacity: 1;
     z-index: 2;
-  }
-  
-  .slider-card.hidden {
+}
+
+.slider-card.hidden {
     display: none;
-  }
-  
-  .slider-button { 
+}
+
+.slider-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Button Styles */
+.slider-button {
     background-color: rgba(0, 0, 0, 0.1);
     border: none;
     padding: 10px;
@@ -58,52 +65,21 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-  }
-  
-  .prev {
+    z-index: 3;
+}
+
+.prev {
     left: -4px;
-  }
-  
-  .next {
+}
+
+.next {
     right: -4px;
-  }
-  .dark-theme {
+}
+
+/* Dark Theme Styles */
+.dark-theme {
     background-color: #121212;
     color: #ffffff;
-}
-
-.dark-theme .slider-card {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-}
-
-.dark-theme .slider-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-
-.dark-theme .group-title {
-    color: #ffffff;
-}
-
-.dark-theme .group-meta span {
-    color: #b3b3b3;
-}
-.slider-card {
-    position: absolute;
-    width: 200px;
-    height: 300px;
-    background-color: #e0f7fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.slider-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .dark-theme .slider-card {
@@ -117,7 +93,7 @@
 }
 
 .dark-theme .slider-card.active {
-    border: 2px solid #fffffc; 
+    border: 2px solid #fffffc;
 }
 
 .dark-theme .slider-button {

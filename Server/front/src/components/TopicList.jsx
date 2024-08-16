@@ -45,6 +45,9 @@ const TopicList = () => {
                                 <Link to={`/lessons/tasks/${index}`} className="test-link">
                                     Tasks                    
                                 </Link>
+                                <Link to={`lessons/practice/${index}`} className="test-link">
+                                    Prctise
+                                </Link>
                             </div>
                         </div>
                     </div>

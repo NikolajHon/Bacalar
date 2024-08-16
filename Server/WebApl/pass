@@ -6,3 +6,8 @@ P@ssword1
     "enabled": true,
     "role": "ROLE_ADMIN"
 }
+private static final String CLIENT_ID = "f5a875bea9d3261f9594ea8552e792cc";
+private static final String CLIENT_SECRET = "5f496f47f4d98f0451f7d3eec7311b8eaa24c5d35bb3face94eb40fc8e0e7958";
+int yourMethod(int a, int b) {
+    return a + b;
+}
