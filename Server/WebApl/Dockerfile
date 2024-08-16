@@ -1,27 +1,13 @@
-# Указываем базовый образ с Gradle
-FROM gradle:7.3.3-jdk11 AS build
+# Dockerfile для WebApl (Backend)
 
-# Устанавливаем рабочую директорию внутри контейнера
-WORKDIR /home/app
+# Используем официальный образ OpenJDK
+FROM openjdk:11-jdk-slim
 
-# Копируем файлы Gradle и исходный код
-COPY build.gradle settings.gradle ./
-COPY src ./src
-
-# Сборка проекта
-RUN gradle build --no-daemon
-
-# Указываем базовый образ для JRE
-FROM openjdk:11-jre-slim
-
-# Устанавливаем рабочую директорию внутри контейнера
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем собранный jar файл из стадии сборки
-COPY --from=build /home/app/build/libs/*.jar app.jar
+# Копируем файл сборки проекта в контейнер
+COPY ./target/your-application.jar /app/app.jar
 
-# Открываем порт
-EXPOSE 8080
-
-# Запуск приложения
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Команда запуска приложения
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

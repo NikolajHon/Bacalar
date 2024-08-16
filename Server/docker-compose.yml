@@ -1,16 +1,36 @@
-version: '3'
-
+version: '3.8'
 services:
-  frontend:
-    build:
-      context: ./front
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
-
   backend:
-    build:
-      context: ./WebAPI
+    build: ./WebApl
+    container_name: backend
     ports:
       - "8080:8080"
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+  frontend:
+    build: ./front
+    container_name: frontend
+    ports:
+      - "3000:80"
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: yourdatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

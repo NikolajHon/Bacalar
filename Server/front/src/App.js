@@ -5,6 +5,7 @@ import CarouselCard from './components/teacher/Carousel/CarouselCard';
 import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Practice from './pages/studentPages/Practice';
 
 
 const Registration = lazy(() => import('./pages/Registration'));
@@ -38,6 +39,7 @@ const App = () => {
                         <Route path="/forum" element={<ForumPage />} />
                         <Route path="/discussion/:id" element={<DiscussionPage />} />
                         <Route path="/carousel" element={<CarouselCard/>}/>
+                        <Route path="/practise" element={<Practice/>}/>
                     </Routes>
                 </Suspense>
             </Router>
