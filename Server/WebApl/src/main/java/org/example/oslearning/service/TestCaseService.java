@@ -1,19 +1,21 @@
 package org.example.oslearning.service;
 
 import org.example.oslearning.model.TestCase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class TestCaseService {
+public interface TestCaseService {
 
-    public List<TestCase> getTestCases() {
-        return List.of(
-                new TestCase("5 3", "8\n"),
-                new TestCase("10 20", "30\n"),
-                new TestCase("0 0", "0\n"),
-                new TestCase("-5 -3", "-8\n"),
-                new TestCase("100 200", "300\n")
-        );
-    }
+    public List<TestCase> getAllTestCases();
+
+    public Optional<TestCase> getTestCaseById(Long id);
+
+    public List<TestCase> getTestCasesByPracticeId(Long practiceId);
+
+    public TestCase saveTestCase(TestCase testCase);
+
+    public void deleteTestCase(Long id);
 }

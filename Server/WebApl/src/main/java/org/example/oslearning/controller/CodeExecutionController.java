@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,41 +25,43 @@ public class CodeExecutionController {
         this.testCaseService = testCaseService;
     }
 
-    @PostMapping("/execute")
-    public ResponseEntity<CodeResponse[]> executeCode(@RequestBody CodeRequest codeRequest) {
-        List<TestCase> testCases = testCaseService.getTestCases();
+    @PostMapping("/execute/{practiceId}")
+    public ResponseEntity<CodeResponse[]> executeCode(@PathVariable Long practiceId, @RequestBody CodeRequest codeRequest) {
+
+        List<TestCase> testCases = testCaseService.getTestCasesByPracticeId(practiceId);
+        System.out.println(testCases.toString());
         CodeResponse[] responses = new CodeResponse[testCases.size()];
 
         for (int i = 0; i < testCases.size(); i++) {
             TestCase testCase = testCases.get(i);
-            String completeCode = generateCompleteCode(codeRequest.getCode(), testCase.getInput());
+            String completeCode = generateCompleteCode(codeRequest.getCode(), testCase.getInputData());
             String actualOutput = executeCodeOnline(completeCode);
 
             // Сравниваем нормализованные строки
             boolean isCorrect = normalizeOutput(testCase.getExpectedOutput()).equals(normalizeOutput(actualOutput));
 
-            responses[i] = new CodeResponse(actualOutput, isCorrect, testCase.getInput(), testCase.getExpectedOutput());
+            responses[i] = new CodeResponse(actualOutput, isCorrect, testCase.getInputData(), testCase.getExpectedOutput());
         }
 
         // Логирование JSON-ответа перед его отправкой
         try {
-            ObjectMapper objectMapper = new ObjectMapper(); // Создаем ObjectMapper для преобразования объектов в JSON
+            ObjectMapper objectMapper = new ObjectMapper();
             String jsonResponse = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responses);
-            System.out.println("Response JSON:\n" + jsonResponse); // Логируем JSON-ответ
+            System.out.println("Response JSON:\n" + jsonResponse);
         } catch (Exception e) {
-            e.printStackTrace(); // В случае ошибки логируем исключение
+            e.printStackTrace();
         }
 
         return ResponseEntity.ok(responses);
     }
 
+
     private String generateCompleteCode(String userCode, String input) {
-        // Подключаем необходимые библиотеки и добавляем пользовательский код и main функцию
         return "#include <stdio.h>\n" +
                 userCode + "\n" +
                 "int main() {\n" +
                 "    int a, b;\n" +
-                "    sscanf(\"" + input + "\", \"%d %d\", &a, &b);\n" +
+                "    sscanf(\"" + input + "\", \"%d,%d\", &a, &b);\n" +
                 "    int result = yourMethod(a, b);\n" +
                 "    printf(\"%d\\n\", result);\n" +
                 "    return 0;\n" +
@@ -91,8 +94,6 @@ public class CodeExecutionController {
         return output.trim().replaceAll("\\r\\n", "\n").replaceAll("\\s+$", "");
     }
 }
-
-
 class CodeRequest {
     private String code;
     private TestCase[] testCases;

@@ -1,22 +1,38 @@
 package org.example.oslearning.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+
+@Entity
 public class TestCase {
-    private String input;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String inputData;
     private String expectedOutput;
 
-    // Конструктор
-    public TestCase(String input, String expectedOutput) {
-        this.input = input;
-        this.expectedOutput = expectedOutput;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "practice_id")
+    @JsonIgnore
+    private Practice practice;
+
+    public Long getId() {
+        return id;
     }
 
-    // Геттеры и сеттеры
-    public String getInput() {
-        return input;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setInput(String input) {
-        this.input = input;
+    public String getInputData() {
+        return inputData;
+    }
+
+    public void setInputData(String inputData) {
+        this.inputData = inputData;
     }
 
     public String getExpectedOutput() {
@@ -25,5 +41,13 @@ public class TestCase {
 
     public void setExpectedOutput(String expectedOutput) {
         this.expectedOutput = expectedOutput;
+    }
+
+    public Practice getPractice() {
+        return practice;
+    }
+
+    public void setPractice(Practice practice) {
+        this.practice = practice;
     }
 }

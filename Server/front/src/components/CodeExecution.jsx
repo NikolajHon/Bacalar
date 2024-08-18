@@ -12,7 +12,7 @@ const CodeExecution = () => {
   useEffect(() => {
     const fetchTestCases = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/testCases');
+        const response = await axios.get('http://localhost:8080/api/testCase');
         setTestCases(response.data);
       } catch (error) {
         console.error('Error fetching test cases', error);
@@ -24,7 +24,7 @@ const CodeExecution = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/execute', {
+      const response = await axios.post('http://localhost:8080/api/execute/1', {
         code,
       });
 
