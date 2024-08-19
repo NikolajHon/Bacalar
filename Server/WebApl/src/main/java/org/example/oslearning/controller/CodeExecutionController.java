@@ -1,6 +1,7 @@
 package org.example.oslearning.controller;
 
 import org.example.oslearning.model.TestCase;
+import org.example.oslearning.service.PracticeCompletionService;
 import org.example.oslearning.service.TestCaseService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -20,27 +21,38 @@ public class CodeExecutionController {
     private static final String CLIENT_SECRET = "5f496f47f4d98f0451f7d3eec7311b8eaa24c5d35bb3face94eb40fc8e0e7958";
 
     private final TestCaseService testCaseService;
+    private final PracticeCompletionService practiceCompletionService;
 
-    public CodeExecutionController(TestCaseService testCaseService) {
+    public CodeExecutionController(TestCaseService testCaseService, PracticeCompletionService practiceCompletionService) {
         this.testCaseService = testCaseService;
+        this.practiceCompletionService = practiceCompletionService;
     }
 
     @PostMapping("/execute/{practiceId}")
     public ResponseEntity<CodeResponse[]> executeCode(@PathVariable Long practiceId, @RequestBody CodeRequest codeRequest) {
+        Long userId = codeRequest.getUserId();
+
 
         List<TestCase> testCases = testCaseService.getTestCasesByPracticeId(practiceId);
-        System.out.println(testCases.toString());
         CodeResponse[] responses = new CodeResponse[testCases.size()];
+
+        boolean allCorrect = true; // Флаг, чтобы отследить, прошли ли все тесты
 
         for (int i = 0; i < testCases.size(); i++) {
             TestCase testCase = testCases.get(i);
             String completeCode = generateCompleteCode(codeRequest.getCode(), testCase.getInputData());
             String actualOutput = executeCodeOnline(completeCode);
 
-            // Сравниваем нормализованные строки
             boolean isCorrect = normalizeOutput(testCase.getExpectedOutput()).equals(normalizeOutput(actualOutput));
+            if (!isCorrect) {
+                allCorrect = false;
+            }
 
             responses[i] = new CodeResponse(actualOutput, isCorrect, testCase.getInputData(), testCase.getExpectedOutput());
+        }
+
+        if (allCorrect) {
+            practiceCompletionService.markPracticeAsCompleted(userId, practiceId);
         }
 
         // Логирование JSON-ответа перед его отправкой
@@ -54,7 +66,6 @@ public class CodeExecutionController {
 
         return ResponseEntity.ok(responses);
     }
-
 
     private String generateCompleteCode(String userCode, String input) {
         return "#include <stdio.h>\n" +
@@ -94,8 +105,10 @@ public class CodeExecutionController {
         return output.trim().replaceAll("\\r\\n", "\n").replaceAll("\\s+$", "");
     }
 }
+
 class CodeRequest {
     private String code;
+    private Long userId; // Добавляем поле userId
     private TestCase[] testCases;
 
     // Геттеры и сеттеры
@@ -107,6 +120,14 @@ class CodeRequest {
         this.code = code;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public TestCase[] getTestCases() {
         return testCases;
     }
@@ -115,6 +136,7 @@ class CodeRequest {
         this.testCases = testCases;
     }
 }
+
 
 class CodeResponse {
     private String output;

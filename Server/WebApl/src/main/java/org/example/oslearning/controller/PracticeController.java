@@ -2,9 +2,12 @@ package org.example.oslearning.controller;
 
 import org.example.oslearning.model.Practice;
 import org.example.oslearning.model.TestCase;
+import org.example.oslearning.model.User;
+import org.example.oslearning.service.PracticeCompletionService;
 import org.example.oslearning.service.PracticeService;
 import org.example.oslearning.service.TestCaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,9 @@ public class PracticeController {
     private PracticeService practiceService;
     @Autowired
     private TestCaseService testCaseService;
+    @Autowired
+    private PracticeCompletionService practiceCompletionService;
+
 
     @GetMapping
     public List<Practice> getAllPractices() {
@@ -74,4 +80,28 @@ public class PracticeController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping("/{practiceId}/complete")
+    public ResponseEntity<Void> markPracticeAsCompleted(@PathVariable Long practiceId, @RequestParam Long userId) {
+        System.out.println(userId);
+        Optional<Practice> optionalPractice = practiceService.getPracticeById(practiceId);
+        if (optionalPractice.isPresent()) {
+            Practice practice = optionalPractice.get();
+            boolean isAlreadyCompleted = practiceCompletionService.isPracticeCompleted(userId, practiceId);
+            if (isAlreadyCompleted) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).build(); // Уже выполнено
+            }
+            practiceCompletionService.markPracticeAsCompleted(userId, practiceId);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/{practiceId}/isCompleted")
+    public ResponseEntity<Boolean> isPracticeCompleted(@PathVariable Long practiceId, @RequestParam Long userId) {
+        System.out.println(userId);
+        boolean isCompleted = practiceCompletionService.isPracticeCompleted(userId, practiceId);
+        return ResponseEntity.ok(isCompleted);
+    }
+
+
 }
