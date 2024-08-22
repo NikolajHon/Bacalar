@@ -96,3 +96,36 @@
 .social-icons i:hover {
     color: #007bff;
 }
+.role-selection {
+    margin-top: 15px;
+}
+
+.role-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.role-buttons button {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+
+.role-buttons button:last-child {
+    margin-right: 0;
+}
+
+.role-buttons button.active {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #45a049;
+}
+
+.role-buttons button:hover {
+    background-color: #e0e0e0;
+}

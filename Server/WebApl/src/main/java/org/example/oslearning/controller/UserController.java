@@ -3,6 +3,7 @@ package org.example.oslearning.controller;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.example.oslearning.model.LoginRequest;
+import org.example.oslearning.model.Role;
 import org.example.oslearning.model.User;
 import org.example.oslearning.model.VerificationToken;
 import org.example.oslearning.service.EmailService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -163,5 +165,20 @@ public class UserController {
     public List<User> searchUsers(@RequestParam String name) {
         return userService.searchUsersByName(name);
     }
+    @GetMapping("/teachers")
+    public List<User> getAllTeachers() {
+        return userService.getAllUsers().stream()
+                .filter(user -> user.getRole() != null && user.getRole().equals(Role.ROLE_TEACHER))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/search/teachers")
+    public List<User> searchTeachers(@RequestParam String name) {
+        return userService.searchUsersByName(name).stream()
+                .filter(user -> user.getRole() != null && user.getRole().equals("ROLE_TEACHER"))
+                .collect(Collectors.toList());
+    }
+
+
 
 }

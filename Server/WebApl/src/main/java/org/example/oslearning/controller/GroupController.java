@@ -31,7 +31,6 @@ public class GroupController {
 
     @PostMapping
     public ResponseEntity<Group> createGroup(@RequestBody Group group) {
-        // Проверка на то, что поле name содержит только один символ
         if (group.getName() == null || group.getName().toString().length() != 1) {
             return ResponseEntity.badRequest().body(null);
         }
