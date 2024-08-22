@@ -1,0 +1,37 @@
+.dropdown {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    width: calc(100% - 2px); /* Учитываем границы */
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 5px;
+    z-index: 1000;
+    box-sizing: border-box; /* Включает границы и внутренние отступы в ширину */
+}
+
+.dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 100%; /* Устанавливает ширину списка равной ширине родителя */
+    background-color: #fff; /* Цвет фона */
+    border: 1px solid #ccc; /* Граница */
+    max-height: 150px; /* Максимальная высота списка */
+    overflow-y: auto; /* Добавляет прокрутку, если список длиннее 150px */
+    box-sizing: border-box; /* Учитывает padding и border в общей ширине элемента */
+}
+
+.dropdown ul li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown ul li:hover {
+    background-color: #f0f0f0; /* Изменяет цвет фона при наведении */
+}
+.form-group {
+    position: relative; /* Родительский элемент для правильного позиционирования */
+}
