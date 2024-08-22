@@ -5,8 +5,7 @@ import CarouselCard from './components/teacher/Carousel/CarouselCard';
 import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Practice from './pages/studentPages/Practice';
-
+import PracticesList from './pages/PracticesList';
 
 const Registration = lazy(() => import('./pages/Registration'));
 const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));
@@ -16,8 +15,6 @@ const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreen'));
 const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreen'));
 const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'));
 const Tasks = lazy(() => import('./pages/studentPages/Tasks'));
-
-// Новые страницы форума
 const ForumPage = lazy(() => import('./pages/forum/ForumPage'));
 const DiscussionPage = lazy(() => import('./pages/forum/DiscussionPage'));
 
@@ -31,15 +28,16 @@ const App = () => {
                         <Route path="/login" element={<LoginForm />} />
                         <Route path="/student/mainscreen" element={<StudentMainScreen />} />
                         <Route path="/teacher/mainscreen" element={<TeacherMainScreen />} />
+                        <Route path="/student/mainscreen/lessons/practice/:lessonId" element={<PracticesList />} />
                         <Route path="/lessons/introduction" element={<FirstLesson />} />
                         <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
                         <Route path="/lessons/tasks/:lessonId" element={<Tasks />} />
+                        <Route path="lessons/practice/:lessonId" element={<PracticesList />} />
                         <Route path="/forum" element={<ForumPage />} />
                         <Route path="/discussion/:id" element={<DiscussionPage />} />
-                        <Route path="/carousel" element={<CarouselCard/>}/>
-                        <Route path="/practise" element={<Practice/>}/>
+                        <Route path="/carousel" element={<CarouselCard />} />
                     </Routes>
                 </Suspense>
             </Router>
