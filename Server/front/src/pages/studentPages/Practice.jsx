@@ -8,7 +8,6 @@ const Practice = () => {
             <AppBar />
             <h1>Lesson 1: Introduction to File Systems in C</h1>
             <CodeExecution />
-            {/* Остальная логика урока */}
         </div>
     );
 };

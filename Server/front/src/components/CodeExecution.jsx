@@ -4,16 +4,17 @@ import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
 import '../styles/CodeExecution.css';
 import AppBar from './AppBar';
+import ErrorMessage from '../components/Error/ErrorMessage'; // Импортируем компонент ошибок
 
 const CodeExecution = ({ practiceId }) => {
   const [code, setCode] = useState('');
-  const [testCases, setTestCases] = useState([]);
   const [results, setResults] = useState([]);
   const [status, setStatus] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
   const [taskText, setTaskText] = useState('');
-  const [difficulty, setDifficulty] = useState(''); // Добавляем переменную для сложности
+  const [difficulty, setDifficulty] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(''); // Состояние для ошибок
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -21,27 +22,16 @@ const CodeExecution = ({ practiceId }) => {
       try {
         if (practiceId) {
           const response = await axios.get(`http://localhost:8080/api/practices/${practiceId}/isCompleted`, {
-            params: { userId: '1' } 
+            params: { userId: user.id } // Используем user.id из контекста
           });
           setIsCompleted(response.data);
         } else {
           console.error('practiceId is undefined');
+          setError('Practice ID не определен.'); // Устанавливаем сообщение об ошибке
         }
       } catch (error) {
         console.error('Error checking completion status', error);
-      }
-    };
-
-    const fetchTestCases = async () => {
-      try {
-        if (practiceId) {
-          const response = await axios.get(`http://localhost:8080/api/practices/${practiceId}/testcases`);
-          setTestCases(response.data);
-        } else {
-          console.error('practiceId is undefined');
-        }
-      } catch (error) {
-        console.error('Error fetching test cases', error);
+        setError('Ошибка при проверке статуса завершения задачи.');
       }
     };
 
@@ -50,21 +40,22 @@ const CodeExecution = ({ practiceId }) => {
         if (practiceId) {
           const response = await axios.get(`http://localhost:8080/api/practices/${practiceId}`);
           setTaskText(response.data.description);
-          setDifficulty(response.data.difficulty); // Получаем сложность задачи
+          setDifficulty(response.data.difficulty);
         } else {
           console.error('practiceId is undefined');
+          setError('Practice ID не определен.'); // Устанавливаем сообщение об ошибке
         }
       } catch (error) {
         console.error('Error fetching task text', error);
+        setError('Ошибка при получении текста задачи.');
       }
     };
 
     if (practiceId) {
       checkCompletionStatus();
-      fetchTestCases();
       fetchTaskTextAndDifficulty();
     }
-  }, [practiceId]);
+  }, [practiceId, user.id]); // Добавляем зависимость user.id
 
   const handleSubmit = () => {
     if (isCompleted) {
@@ -77,7 +68,7 @@ const CodeExecution = ({ practiceId }) => {
         if (practiceId) {
           const response = await axios.post(`http://localhost:8080/api/execute/${practiceId}`, {
             code,
-            userId: user.id, // Используем ID пользователя из контекста
+            userId: user.id, 
           });
 
           const result = response.data;
@@ -86,16 +77,18 @@ const CodeExecution = ({ practiceId }) => {
           const allPassed = result.every(test => test.correct);
           if (allPassed) {
             setStatus('Success: Все тесты пройдены успешно!');
-            awardPoints(); // Вызываем функцию начисления очков
+            awardPoints();
           } else {
             setStatus('Error: Не все тесты пройдены. Проверьте свой код.');
           }
         } else {
           console.error('practiceId is undefined');
+          setError('Practice ID не определен.');
         }
       } catch (error) {
         console.error('There was an error executing the code!', error);
         setStatus('Error: Произошла ошибка при выполнении кода.');
+        setError('Ошибка при выполнении кода. Попробуйте еще раз.');
       }
     };
 
@@ -111,13 +104,14 @@ const CodeExecution = ({ practiceId }) => {
     try {
       await axios.post('http://localhost:8080/api/users/changeRating', null, {
         params: {
-          userId: user.id, // ID пользователя
-          ratingChange: points, // Количество очков
+          userId: user.id,
+          ratingChange: points,
         }
       });
       console.log(`User awarded ${points} points`);
     } catch (error) {
       console.error('Error awarding points', error);
+      setError('Ошибка при начислении очков пользователю.');
     }
   };
 
@@ -132,6 +126,8 @@ const CodeExecution = ({ practiceId }) => {
           <h2>Task Description:</h2>
           <p>{taskText}</p>
         </div>
+
+        {error && <ErrorMessage message={error} type="error" />} {/* Используем компонент ошибок */}
 
         <Editor
           height="400px"

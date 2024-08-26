@@ -1,12 +1,36 @@
-/* General Styles */
+/* Общие стили для контейнера слайдера */
 .slider-container {
-    border: 1px solid #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 400px;
     position: relative;
     width: 70%;
+    margin: 20px auto;
+}
+
+/* Стили для кнопок на странице */
+.groups-page button {
+    margin-right: 10px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #0f7770;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.groups-page button:hover {
+    background-color: #0a524d;
+}
+
+/* Общие стили для карусели групп */
+.groups-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .slider {
@@ -17,17 +41,23 @@
     align-items: center;
 }
 
-/* Card Styles */
+/* Общие стили для карточек в слайдере */
 .slider-card {
     position: absolute;
-    width: 200px;
-    height: 300px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+    width: 250px; 
+    height: 350px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
     z-index: 1;
-    background-color: #e0f7fa;
+    background: linear-gradient(145deg, #1e1e1e, #2e2e2e); 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+    padding: 15px; 
+    color: #fff;
 }
 
 .slider-card.prev {
@@ -43,9 +73,11 @@
 }
 
 .slider-card.active {
-    transform: translateX(0) scale(1);
+    transform: translateX(0) scale(1.1);
     opacity: 1;
     z-index: 2;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2); 
+    border: 2px solid #0f7770;
 }
 
 .slider-card.hidden {
@@ -56,7 +88,79 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Button Styles */
+/* Стили для заголовков и метаданных внутри карточек */
+.group-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.group-meta {
+    font-size: 14px;
+    color: #b3b3b3;
+    text-align: center;
+    margin-top: auto; 
+}
+
+/* Стили для кнопок внутри карточек */
+.card-button {
+    background-color: #0f7770;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    align-self: center; 
+    margin-top: 15px;
+}
+
+.card-button:hover {
+    background-color: #0a524d;
+}
+
+/* Стили для кнопок с темной темой */
+.dark-theme .slider-card {
+    background: linear-gradient(145deg, #121212, #1e1e1e); 
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .slider-card:hover {
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .slider-card.active {
+    border: 2px solid #fffffc;
+}
+
+.dark-theme .slider-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.dark-theme .group-title {
+    color: #ffffff;
+}
+
+.dark-theme .group-meta span {
+    color: #b3b3b3;
+}
+
+.dark-theme .card-button {
+    background-color: #00bcd4;
+    color: #121212;
+}
+
+.dark-theme .card-button:hover {
+    background-color: #008ba3;
+}
+
+/* Стили для кнопок переключения слайдов */
 .slider-button {
     background-color: rgba(0, 0, 0, 0.1);
     border: none;
@@ -76,35 +180,20 @@
     right: -4px;
 }
 
-/* Dark Theme Styles */
-.dark-theme {
-    background-color: #121212;
-    color: #ffffff;
+/* Анимация появления элементов */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
-.dark-theme .slider-card {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-}
-
-.dark-theme .slider-card:hover {
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.4);
-}
-
-.dark-theme .slider-card.active {
-    border: 2px solid #fffffc;
-}
-
-.dark-theme .slider-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-
-.dark-theme .group-title {
-    color: #ffffff;
-}
-
-.dark-theme .group-meta span {
-    color: #b3b3b3;
+.teacher-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block; 
 }

@@ -3,9 +3,10 @@ import axios from 'axios';
 import CarouselCard from '../../components/teacher/Carousel/CarouselCard';
 import StudentList from '../../components/teacher/StudentList';
 import AppBar from '../../components/AppBar';
-import Modal from '../../components/Modal'; // Предполагаем, что у вас есть компонент Modal
-import CreateGroupForm from '../../components/CreateGroupForm'; // Компонент с формой для создания группы
-import UserRegistrationForm from '../../components/UserRegistrationForm'; // Компонент с формой для регистрации пользователя
+import Modal from '../../components/Modal'; 
+import CreateGroupForm from '../../components/CreateGroupForm'; 
+import UserRegistrationForm from '../../components/UserRegistrationForm'; 
+import '../../styles/teacher/MainScreen.css'
 
 const MainScreen = () => {
     const [groups, setGroups] = useState([]);
@@ -59,11 +60,7 @@ const MainScreen = () => {
     return (
         <div>
             <AppBar />
-            <div className='groups-page'>
-                <button onClick={handleCreateGroupClick}>Добавить группу</button>
-                <button onClick={handleUserRegistrationClick}>Добавить пользователя</button>
-                <CarouselCard groups={groups} onCardClick={handleCardClick} />
-            </div>
+
             {isModalOpen && <StudentList groupId={selectedGroupId} onClose={closeModal} />}
             {isCreateGroupModalOpen && (
                 <Modal onClose={closeCreateGroupModal}>
@@ -75,6 +72,13 @@ const MainScreen = () => {
                     <UserRegistrationForm onUserCreated={handleUserCreated} onClose={closeUserRegistrationModal} />
                 </Modal>
             )}
+            <div className='groups-page'>
+                <CarouselCard groups={groups} onCardClick={handleCardClick} />
+                <div className='button-container'>
+                    <button onClick={handleCreateGroupClick}>Добавить группу</button>
+                    <button onClick={handleUserRegistrationClick}>Добавить пользователя</button>
+                </div>
+            </div>
         </div>
     );
 };

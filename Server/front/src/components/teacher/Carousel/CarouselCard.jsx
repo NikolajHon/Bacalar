@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import StudentList from '../StudentList'; 
+import StudentList from '../StudentList';
+import buchek from '../../../images/buchek.jpg'
+import other from '../../../images/logo.png'
 import './CarouselCard.css';
 
 const Slider = () => {
@@ -10,34 +12,39 @@ const Slider = () => {
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/groups')
-            .then(response => setData(response.data))
-            .catch(error => console.error('Ошибка при получении данных:', error));
+            .then(response => {
+                console.log('Data received from backend:', response.data);
+                setData(response.data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }, []);
-  
+
+
     const handleClick = (index) => {
         if (index === currentIndex) {
-            setIsStudentListOpen(true); 
+            setIsStudentListOpen(true);
         } else {
-            setCurrentIndex(index); 
+            setCurrentIndex(index);
         }
+        console.log(`ID группы: ${data[index].id}, ID учителя: ${data[index].teacher.username}`);
     };
-  
+
     const nextSlide = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === data.length - 1 ? 0 : prevIndex + 1
         );
     };
-  
+
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? data.length - 1 : prevIndex - 1
         );
     };
-  
+
     const getPrevIndex = () => {
         return currentIndex === 0 ? data.length - 1 : currentIndex - 1;
     };
-  
+
     const getNextIndex = () => {
         return currentIndex === data.length - 1 ? 0 : currentIndex + 1;
     };
@@ -45,29 +52,34 @@ const Slider = () => {
     const closeStudentList = () => {
         setIsStudentListOpen(false);
     };
-  
+
     return (
-        <div className="groups-carousel dark-theme"> 
-            <h1>List of Cards</h1>
+        <div className="groups-carousel dark-theme">
             <div className="slider-container">
-                <button className="slider-button prev" onClick={prevSlide}>
-                    &lt;
-                </button>
                 <div className="slider">
                     {data.map((item, index) => (
                         <div
                             key={item.id}
-                            className={`slider-card group-card ${  
-                                index === currentIndex
-                                    ? 'active'
-                                    : index === getPrevIndex()
+                            className={`slider-card group-card ${index === currentIndex
+                                ? 'active'
+                                : index === getPrevIndex()
                                     ? 'prev'
                                     : index === getNextIndex()
-                                    ? 'next'
-                                    : 'hidden'
-                            }`}
+                                        ? 'next'
+                                        : 'hidden'
+                                }`}
                             onClick={() => handleClick(index)}
                         >
+                            <img
+                                src={
+                                    item.teacher.username === 'Buchek'
+                                        ? buchek
+                                        : other
+                                }
+                                alt={item.teacher.username}
+                                className="teacher-image"
+                            />
+
                             <div className="group-title">{item.content}</div>
                             <div className="group-meta">
                                 <span>Index: {index + 1}</span>
@@ -76,15 +88,17 @@ const Slider = () => {
                         </div>
                     ))}
                 </div>
-                <button className="slider-button next" onClick={nextSlide}>
-                    &gt;
-                </button>
             </div>
             {isStudentListOpen && (
-                <StudentList groupId={data[currentIndex].id} onClose={closeStudentList} />
+                <StudentList
+                    groupId={data[currentIndex].id}
+                    onClose={closeStudentList}
+                />
             )}
         </div>
     );
+
+
 };
-  
+
 export default Slider;

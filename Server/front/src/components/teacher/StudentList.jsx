@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../styles/teacher/StudentList.css';
-import StudentSearchModal from './StudentSearchModal'; // Импорт модального окна для добавления студентов
+import StudentSearchModal from './StudentSearchModal';
 
 export default function StudentList({ groupId, onClose }) {
     const [students, setStudents] = useState([]);
@@ -11,13 +11,13 @@ export default function StudentList({ groupId, onClose }) {
         if (groupId) {
             axios.get(`http://localhost:8080/api/groups/${groupId}/students`)
                 .then(response => {
-                    console.log(response.data); // Выводим данные в консоль для проверки
-                    setStudents(response.data);
+                    // Сортируем студентов по рейтингу в порядке убывания
+                    const sortedStudents = response.data.sort((a, b) => b.rating - a.rating);
+                    setStudents(sortedStudents);
                 })
                 .catch(error => console.error('Ошибка при получении студентов:', error));
         }
     }, [groupId]);
-
 
     if (!groupId) return null;
 
@@ -27,20 +27,27 @@ export default function StudentList({ groupId, onClose }) {
 
     const handleModalClose = () => {
         setIsModalOpen(false);
-        // Обновляем список студентов после закрытия модального окна
         axios.get(`http://localhost:8080/api/groups/${groupId}/students`)
-            .then(response => setStudents(response.data))
+            .then(response => {
+                const sortedStudents = response.data.sort((a, b) => b.rating - a.rating);
+                setStudents(sortedStudents);
+            })
             .catch(error => console.error('Ошибка при обновлении списка студентов:', error));
     };
 
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains('modal-overlay')) {
+            onClose(); // Закрываем модальное окно при клике вне его области
+        }
+    };
+
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <span className="close-button" onClick={onClose}>×</span>
+        <div className="modal-overlay" onClick={handleOverlayClick}> {/* Затемненный фон и обработчик клика */}
+            <div className="modal-content student-list" onClick={(e) => e.stopPropagation()}> {/* Останавливаем всплытие события клика */}
                 <h2>Students in Group {groupId}</h2>
                 <ul>
                     {students.map(student => (
-                        <li key={student.id}>{student.username} {student.rating} </li>
+                        <li key={student.id}>{student.username} {student.rating}</li>
                     ))}
                 </ul>
 
