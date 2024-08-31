@@ -27,8 +27,7 @@ public class User {
     @JoinColumn(name = "group_id")
     @JsonIgnore
     private Group group;
-
-    // Getters and setters
+    private String photoUrl;
 
     public Long getId() {
         return id;
@@ -96,6 +95,14 @@ public class User {
 
     public void changeRating(int rating) {
         this.rating = this.rating + rating;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     @Override

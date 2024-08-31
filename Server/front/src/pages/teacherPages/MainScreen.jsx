@@ -3,10 +3,11 @@ import axios from 'axios';
 import CarouselCard from '../../components/teacher/Carousel/CarouselCard';
 import StudentList from '../../components/teacher/StudentList';
 import AppBar from '../../components/AppBar';
-import Modal from '../../components/Modal'; 
-import CreateGroupForm from '../../components/CreateGroupForm'; 
-import UserRegistrationForm from '../../components/UserRegistrationForm'; 
+import Modal from '../../components/Modal';
+import CreateGroupForm from '../../components/CreateGroupForm';
+import UserRegistrationForm from '../../components/UserRegistrationForm';
 import '../../styles/teacher/MainScreen.css'
+import TopicList from '../../components/TopicList'
 
 const MainScreen = () => {
     const [groups, setGroups] = useState([]);
@@ -60,7 +61,6 @@ const MainScreen = () => {
     return (
         <div>
             <AppBar />
-
             {isModalOpen && <StudentList groupId={selectedGroupId} onClose={closeModal} />}
             {isCreateGroupModalOpen && (
                 <Modal onClose={closeCreateGroupModal}>
@@ -79,6 +79,7 @@ const MainScreen = () => {
                     <button onClick={handleUserRegistrationClick}>Добавить пользователя</button>
                 </div>
             </div>
+            <TopicList />
         </div>
     );
 };

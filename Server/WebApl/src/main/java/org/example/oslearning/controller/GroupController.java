@@ -54,9 +54,20 @@ public class GroupController {
         groupService.deleteGroup(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/{id}/students")
     public List<User> getStudentsByGroupId(@PathVariable Long id) {
         return groupService.getStudentsByGroupId(id);
     }
 
+    // Новый метод для удаления пользователя из группы
+    @DeleteMapping("/{groupId}/students/{studentId}")
+    public ResponseEntity<Void> removeStudentFromGroup(@PathVariable Long groupId, @PathVariable Long studentId) {
+        boolean removed = groupService.removeStudentFromGroup(groupId, studentId);
+        if (removed) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

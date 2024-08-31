@@ -70,3 +70,6 @@
     border-radius: 8px;
     position: relative;
 }
+.dark-theme{
+    color: white;
+}

@@ -155,3 +155,7 @@
 .dark-theme .lesson-link:hover{
     background-color: #0a524d;
 }
+.dark-theme .topic-list{
+    background-color: #111828;
+    color: white;
+}

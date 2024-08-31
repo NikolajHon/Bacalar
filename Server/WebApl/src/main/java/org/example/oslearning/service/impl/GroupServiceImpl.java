@@ -59,6 +59,7 @@ public class GroupServiceImpl implements GroupService {
 
         groupRepository.deleteById(groupId);
     }
+    @Override
     public List<User> getStudentsByGroupId(Long groupId) {
         Optional<Group> groupOptional = groupRepository.findById(groupId);
 
@@ -68,6 +69,19 @@ public class GroupServiceImpl implements GroupService {
         } else {
             throw new RuntimeException("Group not found");
         }
+    }
+    @Override
+    public boolean removeStudentFromGroup(Long groupId, Long studentId) {
+        Optional<User> optionalUser = userRepository.findById(studentId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (user.getGroup() != null && user.getGroup().getId().equals(groupId)) {
+                user.setGroup(null); // Удаляем пользователя из группы
+                userRepository.save(user);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

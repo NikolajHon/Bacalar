@@ -10,9 +10,7 @@ const Modal = ({ onClose, children }) => {
 
     return (
         <div className="modal-overlay" onClick={handleOverlayClick}>
-            <div className="modal-content">
                 {children}
-            </div>
         </div>
     );
 };

@@ -4,10 +4,13 @@ import org.example.oslearning.model.Group;
 import org.example.oslearning.model.User;
 import org.example.oslearning.repository.GroupRepository;
 import org.example.oslearning.repository.UserRepository;
+import org.example.oslearning.service.S3Service;
 import org.example.oslearning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private GroupRepository groupRepository;
+    @Autowired
+    private S3Service s3Service;
     @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
@@ -69,6 +74,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> searchUsersByName(String username) {
         return userRepository.findByUsernameContainingIgnoreCase(username);
+    }
+    public User uploadUserPhoto(Long userId, MultipartFile file) throws IOException {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        String photoUrl = s3Service.uploadFile(file);
+        user.setPhotoUrl(photoUrl);
+        return userRepository.save(user);
     }
 
 }

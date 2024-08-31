@@ -17,4 +17,5 @@ public interface GroupService {
 
     void deleteGroup(Long id);
     List<User>getStudentsByGroupId(Long groupId);
+    boolean removeStudentFromGroup(Long groupId, Long studentId);
 }

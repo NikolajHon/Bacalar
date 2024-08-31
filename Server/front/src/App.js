@@ -6,6 +6,7 @@ import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PracticesList from './pages/PracticesList';
+import StudentProfile from './pages/StudentProfile';
 
 const Registration = lazy(() => import('./pages/Registration'));
 const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));
@@ -17,6 +18,7 @@ const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'
 const Tasks = lazy(() => import('./pages/studentPages/Tasks'));
 const ForumPage = lazy(() => import('./pages/forum/ForumPage'));
 const DiscussionPage = lazy(() => import('./pages/forum/DiscussionPage'));
+const StudentPages = lazy(() =>import('./pages/StudentProfile'));
 
 const App = () => {
     return (
@@ -38,6 +40,7 @@ const App = () => {
                         <Route path="/forum" element={<ForumPage />} />
                         <Route path="/discussion/:id" element={<DiscussionPage />} />
                         <Route path="/carousel" element={<CarouselCard />} />
+                        <Route path="/studentProfile" element={<StudentProfile />} />
                     </Routes>
                 </Suspense>
             </Router>
