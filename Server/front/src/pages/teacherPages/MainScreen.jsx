@@ -79,7 +79,9 @@ const MainScreen = () => {
                     <button onClick={handleUserRegistrationClick}>Добавить пользователя</button>
                 </div>
             </div>
-            <TopicList />
+            <div className='topic-list-teacher'>
+                <TopicList />
+            </div>
         </div>
     );
 };
