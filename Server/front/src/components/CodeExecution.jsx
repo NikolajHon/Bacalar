@@ -4,7 +4,7 @@ import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
 import '../styles/CodeExecution.css';
 import AppBar from './AppBar';
-import ErrorMessage from '../components/Error/ErrorMessage'; // Импортируем компонент ошибок
+import ErrorMessage from '../components/Error/ErrorMessage'; 
 
 const CodeExecution = ({ practiceId }) => {
   const [code, setCode] = useState('');

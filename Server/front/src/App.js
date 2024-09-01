@@ -6,19 +6,20 @@ import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PracticesList from './pages/PracticesList';
-import StudentProfile from './pages/StudentProfile';
 
 const Registration = lazy(() => import('./pages/Registration'));
 const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));
 const SecondLesson = lazy(() => import('./pages/studentPages/Lessons/SecondLesson'));
 const LoginForm = lazy(() => import('./pages/LoginForm'));
-const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreen'));
-const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreen'));
-const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'));
-const Tasks = lazy(() => import('./pages/studentPages/Tasks'));
+const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreenStudent'));
+const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreenTeacher'));
+const LessonQuestionsStudent = lazy(() => import('./pages/studentPages/LessonQuestionsStudent'));
+const LessonQuestionsTeacher = lazy(() => import('./pages/teacherPages/LessonQuestionsTeacher'));
+const Tasks = lazy(() => import('./pages/studentPages/TasksStudent'));
 const ForumPage = lazy(() => import('./pages/forum/ForumPage'));
 const DiscussionPage = lazy(() => import('./pages/forum/DiscussionPage'));
-const StudentPages = lazy(() =>import('./pages/StudentProfile'));
+const StudentProfile = lazy(() =>import('./pages/StudentProfile'));
+
 
 const App = () => {
     return (
@@ -34,7 +35,7 @@ const App = () => {
                         <Route path="/lessons/introduction" element={<FirstLesson />} />
                         <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
                         <Route path="/" element={<LoginForm />} />
-                        <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
+                        <Route path="/lessons/test/:lessonId" element={<LessonQuestionsStudent />} />
                         <Route path="/lessons/tasks/:lessonId" element={<Tasks />} />
                         <Route path="lessons/practice/:lessonId" element={<PracticesList />} />
                         <Route path="/forum" element={<ForumPage />} />

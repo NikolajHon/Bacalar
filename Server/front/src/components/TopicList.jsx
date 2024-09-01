@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/TopicListData';
-import '../styles/MainScreen.css'; // Make sure to link to the appropriate CSS file
+import '../styles/MainScreenStudent.css';
 
 const TopicList = () => {
     return (
@@ -11,7 +11,7 @@ const TopicList = () => {
                 <h4>The following courses should be taken in order</h4>
             </div>
             {data.map((element, index) => {
-                const progress = element.progress || 0; // Use progress from data or default to 0
+                const progress = element.progress || 0;
                 return (
                     <div className="topic-item" key={index}>
                         <div className="progress-circle">
