@@ -24,7 +24,8 @@ public class S3Service {
         String accessKeyId = System.getenv("AWS_ACCESS_KEY_ID");
         String secretAccessKey = System.getenv("AWS_SECRET_ACCESS_KEY");
 
-        AwsBasicCredentials awsCreds = AwsBasicCredentials.create("accessKeyId", "secretAccessKey");
+
+        AwsBasicCredentials awsCreds = AwsBasicCredentials.create(accessKeyId, secretAccessKey);
 
         this.s3Client = S3Client.builder()
                 .region(Region.EU_NORTH_1)

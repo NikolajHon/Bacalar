@@ -15,7 +15,8 @@ const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreenStud
 const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreenTeacher'));
 const LessonQuestionsStudent = lazy(() => import('./pages/studentPages/LessonQuestionsStudent'));
 const LessonQuestionsTeacher = lazy(() => import('./pages/teacherPages/LessonQuestionsTeacher'));
-const Tasks = lazy(() => import('./pages/studentPages/TasksStudent'));
+const TaskTeacher = lazy(() => import('./pages/teacherPages/TasksTeacher'))
+const TasksStudent = lazy(() => import('./pages/studentPages/TasksStudent'));
 const ForumPage = lazy(() => import('./pages/forum/ForumPage'));
 const DiscussionPage = lazy(() => import('./pages/forum/DiscussionPage'));
 const StudentProfile = lazy(() =>import('./pages/StudentProfile'));
@@ -36,7 +37,8 @@ const App = () => {
                         <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestionsStudent />} />
-                        <Route path="/lessons/tasks/:lessonId" element={<Tasks />} />
+                        <Route path="/lessons/tasks/:lessonId" element={<TasksStudent />} />
+                        <Route path="/teacher/lessons/tasks/:lessonId" element={<TaskTeacher />} />
                         <Route path="lessons/practice/:lessonId" element={<PracticesList />} />
                         <Route path="/forum" element={<ForumPage />} />
                         <Route path="/discussion/:id" element={<DiscussionPage />} />

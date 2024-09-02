@@ -1,0 +1,136 @@
+.question-item {
+    position: relative;
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    border-radius: 8px;
+    background-color: #1e2430;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+.task-title {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+}
+
+p {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.button-container {
+    justify-content: flex-end;
+    width: 100%; 
+    padding: 10px 0; 
+}
+
+
+.dark-theme{
+    background-color: #1e2430;
+}
+.custom-delete-button {
+    background-color: transparent; 
+    border: 1px solid red; 
+    color: red; 
+    padding: 5px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-size: 16px;
+    text-align: center; 
+    width: auto; 
+    display: inline-block; 
+    transition: background-color 0.3s, color 0.3s; 
+    box-sizing: border-box; 
+}
+
+.custom-delete-button:hover {
+    background-color: red;
+    color: white; 
+}
+button{
+    background-color: #0c7970; 
+    border: 1px solid white; 
+    color: white;
+    padding: 5px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    text-align: center; 
+    width: auto;
+    display: inline-block; 
+    transition: background-color 0.3s, color 0.3s; 
+    box-sizing: border-box; 
+}
+.questions-container{
+    text-align: center; 
+}
+.modal {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dim background */
+    z-index: 1000; /* Ensure modal is above other content */
+}
+
+.modal-content {
+    border: solid white 1px;
+    background-color: #1e2430; /* Dark background similar to the login form */
+    border-radius: 8px;
+    padding: 30px;
+    width: 400px; /* Fixed width to match design */
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between input fields */
+    text-align: left;
+}
+
+.form-input {
+    width: 100%; /* Input takes full width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px; /* Adds some spacing */
+}
+
+.modal-button {
+    background-color: #0c7970; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.modal-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
