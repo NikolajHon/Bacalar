@@ -6,9 +6,8 @@ import java.util.List;
 
 public interface QuestionService {
     List<Question> getAllQuestionsByLessonId(Long lessonId);
-    void deleteQuestion(Long id);
-    Question saveQuestion(Question question);
     Question findById(Long id);
+    void deleteQuestion(Long id);
     List<Question> saveQuestions(List<Question> questions);
     void deleteData();
 }

@@ -18,16 +18,16 @@ const TopicListTeacher = () => {
                             <h3>{element.h3}</h3>
                             <p>{element.p}</p>
                             <div className="link-container">
-                                <Link to={`/teacher/lessons/${element.Link}`} className="lesson-link">
+                                <Link to={`/lessons/${element.Link}`} className="lesson-link">
                                     Перейти к уроку
                                 </Link>
-                                <Link to={`/teacher/lessons/test/${index}`} className="test-link">
+                                <Link to={`/lessons/test/${index}`} className="test-link">
                                     Check your knowledge
                                 </Link>
-                                <Link to={`/teacher/lessons/tasks/${index}`} className="test-link">
+                                <Link to={`/lessons/tasks/${index}`} className="test-link">
                                     Tasks                    
                                 </Link>
-                                <Link to={`/teacher/lessons/practice/${index}`} className="test-link">
+                                <Link to={`/lessons/practice/${index}`} className="test-link">
                                     Practise
                                 </Link>
                             </div>

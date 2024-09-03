@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/questions")
 @RequiredArgsConstructor
 public class QuestionsController {
-
-    @Autowired
+@Autowired
     private QuestionService questionService;
 
     @GetMapping("/lesson/{lessonId}")
@@ -27,14 +27,14 @@ public class QuestionsController {
         questionService.deleteQuestion(id);
     }
 
-    @PostMapping()
-    public List<Question> saveQuestions(@RequestBody List<QuestionRequest> questionRequests) {
+    @PostMapping
+    public List<Question> saveQuestions(@RequestBody List<Map<String, Object>> questionRequests) {
         List<Question> questions = questionRequests.stream()
                 .map(request -> {
                     Question question = new Question();
-                    question.setText(request.getText());
-                    question.setLessonId(Long.valueOf(request.getLessonId()));
-                    question.setAnswer(request.getAnswer().getText());
+                    question.setText((String) request.get("text"));
+                    question.setLessonId(Long.valueOf((String) request.get("lessonId")));
+                    question.setAnswer((String) request.get("answer"));
                     return question;
                 })
                 .collect(Collectors.toList());
@@ -46,8 +46,9 @@ public class QuestionsController {
     public Question getQuestionById(@PathVariable Long id) {
         return questionService.findById(id);
     }
+
     @PostMapping("/delete")
-    public void deleteData(){
+    public void deleteData() {
         questionService.deleteData();
     }
 }

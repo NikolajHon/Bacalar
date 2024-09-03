@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+:root {
+  --background-color: #f0f0f0;
+  --text-color: #111;
+}
+
+body.dark-theme {
+  --background-color: #111828; 
+  --text-color: #ffffff; 
+}
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}

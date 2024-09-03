@@ -1,6 +1,7 @@
+// src/components/LoginForm.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import '../styles/FormStyles.css'; // Подключаем общий файл стилей
+import '../styles/FormStyles.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 
@@ -11,6 +12,7 @@ const LoginForm = () => {
         email: '',
         password: '',
     });
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,7 +34,7 @@ const LoginForm = () => {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
             const { username, userId, role } = response.data;
             setUser({ id: userId, name: username, rating: 0, role: role });
-            if (role === "ROLE_ADMIN") {
+            if (role === "ROLE_TEACHER") {
                 navigate('/teacher/mainscreen');
             } else {
                 navigate('/student/mainscreen');

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -21,26 +20,23 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Question findById(Long id) {
+        return questionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Question not found with id: " + id));
+    }
+
+    @Override
     public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);
     }
 
     @Override
-    public Question saveQuestion(Question question) {
-        return questionRepository.save(question);
-    }
-
-    @Override
-    public Question findById(Long id) {
-        Optional<Question> optionalQuestion = questionRepository.findById(id);
-        return optionalQuestion.orElse(null);
-    }
-    @Override
     public List<Question> saveQuestions(List<Question> questions) {
         return questionRepository.saveAll(questions);
     }
+
     @Override
-    public void deleteData(){
+    public void deleteData() {
         questionRepository.deleteAll();
     }
 }

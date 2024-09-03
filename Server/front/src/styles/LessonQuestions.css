@@ -149,3 +149,36 @@ button:hover {
 .main-questions {
     scroll-behavior: smooth; 
 }
+.custom-delete-button {
+    background-color: transparent; 
+    border: 1px solid red; 
+    color: red; 
+    padding: 5px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-size: 16px;
+    text-align: center; 
+    width: auto; 
+    display: inline-block; 
+    transition: background-color 0.3s, color 0.3s; 
+    box-sizing: border-box; 
+}
+
+.custom-delete-button:hover {
+    background-color: red;
+    color: white; 
+}
+button{
+    background-color: #0c7970; 
+    border: 1px solid white; 
+    color: white;
+    padding: 5px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    text-align: center; 
+    width: auto;
+    display: inline-block; 
+    transition: background-color 0.3s, color 0.3s; 
+    box-sizing: border-box; 
+}
