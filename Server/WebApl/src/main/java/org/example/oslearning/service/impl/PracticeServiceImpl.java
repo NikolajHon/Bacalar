@@ -11,25 +11,31 @@ import java.util.Optional;
 
 @Service
 public class PracticeServiceImpl implements PracticeService {
+
     @Autowired
     private PracticeRepository practiceRepository;
 
+    @Override
     public List<Practice> getAllPractices() {
         return practiceRepository.findAll();
     }
 
+    @Override
     public Optional<Practice> getPracticeById(Long id) {
         return practiceRepository.findById(id);
     }
 
+    @Override
     public List<Practice> getPracticesByLessonId(Long lessonId) {
         return practiceRepository.findByLessonId(lessonId);
     }
 
+    @Override
     public Practice savePractice(Practice practice) {
         return practiceRepository.save(practice);
     }
 
+    @Override
     public void deletePractice(Long id) {
         practiceRepository.deleteById(id);
     }

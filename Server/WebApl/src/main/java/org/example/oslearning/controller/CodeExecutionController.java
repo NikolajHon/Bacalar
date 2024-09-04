@@ -1,8 +1,11 @@
 package org.example.oslearning.controller;
 
+import org.example.oslearning.model.Practice;
 import org.example.oslearning.model.TestCase;
 import org.example.oslearning.service.PracticeCompletionService;
+import org.example.oslearning.service.PracticeService;
 import org.example.oslearning.service.TestCaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -19,9 +23,13 @@ public class CodeExecutionController {
     private static final String JDoodle_API_URL = "https://api.jdoodle.com/v1/execute";
     private static final String CLIENT_ID = "f5a875bea9d3261f9594ea8552e792cc";
     private static final String CLIENT_SECRET = "5f496f47f4d98f0451f7d3eec7311b8eaa24c5d35bb3face94eb40fc8e0e7958";
+    @Autowired
+    private TestCaseService testCaseService;
+    @Autowired
+    private PracticeCompletionService practiceCompletionService;
+    @Autowired
+    private PracticeService practiceService;
 
-    private final TestCaseService testCaseService;
-    private final PracticeCompletionService practiceCompletionService;
 
     public CodeExecutionController(TestCaseService testCaseService, PracticeCompletionService practiceCompletionService) {
         this.testCaseService = testCaseService;
@@ -32,15 +40,23 @@ public class CodeExecutionController {
     public ResponseEntity<CodeResponse[]> executeCode(@PathVariable Long practiceId, @RequestBody CodeRequest codeRequest) {
         Long userId = codeRequest.getUserId();
 
+        // Получаем объект Practice по practiceId
+        Optional<Practice> practice = practiceService.getPracticeById(practiceId);
+        if (!practice.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
 
+        String methodSignature = practice.get().getMethodSignature(); // Получаем сигнатуру метода из Practice
         List<TestCase> testCases = testCaseService.getTestCasesByPracticeId(practiceId);
         CodeResponse[] responses = new CodeResponse[testCases.size()];
 
-        boolean allCorrect = true; // Флаг, чтобы отследить, прошли ли все тесты
+        boolean allCorrect = true; // Флаг для отслеживания, прошли ли все тесты
 
         for (int i = 0; i < testCases.size(); i++) {
             TestCase testCase = testCases.get(i);
-            String completeCode = generateCompleteCode(codeRequest.getCode(), testCase.getInputData());
+
+            String completeCode = generateCompleteCode(codeRequest.getCode(), testCase.getInputData(), methodSignature);
+            System.out.println(completeCode);
             String actualOutput = executeCodeOnline(completeCode);
 
             boolean isCorrect = normalizeOutput(testCase.getExpectedOutput()).equals(normalizeOutput(actualOutput));
@@ -67,17 +83,69 @@ public class CodeExecutionController {
         return ResponseEntity.ok(responses);
     }
 
-    private String generateCompleteCode(String userCode, String input) {
+
+    private String generateCompleteCode(String userCode, String input, String methodSignature) {
+
+        String methodName = extractMethodName(methodSignature);
+        String[] parameterTypes = extractMethodParameters(methodSignature).split(", ");
+        StringBuilder variableDeclarations = new StringBuilder();
+
+        // Формируем строки объявлений переменных и форматов sscanf
+        StringBuilder sscanfArgs = new StringBuilder();
+        StringBuilder sscanfFormat = new StringBuilder();
+
+        for (int i = 0; i < parameterTypes.length; i++) {
+            String typeAndVar = parameterTypes[i];
+            String[] parts = typeAndVar.split(" ");
+            String type = parts[0];
+            String varName = parts[1];
+
+            // Формируем строку объявления переменной
+            variableDeclarations.append(type).append(" ").append(varName).append(";\n");
+
+            // Формируем строку формата для sscanf
+            if (type.equals("int")) {
+                sscanfFormat.append("%d");
+            } else if (type.equals("float")) {
+                sscanfFormat.append("%f");
+            } // Добавьте другие типы по необходимости
+
+            if (i < parameterTypes.length - 1) {
+                sscanfFormat.append(",");
+            }
+
+            // Формируем строку аргументов для sscanf
+            sscanfArgs.append("&").append(varName);
+            if (i < parameterTypes.length - 1) {
+                sscanfArgs.append(", ");
+            }
+        }
+
         return "#include <stdio.h>\n" +
                 userCode + "\n" +
                 "int main() {\n" +
-                "    int a, b;\n" +
-                "    sscanf(\"" + input + "\", \"%d,%d\", &a, &b);\n" +
-                "    int result = yourMethod(a, b);\n" +
+                "    " + variableDeclarations + "\n" +
+                "    sscanf(\"" + input + "\", \"" + sscanfFormat.toString() + "\", " + sscanfArgs.toString() + ");\n" +
+                "    int result = " + methodName + "(" + sscanfArgs.toString().replace("&", "") + ");\n" +
                 "    printf(\"%d\\n\", result);\n" +
                 "    return 0;\n" +
                 "}";
     }
+
+
+    // Метод для извлечения имени метода из сигнатуры
+    private String extractMethodName(String methodSignature) {
+        // Например, methodSignature может быть "int findSum(int x, int y)"
+        return methodSignature.substring(0, methodSignature.indexOf('(')).split(" ")[1];
+    }
+
+    // Метод для извлечения параметров метода из сигнатуры
+    private String extractMethodParameters(String methodSignature) {
+        // Например, methodSignature может быть "int findSum(int x, int y)"
+        return methodSignature.substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')'));
+    }
+
+
 
     private String executeCodeOnline(String code) {
         RestTemplate restTemplate = new RestTemplate();

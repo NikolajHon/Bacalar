@@ -140,7 +140,7 @@ const LessonQuestions = () => {
 
     return (
         <div className='main-questions'>
-                <AppBar />
+            <AppBar />
             <div className="navigation">
                 <h3>Навигация в тесте</h3>
                 <QuestionTable questions={questions} answers={answers} feedback={feedback} onHighlight={handleHighlight} />
@@ -164,15 +164,12 @@ const LessonQuestions = () => {
                         ) : (
                             <>
                                 <p>Ответ: {question.answer}</p>
-                                {role === 'ROLE_TEACHER' && ( // Проверяем, учитель ли пользователь
-                                    <Button 
-                                        variant="contained" 
-                                        color="secondary" 
-                                        onClick={() => handleDelete(question.id)}
-                                        style={{ margin: '5px', padding: '5px 10px' }} // Стилизация кнопки
-                                    >
+                                {role === 'ROLE_TEACHER' && (
+                                    <button
+                                    className='custom-delete-button'
+                                        onClick={() => handleDelete(question.id)}>
                                         DELETE TASK
-                                    </Button>
+                                    </button>
                                 )}
                             </>
                         )}
@@ -183,11 +180,11 @@ const LessonQuestions = () => {
                 )}
                 {role === 'ROLE_TEACHER' && (
                     <>
-                        <Button 
-                            variant="contained" 
-                            color="primary" 
+                        <Button
+                            variant="contained"
+                            color="primary"
                             onClick={() => setShowAddModal(true)}
-                            style={{ margin: '5px', padding: '5px 10px' }} // Стилизация кнопки
+                            style={{ margin: '5px', padding: '5px 10px' }}
                         >
                             Добавить новый вопрос
                         </Button>

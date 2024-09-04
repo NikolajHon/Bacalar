@@ -1,8 +1,10 @@
 .code-execution-container {
     padding: 20px;
-    background-color: #2d2d2d;
+    background-color: #111828;
     color: #cfcfcf;
     font-family: 'Courier New', Courier, monospace;
+    border: solid white 1px;
+    border-radius: 20px;
   }
   
   .code-editor {
@@ -31,7 +33,6 @@
   
   .test-results {
     margin-top: 20px;
-    /* Используем фиксированный размер или flexbox, чтобы уменьшить изменения размеров */
     width: 100%;
   }
   
@@ -150,5 +151,8 @@
   
   .modal-close-button:hover {
     background-color: #0056b3;
+  }
+  .practices-list-container{
+    background-color: #111828;
   }
   

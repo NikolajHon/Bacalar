@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PracticeService {
-    public List<Practice> getAllPractices();
+    List<Practice> getAllPractices();
 
-    public Optional<Practice> getPracticeById(Long id);
+    Optional<Practice> getPracticeById(Long id);
 
-    public List<Practice> getPracticesByLessonId(Long lessonId);
+    List<Practice> getPracticesByLessonId(Long lessonId);
 
-    public Practice savePractice(Practice practice);
+    Practice savePractice(Practice practice);
 
-    public void deletePractice(Long id);
+    void deletePractice(Long id);
 }

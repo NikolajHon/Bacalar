@@ -9,7 +9,7 @@ const QuestionTable = ({ questions, answers, feedback, onHighlight }) => {
 
     return (
         <div className="question-table-container">
-            {questions.map((question) => {
+            {questions.map((question, index) => { // Используем index для перечисления
                 const answer = answers[question.id];
                 const status = feedback[question.id];
 
@@ -28,7 +28,7 @@ const QuestionTable = ({ questions, answers, feedback, onHighlight }) => {
                         onClick={() => scrollToQuestion(question.id)}
                         style={{ cursor: 'pointer' }}
                     >
-                        {question.id}
+                        {index + 1} {/* Отображаем порядковый номер вопроса, начиная с 1 */}
                     </div>
                 );
             })}

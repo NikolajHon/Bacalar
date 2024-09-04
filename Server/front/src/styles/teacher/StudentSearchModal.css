@@ -46,7 +46,7 @@ ul {
 }
 
 li {
-    background-color: #333;
+    background-color: #111828;
     color: #fff;
     padding: 10px;
     margin-bottom: 10px;
@@ -56,9 +56,6 @@ li {
     transition: background-color 0.3s ease;
 }
 
-li:hover {
-    background-color: #555; /* Изменение фона при наведении */
-}
 
 /* Если список пустой */
 li.no-students {

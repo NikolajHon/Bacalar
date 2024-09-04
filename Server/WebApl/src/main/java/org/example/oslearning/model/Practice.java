@@ -1,7 +1,6 @@
 package org.example.oslearning.model;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +18,23 @@ public class Practice {
 
     private Long lessonId;
 
+    private String methodSignature;
+
+    @Column(columnDefinition = "TEXT") // Длинный текст, чтобы вместить большие шаблоны
+    private String mainTemplate; // Новый шаблон main
+
     @OneToMany(mappedBy = "practice", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TestCase> testCases = new ArrayList<>();
 
     // Getters and Setters
 
+    public String getMainTemplate() {
+        return mainTemplate;
+    }
+
+    public void setMainTemplate(String mainTemplate) {
+        this.mainTemplate = mainTemplate;
+    }
     public Long getId() {
         return id;
     }
@@ -62,6 +73,14 @@ public class Practice {
 
     public void setTestCases(List<TestCase> testCases) {
         this.testCases = testCases;
+    }
+
+    public String getMethodSignature() {
+        return methodSignature;
+    }
+
+    public void setMethodSignature(String methodSignature) {
+        this.methodSignature = methodSignature;
     }
 
     public void addTestCase(TestCase testCase) {
