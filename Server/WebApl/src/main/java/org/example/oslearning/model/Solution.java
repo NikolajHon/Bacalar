@@ -1,5 +1,6 @@
 package org.example.oslearning.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -13,11 +14,21 @@ public class Solution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
+
+    @Column(nullable = false)
     private LocalDateTime creationTime;
 
-    private Long taskId;
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id", nullable = false)
+    @JsonIgnore
+    private Task task;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
 
     public Long getId() {
         return id;
@@ -43,19 +54,19 @@ public class Solution {
         this.creationTime = creationTime;
     }
 
-    public Long getTaskId() {
-        return taskId;
+    public Task getTask() {
+        return task;
     }
 
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

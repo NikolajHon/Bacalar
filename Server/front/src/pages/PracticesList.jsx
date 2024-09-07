@@ -76,11 +76,11 @@ const PracticesList = () => {
       <h1>Questions for Lesson {lessonId}</h1>
       {user.role === 'ROLE_TEACHER' ? ( 
         <div>
-          <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>Создать новое задание</button>
+          <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>ADD NEW PRACTISE</button>
           {showCreateForm && (
             <div className="modal">
               <div className="modal-content">
-                <h2>Добавить новое задание</h2>
+                <h2>ADD NEW PRACTISE</h2>
                 <input
                   type="text"
                   className="modal-input"
@@ -100,9 +100,9 @@ const PracticesList = () => {
                   onChange={(e) => setNewPracticeDifficulty(e.target.value)}
                 >
                   <option value="">Сложность</option>
-                  <option value="EASY">Легко</option>
-                  <option value="MEDIUM">Средне</option>
-                  <option value="HARD">Сложно</option>
+                  <option value="EASY">EASY</option>
+                  <option value="MEDIUM">MEDIUM</option>
+                  <option value="HARD">HARD</option>
                 </select>
                 
                 <input
@@ -113,7 +113,7 @@ const PracticesList = () => {
                   placeholder="Сигнатура метода, например int add(int a, int b)"
                 />
 
-                <h3>Тестовые кейсы</h3>
+                <h3>TASTE CASES</h3>
                 {testCases.map((testCase, index) => (
                   <div key={index} className="test-case">
                     <input

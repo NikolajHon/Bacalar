@@ -6,16 +6,13 @@ import AppBar from '../../components/AppBar';
 import { UserContext } from '../../contexts/UserContext';
 import MonacoEditor from "@monaco-editor/react";
 
-// Import Material-UI components
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Snackbar from '@mui/material/Snackbar';
 
-// Import react-toastify components and styles
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,12 +23,11 @@ const Tasks = () => {
     const [solutions, setSolutions] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
-    const [openSnackbar, setOpenSnackbar] = useState(false);
     const [selectedTaskId, setSelectedTaskId] = useState(null);
     const [newTask, setNewTask] = useState({
         title: '',
         description: '',
-        publicationTime: '', // Removed from UI, set dynamically
+        publicationTime: '',
         deadline: '',
         lessonId: id
     });
@@ -45,7 +41,35 @@ const Tasks = () => {
                 console.error('Ошибка при получении заданий:', error);
                 toast.error('Ошибка при получении заданий.');
             });
-    }, [id]);
+
+        // Загружаем решения для текущего пользователя
+        if (user.id) {
+            console.log("User exists, fetching solutions...");
+            axios.get(`http://localhost:8080/api/solutions?userId=${user.id}&taskid=${id}`)
+                .then(response => {
+                    const userSolutions = response.data;
+                    const formattedSolutions = {};
+
+                    console.log("Полученные данные:", JSON.stringify(userSolutions, null, 2));
+
+                    userSolutions.forEach(solution => {
+                        // Проверьте, какое именно поле соответствует ID задачи
+                        console.log("Solution object:", solution);
+                        formattedSolutions[solution.task ? solution.task.id : undefined] = solution.content;
+                    });
+
+                    setSolutions(formattedSolutions);
+                    console.log("Formatted solutions set:", formattedSolutions);
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении решений:', error);
+                    toast.error('Ошибка при получении решений.');
+                });
+
+        }
+    }, [id, user.id]);
+
+
 
     const handleSolutionChange = (taskId, value) => {
         setSolutions(prevSolutions => ({
@@ -56,7 +80,7 @@ const Tasks = () => {
 
     const handleSubmitSolution = (taskId) => {
         if (!user.id) {
-            alert("Необходимо войти в систему для отправки решения.");
+            toast.error("Необходимо войти в систему для отправки решения.");
             return;
         }
 
@@ -67,9 +91,11 @@ const Tasks = () => {
             userId: user.id
         };
 
+        console.log("Отправляемый JSON на бэкэнд:", JSON.stringify(solution, null, 2));
+
         axios.post('http://localhost:8080/api/solutions', solution)
             .then(response => {
-                alert('Решение отправлено успешно');
+                toast.success('Решение отправлено успешно');
                 setSolutions(prevSolutions => ({
                     ...prevSolutions,
                     [taskId]: ''
@@ -77,7 +103,7 @@ const Tasks = () => {
             })
             .catch(error => {
                 console.error('Ошибка при отправке решения:', error);
-                alert('Не удалось отправить решение.');
+                toast.error('Не удалось отправить решение.');
             });
     };
 
@@ -96,7 +122,7 @@ const Tasks = () => {
         }
 
         const currentTime = new Date().toISOString();
-        axios.post('http://localhost:8080/api/tasks', { ...newTask, publicationTime: currentTime })
+        axios.post('http://localhost:8080/api/tasks', { ...newTask, publicationTime: currentTime, lessonId: id })
             .then(response => {
                 toast.success('Задание создано успешно');
                 setTasks([...tasks, response.data]);
@@ -126,7 +152,6 @@ const Tasks = () => {
             .then(response => {
                 toast.success('Задание удалено успешно');
                 setTasks(tasks.filter(task => task.id !== selectedTaskId));
-                setOpenSnackbar(true);
             })
             .catch(error => {
                 console.error('Ошибка при удалении задания:', error);
@@ -134,18 +159,15 @@ const Tasks = () => {
             });
     };
 
-    const handleCloseSnackbar = () => {
-        setOpenSnackbar(false);
-    };
-
     return (
         <div className='main-container'>
             <AppBar />
             <div className='task-container'>
-                <h1>{user.role === 'teacher' ? `Задания для урока ${id}` : `Questions for Lesson ${id}`}</h1>
+                <h1>{user.role === 'ROLE_TEACHER' ? `Задания для урока ${id}` : `Questions for Lesson ${id}`}</h1>
 
                 {tasks.map(task => (
                     <div key={task.id} className='task-item'>
+                        <h2>{task.id}</h2>
                         <h2>{task.title}</h2>
                         <p>{task.description}</p>
 
@@ -163,14 +185,26 @@ const Tasks = () => {
                         ) : (
                             <>
                                 <MonacoEditor
-                                    height="200px"
-                                    language="javascript"
+                                    height="400px"
+                                    language="c"
                                     theme="vs-dark"
                                     value={solutions[task.id] || ''}
                                     onChange={(value) => handleSolutionChange(task.id, value)}
-                                    options={{ minimap: { enabled: false } }}
+                                    options={{
+                                        selectOnLineNumbers: true,
+                                        autoClosingBrackets: "always",
+                                        autoClosingQuotes: "always",
+                                        formatOnType: true,
+                                        wordWrap: "on",
+                                        suggestOnTriggerCharacters: true,
+                                        minimap: { enabled: false },
+                                        quickSuggestions: { other: true, comments: true, strings: true },
+                                        parameterHints: { enabled: true },
+                                        tabCompletion: "on",
+                                    }}
                                 />
-                                <button onClick={() => handleSubmitSolution(task.id)}>Check Answers</button>
+
+                                <button onClick={() => handleSubmitSolution(task.id)}>Send Code</button>
                             </>
                         )}
                     </div>
@@ -214,10 +248,10 @@ const Tasks = () => {
                                         />
                                     </div>
                                     <button onClick={handleCreateTask} className="modal-button">
-                                        Создать задание
+                                        CREATE TASK
                                     </button>
                                     <button onClick={() => setShowModal(false)} className="modal-button">
-                                        Отмена
+                                        BACK
                                     </button>
                                 </div>
                             </div>
@@ -238,13 +272,6 @@ const Tasks = () => {
                                 <Button onClick={handleConfirmDelete} color="error">Delete</Button>
                             </DialogActions>
                         </Dialog>
-
-                        <Snackbar
-                            open={openSnackbar}
-                            autoHideDuration={6000}
-                            onClose={handleCloseSnackbar}
-                            message="Task deleted successfully"
-                        />
 
                         <ToastContainer />
                     </>

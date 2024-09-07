@@ -75,8 +75,8 @@ const MainScreen = () => {
             <div className='groups-page'>
                 <CarouselCard groups={groups} onCardClick={handleCardClick} />
                 <div className='button-container'>
-                    <button onClick={handleCreateGroupClick}>Добавить группу</button>
-                    <button onClick={handleUserRegistrationClick}>Добавить пользователя</button>
+                    <button onClick={handleCreateGroupClick}>ADD GROUP</button>
+                    <button onClick={handleUserRegistrationClick}> ADD USER</button>
                 </div>
             </div>
             <div className='topic-list-teacher'>

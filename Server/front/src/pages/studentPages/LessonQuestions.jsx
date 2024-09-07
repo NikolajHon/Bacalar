@@ -186,11 +186,11 @@ const LessonQuestions = () => {
                             onClick={() => setShowAddModal(true)}
                             style={{ margin: '5px', padding: '5px 10px' }}
                         >
-                            Добавить новый вопрос
+                            ADD NEW QUESTION
                         </Button>
 
                         <Dialog open={showAddModal} onClose={() => setShowAddModal(false)}>
-                            <DialogTitle>Добавить новый вопрос</DialogTitle>
+                            <DialogTitle>ADD NEW QUESTION</DialogTitle>
                             <DialogContent>
                                 <TextField
                                     autoFocus
@@ -217,7 +217,7 @@ const LessonQuestions = () => {
                                     Отмена
                                 </Button>
                                 <Button onClick={handleAddQuestion} color="primary">
-                                    Создать вопрос
+                                    ADD NEW QUESTION
                                 </Button>
                             </DialogActions>
                         </Dialog>

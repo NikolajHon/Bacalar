@@ -114,7 +114,6 @@ public class CodeExecutionController {
                 sscanfFormat.append(",");
             }
 
-            // Формируем строку аргументов для sscanf
             sscanfArgs.append("&").append(varName);
             if (i < parameterTypes.length - 1) {
                 sscanfArgs.append(", ");
