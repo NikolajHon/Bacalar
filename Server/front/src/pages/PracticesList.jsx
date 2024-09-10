@@ -3,8 +3,10 @@ import axios from 'axios';
 import CodeExecution from '../components/CodeExecution'; // Предполагается, что этот компонент уже существует
 import { useParams } from 'react-router-dom';
 import AppBar from '../components/AppBar';
-import { UserContext } from '../contexts/UserContext'; 
-import '../styles/PracticesList.css'
+import { UserContext } from '../contexts/UserContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import '../styles/PracticesList.css';
 
 const PracticesList = () => {
   const { lessonId } = useParams(); // Получаем lessonId из параметров маршрута
@@ -15,7 +17,8 @@ const PracticesList = () => {
   const [newPracticeDescription, setNewPracticeDescription] = useState(''); // Состояние для описания нового задания
   const [newPracticeDifficulty, setNewPracticeDifficulty] = useState(''); // Состояние для сложности нового задания
   const [methodSignature, setMethodSignature] = useState(''); // Состояние для сигнатуры метода
-  const [testCases, setTestCases] = useState([{ inputData: '', expectedOutput: '' }]); // Состояние для тест-кейсов
+  const [mainTemplate, setMainTemplate] = useState(''); // Состояние для шаблона main
+  const [testCases, setTestCases] = useState([{ inputData: '', expectedOutput: '', outputType: 'string' }]); // Состояние для тест-кейсов
 
   useEffect(() => {
     const fetchPractices = async () => {
@@ -33,21 +36,23 @@ const PracticesList = () => {
 
   const handleCreatePractice = async () => {
     try {
-      // Формируем запрос с практикой, сигнатурой метода и тест-кейсами
+      // Формируем запрос с практикой, сигнатурой метода, шаблоном main и тест-кейсами
       const response = await axios.post(`http://localhost:8080/api/practices/with-testcases`, {
         description: newPracticeDescription,
         difficulty: newPracticeDifficulty,
         lessonId: lessonId,
-        methodSignature: methodSignature, // Добавляем сигнатуру метода в запрос
-        testCases: testCases,
+        methodSignature: methodSignature,  // Добавляем сигнатуру метода в запрос
+        mainTemplate: mainTemplate,        // Добавляем шаблон main
+        testCases: testCases,              // Добавляем тест-кейсы с типом вывода
       });
-  
+
       setPractices([...practices, response.data]); // Добавляем новое задание в список
       setNewPracticeName(''); // Очищаем поля ввода
       setNewPracticeDescription('');
       setNewPracticeDifficulty('');
       setMethodSignature(''); // Очищаем поле сигнатуры метода
-      setTestCases([{ inputData: '', expectedOutput: '' }]); // Сбрасываем тест-кейсы
+      setMainTemplate('');    // Очищаем поле шаблона main
+      setTestCases([{ inputData: '', expectedOutput: '', outputType: 'string' }]); // Сбрасываем тест-кейсы
       setShowCreateForm(false); // Закрываем форму
     } catch (error) {
       console.error('Error creating new practice', error);
@@ -61,7 +66,7 @@ const PracticesList = () => {
   };
 
   const addTestCase = () => {
-    setTestCases([...testCases, { inputData: '', expectedOutput: '' }]);
+    setTestCases([...testCases, { inputData: '', expectedOutput: '', outputType: 'string' }]);
   };
 
   const removeTestCase = (index) => {
@@ -74,70 +79,87 @@ const PracticesList = () => {
     <div className="practices-list-container">
       <AppBar />
       <h1>Questions for Lesson {lessonId}</h1>
-      {user.role === 'ROLE_TEACHER' ? ( 
+      {user.role === 'ROLE_TEACHER' ? (
         <div>
           <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>ADD NEW PRACTISE</button>
           {showCreateForm && (
-            <div className="modal">
-              <div className="modal-content">
-                <h2>ADD NEW PRACTISE</h2>
-                <input
-                  type="text"
-                  className="modal-input"
-                  value={newPracticeName}
-                  onChange={(e) => setNewPracticeName(e.target.value)}
-                  placeholder="Заголовок"
-                />
-                <textarea
-                  className="modal-input"
-                  value={newPracticeDescription}
-                  onChange={(e) => setNewPracticeDescription(e.target.value)}
-                  placeholder="Описание"
-                />
-                <select
-                  className="modal-input"
-                  value={newPracticeDifficulty}
-                  onChange={(e) => setNewPracticeDifficulty(e.target.value)}
-                >
-                  <option value="">Сложность</option>
-                  <option value="EASY">EASY</option>
-                  <option value="MEDIUM">MEDIUM</option>
-                  <option value="HARD">HARD</option>
-                </select>
-                
-                <input
-                  type="text"
-                  className="modal-input"
-                  value={methodSignature}
-                  onChange={(e) => setMethodSignature(e.target.value)}
-                  placeholder="Сигнатура метода, например int add(int a, int b)"
-                />
+            <div className="modal-new-practise">
+              <h2>ADD NEW PRACTISE</h2>
+              <input
+                type="text"
+                className="modal-input"
+                value={newPracticeName}
+                onChange={(e) => setNewPracticeName(e.target.value)}
+                placeholder="Заголовок"
+              />
+              <textarea
+                className="modal-input"
+                value={newPracticeDescription}
+                onChange={(e) => setNewPracticeDescription(e.target.value)}
+                placeholder="Описание"
+              />
+              <select
+                className="modal-input"
+                value={newPracticeDifficulty}
+                onChange={(e) => setNewPracticeDifficulty(e.target.value)}
+              >
+                <option value="">Сложность</option>
+                <option value="EASY">EASY</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HARD">HARD</option>
+              </select>
 
-                <h3>TASTE CASES</h3>
-                {testCases.map((testCase, index) => (
-                  <div key={index} className="test-case">
-                    <input
-                      type="text"
-                      className="modal-input"
-                      value={testCase.inputData}
-                      onChange={(e) => handleTestCaseChange(index, 'inputData', e.target.value)}
-                      placeholder="Входные данные"
-                    />
-                    <input
-                      type="text"
-                      className="modal-input"
-                      value={testCase.expectedOutput}
-                      onChange={(e) => handleTestCaseChange(index, 'expectedOutput', e.target.value)}
-                      placeholder="Ожидаемый результат"
-                    />
-                    <button className="remove-button" onClick={() => removeTestCase(index)}>Удалить</button>
-                  </div>
-                ))}
-                <button className="add-testcase-button" onClick={addTestCase}>Добавить тест-кейс</button>
+              <input
+                type="text"
+                className="modal-input"
+                value={methodSignature}
+                onChange={(e) => setMethodSignature(e.target.value)}
+                placeholder="Сигнатура метода, например int add(int a, int b)"
+              />
 
-                <button className="save-button" onClick={handleCreatePractice}>Создать задание</button>
-                <button className="cancel-button" onClick={() => setShowCreateForm(false)}>Отмена</button>
-              </div>
+              <textarea
+                className="modal-input"
+                value={mainTemplate}
+                onChange={(e) => setMainTemplate(e.target.value)}
+                placeholder="Шаблон main"
+              />
+
+              <h3>TASTE CASES</h3>
+              {testCases.map((testCase, index) => (
+                <div key={index} className="test-case">
+                  <input
+                    type="text"
+                    className="modal-input small-input"
+                    value={testCase.inputData}
+                    onChange={(e) => handleTestCaseChange(index, 'inputData', e.target.value)}
+                    placeholder="Входные данные"
+                  />
+                  <input
+                    type="text"
+                    className="modal-input small-input"
+                    value={testCase.expectedOutput}
+                    onChange={(e) => handleTestCaseChange(index, 'expectedOutput', e.target.value)}
+                    placeholder="Ожидаемый результат"
+                  />
+                  <select
+                    className="modal-input select-input"
+                    value={testCase.outputType}
+                    onChange={(e) => handleTestCaseChange(index, 'outputType', e.target.value)}
+                  >
+                    <option value="string">Строка</option>
+                    <option value="number">Число</option>
+                    <option value="json">JSON</option>
+                  </select>
+                  <button className="remove-button" onClick={() => removeTestCase(index)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              ))}
+
+              <button className="add-testcase-button" onClick={addTestCase}>Добавить тест-кейс</button>
+
+              <button className="save-button" onClick={handleCreatePractice}>Создать задание</button>
+              <button className="cancel-button" onClick={() => setShowCreateForm(false)}>Отмена</button>
             </div>
           )}
           <ul>

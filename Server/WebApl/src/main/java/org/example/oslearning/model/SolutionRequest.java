@@ -4,8 +4,16 @@ public class SolutionRequest {
     private String content;
     private Long taskId;
     private Long userId;
+    private int grade;
 
-    // Геттеры и сеттеры
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
     public String getContent() {
         return content;
     }

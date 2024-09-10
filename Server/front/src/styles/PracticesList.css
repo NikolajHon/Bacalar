@@ -1,67 +1,220 @@
-.modal {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background-color: #2c3e50;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    max-width: 100%;
-    color: white;
-  }
-  
-  .modal-input {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    background-color: #34495e;
-    color: white;
-  }
-  
-  .create-practice-button,
-  .save-button,
-  .cancel-button,
-  .add-testcase-button,
-  .remove-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #1abc9c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .cancel-button {
-    background-color: #e74c3c;
-  }
-  
-  .remove-button {
-    background-color: #e74c3c;
-    margin-left: 10px;
-  }
-  
-  .create-practice-button {
-    margin-bottom: 20px;
-  }
-  
-  .test-case {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .test-case .modal-input {
-    margin-right: 10px;
-    flex: 1;
-  }
-  
+/* Общие стили для кнопок */
+.button {
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+}
+
+.button:hover {
+  filter: brightness(0.9);
+}
+
+/* Стили для контейнера */
+.practices-list-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Кнопки создания, сохранения и отмены */
+.create-practice-button,
+.save-button,
+.cancel-button {
+  width: 100%;
+}
+
+.create-practice-button {
+  background-color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  margin-top: 20px;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  margin-top: 10px;
+}
+
+.create-practice-button:hover,
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button:hover {
+  background-color: #e41f1f;
+}
+
+/* Модальное окно */
+.modal-new-practise {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+  width: 500px;
+  max-width: 90%;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-new-practise h2,
+.modal-new-practise h3 {
+  text-align: center;
+}
+
+.modal-new-practise h2 {
+  margin-bottom: 20px;
+}
+
+.modal-new-practise h3 {
+  margin: 20px 0 10px;
+}
+
+/* Стили для тест-кейсов */
+.test-case {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.test-case input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Кнопка удаления с иконкой */
+.remove-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.remove-button:hover svg {
+  color: #e41f1f;
+}
+
+.remove-button svg {
+  font-size: 16px;
+  color: #f44336;
+}
+
+/* Кнопка добавления тест-кейса */
+.add-testcase-button {
+  background-color: #008CBA;
+  margin-top: 10px;
+}
+
+.add-testcase-button:hover {
+  background-color: #007bb5;
+}
+
+/* Темная тема */
+.dark-theme .modal-new-practise {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .modal-input {
+  background-color: #3d3d3d;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme .test-case input {
+  color: #f1f1f1;
+}
+
+.dark-theme .remove-button svg {
+  color: #ff4c4c;
+}
+
+.dark-theme .add-testcase-button {
+  background-color: #4a90e2;
+}
+
+.dark-theme .add-testcase-button:hover {
+  background-color: #357abd;
+}
+
+.dark-theme .save-button {
+  background-color: #4CAF50;
+}
+
+.dark-theme .cancel-button {
+  background-color: #ff4c4c;
+}
+.test-case {
+  display: flex;
+  align-items: center; /* Выравнивание элементов по вертикали */
+  gap: 10px; /* Расстояние между элементами */
+  margin-bottom: 15px; /* Отступ между тест-кейсами */
+}
+
+.test-case .modal-input {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.test-case .small-input {
+  flex: 1; /* Заставляет текстовые поля занимать равное место */
+  min-width: 100px;
+}
+
+.test-case .select-input {
+  flex: 2; /* Заставляет select занимать больше пространства */
+  min-width: 150px;
+}
+
+.remove-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.remove-button svg {
+  font-size: 18px;
+  color: #ff4c4c;
+}
+
+.remove-button:hover svg {
+  color: #e41f1f;
+}

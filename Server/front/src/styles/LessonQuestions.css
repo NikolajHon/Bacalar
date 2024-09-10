@@ -32,7 +32,7 @@
 .question-item p {
     margin-top: 10px;
     font-size: 14px;
-    color: #d9534f;
+    color: white;
 }
 
 button {
@@ -132,19 +132,20 @@ button:hover {
     border-radius: 10px;
     border: 2px solid white;
     position: sticky;
-    top: 0; /* Привязать к верхней части */
+    top: 0; 
     height: 250px;
     overflow-y: auto; 
     margin-top: 65px;
 }
 .question-item {
+    text-align: center;
     margin-bottom: 20px;
-    transition: background-color 0.3s ease; /* Переход для фона */
+    transition: background-color 0.3s ease; 
 }
 
 .question-item.highlight {
-    background-color: #3a506b; /* Подсветка */
-    transition: background-color 1s ease; /* Переход для фона */
+    background-color: #3a506b;
+    transition: background-color 1s ease; 
 }
 .main-questions {
     scroll-behavior: smooth; 

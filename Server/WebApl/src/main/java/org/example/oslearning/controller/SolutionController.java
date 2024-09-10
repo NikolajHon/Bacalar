@@ -65,6 +65,7 @@ public class SolutionController {
         if (existingSolution.isPresent()) {
             solution = existingSolution.get();
             solution.setContent(solutionRequest.getContent());
+            solution.setGrade(solutionRequest.getGrade()); // Устанавливаем grade
             solution.setCreationTime(LocalDateTime.now());
         } else {
             solution = new Solution();
@@ -72,11 +73,13 @@ public class SolutionController {
             solution.setCreationTime(LocalDateTime.now());
             solution.setTask(task);
             solution.setUser(user);
+            solution.setGrade(solutionRequest.getGrade()); // Устанавливаем grade
         }
 
         Solution savedSolution = solutionService.createSolution(solution);
         return ResponseEntity.ok(savedSolution);
     }
+
 
 
 
@@ -89,4 +92,17 @@ public class SolutionController {
         solutionService.deleteSolution(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}/grade")
+    public ResponseEntity<Solution> updateSolutionGrade(@PathVariable Long id, @RequestBody int grade) {
+        Solution solution = solutionService.getSolutionById(id);
+        if (solution == null) {
+            return ResponseEntity.notFound().build();
+        }
+        solution.setGrade(grade);
+        Solution updatedSolution = solutionService.createSolution(solution); // Здесь происходит сохранение обновленного решения
+        return ResponseEntity.ok(updatedSolution);
+    }
+
+
 }

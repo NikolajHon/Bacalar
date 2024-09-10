@@ -29,6 +29,15 @@ public class Solution {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
+    private int grade;
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
 
     public Long getId() {
         return id;
