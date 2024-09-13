@@ -1,4 +1,3 @@
-// src/components/LoginForm.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../styles/FormStyles.css';
@@ -13,6 +12,7 @@ const LoginForm = () => {
         password: '',
     });
 
+    const [errorMessage, setErrorMessage] = useState(''); // Состояние для отображения ошибок
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,18 +30,27 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage(''); // Сбрасываем сообщение об ошибке перед отправкой
+
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', formData);
-            const { username, userId, role } = response.data;
-            setUser({ id: userId, name: username, rating: 0, role: role });
+            const { username, userId, rating = 0, role, photoUrl } = response.data; // добавляем photoUrl
+            // Сохраняем данные пользователя в контексте, включая URL фотографии
+            setUser({ id: userId, name: username, rating: rating, role: role, photoUrl: photoUrl });
+            // Переход в зависимости от роли пользователя
             if (role === "ROLE_TEACHER") {
                 navigate('/teacher/mainscreen');
             } else {
                 navigate('/student/mainscreen');
             }
         } catch (error) {
+            // Обработка ошибки авторизации
             console.error('There was an error logging in!', error);
-            alert(error.response.data || 'Login failed');
+            if (error.response && error.response.data) {
+                setErrorMessage(error.response.data.message || 'Login failed');
+            } else {
+                setErrorMessage('An unknown error occurred');
+            }
         }
     };
 
@@ -70,6 +79,8 @@ const LoginForm = () => {
                             required
                         />
                     </div>
+                    {/* Показываем ошибку, если она есть */}
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <button type="submit">Login</button>
                 </form>
                 <div className="social-login">

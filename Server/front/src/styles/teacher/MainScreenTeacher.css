@@ -1,77 +1,140 @@
-.dark-theme .main-page-teacher{
+.dark-theme .main-page-teacher {
     background-color: #0e1b2b;
 }
+
 .button-container {
-    display: flex; 
-    justify-content: center; 
-    margin-top: 20px; 
-    gap: 20px; 
-    position: absolute; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    width: 100%; 
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
 }
 
 .button-container button:hover {
-    background-color: #45a049; 
+    background-color: #45a049;
 }
 
 .topic-list {
-    width: 50%; /* Ширина блока на половину экрана */
-    margin: 0 auto; /* Центрирование блока по горизонтали */
-    padding: 20px; /* Внутренние отступы для красоты */
-    background-color: #f4f4f4; /* Цвет фона для выделения */
-    border-radius: 10px; /* Закругленные углы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для визуального эффекта */
+    width: 50%;
+    /* Ширина блока на половину экрана */
+    margin: 0 auto;
+    /* Центрирование блока по горизонтали */
+    padding: 20px;
+    /* Внутренние отступы для красоты */
+    background-color: #f4f4f4;
+    /* Цвет фона для выделения */
+    border-radius: 10px;
+    /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Тень для визуального эффекта */
 }
 
 .topic-item {
-    margin-bottom: 20px; /* Отступ между темами */
-    padding: 15px; /* Внутренний отступ внутри каждой темы */
-    border: 1px solid #ccc; /* Рамка вокруг каждой темы */
-    border-radius: 5px; /* Закругленные углы рамки */
-    background-color: #ffffff; /* Фон темы */
+    margin-bottom: 20px;
+    /* Отступ между темами */
+    padding: 15px;
+    /* Внутренний отступ внутри каждой темы */
+    border: 1px solid #ccc;
+    /* Рамка вокруг каждой темы */
+    border-radius: 5px;
+    /* Закругленные углы рамки */
+    background-color: #ffffff;
+    /* Фон темы */
 }
 
 .lesson-link {
-    display: inline-block; /* Блоковая модель для ссылки */
-    margin-top: 10px; /* Отступ сверху */
-    padding: 10px 20px; /* Внутренний отступ для кнопки */
-    background-color: #bcbec0; /* Цвет фона кнопки */
-    color: white; /* Цвет текста */
-    text-decoration: none; /* Убираем подчеркивание */
-    border-radius: 5px; /* Закругленные углы кнопки */
-    transition: background-color 0.3s ease; /* Плавный переход для фона */
+    display: inline-block;
+    /* Блоковая модель для ссылки */
+    margin-top: 10px;
+    /* Отступ сверху */
+    padding: 10px 20px;
+    /* Внутренний отступ для кнопки */
+    background-color: #bcbec0;
+    /* Цвет фона кнопки */
+    color: white;
+    /* Цвет текста */
+    text-decoration: none;
+    /* Убираем подчеркивание */
+    border-radius: 5px;
+    /* Закругленные углы кнопки */
+    transition: background-color 0.3s ease;
+    /* Плавный переход для фона */
 }
 
 .lesson-link:hover {
-    background-color: #0056b3; /* Изменение фона при наведении */
+    background-color: #0056b3;
+    /* Изменение фона при наведении */
 }
-.main-div{
-    background-color: #ffffff;;
+
+.main-div {
+    background-color: #ffffff;
+    ;
 }
+
 .topic-item {
     opacity: 0;
     transform: translateY(-20px);
     animation: fadeInDown 0.5s forwards;
 }
 
-.topic-item:nth-child(1) { animation-delay: 0.1s; }
-.topic-item:nth-child(2) { animation-delay: 0.2s; }
-.topic-item:nth-child(3) { animation-delay: 0.3s; }
-.topic-item:nth-child(4) { animation-delay: 0.4s; }
-.topic-item:nth-child(5) { animation-delay: 0.5s; }
-.topic-item:nth-child(6) { animation-delay: 0.6s; }
-.topic-item:nth-child(7) { animation-delay: 0.7s; }
-.topic-item:nth-child(8) { animation-delay: 0.8s; }
-.topic-item:nth-child(9) { animation-delay: 0.9s; }
-.topic-item:nth-child(10) { animation-delay: 0.10s; }
-.topic-item:nth-child(11) { animation-delay: 0.11s; }
-.topic-item:nth-child(12) { animation-delay: 0.12s; }
-.topic-item:nth-child(13) { animation-delay: 0.13s; }
+.topic-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.topic-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.topic-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.topic-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.topic-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.topic-item:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.topic-item:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.topic-item:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.topic-item:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+.topic-item:nth-child(10) {
+    animation-delay: 0.10s;
+}
+
+.topic-item:nth-child(11) {
+    animation-delay: 0.11s;
+}
+
+.topic-item:nth-child(12) {
+    animation-delay: 0.12s;
+}
+
+.topic-item:nth-child(13) {
+    animation-delay: 0.13s;
+}
 
 .progress-circle {
-    width: 50px; /* Circle size */
+    width: 50px;
+    /* Circle size */
     height: 50px;
     margin-right: 20px;
     position: relative;
@@ -84,13 +147,15 @@
 
 .circle-bg {
     fill: none;
-    stroke: #eee; /* Background circle color */
+    stroke: #eee;
+    /* Background circle color */
     stroke-width: 3.8;
 }
 
 .circle {
     fill: none;
-    stroke: #00bcd4; /* Progress color */
+    stroke: #00bcd4;
+    /* Progress color */
     stroke-width: 3.8;
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
@@ -104,81 +169,114 @@
     font-size: 12px;
     color: #fff;
 }
+
 @keyframes fadeInDown {
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-.main-div{
+
+.main-page-teacher {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
-.app-bar{
+
+.app-bar {
     grid-column: 1/4;
     grid-row: 1;
 }
-.topic-list.fade-in{
+
+.teacher-page {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    width: 100%;
+    justify-self: center;
+}
+
+.topic-list.fade-in {
     grid-column: 1/3;
     grid-row: 2/4;
     width: 80%;
     margin-top: 0px;
 
 }
-.user-list-container.fade-in{
+
+.user-list-container.fade-in {
     margin-top: 70px;
     grid-column: 3;
     grid-row: 2;
     width: 80%;
 }
+
 .test-link {
-    display: inline-block; 
-    
+    display: inline-block;
+
     margin-top: 10px;
-    padding: 10px 20px; 
-    background-color: #bcbec0; 
-    color: white; 
+    padding: 10px 20px;
+    background-color: #bcbec0;
+    color: white;
     text-decoration: none;
-    border-radius: 5px; 
-    transition: background-color 0.3s ease; 
-    
-}
-.lesson-link, .test-link {
-    display: inline-block; /* Или 'block' если хотите, чтобы ссылки были на отдельных линиях */
-    margin: 0 10px; /* Отступы между ссылками */
-    padding: 10px 20px; /* Внутренние отступы */
-    text-decoration: none; /* Убирает подчеркивание */
-    color: #ffffff; /* Цвет текста */
-    border-radius: 5px; /* Радиус закругления углов */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
 }
 
-.lesson-link:hover, .test-link:hover {
-    background-color: #0a524d; /* Цвет фона при наведении */
+.lesson-link,
+.test-link {
+    display: inline-block;
+    /* Или 'block' если хотите, чтобы ссылки были на отдельных линиях */
+    margin: 0 10px;
+    /* Отступы между ссылками */
+    padding: 10px 20px;
+    /* Внутренние отступы */
+    text-decoration: none;
+    /* Убирает подчеркивание */
+    color: #ffffff;
+    /* Цвет текста */
+    border-radius: 5px;
+    /* Радиус закругления углов */
 }
+
+.lesson-link:hover,
+.test-link:hover {
+    background-color: #0a524d;
+    /* Цвет фона при наведении */
+}
+
 .colon {
-    text-align: center; 
+    text-align: center;
     margin: 0 auto;
-    padding: 10px; 
+    padding: 10px;
 }
+
 .dark-theme .test-link,
-.dark-theme .lesson-link{
+.dark-theme .lesson-link {
     background-color: #0f7770;
 }
-.dark-theme .test-link:hover{
+
+.dark-theme .test-link:hover {
     background-color: #0a524d;
 }
-.dark-theme .lesson-link:hover{
+
+.dark-theme .lesson-link:hover {
     background-color: #0a524d;
 }
-.dark-theme .topic-list{
+
+.dark-theme .topic-list {
     background-color: #111828;
     color: white;
 }
-.topic-list-teacher{
+
+.topic-list-teacher {
     margin-top: 40px;
 }
-.topic-list-teacher{
+
+.topic-list-teacher {
     margin-top: 40px;
+}
+button{
+    background-color: #aeafb3;
 }

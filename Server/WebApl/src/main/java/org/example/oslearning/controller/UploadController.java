@@ -31,15 +31,13 @@ public class UploadController {
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") Long userId) {
         try {
-            // Убедитесь, что userId передан и пользователь существует
             Optional<User> userOptional = userService.findById(userId);
             if (userOptional.isPresent()) {
                 String fileUrl = s3Service.uploadFile(file);
 
-                // Обновление фото URL в профиле пользователя
                 User user = userOptional.get();
                 user.setPhotoUrl(fileUrl);
-                userService.saveUser(user); // Сохранение пользователя с новым URL
+                userService.saveUser(user);
 
                 return ResponseEntity.ok(fileUrl);
             } else {

@@ -9,24 +9,6 @@
     margin: 20px auto;
 }
 
-/* Стили для кнопок на странице */
-.groups-page button {
-    margin-right: 10px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #0f7770;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.groups-page button:hover {
-    background-color: #0a524d;
-}
-
-/* Общие стили для карусели групп */
 .groups-carousel {
     display: flex;
     justify-content: center;
@@ -41,7 +23,6 @@
     align-items: center;
 }
 
-/* Общие стили для карточек в слайдере */
 .slider-card {
     position: absolute;
     width: 250px; 
@@ -51,22 +32,34 @@
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
     z-index: 1;
-    background: linear-gradient(145deg, #1e1e1e, #2e2e2e); 
+    background: linear-gradient(145deg, #f7f6f6, #b1a6a6); 
     overflow: hidden; 
     display: flex;
     flex-direction: column; 
     justify-content: space-between;
     padding: 15px; 
     color: #fff;
+    
 }
+.dark-theme .slider-card{
+    background: linear-gradient(145deg, #19132c, #292a4f); 
+}
+span{
+    color: black;
+}
+/* .dark-theme .slider-card{
+    background: linear-gradient(145deg, #1e1e1e, #2e2e2e); 
+} */
 
 .slider-card.prev {
+    border: solid black 1px;
     transform: translateX(-120%) scale(0.8);
     opacity: 0.7;
     z-index: 0;
 }
 
 .slider-card.next {
+    border: solid black 1px;
     transform: translateX(120%) scale(0.8);
     opacity: 0.7;
     z-index: 0;
@@ -123,13 +116,6 @@
     background-color: #0a524d;
 }
 
-/* Стили для кнопок с темной темой */
-.dark-theme .slider-card {
-    background: linear-gradient(145deg, #121212, #1e1e1e); 
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-}
-
 .dark-theme .slider-card:hover {
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
 }
@@ -145,10 +131,6 @@
 
 .dark-theme .group-title {
     color: #ffffff;
-}
-
-.dark-theme .group-meta span {
-    color: #b3b3b3;
 }
 
 .dark-theme .card-button {
@@ -196,4 +178,7 @@
     height: 100%;
     object-fit: cover; 
     display: block; 
+}
+.dark-theme span{
+    color: white;
 }

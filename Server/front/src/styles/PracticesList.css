@@ -1,4 +1,4 @@
-/* Общие стили для кнопок */
+
 .button {
   border: none;
   cursor: pointer;
@@ -11,14 +11,12 @@
   filter: brightness(0.9);
 }
 
-/* Стили для контейнера */
 .practices-list-container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Кнопки создания, сохранения и отмены */
 .create-practice-button,
 .save-button,
 .cancel-button {
@@ -26,12 +24,11 @@
 }
 
 .create-practice-button {
-  background-color: #4CAF50;
+  background-color: #bdbec0;
   margin-bottom: 20px;
 }
 
 .save-button {
-  background-color: #4CAF50;
   margin-top: 20px;
 }
 
@@ -49,7 +46,6 @@
   background-color: #e41f1f;
 }
 
-/* Модальное окно */
 .modal-new-practise {
   position: fixed;
   top: 50%;
@@ -86,7 +82,6 @@
   margin: 20px 0 10px;
 }
 
-/* Стили для тест-кейсов */
 .test-case {
   display: flex;
   align-items: center;
@@ -102,7 +97,6 @@
   font-size: 16px;
 }
 
-/* Кнопка удаления с иконкой */
 .remove-button {
   background-color: transparent;
   border: none;
@@ -125,9 +119,7 @@
   color: #f44336;
 }
 
-/* Кнопка добавления тест-кейса */
 .add-testcase-button {
-  background-color: #008CBA;
   margin-top: 10px;
 }
 
@@ -135,7 +127,6 @@
   background-color: #007bb5;
 }
 
-/* Темная тема */
 .dark-theme .modal-new-practise {
   background-color: #2c2c2c;
   color: #f1f1f1;
@@ -158,16 +149,9 @@
   color: #ff4c4c;
 }
 
-.dark-theme .add-testcase-button {
-  background-color: #4a90e2;
-}
 
 .dark-theme .add-testcase-button:hover {
   background-color: #357abd;
-}
-
-.dark-theme .save-button {
-  background-color: #4CAF50;
 }
 
 .dark-theme .cancel-button {
@@ -217,4 +201,67 @@
 
 .remove-button:hover svg {
   color: #e41f1f;
+}
+.practices-list-container{
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.dark-theme .practices-list-container{
+  background-color: #111828;
+}
+.dark-theme button{
+  background-color: #0f7770;
+}
+button{
+  background-color: #bdbec0;
+}
+.main-practice {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* You have 3 equal width columns */
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.app-bar {
+  grid-column: 1 / 4; /* Spans all 3 columns */
+  grid-row: 1;
+}
+
+.practices-list-container {
+  grid-column: 1 / 4; /* Centers the div by starting in the second column */
+  grid-row: 3;
+  width: 100%; /* Takes full width of the available space */
+  justify-self: center; /* Centers the div horizontally */
+}
+:root {
+  
+  --dark-bg: #0c0e1a;
+  --dark-card-bg: #1b263a;
+  --dark-text-color: #ffffff;
+  --dark-button-bg: #34c6a6;
+  --dark-button-text: #ffffff;
+
+  
+  --light-bg: #f0f1f5;
+  --light-card-bg: #ffffff;
+  --light-text-color: #000000;
+  --light-button-bg: #666666;
+  --light-button-text: #ffffff;
+}
+.practise-list-teacher{
+  background-color: var(--light-card-bg);
+}
+.practise-item{
+  background-color: var(--light-bg);
+  color: var(--light-text-color);
+  border: solid black 1px;
+}
+.dark-theme .practise-list-teacher{
+  background-color: var(--dark-card-bg);
+}
+.dark-theme .practise-item{
+  background-color: var(--dark-card-bg);
+  color: var(--dark-text-color);
+  border: solid white 1px;
 }

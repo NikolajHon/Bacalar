@@ -34,12 +34,15 @@ body {
 .profile-button {
     cursor: pointer;
     padding: 5px 10px;
-    background-color: white;
+    background-color: #aeafb2;
     color: #3f51b5;
     border: none;
     border-radius: 5px;
     margin-left: auto;
     margin-right: 20px; /* Отступ для разделения элементов */
+}
+.dark-theme .profile-button{
+    background-color: #0e1b2b;
 }
 
 /* Time and Date */
@@ -57,10 +60,6 @@ body {
     background-color: #0d1b2a;
 }
 
-.dark-theme .profile-button {
-    background-color: #201e1e;
-    color: rgba(209, 213, 219, var(--tw-text-opacity));
-}
 
 /* Content-specific dark theme styles */
 .dark-theme .second-lessons-page div {
@@ -110,4 +109,20 @@ body {
 
 .dark-theme .main-second {
     background-color: #111828;
+}
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.notification-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 14px;
 }

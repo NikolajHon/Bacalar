@@ -64,6 +64,14 @@ const PracticesList = () => {
     updatedTestCases[index][field] = value;
     setTestCases(updatedTestCases);
   };
+  const handleDeletePractice = async (practiceId) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/practices/${practiceId}`);
+      setPractices(practices.filter(practice => practice.id !== practiceId));
+    } catch (error) {
+      console.error('Error deleting practice', error);
+    }
+  };
 
   const addTestCase = () => {
     setTestCases([...testCases, { inputData: '', expectedOutput: '', outputType: 'string' }]);
@@ -76,110 +84,130 @@ const PracticesList = () => {
   };
 
   return (
-    <div className="practices-list-container">
-      <AppBar />
-      <h1>Questions for Lesson {lessonId}</h1>
-      {user.role === 'ROLE_TEACHER' ? (
-        <div>
-          <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>ADD NEW PRACTISE</button>
-          {showCreateForm && (
-            <div className="modal-new-practise">
-              <h2>ADD NEW PRACTISE</h2>
-              <input
-                type="text"
-                className="modal-input"
-                value={newPracticeName}
-                onChange={(e) => setNewPracticeName(e.target.value)}
-                placeholder="Заголовок"
-              />
-              <textarea
-                className="modal-input"
-                value={newPracticeDescription}
-                onChange={(e) => setNewPracticeDescription(e.target.value)}
-                placeholder="Описание"
-              />
-              <select
-                className="modal-input"
-                value={newPracticeDifficulty}
-                onChange={(e) => setNewPracticeDifficulty(e.target.value)}
-              >
-                <option value="">Сложность</option>
-                <option value="EASY">EASY</option>
-                <option value="MEDIUM">MEDIUM</option>
-                <option value="HARD">HARD</option>
-              </select>
+    <div className='main-practice'>
+      <AppBar/>
+      <div className="practices-list-container">
+        <h1>Вопросы для урока {lessonId}</h1>
+        {user.role === 'ROLE_TEACHER' ? (
+          <div>
+            <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>ДОБАВИТЬ НОВУЮ ПРАКТИКУ</button>
+            {showCreateForm && (
+              <div className="modal-new-practise">
+                <h2>Добавить новое задание</h2>
+                <input
+                  type="text"
+                  className="modal-input"
+                  value={newPracticeName}
+                  onChange={(e) => setNewPracticeName(e.target.value)}
+                  placeholder="Название"
+                />
+                <textarea
+                  className="modal-input"
+                  value={newPracticeDescription}
+                  onChange={(e) => setNewPracticeDescription(e.target.value)}
+                  placeholder="Описание"
+                />
+                <select
+                  className="modal-input"
+                  value={newPracticeDifficulty}
+                  onChange={(e) => setNewPracticeDifficulty(e.target.value)}
+                >
+                  <option value="">Сложность</option>
+                  <option value="EASY">Легкая</option>
+                  <option value="MEDIUM">Средняя</option>
+                  <option value="HARD">Сложная</option>
+                </select>
 
-              <input
-                type="text"
-                className="modal-input"
-                value={methodSignature}
-                onChange={(e) => setMethodSignature(e.target.value)}
-                placeholder="Сигнатура метода, например int add(int a, int b)"
-              />
+                <input
+                  type="text"
+                  className="modal-input"
+                  value={methodSignature}
+                  onChange={(e) => setMethodSignature(e.target.value)}
+                  placeholder="Сигнатура метода, например: int add(int a, int b)"
+                />
 
-              <textarea
-                className="modal-input"
-                value={mainTemplate}
-                onChange={(e) => setMainTemplate(e.target.value)}
-                placeholder="Шаблон main"
-              />
+                <textarea
+                  className="modal-input"
+                  value={mainTemplate}
+                  onChange={(e) => setMainTemplate(e.target.value)}
+                  placeholder="Шаблон main"
+                />
 
-              <h3>TASTE CASES</h3>
-              {testCases.map((testCase, index) => (
-                <div key={index} className="test-case">
-                  <input
-                    type="text"
-                    className="modal-input small-input"
-                    value={testCase.inputData}
-                    onChange={(e) => handleTestCaseChange(index, 'inputData', e.target.value)}
-                    placeholder="Входные данные"
-                  />
-                  <input
-                    type="text"
-                    className="modal-input small-input"
-                    value={testCase.expectedOutput}
-                    onChange={(e) => handleTestCaseChange(index, 'expectedOutput', e.target.value)}
-                    placeholder="Ожидаемый результат"
-                  />
-                  <select
-                    className="modal-input select-input"
-                    value={testCase.outputType}
-                    onChange={(e) => handleTestCaseChange(index, 'outputType', e.target.value)}
-                  >
-                    <option value="string">Строка</option>
-                    <option value="number">Число</option>
-                    <option value="json">JSON</option>
-                  </select>
-                  <button className="remove-button" onClick={() => removeTestCase(index)}>
-                    <FontAwesomeIcon icon={faTrash} />
+                <h3>ТЕСТ-КЕЙСЫ</h3>
+                {testCases.map((testCase, index) => (
+                  <div key={index} className="test-case">
+                    <input
+                      type="text"
+                      className="modal-input small-input"
+                      value={testCase.inputData}
+                      onChange={(e) => handleTestCaseChange(index, 'inputData', e.target.value)}
+                      placeholder="Входные данные"
+                    />
+                    <input
+                      type="text"
+                      className="modal-input small-input"
+                      value={testCase.expectedOutput}
+                      onChange={(e) => handleTestCaseChange(index, 'expectedOutput', e.target.value)}
+                      placeholder="Ожидаемый результат"
+                    />
+                    <select
+                      className="modal-input select-input"
+                      value={testCase.outputType}
+                      onChange={(e) => handleTestCaseChange(index, 'outputType', e.target.value)}
+                    >
+                      <option value="string">Строка</option>
+                      <option value="number">Число</option>
+                      <option value="json">JSON</option>
+                    </select>
+                    <button className="remove-button" onClick={() => removeTestCase(index)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                ))}
+
+                <button className="add-testcase-button" onClick={addTestCase}>Добавить тест-кейс</button>
+
+                <button className="save-button" onClick={handleCreatePractice}>Создать задание</button>
+                <button className="cancel-button" onClick={() => setShowCreateForm(false)}>Отмена</button>
+              </div>
+            )}
+
+            <ul>
+              {practices.map(practice => (
+                <li key={practice.id} className='practise-item'>
+                  <h3>{practice.description}</h3>
+                  <h3>Тест-кейсы:</h3>
+                  {practice.testCases && practice.testCases.length > 0 ? (
+                    <ul className='practise-list-teacher'>
+                      {practice.testCases.map((testCase, index) => (
+                        <li className='practise-item' key={index} >
+                          <strong>Входные данные:</strong> {testCase.inputData} <br/>
+                          <strong>Ожидаемый результат:</strong> {testCase.expectedOutput} <br/>
+                          <strong>Тип вывода:</strong> {testCase.outputType}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>Нет тест-кейсов для этого задания.</p>
+                  )}
+                  <button className="delete-practice-button" onClick={() => handleDeletePractice(practice.id)}>
+                    <FontAwesomeIcon icon={faTrash} /> Удалить задание
                   </button>
-                </div>
+                </li>
               ))}
-
-              <button className="add-testcase-button" onClick={addTestCase}>Добавить тест-кейс</button>
-
-              <button className="save-button" onClick={handleCreatePractice}>Создать задание</button>
-              <button className="cancel-button" onClick={() => setShowCreateForm(false)}>Отмена</button>
-            </div>
-          )}
+            </ul>
+          </div>
+        ) : (
           <ul>
             {practices.map(practice => (
               <li key={practice.id}>
                 <h2>{practice.name}</h2>
+                <CodeExecution practiceId={practice.id} />
               </li>
             ))}
           </ul>
-        </div>
-      ) : (
-        <ul>
-          {practices.map(practice => (
-            <li key={practice.id}>
-              <h2>{practice.name}</h2>
-              <CodeExecution practiceId={practice.id} />
-            </li>
-          ))}
-        </ul>
-      )}
+        )}
+      </div>
     </div>
   );
 };

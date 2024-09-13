@@ -5,7 +5,9 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
         const storedUser = sessionStorage.getItem('user');
-        return storedUser ? JSON.parse(storedUser) : { id: null, name: null, rating: 0, role: null };
+        return storedUser 
+            ? JSON.parse(storedUser) 
+            : { id: null, name: null, rating: 0, role: null, photoUrl: null };
     });
 
     useEffect(() => {

@@ -52,9 +52,10 @@ const Slider = () => {
     const closeStudentList = () => {
         setIsStudentListOpen(false);
     };
+    const [isDarkTheme, setIsDarkTheme] = useState(false); // Это состояние можно передавать из родительского компонента
 
     return (
-        <div className="groups-carousel dark-theme">
+        <div className={`groups-carousel ${isDarkTheme ? 'dark-theme' : ''}`}>
             <div className="slider-container">
                 <div className="slider">
                     {data.map((item, index) => (
@@ -79,7 +80,6 @@ const Slider = () => {
                                 alt={item.teacher.username}
                                 className="teacher-image"
                             />
-
                             <div className="group-title">{item.content}</div>
                             <div className="group-meta">
                                 <span>Index: {index + 1}</span>
@@ -97,6 +97,7 @@ const Slider = () => {
             )}
         </div>
     );
+    
 
 
 };

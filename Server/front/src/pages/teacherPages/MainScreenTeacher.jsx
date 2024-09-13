@@ -61,26 +61,28 @@ const MainScreen = () => {
     return (
         <div className='main-page-teacher'>
             <AppBar />
-            {isModalOpen && <StudentList groupId={selectedGroupId} onClose={closeModal} />}
-            {isCreateGroupModalOpen && (
-                <Modal onClose={closeCreateGroupModal}>
-                    <CreateGroupForm onGroupCreated={handleGroupCreated} />
-                </Modal>
-            )}
-            {isUserRegistrationModalOpen && (
-                <Modal onClose={closeUserRegistrationModal}>
-                    <UserRegistrationForm onUserCreated={handleUserCreated} onClose={closeUserRegistrationModal} />
-                </Modal>
-            )}
-            <div className='groups-page'>
-                <CarouselCard groups={groups} onCardClick={handleCardClick} />
-                <div className='button-container'>
-                    <button onClick={handleCreateGroupClick}>ADD GROUP</button>
-                    <button onClick={handleUserRegistrationClick}> ADD USER</button>
+            <div className='teacher-page'>
+                {isModalOpen && <StudentList groupId={selectedGroupId} onClose={closeModal} />}
+                {isCreateGroupModalOpen && (
+                    <Modal onClose={closeCreateGroupModal}>
+                        <CreateGroupForm onGroupCreated={handleGroupCreated} />
+                    </Modal>
+                )}
+                {isUserRegistrationModalOpen && (
+                    <Modal onClose={closeUserRegistrationModal}>
+                        <UserRegistrationForm onUserCreated={handleUserCreated} onClose={closeUserRegistrationModal} />
+                    </Modal>
+                )}
+                <div className='groups-page'>
+                    <CarouselCard groups={groups} onCardClick={handleCardClick} />
+                    <div className='button-container'>
+                        <button onClick={handleCreateGroupClick}>ADD GROUP</button>
+                        <button onClick={handleUserRegistrationClick}> ADD USER</button>
+                    </div>
                 </div>
-            </div>
-            <div className='topic-list-teacher'>
-                <TopicListTeacher/>
+                <div className='topic-list-teacher'>
+                    <TopicListTeacher />
+                </div>
             </div>
         </div>
     );

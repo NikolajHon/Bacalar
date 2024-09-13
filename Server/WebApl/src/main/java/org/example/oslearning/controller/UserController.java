@@ -105,6 +105,7 @@ public class UserController {
         response.put("username", user.getUsername());
         response.put("userId", String.valueOf(user.getId()));
         response.put("role", String.valueOf(user.getRole()));
+        response.put("photoUrl", String.valueOf(user.getPhotoUrl()));
         return ResponseEntity.ok(response);
     }
 

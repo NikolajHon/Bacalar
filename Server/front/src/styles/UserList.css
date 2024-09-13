@@ -1,7 +1,6 @@
-/* src/styles/UserList.css */
 
 
-/* Контейнер для списка пользователей */
+
 .user-list-container {
     max-width: 800px;
     margin: 20px auto;
@@ -14,7 +13,6 @@
     animation: fadeIn 0.5s forwards;
 }
 
-/* Анимация плавного появления */
 @keyframes fadeIn {
     to {
         opacity: 1;
@@ -22,19 +20,16 @@
     }
 }
 
-/* Заголовок списка пользователей */
 .user-list-container h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Список пользователей */
 .user-list-container ul {
     list-style: none;
     padding: 0;
 }
 
-/* Элемент списка пользователей */
 .user-list-container li {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -42,14 +37,18 @@
     padding: 15px;
     margin-bottom: 10px;
     transition: box-shadow 0.3s ease;
+    color: black;
+}
+.dark-theme .user-list-container li{
+    color: #f4f4f4;
 }
 
 .user-list-container li:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок пользователя */
 .user-list-container h3 {
     margin: 0;
 }
+
 
