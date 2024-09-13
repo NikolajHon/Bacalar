@@ -7,10 +7,9 @@
     background-color: #111828;
 }
 
-/* Общие стили для форм */
 .form-box {
-    background-color: #202938;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: 1px solid black;
     border-radius: 10px;
     padding: 40px 40px;
     max-width: 400px;
@@ -19,6 +18,11 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    color: black;
+}
+.dark-theme .form-box{
+    background-color: #202938;
+    border: 1px solid #ccc;
 }
 
 .form-box.fade-in {
@@ -29,7 +33,7 @@
 .form-box h2 {
     margin-bottom: 30px;
     font-size: 24px;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
 }
 
@@ -42,14 +46,14 @@
 .input-container label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: #ffffff;
+    color: #000000;
 }
 
 .input-container input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -58,8 +62,8 @@
 .form-box button {
     padding: 10px 20px;
     font-size: 16px;
-    color: #fff;
-    background-color: #295c34;
+    color: #1d1c1c;
+    background-color: #737574;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -67,7 +71,7 @@
 }
 
 .form-box button:hover {
-    background-color: #0056b3;
+    background-color: #353434;
 }
 
 /* Общие стили для социальных иконок */
@@ -78,7 +82,7 @@
 
 .social-login p {
     margin-bottom: 10px;
-    color: #5a5555;
+    color: #1a1919;
 }
 
 .social-icons {
@@ -108,7 +112,7 @@
 .role-buttons button {
     flex: 1;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #413f3f;
     background-color: #f0f0f0;
     cursor: pointer;
     border-radius: 4px;
@@ -121,11 +125,25 @@
 }
 
 .role-buttons button.active {
-    background-color: #4CAF50;
-    color: white;
-    border-color: #45a049;
+    background-color: #565856;
+    color: rgb(255, 253, 253);
+    border-color: #f6fbf6;
 }
 
 .role-buttons button:hover {
     background-color: #e0e0e0;
+}
+.dark-theme h2,
+.dark-theme label{
+    color: white;
+}
+.dark-theme button{
+    background-color: #0c7970;
+    color: white;
+}
+.dark-theme button.active{
+    background-color: #1b1648;
+}
+.dark-theme button:hover {
+    background-color: #202938;
 }

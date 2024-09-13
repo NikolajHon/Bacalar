@@ -82,8 +82,8 @@ const Slider = () => {
                             />
                             <div className="group-title">{item.content}</div>
                             <div className="group-meta">
-                                <span>Index: {index + 1}</span>
-                                <span>Card ID: {item.id}</span>
+                                <strong>Index: {index + 1}</strong>
+                                <strong>Card ID: {item.id}</strong>
                             </div>
                         </div>
                     ))}

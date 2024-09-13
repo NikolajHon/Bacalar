@@ -56,9 +56,9 @@ const CreateGroupForm = ({ onGroupCreated }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div onSubmit={handleSubmit} className='create-group-modal'>
             <div>
-                <label>Название группы:</label>
+                <label>Name of group:</label>
                 <input 
                     type="text" 
                     value={name} 
@@ -68,26 +68,25 @@ const CreateGroupForm = ({ onGroupCreated }) => {
                 />
             </div>
             <div>
-                <label>Учитель:</label>
+                <label>Teacher:</label>
                 <input 
                     type="text" 
                     value={searchTerm} 
                     onChange={handleSearchTermChange} 
-                    placeholder="Введите имя учителя для поиска"
+                    placeholder="Please input name of teacher"
                 />
-                {/* Выпадающий список появляется, когда showDropdown === true */}
                 {showDropdown && (
                     <ul className="dropdown">
                         {filteredTeachers.map(teacher => (
                             <li key={teacher.id} onClick={() => handleTeacherSelect(teacher)}>
-                                {teacher.username}
+                                <strong>{teacher.username}</strong>
                             </li>
                         ))}
                     </ul>
                 )}
             </div>
             <button type="submit">Создать группу</button>
-        </form>
+        </div>
     );
 };
 

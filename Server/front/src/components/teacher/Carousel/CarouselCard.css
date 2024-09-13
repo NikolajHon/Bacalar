@@ -44,9 +44,6 @@
 .dark-theme .slider-card{
     background: linear-gradient(145deg, #19132c, #292a4f); 
 }
-span{
-    color: black;
-}
 /* .dark-theme .slider-card{
     background: linear-gradient(145deg, #1e1e1e, #2e2e2e); 
 } */
@@ -180,5 +177,8 @@ span{
     display: block; 
 }
 .dark-theme span{
+    color: white;
+}
+.group-meta strong{
     color: white;
 }

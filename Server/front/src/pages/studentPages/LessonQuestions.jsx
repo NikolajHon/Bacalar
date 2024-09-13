@@ -225,7 +225,6 @@ const LessonQuestions = () => {
                 )}
             </div>
 
-            <ToastContainer />
         </div>
     );
 };

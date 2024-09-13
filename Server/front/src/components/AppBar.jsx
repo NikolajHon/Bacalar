@@ -12,7 +12,9 @@ const AppBar = ({ title }) => {
     const { user } = useContext(UserContext);
     
     const [photoUrl, setPhotoUrl] = useState('');
-    const [isPhotoLoaded, setIsPhotoLoaded] = useState(false);  // Флаг для отслеживания загрузки фото
+    const [isPhotoLoaded, setIsPhotoLoaded] = useState(() => {
+        return localStorage.getItem('isPhotoLoaded') === 'true';  // Читаем из localStorage
+    });
 
     const [isDarkTheme, setIsDarkTheme] = useState(() => {
         const storedTheme = localStorage.getItem('theme');
@@ -56,6 +58,7 @@ const AppBar = ({ title }) => {
                 if (!isPhotoLoaded) {
                     toast.success('Фото успешно загружено!');
                     setIsPhotoLoaded(true);  // Устанавливаем флаг после успешной загрузки
+                    localStorage.setItem('isPhotoLoaded', 'true');  // Сохраняем информацию в localStorage
                 }
             } catch (error) {
                 console.error('Ошибка при загрузке фото:', error);
@@ -82,7 +85,6 @@ const AppBar = ({ title }) => {
                 <Link to="/forum">Forum</Link>
             </div>
 
-            {/* Если пользователь есть и фото загружено */}
             {user && photoUrl ? (
                 <div className="profile-button">
                     <img src={photoUrl} alt="User Avatar" className="user-avatar" />
@@ -95,5 +97,4 @@ const AppBar = ({ title }) => {
         </div>
     );
 };
-
 export default AppBar;
