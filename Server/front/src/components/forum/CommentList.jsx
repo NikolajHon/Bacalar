@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CommentList = ({ comments }) => {
-  // Проверяем, что comments является массивом. Если нет — используем пустой массив.
   if (!Array.isArray(comments)) {
     comments = [];
   }

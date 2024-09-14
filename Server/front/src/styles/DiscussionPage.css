@@ -1,0 +1,16 @@
+.discussion-main{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.app-bar {
+    grid-column: 1/4;
+    grid-row: 1;
+}
+.discussion-container{
+    grid-column: 1 / 4; 
+    grid-row: 3;
+    width: 85%; 
+    justify-self: center; 
+}

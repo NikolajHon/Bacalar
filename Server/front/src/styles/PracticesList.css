@@ -17,11 +17,6 @@
   margin: 0 auto;
 }
 
-.create-practice-button,
-.save-button,
-.cancel-button {
-  width: 100%;
-}
 
 .create-practice-button {
   background-color: #bdbec0;
@@ -128,7 +123,7 @@
 }
 
 .dark-theme .modal-new-practise {
-  background-color: #2c2c2c;
+  background-color: #0e1b2b;
   color: #f1f1f1;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
@@ -265,3 +260,58 @@ button{
   color: var(--dark-text-color);
   border: solid white 1px;
 }
+.new-practise-button{
+  text-align: center;
+}
+.practices-list-container{
+  text-align: center;
+  border: solid 1px white;
+}
+.test-case-container {
+  display: flex;
+  align-items: center; /* Выравнивание по вертикали */
+  justify-content: space-between; /* Выровнять элементы по горизонтали */
+}
+.practise-button-container {
+  display: flex;
+  flex-direction: column; /* Размещаем кнопки по вертикали */
+  align-items: center; /* Выравниваем кнопки по центру горизонтально (по желанию) */
+  gap: 10px; /* Отступы между кнопками */
+  width: 100%; /* Можно задать ширину контейнера, если нужно */
+  margin-top: 20px; /* Отступ сверху для пространства */
+}
+
+button {
+  padding: 10px 20px; /* Внутренний отступ для удобного клика */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Курсор указывает, что кнопка кликабельна */
+}
+
+.add-testcase-button {
+  width: 80%;
+  background-color: #4CAF50; /* Зеленый цвет кнопки для добавления */
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.save-button {
+  width: 80%;
+  background-color: #008CBA; /* Синий цвет кнопки для создания */
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.cancel-button {
+  width: 80%;
+  background-color: #f44336; /* Красный цвет кнопки отмены */
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  opacity: 0.9; /* Легкий эффект при наведении на кнопки */
+}
+

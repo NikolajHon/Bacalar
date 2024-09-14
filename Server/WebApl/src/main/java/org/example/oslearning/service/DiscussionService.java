@@ -10,4 +10,5 @@ public interface DiscussionService {
 
     Discussion createDiscussion(Discussion discussion);
     Optional<Discussion> getDiscussionById(Long id);
+    void deleteDiscussionById(Long id);
 }

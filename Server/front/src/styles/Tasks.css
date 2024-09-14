@@ -1,17 +1,16 @@
-/* Определение переменных для темной и светлой тем */
+
 :root {
-    --primary-bg-color: #ffffff; /* Default background for light theme */
-    --primary-text-color: #000000; /* Default text color for light theme */
+    --primary-bg-color: #ffffff; 
+    --primary-text-color: #000000;
     --secondary-bg-color: #0c7970;
     --secondary-text-color: red;
     --border-color: #ccc;
     --hover-color: #0056b3;
 }
 
-/* Темная тема */
 .dark-theme {
-    --primary-bg-color: #1e2430; /* Dark background color */
-    --primary-text-color: #ffffff; /* Light text color */
+    --primary-bg-color: #1e2430; 
+    --primary-text-color: #ffffff; 
     --border-color: #34495e;
 }
 
@@ -22,7 +21,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    transition: background-color 0.3s, color 0.3s; /* Плавный переход при смене темы */
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 p {
@@ -31,8 +30,10 @@ p {
 }
 
 .task-container {
+    padding-top: 10px; 
     text-align: center;
     border: solid white 1px;
+    color: white;
 }
 
 .task-item {
@@ -144,26 +145,28 @@ button:hover,
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #111828;
+    background-color: #aeafb3;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    border: solid 1px black;
 }
 .modal-input {
-    width: 100%; /* Устанавливает ширину полей ввода на 100% от родительского контейнера */
-    box-sizing: border-box; /* Включает отступы и границы в расчет ширины */
-    margin-bottom: 10px; /* Добавляет отступ снизу для визуального разделения */
-    padding: 10px; /* Добавляет внутренний отступ для улучшения пользовательского ввода */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px; 
+    padding: 10px; 
   }
   
   textarea.modal-input {
-    width: 100%; /* Устанавливает ширину текстовой области на 100% */
-    height: auto; /* Устанавливает высоту в автоматический режим */
-    min-height: 80px; /* Устанавливает минимальную высоту, чтобы текстовая область не была слишком маленькой */
+    width: 100%; 
+    height: auto; 
+    min-height: 80px; 
   }
   .mark {
     font-size: 18px;
     font-weight: bold;
-    color: #4CAF50; 
+    color: rgb(62, 62, 62); 
     background-color: #f0f0f0; 
     padding: 5px 10px; 
     border-radius: 5px;
@@ -177,26 +180,25 @@ button:hover,
     color: #ffffff;
 }
 html, body {
-    height: 100%; /* Устанавливаем высоту на 100% для всего документа */
+    height: 100%; 
     margin: 0;
     padding: 0;
-    background-color: #111828; /* Тот же цвет фона */
+    background-color: #111828; 
 }
 
 .main-container {
-    min-height: 100vh; /* Минимальная высота контейнера будет 100% от высоты экрана */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: #111828; /* Цвет фона для основного контейнера */
 }
 .custom-delete-button,
 .modal-button {
-    margin: 10px; /* Добавляем отступы вокруг кнопок */
+    margin: 10px; 
     background-color: var(--secondary-bg-color);
     border: none;
     color: var(--primary-text-color);
-    padding: 10px 20px; /* Добавляем больше пространства внутри кнопок */
+    padding: 10px 20px; 
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
@@ -209,14 +211,35 @@ html, body {
 .task-item{
     text-align: center;
     margin-bottom: 20px;
-    transition: background-color 0.3s ease; /* Переход для фона */
+    transition: background-color 0.3s ease; 
     margin-bottom: 20px;
     padding: 15px;
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid black;
     border-radius: 5px;
 }
 .dark-theme .task-item{
     background-color: #1b2435;
     border-radius: 20px;
+    border: solid white 1px;
+}
+.dark-theme .task-container{
+    background-color: #0e1b2b;
+    border: solid white 1px;
+}
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.app-bar {
+    grid-column: 1/4;
+    grid-row: 1;
+}
+.task-container{
+    grid-column: 1 / 4; /* Centers the div by starting in the second column */
+    grid-row: 3;
+    width: 85%; /* Takes full width of the available space */
+    justify-self: center; /* Centers the div horizontally */
 }

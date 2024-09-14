@@ -35,9 +35,15 @@ const ForumPage = () => {
             });
     };
 
+    // Функция для удаления обсуждения по ID
+    const handleDeleteDiscussion = (id) => {
+        setDiscussions(prevDiscussions => prevDiscussions.filter(discussion => discussion.id !== id));
+    };
+    
+
     return (
         <div className='forum-body'>
-            <div className='app-bar'><AppBar /></div>
+            <AppBar />
             <div className="forum-page">
 
                 <div className="forum-header">
@@ -49,7 +55,10 @@ const ForumPage = () => {
 
                 {showForm && <NewDiscussionForm onSuccess={handleNewDiscussion} />}
 
-                <DiscussionList discussions={discussions} />
+                <DiscussionList 
+                    discussions={discussions} 
+                    onDelete={handleDeleteDiscussion} 
+                />
             </div>
         </div>
     );

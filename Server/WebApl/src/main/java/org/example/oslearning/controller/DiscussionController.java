@@ -16,7 +16,6 @@ public class DiscussionController {
 
     @GetMapping
     public List<Discussion> getAllDiscussions() {
-        System.out.println("We are here");
         return discussionService.getAllDiscussions();
     }
 
@@ -27,5 +26,9 @@ public class DiscussionController {
     @GetMapping("/{id}")
     public Optional<Discussion> getDiscussionById(@PathVariable Long id) {
         return discussionService.getDiscussionById(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteDiscussionById(@PathVariable Long id){
+        discussionService.deleteDiscussionById(id);
     }
 }

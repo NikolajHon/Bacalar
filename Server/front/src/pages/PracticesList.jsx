@@ -85,12 +85,12 @@ const PracticesList = () => {
 
   return (
     <div className='main-practice'>
-      <AppBar/>
+      <AppBar />
       <div className="practices-list-container">
-        <h1>Вопросы для урока {lessonId}</h1>
+        <h1>Lesson Questions {lessonId}</h1>
         {user.role === 'ROLE_TEACHER' ? (
-          <div>
-            <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>ДОБАВИТЬ НОВУЮ ПРАКТИКУ</button>
+          <div className='new-practise-button'>
+            <button className="create-practice-button" onClick={() => setShowCreateForm(true)}>ADD A NEW PRACTICE</button>
             {showCreateForm && (
               <div className="modal-new-practise">
                 <h2>Добавить новое задание</h2>
@@ -164,11 +164,12 @@ const PracticesList = () => {
                     </button>
                   </div>
                 ))}
+                <div className='practise-button-container'>
+                  <button className="add-testcase-button" onClick={addTestCase}>Добавить тест-кейс</button>
 
-                <button className="add-testcase-button" onClick={addTestCase}>Добавить тест-кейс</button>
-
-                <button className="save-button" onClick={handleCreatePractice}>Создать задание</button>
-                <button className="cancel-button" onClick={() => setShowCreateForm(false)}>Отмена</button>
+                  <button className="save-button" onClick={handleCreatePractice}>Создать задание</button>
+                  <button className="cancel-button" onClick={() => setShowCreateForm(false)}>Отмена</button>
+                </div>
               </div>
             )}
 
@@ -181,8 +182,8 @@ const PracticesList = () => {
                     <ul className='practise-list-teacher'>
                       {practice.testCases.map((testCase, index) => (
                         <li className='practise-item' key={index} >
-                          <strong>Входные данные:</strong> {testCase.inputData} <br/>
-                          <strong>Ожидаемый результат:</strong> {testCase.expectedOutput} <br/>
+                          <strong>Входные данные:</strong> {testCase.inputData} <br />
+                          <strong>Ожидаемый результат:</strong> {testCase.expectedOutput} <br />
                           <strong>Тип вывода:</strong> {testCase.outputType}
                         </li>
                       ))}

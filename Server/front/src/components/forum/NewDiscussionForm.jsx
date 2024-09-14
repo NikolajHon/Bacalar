@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios'; // Импортируем axios
 import '../../styles/forum/NewDiscussionForm.css';
+import { UserContext } from '../../contexts/UserContext';
 
 const NewDiscussionForm = ({ onSuccess }) => {
+    const {user} = useContext(UserContext)
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
@@ -12,7 +14,7 @@ const NewDiscussionForm = ({ onSuccess }) => {
         const newDiscussion = {
             title,
             content,
-            author: 'current_user'  // Здесь можно использовать настоящее имя пользователя
+            author: user.name  // Здесь можно использовать настоящее имя пользователя
         };
 
         // POST-запрос для создания нового обсуждения

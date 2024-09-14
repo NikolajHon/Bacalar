@@ -227,23 +227,16 @@
 .lesson-link,
 .test-link {
     display: inline-block;
-    /* Или 'block' если хотите, чтобы ссылки были на отдельных линиях */
     margin: 0 10px;
-    /* Отступы между ссылками */
     padding: 10px 20px;
-    /* Внутренние отступы */
     text-decoration: none;
-    /* Убирает подчеркивание */
     color: #ffffff;
-    /* Цвет текста */
     border-radius: 5px;
-    /* Радиус закругления углов */
 }
 
 .lesson-link:hover,
 .test-link:hover {
     background-color: #0a524d;
-    /* Цвет фона при наведении */
 }
 
 .colon {

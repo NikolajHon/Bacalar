@@ -32,20 +32,20 @@ const Tasks = () => {
         deadline: "",
         lessonId: id,
     });
-    const [loading, setLoading] = useState(true); // Добавляем состояние загрузки
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
-        setLoading(true); // Включаем загрузку перед началом получения данных
+        setLoading(true); 
         axios
             .get(`http://localhost:8080/api/tasks?lessonId=${id}`)
             .then((response) => {
                 setTasks(response.data);
-                setLoading(false); // Отключаем загрузку после получения данных
+                setLoading(false); 
             })
             .catch((error) => {
                 console.error("Ошибка при получении заданий:", error);
                 toast.error("Ошибка при получении заданий.");
-                setLoading(false); // Отключаем загрузку даже в случае ошибки
+                setLoading(false); 
             });
     
         if (user.id) {
@@ -71,7 +71,7 @@ const Tasks = () => {
                     toast.error("Ошибка при получении решений.");
                 });
         }
-    }, [id, user.id]); // Депенденси должны включать id и user.id
+    }, [id, user.id]); 
     
     const handleSolutionChange = (taskId, value) => {
         setSolutions((prevSolutions) => ({

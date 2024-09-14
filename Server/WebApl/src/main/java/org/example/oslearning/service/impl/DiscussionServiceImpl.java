@@ -28,4 +28,10 @@ public class DiscussionServiceImpl implements DiscussionService {
     public Optional<Discussion> getDiscussionById(Long id) { // Реализация нового метода
         return discussionRepository.findById(id);
     }
+
+    @Override
+    public void deleteDiscussionById(Long id) {
+        discussionRepository.deleteById(id);
+    }
+
 }
