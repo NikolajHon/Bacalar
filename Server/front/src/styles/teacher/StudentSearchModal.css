@@ -52,7 +52,6 @@ li {
     margin-bottom: 10px;
     border-radius: 5px; /* Округленные углы для контейнера студента */
     text-align: center;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 

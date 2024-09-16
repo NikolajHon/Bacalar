@@ -1,4 +1,4 @@
-/* styles for table */
+
 body{
     background-color: #ffffff;
 }
@@ -184,4 +184,21 @@ td a {
 }
 .footer button.primary:hover {
     background-color: #238b7a;
+}
+li{
+    background-color: white;
+    color: black;
+}
+pre{
+    background-color: #050505;
+    color: white;
+    border-radius: 5px;
+}
+.dark-theme pre{
+    background-color: white;
+    color: black;
+}
+.dark-theme li{
+    background-color: #36394c;
+    color: white;
 }

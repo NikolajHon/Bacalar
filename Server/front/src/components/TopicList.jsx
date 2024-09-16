@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/TopicListData';
+import { toast } from 'react-toastify';
 import '../styles/MainScreenStudent.css';
 
 const TopicList = () => {
+    const [progressData, setProgressData] = useState([]);
+
+    useEffect(() => {
+        const updatedData = data.map((element, index) => {
+            const lessonId = `lessonProgress_${element.Link}`;
+            const savedProgress = localStorage.getItem(lessonId);
+            let progress = 0;
+
+            if (savedProgress) {
+                const { percent } = JSON.parse(savedProgress); // Извлекаем процент
+                progress = percent;
+                toast.info(`Progress for ${element.h3}: ${percent}%`); // Debugging toast
+            }
+
+            return {
+                ...element,
+                progress: parseInt(progress, 10),
+            };
+        });
+        setProgressData(updatedData);
+    }, []); // Обновление при монтировании
+
     return (
         <div className="topic-list fade-in">
             <div className='colon'>
                 <h1>Skills Progress</h1>
                 <h4>The following courses should be taken in order</h4>
             </div>
-            {data.map((element, index) => {
+            {progressData.map((element, index) => {
                 const progress = element.progress || 0;
                 return (
                     <div className="topic-item" key={index}>
@@ -24,7 +47,7 @@ const TopicList = () => {
                                 />
                                 <path
                                     className="circle"
-                                    strokeDasharray={`${progress}, 100`}
+                                    strokeDasharray={`${progress}, 100`} // Используем процент прогресса
                                     d="M18 2.0845
                                        a 15.9155 15.9155 0 0 1 0 31.831
                                        a 15.9155 15.9155 0 0 1 0 -31.831"

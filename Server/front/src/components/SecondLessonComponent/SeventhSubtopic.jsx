@@ -1,79 +1,79 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
 
-const SeventhSubtopic = () => {
+const SeventhSubtopic = ({ onComplete, completed }) => {
     return (
         <div className='seventh-subtopic' id="section-7">
-                <table>
-                    <thead>
-                        <tr>
-                            <th colSpan="2">Podtéma: <strong>Služba jadra – truncate()</strong></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className="section-title">Kľúčové slová</td>
-                            <td><i>turncate() </i></td>
-                        </tr>
-                        <tr>
-                            <td className="section-title">Ciele</td>
-                            <td>
-                                <tr>
-                                    <td className="section-title">Zapamätať si:</td>
-                                    <td>
-                                        syntax služieb - prečítať si manuálové stránky
-                                        v Unixe/Linuxe, Linux dokumentačný projekt,
-                                        zdroje na internete:
-                                        <br />
-                                        <a href="http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2" target="_blank"
-                                            rel="noopener noreferrer">:
-                                            http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2
-                                        </a>
-                                        <br />
-                                        <a href="http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate" target="_blank"
-                                            rel="noopener noreferrer">:
-                                            http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate
-                                        </a>
+            <table>
+                <thead>
+                    <tr>
+                        <th colSpan="2">Podtéma: <strong>Služba jadra – truncate()</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className="section-title">Kľúčové slová</td>
+                        <td><i>turncate() </i></td>
+                    </tr>
+                    <tr>
+                        <td className="section-title">Ciele</td>
+                        <td>
+                            <tr>
+                                <td className="section-title">Zapamätať si:</td>
+                                <td>
+                                    syntax služieb - prečítať si manuálové stránky
+                                    v Unixe/Linuxe, Linux dokumentačný projekt,
+                                    zdroje na internete:
+                                    <br />
+                                    <a href="http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2" target="_blank"
+                                        rel="noopener noreferrer">:
+                                        http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2
+                                    </a>
+                                    <br />
+                                    <a href="http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate" target="_blank"
+                                        rel="noopener noreferrer">:
+                                        http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate
+                                    </a>
 
-                                    </td>
+                                </td>
 
 
-                                </tr>
-                                <tr>
-                                    <td className="section-title">Porozumieť:</td>
-                                    <td>
-                                        <ul>
-                                            <li>parametrom služby <i>truncate()</i></li>
-                                            <li>chybovým hláseniam</li>
-                                        </ul>
+                            </tr>
+                            <tr>
+                                <td className="section-title">Porozumieť:</td>
+                                <td>
+                                    <ul>
+                                        <li>parametrom služby <i>truncate()</i></li>
+                                        <li>chybovým hláseniam</li>
+                                    </ul>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="section-title">Aplikovať:</td>
-                                    <td>službu <i>truncate()</i> pri práci so súbormi </td>
-                                </tr>
-                                <tr>
-                                    <td className="section-title">Vedieť:</td>
-                                    <td>využiť získané skúsenosti pri tvorbe programov
-                                    </td>
-                                </tr>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="section-title">Odhadovaný čas</td>
-                            <td>5 minút</td>
-                        </tr>
-                        <tr>
-                            <td className="section-title"> Scenár</td>
-                            <td>Sofia má súbor, ktorému potrebuje zmeniť veľkosť. Potrebuje zistiť,
-                                akými spôsobmi by to mohla urobiť.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>POSTUP:</h2>
-                <p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="section-title">Aplikovať:</td>
+                                <td>službu <i>truncate()</i> pri práci so súbormi </td>
+                            </tr>
+                            <tr>
+                                <td className="section-title">Vedieť:</td>
+                                <td>využiť získané skúsenosti pri tvorbe programov
+                                </td>
+                            </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="section-title">Odhadovaný čas</td>
+                        <td>5 minút</td>
+                    </tr>
+                    <tr>
+                        <td className="section-title"> Scenár</td>
+                        <td>Sofia má súbor, ktorému potrebuje zmeniť veľkosť. Potrebuje zistiť,
+                            akými spôsobmi by to mohla urobiť.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>POSTUP:</h2>
+            <p>
                 Niekedy sa môže vyskytnúť situácia, keď potrebujeme skrátiť súbor „odrezaním“ dát
                 z konca súboru, alebo naopak, súbor predĺžiť. Skrátenie obsahu súboru na nulu môžeme
                 vykonať aj flagom <i>O_TRUNC</i> služby jadra <i>open()</i>, nielen službou <i>truncate()</i>. Naopak,
@@ -104,13 +104,16 @@ int truncate(const char *pathname, off_t length);
                         `
                     }
                 </pre>
-                
+
                 <br />
                 Ak predchádzajúca veľkosť súboru bola väčšia než <i>length</i>, dáta za <i>length</i> nebudú
                 prístupné. Ak volanie „predĺži“ súbor, dáta medzi starým a novým koncom súboru budú
-                načítané ako 0. 
-                </p>
-            </div>
+                načítané ako 0.
+            </p>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
+        </div>
     );
 };
 

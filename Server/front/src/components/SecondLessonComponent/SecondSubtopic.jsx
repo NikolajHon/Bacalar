@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SecondSubtopic = () => {
+const SecondSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className="second-subtopic" id="section-2">
             <table>
@@ -245,6 +245,9 @@ if((des=open("subor1",O_RDONLY))== -1){ //otvoríme súbor
 `}
                 </pre>
             </p>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

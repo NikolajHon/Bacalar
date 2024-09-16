@@ -1,7 +1,7 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
 
-const SixthSubtopic = () => {
+const SixthSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className='sixth-subtopic' id="section-6">
             <table>
@@ -194,6 +194,9 @@ int remove(const char *pathname);
                 <br /><br />
                 Pre podrobnejšie informácie zadaj príkaz <strong>man 3 remove</strong>.
             </p>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

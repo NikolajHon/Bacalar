@@ -25,6 +25,8 @@ const AppBar = ({ title }) => {
         return new Date().toLocaleString();
     });
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);  // Состояние для управления меню
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentTime(new Date().toLocaleString());
@@ -42,14 +44,13 @@ const AppBar = ({ title }) => {
         setIsDarkTheme(!isDarkTheme);
     };
 
-    // Хук для загрузки фотографии пользователя
     useEffect(() => {
         const fetchPhoto = async () => {
-            if (!user || !user.id) return;  // Проверяем, есть ли пользователь и его ID
+            if (!user || !user.id) return;  
 
             try {
                 const response = await axios.get(`http://localhost:8080/api/download/user/${user.id}`, {
-                    responseType: 'blob',  // Ожидаем, что ответ будет содержать бинарные данные (фото)
+                    responseType: 'blob',  
                 });
 
                 const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -57,8 +58,8 @@ const AppBar = ({ title }) => {
                 
                 if (!isPhotoLoaded) {
                     toast.success('Фото успешно загружено!');
-                    setIsPhotoLoaded(true);  // Устанавливаем флаг после успешной загрузки
-                    localStorage.setItem('isPhotoLoaded', 'true');  // Сохраняем информацию в localStorage
+                    setIsPhotoLoaded(true);  
+                    localStorage.setItem('isPhotoLoaded', 'true');  
                 }
             } catch (error) {
                 console.error('Ошибка при загрузке фото:', error);
@@ -68,6 +69,14 @@ const AppBar = ({ title }) => {
 
         fetchPhoto();
     }, [user, isPhotoLoaded]);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);  // Переключаем видимость меню
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);  // Закрыть меню
+    };
 
     return (
         <div className='app-bar'>
@@ -81,13 +90,16 @@ const AppBar = ({ title }) => {
                 {currentTime}
             </div>
 
-            <div className="forum-button">
-                <Link to="/forum">Forum</Link>
-            </div>
-
             {user && photoUrl ? (
-                <div className="profile-button">
+                <div className="profile-button" onClick={toggleMenu}>
                     <img src={photoUrl} alt="User Avatar" className="user-avatar" />
+                    {isMenuOpen && (  // Показываем меню, если isMenuOpen === true
+                        <div className="dropdown-menu">
+                            <Link to="/profile" onClick={closeMenu}>Profile</Link>
+                            <Link to="/forum" onClick={closeMenu}>Forum</Link>
+                            <button onClick={() => { /* добавьте логику выхода */ closeMenu(); }}>Log out</button>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <div className="profile-button">
@@ -97,4 +109,5 @@ const AppBar = ({ title }) => {
         </div>
     );
 };
+
 export default AppBar;

@@ -1,7 +1,7 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
 
-const ThirdSubtopic = () => {
+const ThirdSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className='third-subtopic' id="section-3">
             <table>
@@ -214,6 +214,9 @@ main(int argc, char *argv[])
                     }
                 </pre>
             </p>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };
