@@ -13,10 +13,11 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 }
+.dark-theme .discussion-item{
+    box-shadow: 10px 10px 10px rgba(252, 0, 189, 0.25);
 
-.discussion-item:hover {
-    background-color: #b1b1b1;
 }
 
 .dark-theme .discussion-item {

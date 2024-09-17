@@ -5,9 +5,7 @@
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f4f4f4; 
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.5s forwards;
@@ -31,16 +29,20 @@
 }
 
 .user-list-container li {
-    background-color: #f9f9f9;
+    background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 10px;
     transition: box-shadow 0.3s ease;
     color: black;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    
 }
+
 .dark-theme .user-list-container li{
     color: #f4f4f4;
+    box-shadow: 10px 10px 10px rgba(240, 3, 137, 0.25);
 }
 
 .user-list-container li:hover {

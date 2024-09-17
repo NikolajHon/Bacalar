@@ -37,7 +37,7 @@ const NewDiscussionForm = ({ onSuccess }) => {
                 placeholder="Title" 
                 required 
             />
-            <textarea 
+            <input 
                 value={content} 
                 onChange={(e) => setContent(e.target.value)} 
                 placeholder="Content" 
