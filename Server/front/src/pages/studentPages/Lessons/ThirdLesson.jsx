@@ -5,6 +5,7 @@ import '../../../styles/LessonsStyles/SecondLesson.css';
 import LessonContent from '../../../components/LessonContent';
 import listOfSubtopicThird from '../../../components/ThirdLessonComponent/ListOfSubtopicThird';
 import FirstSubtopic from '../../../components/ThirdLessonComponent/FirstSubtopicThird';
+import SecondSubtopic from '../../../components/ThirdLessonComponent/SecondSubtopicThird';
 const ThirdLesson = () => {
     
 
@@ -15,6 +16,7 @@ const ThirdLesson = () => {
             <div className="second-lessons-page">
                 <LessonOverview />
                 <FirstSubtopic/>
+                <SecondSubtopic/>
                 <div className='footer'>
                     <button>
                         Посмотреть курс
