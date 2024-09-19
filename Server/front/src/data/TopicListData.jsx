@@ -12,7 +12,7 @@ const data = [
     {
         h3: "Memory Management",
         p: "Memory allocation mechanisms, virtual memory, paging, and segmentation",
-        Link: "memory-management"
+        Link: "addresses"
     },
     {
         h3: "File Systems",

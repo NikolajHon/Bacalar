@@ -1,4 +1,8 @@
 
+* {
+    font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
 body{
     background-color: #ffffff;
 }
@@ -201,4 +205,31 @@ pre{
 .dark-theme li{
     background-color: #36394c;
     color: white;
+}
+/* Third-Lesson styles*/
+.title-box {
+    border: 1px solid black; /* Black border */
+    padding: 10px;           /* Space inside the box */
+    background-color: #e0e0e0; /* Light grey background */
+    text-align: center;      /* Center text */
+    font-family: 'Arial', sans-serif; /* Set font family */
+    width: fit-content;      /* Width adapts to content */
+    margin: 10px 0;          /* Margin around the box */
+}
+.image-container {
+    width: 100%;  /* Размер дива по ширине */
+    height: 100%; /* Размер дива по высоте */
+    position: relative; /* Позиционирование для дочерних элементов */
+  }
+  
+  .image-container img {
+    width: 100%;  /* Занимает всю ширину дива */
+    height: 100%; /* Занимает всю высоту дива */
+    object-fit: cover; /* Масштабирование изображения, чтобы оно покрывало див без искажений */
+    display: block;    /* Убирает нижние отступы изображения (если есть) */
+  }
+.annotations{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 5px;
 }

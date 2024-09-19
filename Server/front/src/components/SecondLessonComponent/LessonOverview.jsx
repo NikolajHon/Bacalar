@@ -69,6 +69,7 @@ const LessonOverview = () => {
                     <li className='terminal-command'>truncate()</li>
                 </ul>
             </div>
+
         </div>
     );
 };

@@ -34,7 +34,7 @@ const App = () => {
                         <Route path="/student/mainscreen/lessons/practice/:lessonId" element={<PracticesList />} />
                         <Route path="/lessons/introduction" element={<FirstLesson />} />
                         <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
-                        <Route path="/lessons/memory-management" element={<ThirdLesson/>} />
+                        <Route path="/lessons/Addresses" element={<ThirdLesson/>} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
                         <Route path="/lessons/tasks/:lessonId" element={<TasksStudent />} />

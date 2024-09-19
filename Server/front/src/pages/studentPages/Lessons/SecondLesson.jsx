@@ -10,6 +10,7 @@ import SixthSubtopic from '../../../components/SecondLessonComponent/SixthSubtop
 import SeventhSubtopic from '../../../components/SecondLessonComponent/SeventhSubtopic';
 import AppBar from '../../../components/AppBar';
 import LessonContent from '../../../components/LessonContent';
+import listOfSubtopicSecond from '../../../components/SecondLessonComponent/ListOfSubtopic';
 import { toast } from 'react-toastify';
 import { SaveSharp } from '@mui/icons-material';
 
@@ -71,12 +72,11 @@ const SecondLesson = () => {
     return (
         <div className='main-second'>
             <AppBar />
-            <LessonContent />
+            <LessonContent subtopics={listOfSubtopicSecond}/>
             <div className="second-lessons-page">
 
                 <LessonOverview />
 
-                {/* Подкомпоненты подтем */}
                 <FirstSubtopic
                     onComplete={() => handleCompleteSubtopic(1)}
                     completed={completedSubtopics.includes(1)}

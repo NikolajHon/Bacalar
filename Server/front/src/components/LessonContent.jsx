@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import listOfSubtopicSecond from '../components/SecondLessonComponent/ListOfSubtopic';
 import '../styles/LessonContent.css';
 
-const LessonContent = () => {
+const LessonContent = ({ subtopics }) => {
     const [activeSection, setActiveSection] = useState(null);
 
     useEffect(() => {
         const handleScroll = () => {
             let currentSection = null;
-            listOfSubtopicSecond.forEach((item, index) => {
+            subtopics.forEach((item, index) => {
                 const element = document.getElementById(`section-${index}`);
                 if (element) {
                     const rect = element.getBoundingClientRect();
@@ -24,13 +23,13 @@ const LessonContent = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [subtopics]);
 
     return (
         <div className="lesson-content">
             <h3>Lesson contents</h3>
             <ul className="content-list">
-                {listOfSubtopicSecond.map((item, index) => (
+                {subtopics.map((item, index) => (
                     <li
                         key={index}
                         className={`content-item ${activeSection === index ? 'active' : ''}`}
