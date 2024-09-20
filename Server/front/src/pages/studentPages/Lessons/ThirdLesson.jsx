@@ -6,6 +6,8 @@ import LessonContent from '../../../components/LessonContent';
 import listOfSubtopicThird from '../../../components/ThirdLessonComponent/ListOfSubtopicThird';
 import FirstSubtopic from '../../../components/ThirdLessonComponent/FirstSubtopicThird';
 import SecondSubtopic from '../../../components/ThirdLessonComponent/SecondSubtopicThird';
+import ThirdSubtopic from '../../../components/ThirdLessonComponent/ThirdSubtopicThird';
+import FourthSubtopic from '../../../components/ThirdLessonComponent/FourthSubtopicThird';
 const ThirdLesson = () => {
     
 
@@ -17,6 +19,8 @@ const ThirdLesson = () => {
                 <LessonOverview />
                 <FirstSubtopic/>
                 <SecondSubtopic/>
+                <ThirdSubtopic/>
+                <FourthSubtopic/>
                 <div className='footer'>
                     <button>
                         Посмотреть курс

@@ -13,7 +13,6 @@ body{
     width: 100%;
     max-width: 800px;
     gap: 20px;
-    background-color: #d3d3d3;
     border-radius: 5px;
     margin-top: 20px;
 }
@@ -233,3 +232,39 @@ pre{
     border-radius: 5px;
     padding: 5px;
 }
+.custom-list {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.custom-list::marker {
+    color: #2c3e50; /* Цвет маркера списка */
+    font-weight: bold;
+}
+
+.custom-list:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении */
+}
+
+ol {
+    padding-left: 20px; /* Отступ слева для списка */
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
