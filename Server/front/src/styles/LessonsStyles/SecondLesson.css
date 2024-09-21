@@ -16,8 +16,9 @@ body{
     border-radius: 5px;
     margin-top: 20px;
 }
-.second-lessons-page>*{
-    background-color: #e0e0e0;
+
+.second-lessons-page div{
+    border: solid black 1px;
     padding: 15px;
     border-radius: 5px;
 }
@@ -135,6 +136,7 @@ td a {
     grid-template-columns: 1fr, 2fr, 2fr, 1fr;
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
+    background-color: white;
 }
 .app-bar{
     grid-column: 1/5;
@@ -156,9 +158,6 @@ td a {
 }
 .dark-theme .main-container{
     background-color: #111828;;
-}
-.main-second .second-lessons-page>*{
-    border: 1px solid #fcfdff;
 }
 .footer {
     display: flex;
@@ -209,7 +208,6 @@ pre{
 .title-box {
     border: 1px solid black; 
     padding: 10px;          
-    background-color: #e0e0e0;
     text-align: center;     
     font-family: 'Arial', sans-serif;
     width: fit-content;     
@@ -253,8 +251,6 @@ ol {
     padding-left: 20px; /* Отступ слева для списка */
 }
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
     color: #333;
     line-height: 1.6;
     padding: 20px;
@@ -268,3 +264,22 @@ code {
     border-radius: 4px;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+thead th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+th[colspan="3"] {
+    text-align: center;
+}

@@ -15,9 +15,9 @@ const data = [
         Link: "addresses"
     },
     {
-        h3: "File Systems",
+        h3: "Access-right",
         p: "Structure and organization of file systems, data access methods, file system management",
-        Link: "file-systems"
+        Link: "access-right"
     },
     {
         h3: "I/O Systems and Device Drivers",

@@ -1,6 +1,6 @@
 import React from 'react';
 import AppBar from '../../../components/AppBar';
-import LessonOverview from '../../../components/ThirdLessonComponent/LessonOverview';
+import LessonOverview from '../../../components/ThirdLessonComponent/LessonOverviewThird';
 import '../../../styles/LessonsStyles/SecondLesson.css';
 import LessonContent from '../../../components/LessonContent';
 import listOfSubtopicThird from '../../../components/ThirdLessonComponent/ListOfSubtopicThird';

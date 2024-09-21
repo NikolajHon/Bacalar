@@ -11,6 +11,7 @@ const Registration = lazy(() => import('./pages/Registration'));
 const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));
 const SecondLesson = lazy(() => import('./pages/studentPages/Lessons/SecondLesson'));
 const ThirdLesson = lazy(() => import('./pages/studentPages/Lessons/ThirdLesson'));
+const FourthLesson = lazy(() => import('./pages/studentPages/Lessons/FourthLesson'));
 const LoginForm = lazy(() => import('./pages/LoginForm'));
 const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreenStudent'));
 const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreenTeacher'));
@@ -35,6 +36,7 @@ const App = () => {
                         <Route path="/lessons/introduction" element={<FirstLesson />} />
                         <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
                         <Route path="/lessons/Addresses" element={<ThirdLesson/>} />
+                        <Route path="/lessons/access-right" element={<FourthLesson/>} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
                         <Route path="/lessons/tasks/:lessonId" element={<TasksStudent />} />
