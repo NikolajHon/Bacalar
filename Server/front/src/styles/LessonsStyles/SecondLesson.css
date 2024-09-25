@@ -283,3 +283,40 @@ thead th {
 th[colspan="3"] {
     text-align: center;
 }
+ul.custom-list {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif; 
+}
+
+ul.custom-list li.custom-item {
+    padding: 10px 0; 
+    border-bottom: 1px solid #e0e0e0; 
+    position: relative; 
+}
+
+.custom-item:hover {
+    background-color: #f9f9f9; 
+}
+
+.list-point {
+    list-style-type: none; /* Убираем стандартные маркеры */
+    padding: 0;
+}
+
+.list-point li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 1.1em;
+}
+
+.list-point li:before {
+    content: '•'; /* Кастомный маркер в виде круга */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5em;
+    color: #000; /* Черный цвет маркера */
+}

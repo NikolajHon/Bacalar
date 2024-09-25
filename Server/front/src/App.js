@@ -8,11 +8,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import PracticesList from './pages/PracticesList';
 
 const Registration = lazy(() => import('./pages/Registration'));
+const LoginForm = lazy(() => import('./pages/LoginForm'));
 const FirstLesson = lazy(() => import('./pages/studentPages/Lessons/FirstLesson'));
 const SecondLesson = lazy(() => import('./pages/studentPages/Lessons/SecondLesson'));
 const ThirdLesson = lazy(() => import('./pages/studentPages/Lessons/ThirdLesson'));
 const FourthLesson = lazy(() => import('./pages/studentPages/Lessons/FourthLesson'));
-const LoginForm = lazy(() => import('./pages/LoginForm'));
+const FifthLesson = lazy(() => import('./pages/studentPages/Lessons/FifthLesson'));
 const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreenStudent'));
 const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreenTeacher'));
 const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'));
@@ -37,6 +38,7 @@ const App = () => {
                         <Route path="/lessons/processes-and-threads" element={<SecondLesson />} />
                         <Route path="/lessons/Addresses" element={<ThirdLesson/>} />
                         <Route path="/lessons/access-right" element={<FourthLesson/>} />
+                        <Route path="/lessons/control-equipment" element={<FifthLesson/>} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
                         <Route path="/lessons/tasks/:lessonId" element={<TasksStudent />} />

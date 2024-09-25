@@ -20,9 +20,9 @@ const data = [
         Link: "access-right"
     },
     {
-        h3: "I/O Systems and Device Drivers",
+        h3: "Control-Equipment",
         p: "Hardware and software aspects of I/O, device drivers.",
-        Link: "io-systems-and-drivers"
+        Link: "control-equipment"
     },
     {
         h3: "Security and Protection",
