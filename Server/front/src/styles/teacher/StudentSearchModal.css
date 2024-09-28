@@ -49,8 +49,7 @@ li {
     color: #fff;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px; /* Округленные углы для контейнера студента */
-    text-align: center;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
