@@ -9,7 +9,7 @@ const SecondSubtopicFifth = () => {
     }, []);
 
     return (
-        <div className="first-subtopic" id="section-1">
+        <div className="second-subtopic" id="section-2">
             <table>
                 <thead>
                 <tr>

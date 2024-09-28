@@ -5,10 +5,13 @@ import LessonOverview from '../../../components/FifthLessonComponents/LessonOver
 import FirstSubtopicFifth from '../../../components/FifthLessonComponents/FirstSubtopicFifth';
 import SecondSubtopicFifth from "../../../components/FifthLessonComponents/SecondSubtopicFifth";
 import ThirdSubtopicFifth from "../../../components/FifthLessonComponents/ThirdSubtopicFifth";
+import listOfSubtopicFifth from "../../../components/FifthLessonComponents/ListOfSubtopicFifth"
+import LessonContent from "../../../components/LessonContent";
 const FifthLesson = () => {
     return (
         <div className='main-second'>
             <AppBar/>
+            <LessonContent subtopics={listOfSubtopicFifth}/>
             <div className="second-lessons-page">
                 <LessonOverview/>
                 <FirstSubtopicFifth/>

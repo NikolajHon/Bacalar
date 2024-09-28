@@ -9,7 +9,7 @@ const ThirdSubtopicFifth = () => {
         Prism.highlightAll();
     }, []);
     return (
-        <div className="first-subtopic" id="section-1">
+        <div className="third-subtopic" id="section-3">
             <table>
                 <thead>
                 <tr>

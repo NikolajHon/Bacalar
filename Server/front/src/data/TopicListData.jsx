@@ -25,9 +25,9 @@ const data = [
         Link: "control-equipment"
     },
     {
-        h3: "Security and Protection",
+        h3: "Procesy-2",
         p: "Fundamentals of OS security, authentication methods, access control, data protection",
-        Link: "security-and-protection"
+        Link: "procesy-2"
     },
     {
         h3: "Network Operating Systems",
