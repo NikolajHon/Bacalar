@@ -1,5 +1,5 @@
 import React from 'react';
-import diagramImage from '../../images/stderr.png';
+import diagramImage from '../../../images/stderr.png';
 
 const Tutorial = () => {
     return (

@@ -1,14 +1,14 @@
 import React from 'react'
 import '../../../styles/LessonsStyles/SecondLesson.css';
 import AppBar from '../../../components/AppBar';
-import LessonOverviewSixth from "../../../components/SixthLessonComponents/LessonOverviewSixth";
-import FirstSubtopicSixth from "../../../components/SixthLessonComponents/FirstSubtopicSixth";
-import SecondSubtopicSixth from "../../../components/SixthLessonComponents/SecondSubtopicSixth";
-import ThirdSubtopicSixth from "../../../components/SixthLessonComponents/ThirdSubtopicSixth";
-import FourthSubtopicSixth from "../../../components/SixthLessonComponents/FourthSubtopicSixth";
-import FifthSubtopicSixth from "../../../components/SixthLessonComponents/FifthSubtopicSixth";
+import LessonOverviewSixth from "../../../components/Lessons/SixthLessonComponents/LessonOverviewSixth";
+import FirstSubtopicSixth from "../../../components/Lessons/SixthLessonComponents/FirstSubtopicSixth";
+import SecondSubtopicSixth from "../../../components/Lessons/SixthLessonComponents/SecondSubtopicSixth";
+import ThirdSubtopicSixth from "../../../components/Lessons/SixthLessonComponents/ThirdSubtopicSixth";
+import FourthSubtopicSixth from "../../../components/Lessons/SixthLessonComponents/FourthSubtopicSixth";
+import FifthSubtopicSixth from "../../../components/Lessons/SixthLessonComponents/FifthSubtopicSixth";
 import LessonContent from "../../../components/LessonContent";
-import listOfSubtopicSixth from "../../../components/SixthLessonComponents/ListOfSubtopicSixth";
+import listOfSubtopicSixth from "../../../components/Lessons/SixthLessonComponents/ListOfSubtopicSixth";
 
 
 const SixthLesson = () => {

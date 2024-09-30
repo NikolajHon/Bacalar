@@ -1,13 +1,13 @@
 import React from 'react';
 import AppBar from '../../../components/AppBar';
-import LessonOverview from '../../../components/ThirdLessonComponent/LessonOverviewThird';
+import LessonOverview from '../../../components/Lessons/ThirdLessonComponent/LessonOverviewThird';
 import '../../../styles/LessonsStyles/SecondLesson.css';
 import LessonContent from '../../../components/LessonContent';
-import listOfSubtopicThird from '../../../components/ThirdLessonComponent/ListOfSubtopicThird';
-import FirstSubtopic from '../../../components/ThirdLessonComponent/FirstSubtopicThird';
-import SecondSubtopic from '../../../components/ThirdLessonComponent/SecondSubtopicThird';
-import ThirdSubtopic from '../../../components/ThirdLessonComponent/ThirdSubtopicThird';
-import FourthSubtopic from '../../../components/ThirdLessonComponent/FourthSubtopicThird';
+import listOfSubtopicThird from '../../../components/Lessons/ThirdLessonComponent/ListOfSubtopicThird';
+import FirstSubtopic from '../../../components/Lessons/ThirdLessonComponent/FirstSubtopicThird';
+import SecondSubtopic from '../../../components/Lessons/ThirdLessonComponent/SecondSubtopicThird';
+import ThirdSubtopic from '../../../components/Lessons/ThirdLessonComponent/ThirdSubtopicThird';
+import FourthSubtopic from '../../../components/Lessons/ThirdLessonComponent/FourthSubtopicThird';
 const ThirdLesson = () => {
     
 

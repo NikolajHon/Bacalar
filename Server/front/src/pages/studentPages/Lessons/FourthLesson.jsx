@@ -1,11 +1,11 @@
 import React from 'react';
 import AppBar from '../../../components/AppBar';
 import '../../../styles/LessonsStyles/SecondLesson.css';
-import LessonOverviewFourth from '../../../components/FourthLessonComponent/LessonOverviewFourth';
-import FirstSubtopicFourth from '../../../components/FourthLessonComponent/FirstSubtopicFourth';
-import SecondSubtopicFourth from '../../../components/FourthLessonComponent/SecondSubtopicFourth';
-import ThirdSubtopicFourth from '../../../components/FourthLessonComponent/ThirdSubtopicFourth';
-import listOfSubtopicFourth from '../../../components/FourthLessonComponent/ListOfSubtopic';
+import LessonOverviewFourth from '../../../components/Lessons/FourthLessonComponent/LessonOverviewFourth';
+import FirstSubtopicFourth from '../../../components/Lessons/FourthLessonComponent/FirstSubtopicFourth';
+import SecondSubtopicFourth from '../../../components/Lessons/FourthLessonComponent/SecondSubtopicFourth';
+import ThirdSubtopicFourth from '../../../components/Lessons/FourthLessonComponent/ThirdSubtopicFourth';
+import listOfSubtopicFourth from '../../../components/Lessons/FourthLessonComponent/ListOfSubtopic';
 import LessonContent from '../../../components/LessonContent';
 const ThirdLesson = () => {
     

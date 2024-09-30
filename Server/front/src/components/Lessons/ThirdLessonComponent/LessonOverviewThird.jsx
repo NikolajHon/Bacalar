@@ -1,6 +1,6 @@
 import React from 'react';
-import Obr1 from '../../images/ThirdPageImages/Obr1.png';
-import Obr2 from '../../images/ThirdPageImages/Obr2.png';
+import Obr1 from '../../../images/ThirdPageImages/Obr1.png';
+import Obr2 from '../../../images/ThirdPageImages/Obr2.png';
 const LessonOverview = () => {
     return (
         <div className="lesson-overview" id="section-0">

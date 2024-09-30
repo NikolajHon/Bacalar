@@ -30,39 +30,9 @@ const data = [
         Link: "procesy-2"
     },
     {
-        h3: "Network Operating Systems",
+        h3: "IPC-1-Pipes",
         p: "Basics of network interactions, protocols, network services",
-        Link: "network-os"
-    },
-    {
-        h3: "Virtualization",
-        p: "Concepts of virtual machines, hypervisors, benefits of virtualization",
-        Link: "virtualization"
-    },
-    {
-        h3: "Real-Time Operating Systems",
-        p: "Features of real-time OS, resource and time management.",
-        Link: "real-time-os"
-    },
-    {
-        h3: "Interrupts and System Calls",
-        p: "Mechanisms for handling interrupts, system calls and their role",
-        Link: "interrupts-and-system-calls"
-    },
-    {
-        h3: "Multiplatform and Embedded Operating Systems",
-        p: "OS for various architectures, features of mobile and embedded systems",
-        Link: "multiplatform-and-embedded-os"
-    },
-    {
-        h3: "Performance Optimization",
-        p: "Methods to improve OS efficiency, power management.",
-        Link: "performance-optimization"
-    },
-    {
-        h3: "OS Development and Debugging",
-        p: "Fundamentals of OS creation, debugging and testing methods",
-        Link: "os-development-and-debugging"
+        Link: "ipc-1-pipes"
     }
 ];
 

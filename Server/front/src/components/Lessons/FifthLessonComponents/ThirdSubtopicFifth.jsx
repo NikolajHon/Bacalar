@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
-import Obr1 from '../../images/FifthPageImg/Obr1.png'
+import Obr1 from '../../../images/FifthPageImg/Obr1.png'
 import {languages} from "monaco-editor";
 
 const ThirdSubtopicFifth = () => {

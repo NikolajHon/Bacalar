@@ -6,7 +6,7 @@ import { Terminal } from '@xterm/xterm';
 import { FitAddon } from '@xterm/addon-fit';
 import '@xterm/xterm/css/xterm.css';
 import 'react-resizable/css/styles.css';
-import '../../styles/CodeEditor.css';
+import '../../../styles/CodeEditor.css';
 
 const CodeEditor = () => {
     const [code, setCode] = useState('');

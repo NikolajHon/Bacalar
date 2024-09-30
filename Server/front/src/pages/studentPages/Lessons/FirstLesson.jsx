@@ -1,8 +1,8 @@
 import React from 'react';
-import Table from '../../../components/FirstLesson/Table';
-import Approach from '../../../components/FirstLesson/Approach';
-import Section from '../../../components/FirstLesson/Section';
-import Tutorial from "../../../components/FirstLesson/Tutorial";
+import Table from '../../../components/Lessons/FirstLesson/Table';
+import Approach from '../../../components/Lessons/FirstLesson/Approach';
+import Section from '../../../components/Lessons/FirstLesson/Section';
+import Tutorial from "../../../components/Lessons/FirstLesson/Tutorial";
 import '../../../styles/LessonsStyles/FirstLesson.css';
 import AppBar from '../../../components/AppBar';
 

@@ -1,22 +1,24 @@
 import React from 'react'
 import '../../../styles/LessonsStyles/SecondLesson.css';
 import AppBar from '../../../components/AppBar';
-import LessonOverview from '../../../components/Lessons/FifthLessonComponents/LessonOverviewFifth';
-import FirstSubtopicFifth from '../../../components/Lessons/FifthLessonComponents/FirstSubtopicFifth';
-import SecondSubtopicFifth from "../../../components/Lessons/FifthLessonComponents/SecondSubtopicFifth";
-import ThirdSubtopicFifth from "../../../components/Lessons/FifthLessonComponents/ThirdSubtopicFifth";
-import listOfSubtopicFifth from "../../../components/Lessons/FifthLessonComponents/ListOfSubtopicFifth"
+import LessonOverview from "../../../components/Lessons/SeventhLessonComponents/LessonOverviewSeventh";
+import FirstSubtopicSeventh from "../../../components/Lessons/SeventhLessonComponents/FirstSubtopicSeventh";
+import SecondSubtopicSeventh from "../../../components/Lessons/SeventhLessonComponents/SecondSubtopicSeventh";
+import ThirdSubtopicSeventh from "../../../components/Lessons/SeventhLessonComponents/ThirdSubtopicSeventh";
 import LessonContent from "../../../components/LessonContent";
-const FifthLesson = () => {
+import listOfSubtopicSeventh from "../../../components/Lessons/SeventhLessonComponents/ListOfSubtopicSeventh";
+
+
+const SeventhLesson = () => {
     return (
         <div className='main-second'>
             <AppBar/>
-            <LessonContent subtopics={listOfSubtopicFifth}/>
+            <LessonContent subtopics={listOfSubtopicSeventh}/>
             <div className="second-lessons-page">
                 <LessonOverview/>
-                <FirstSubtopicFifth/>
-                <SecondSubtopicFifth/>
-                <ThirdSubtopicFifth/>
+                <FirstSubtopicSeventh/>
+                <SecondSubtopicSeventh/>
+                <ThirdSubtopicSeventh/>
                 <div className='footer'>
                     <button>
                         Посмотреть курс
@@ -32,4 +34,4 @@ const FifthLesson = () => {
     );
 };
 
-export default FifthLesson;
+export default SeventhLesson;

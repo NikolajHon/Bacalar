@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../../../styles/LessonsStyles/SecondLesson.css';
-import SecondSubtopic from '../../../components/SecondLessonComponent/SecondSubtopic';
-import FirstSubtopic from '../../../components/SecondLessonComponent/FirstSubtopic';
-import LessonOverview from '../../../components/SecondLessonComponent/LessonOverview';
-import ThirdSubtopic from '../../../components/SecondLessonComponent/ThirdSubtopic';
-import FourthSubtopic from '../../../components/SecondLessonComponent/FourthSubtopic';
-import FifthSubtopic from '../../../components/SecondLessonComponent/FifthSubtopic';
-import SixthSubtopic from '../../../components/SecondLessonComponent/SixthSubtopic';
-import SeventhSubtopic from '../../../components/SecondLessonComponent/SeventhSubtopic';
+import SecondSubtopic from '../../../components/Lessons/SecondLessonComponent/SecondSubtopic';
+import FirstSubtopic from '../../../components/Lessons/SecondLessonComponent/FirstSubtopic';
+import LessonOverview from '../../../components/Lessons/SecondLessonComponent/LessonOverview';
+import ThirdSubtopic from '../../../components/Lessons/SecondLessonComponent/ThirdSubtopic';
+import FourthSubtopic from '../../../components/Lessons/SecondLessonComponent/FourthSubtopic';
+import FifthSubtopic from '../../../components/Lessons/SecondLessonComponent/FifthSubtopic';
+import SixthSubtopic from '../../../components/Lessons/SecondLessonComponent/SixthSubtopic';
+import SeventhSubtopic from '../../../components/Lessons/SecondLessonComponent/SeventhSubtopic';
 import AppBar from '../../../components/AppBar';
 import LessonContent from '../../../components/LessonContent';
-import listOfSubtopicSecond from '../../../components/SecondLessonComponent/ListOfSubtopic';
+import listOfSubtopicSecond from '../../../components/Lessons/SecondLessonComponent/ListOfSubtopic';
 import { toast } from 'react-toastify';
 import { SaveSharp } from '@mui/icons-material';
 
