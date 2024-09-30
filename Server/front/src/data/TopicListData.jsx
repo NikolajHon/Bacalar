@@ -33,6 +33,11 @@ const data = [
         h3: "IPC-1-Pipes",
         p: "Basics of network interactions, protocols, network services",
         Link: "ipc-1-pipes"
+    },
+    {
+        h3: "IPC-2-Signaly",
+        p: "IPC-2-Signaly",
+        Link: "ipc-2-signaly"
     }
 ];
 

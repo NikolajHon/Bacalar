@@ -320,3 +320,10 @@ ul.custom-list li.custom-item {
     font-size: 1.5em;
     color: #000; /* Черный цвет маркера */
 }
+.command {
+    background-color: #d3d3d3;
+    padding: 5px;
+    display: inline-block;
+    font-family: monospace;
+    margin-bottom: 10px;
+}
