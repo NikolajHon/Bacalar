@@ -60,7 +60,7 @@ const TopicList = () => {
                             <p>{element.p}</p>
                             <div className="link-container">
                                 <Link to={`/lessons/${element.Link}`} className="lesson-link">
-                                    Перейти к уроку
+                                    Go to lesson
                                 </Link>
                                 <Link to={`/lessons/test/${index}`} className="test-link">
                                     Check your knowledge
