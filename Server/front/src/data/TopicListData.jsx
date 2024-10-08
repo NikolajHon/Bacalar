@@ -44,6 +44,11 @@ const data = [
         h3: "Shared-memory",
         p: "Shared-memory",
         Link: "shared-memory"
+    },
+    {
+        h3: "Semaphore",
+        p: "Semaphore",
+        Link: "semaphore"
     }
 ];
 

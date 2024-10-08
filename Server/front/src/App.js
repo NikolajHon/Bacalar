@@ -18,6 +18,7 @@ const SixthLesson = lazy(() =>import('./pages/studentPages/Lessons/SixthLesson')
 const SeventhLesson = lazy(() => import('./pages/studentPages/Lessons/SeventhLesson'));
 const EighthLesson = lazy(() => import('./pages/studentPages/Lessons/EighthLesson'));
 const NinthLesson = lazy(() => import('./pages/studentPages/Lessons/NinthLesson'));
+const TenthLesson = lazy(()=> import('./pages/studentPages/Lessons/TenthLesson'));
 const StudentMainScreen = lazy(() => import('./pages/studentPages/MainScreenStudent'));
 const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreenTeacher'));
 const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'));
@@ -47,6 +48,7 @@ const App = () => {
                         <Route path="/lessons/ipc-1-pipes" element={<SeventhLesson/>} />
                         <Route path="/lessons/ipc-2-signaly" element={<EighthLesson/>} />
                         <Route path="/lessons/shared-memory" element={<NinthLesson/>} />
+                        <Route path="/lessons/semaphore" element={<TenthLesson/>} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
                         <Route path="/lessons/tasks/:lessonId" element={<TasksStudent />} />

@@ -327,3 +327,21 @@ ul.custom-list li.custom-item {
     font-family: monospace;
     margin-bottom: 10px;
 }
+
+.list-style-1 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.list-style-1 li {
+    margin-bottom: 5px;
+}
+
+.list-style-2 {
+    margin-left: 20px;
+    font-weight: normal;
+}
+
+.list-style-2 li {
+    list-style-type: disc;
+}

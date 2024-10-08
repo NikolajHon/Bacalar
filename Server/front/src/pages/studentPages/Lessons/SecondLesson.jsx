@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../../../styles/LessonsStyles/SecondLesson.css';
-import SecondSubtopic from '../../../components/Lessons/SecondLessonComponent/SecondSubtopic';
-import FirstSubtopic from '../../../components/Lessons/SecondLessonComponent/FirstSubtopic';
-import LessonOverview from '../../../components/Lessons/SecondLessonComponent/LessonOverview';
-import ThirdSubtopic from '../../../components/Lessons/SecondLessonComponent/ThirdSubtopic';
-import FourthSubtopic from '../../../components/Lessons/SecondLessonComponent/FourthSubtopic';
-import FifthSubtopic from '../../../components/Lessons/SecondLessonComponent/FifthSubtopic';
-import SixthSubtopic from '../../../components/Lessons/SecondLessonComponent/SixthSubtopic';
-import SeventhSubtopic from '../../../components/Lessons/SecondLessonComponent/SeventhSubtopic';
+import SecondSubtopic from '../../../components/Lessons/SecondLessonComponents/SecondSubtopic';
+import FirstSubtopic from '../../../components/Lessons/SecondLessonComponents/FirstSubtopic';
+import LessonOverview from '../../../components/Lessons/SecondLessonComponents/LessonOverview';
+import ThirdSubtopic from '../../../components/Lessons/SecondLessonComponents/ThirdSubtopic';
+import FourthSubtopic from '../../../components/Lessons/SecondLessonComponents/FourthSubtopic';
+import FifthSubtopic from '../../../components/Lessons/SecondLessonComponents/FifthSubtopic';
+import SixthSubtopic from '../../../components/Lessons/SecondLessonComponents/SixthSubtopic';
+import SeventhSubtopic from '../../../components/Lessons/SecondLessonComponents/SeventhSubtopic';
 import AppBar from '../../../components/AppBar';
 import LessonContent from '../../../components/LessonContent';
-import listOfSubtopicSecond from '../../../components/Lessons/SecondLessonComponent/ListOfSubtopic';
+import listOfSubtopicSecond from '../../../components/Lessons/SecondLessonComponents/ListOfSubtopic';
 import { toast } from 'react-toastify';
 import { SaveSharp } from '@mui/icons-material';
 
