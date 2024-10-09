@@ -50,6 +50,12 @@ const data = [
         p: "Semaphore",
         Link: "semaphore"
     }
+    ,
+    {
+        h3: "Socket--Networking",
+        p: "Socket--Networking",
+        Link: "socket--networking"
+    }
 ];
 
 export default data;
