@@ -223,7 +223,7 @@ struct hostent {
             <li><code>htons()</code> – krátke celé čísla z hostovej postupnosti do sieťovej (pre porty).</li>
             <li><code>ntohs()</code> – krátke celé čísla zo sieťovej do hostovej postupnosti (pre porty). </li>
             <li><code>htonl()</code> – dlhé celé čísla z hostovej do sieťovej postupnosti (pre IP adresy). </li>
-            <li><code>ntohl()</code> – dlhé celé čísla zo sieťovej do hostovej postupnosti (pre IP adresy). </li>
+            <li><code>ntohl()</code> – dlhé celé čísla zo sieťovej do hostovej postupnosti (pre IP adresy). </li> <br/>
             <strong>Sformovanie adresy</strong> <br/>
             Formovanie adresy pre internetové protokoly sa uskutočňuje pomocou štruktúry
             <code>sockaddr_in.</code>

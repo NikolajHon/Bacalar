@@ -47,8 +47,6 @@ ul {
 li {
     background-color: #111828;
     color: #fff;
-    padding: 10px;
-    margin-bottom: 10px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }

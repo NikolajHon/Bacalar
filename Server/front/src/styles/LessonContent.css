@@ -35,7 +35,8 @@
 
 .content-item.active {
     background-color: #7e7b7b;
-    font-weight: bold; 
+    font-weight: bold;
+    color: #f0f0f0;
 }
 .dark-theme .lesson-content{
     border: solid white 1px;
