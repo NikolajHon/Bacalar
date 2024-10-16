@@ -1,13 +1,15 @@
-# Dockerfile для WebApl (Backend)
 
-# Используем официальный образ OpenJDK
-FROM openjdk:11-jdk-slim
+FROM eclipse-temurin:17-jdk-alpine
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файл сборки проекта в контейнер
-COPY ./target/your-application.jar /app/app.jar
+COPY build.gradle settings.gradle gradlew ./
+COPY gradle ./gradle
+COPY src ./src
 
-# Команда запуска приложения
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+RUN ./gradlew build -x test --no-daemon
+
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "build/libs/WebApl-0.0.1-SNAPSHOT.jar"]

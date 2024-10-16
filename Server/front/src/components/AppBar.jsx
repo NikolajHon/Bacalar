@@ -7,25 +7,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UploadPhotoModal from './UploadPhotoModal';
 
 const AppBar = ({ title }) => {
-    const { user } = useContext(UserContext);
-    
+    const { user, setUser } = useContext(UserContext);
     const [photoUrl, setPhotoUrl] = useState('');
     const [isPhotoLoaded, setIsPhotoLoaded] = useState(() => {
-        return localStorage.getItem('isPhotoLoaded') === 'true';  // Читаем из localStorage
+        return localStorage.getItem('isPhotoLoaded') === 'true';
     });
-
     const [isDarkTheme, setIsDarkTheme] = useState(() => {
         const storedTheme = localStorage.getItem('theme');
         return storedTheme === 'dark';
     });
-
     const [currentTime, setCurrentTime] = useState(() => {
         return new Date().toLocaleString();
     });
-
-    const [isMenuOpen, setIsMenuOpen] = useState(false);  // Состояние для управления меню
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для открытия/закрытия модального окна
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -44,38 +42,67 @@ const AppBar = ({ title }) => {
         setIsDarkTheme(!isDarkTheme);
     };
 
-    useEffect(() => {
-        const fetchPhoto = async () => {
-            if (!user || !user.id) return;  
+    const fetchPhoto = async () => {
+        if (!user || !user.id) return;
 
-            try {
-                const response = await axios.get(`http://localhost:8080/api/download/user/${user.id}`, {
-                    responseType: 'blob',  
-                });
+        try {
+            const response = await axios.get(`http://localhost:8080/api/images/${user.id}`, {
+                responseType: 'blob',
+            });
 
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                setPhotoUrl(url);
-                
-                if (!isPhotoLoaded) {
-                    toast.success('Фото успешно загружено!');
-                    setIsPhotoLoaded(true);  
-                    localStorage.setItem('isPhotoLoaded', 'true');  
-                }
-            } catch (error) {
-                console.error('Ошибка при загрузке фото:', error);
-                toast.error('Ошибка при загрузке фото.');
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            setPhotoUrl(url);
+
+            if (!isPhotoLoaded) {
+                toast.success('Фото успешно загружено!');
+                setIsPhotoLoaded(true);
+                localStorage.setItem('isPhotoLoaded', 'true');
             }
-        };
+        } catch (error) {
+            console.error('Ошибка при загрузке фото:', error);
+            toast.error('Ошибка при загрузке фото.');
+        }
+    };
 
-        fetchPhoto();
-    }, [user, isPhotoLoaded]);
+    useEffect(() => {
+        fetchPhoto(); // Загружаем фото при монтировании компонента
+    }, [user]);
 
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);  // Переключаем видимость меню
+        setIsMenuOpen(!isMenuOpen);
     };
 
     const closeMenu = () => {
-        setIsMenuOpen(false);  // Закрыть меню
+        setIsMenuOpen(false);
+    };
+
+    const openModal = () => {
+        setIsModalOpen(true); // Открываем модальное окно
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false); // Закрываем модальное окно
+    };
+
+    const handlePhotoUpload = async (file) => {
+        if (!user || !user.id) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await axios.post(`http://localhost:8080/api/images/upload/user/${user.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            toast.success('Фото успешно загружено!');
+            fetchPhoto(); // Обновляем фото после загрузки
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error('Ошибка при загрузке фото:', error);
+            toast.error('Ошибка при загрузке фото.');
+        }
     };
 
     return (
@@ -86,6 +113,7 @@ const AppBar = ({ title }) => {
             </div>
             <div className="app-bar-title">{title}</div>
 
+            <button onClick={openModal}>Upload Photo</button> {/* Кнопка для открытия модального окна */}
             <div className="time-date">
                 {currentTime}
             </div>
@@ -93,7 +121,7 @@ const AppBar = ({ title }) => {
             {user && photoUrl ? (
                 <div className="profile-button" onClick={toggleMenu}>
                     <img src={photoUrl} alt="User Avatar" className="user-avatar" />
-                    {isMenuOpen && (  // Показываем меню, если isMenuOpen === true
+                    {isMenuOpen && (
                         <div className="dropdown-menu">
                             <Link to="/profile" onClick={closeMenu}>Profile</Link>
                             <Link to="/forum" onClick={closeMenu}>Forum</Link>
@@ -105,6 +133,10 @@ const AppBar = ({ title }) => {
                 <div className="profile-button">
                     {user ? user.name : 'Guest'}
                 </div>
+            )}
+
+            {isModalOpen && (
+                <UploadPhotoModal onClose={closeModal} onUpload={handlePhotoUpload} />
             )}
         </div>
     );
