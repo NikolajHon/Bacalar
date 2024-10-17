@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LessonOverview = () => {
+const LessonOverview = ({onComplete, completed}) => {
     return (
         <div className="lesson-overview" id="section-0">
             <table>
@@ -106,6 +106,10 @@ const LessonOverview = () => {
                     </ul>
                 </li>
             </ul>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

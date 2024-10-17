@@ -5,63 +5,66 @@ const FourthSubtopic = ({ onComplete, completed }) => {
         <div className='fourth-subtopic' id="section-4">
             <table>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: <strong>Funkcie pre prácu s adresármi , unix </strong> </th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: <strong>Funkcie pre prácu s adresármi , unix </strong></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><i>
-                            opendir(), closedir(),readdir(), telldir(), seekdir(),
-                            rewindir(),dirent
-                        </i>, unix</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <tr>
-                                <td className="section-title">Zapamätať si:</td>
-                                <td>
-                                    funkcie pre prácu s adresármi:
-                                    <ul>
-                                        <li>prečítať si manuálové stránky v Unixe
-                                            /Linuxe, Linux dokumentačný projekt</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Porozumieť:</td>
-                                <td>
-                                    parametrom funkcií
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Aplikovať:</td>
-                                <td>funkcie <i>
-                                    opendir(), closedir(),  readdir(),
-                                    telldir(), seekdir(), rewindir()
-                                </i> pri práci
-                                    s adresármi </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Vedieť:</td>
-                                <td>využiť získané skúsenosti pri tvorbe programov</td>
-                            </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>20 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Sofia potrebuje vypísať obsah svojho adresára, preto použije príkaz
-                            ls. Pri použití príkazu nastane chyba. Sofia vie, že obsah adresára
-                            sa dá zistiť aj bez použitia príkazu ls a to použitím funkcií pre
-                            čítanie a prácu s adresármi.
-                        </td>
-                    </tr>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><i>
+                        opendir(), closedir(),readdir(), telldir(), seekdir(),
+                        rewindir(),dirent
+                    </i>, unix
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <tr>
+                            <td className="section-title">Zapamätať si:</td>
+                            <td>
+                                funkcie pre prácu s adresármi:
+                                <ul>
+                                    <li>prečítať si manuálové stránky v Unixe
+                                        /Linuxe, Linux dokumentačný projekt
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Porozumieť:</td>
+                            <td>
+                                parametrom funkcií
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Aplikovať:</td>
+                            <td>funkcie <i>
+                                opendir(), closedir(), readdir(),
+                                telldir(), seekdir(), rewindir()
+                            </i> pri práci
+                                s adresármi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Vedieť:</td>
+                            <td>využiť získané skúsenosti pri tvorbe programov</td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>20 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title"> Scenár</td>
+                    <td>Sofia potrebuje vypísať obsah svojho adresára, preto použije príkaz
+                        ls. Pri použití príkazu nastane chyba. Sofia vie, že obsah adresára
+                        sa dá zistiť aj bez použitia príkazu ls a to použitím funkcií pre
+                        čítanie a prácu s adresármi.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div className="title-box">
@@ -72,14 +75,14 @@ const FourthSubtopic = ({ onComplete, completed }) => {
             adresároch nachádzajú. Na to nám slúžia nižšie uvedené funkcie, ktoré sú deklarované
             v hlavičkovom súbore <i>dirent.h</i>. Poznamenajme, že v tomto prípade nejde priamo
             o služby jadra, ale o nadstavbové funkcie, ktoré služby jadra využívajú vo svojom tele.
-            <br /><br />
+            <br/><br/>
             <strong>KROK1 – oboznámiť sa s adresárovými štruktúrami: </strong>
             Adresárové funkcie sú deklarovane v hlavičkovom súbore <i>dirent.h</i>. Ako základ pre
             manipuláciu s adresárom využívajú štruktúru <i>DIR</i>. Ukazovateľ na túto štruktúru sa
             nazýva adresárový prúd, funguje podobným spôsobom ako súborový prúd (<i>FILE *</i>)
             Sofia verzia 2016
             v prípade manipulácie s bežnými súbormi. Vlastné adresárové záznamy sú vrátené
-            v štruktúre <i>dirent</i>, ktoré sú taktiež deklarované v súbore <i>dirent.h</i>.  <br /><br />
+            v štruktúre <i>dirent</i>, ktoré sú taktiež deklarované v súbore <i>dirent.h</i>. <br/><br/>
             Štruktúra <i>dirent</i>, špecifikujúca adresárové záznamy, obsahuje nasledujúce položky:
             <pre>{`
         struct dirent{ 
@@ -91,9 +94,9 @@ const FourthSubtopic = ({ onComplete, completed }) => {
         }; 
                     `}
             </pre>
-            <br />
+            <br/>
             <strong>KROK2 – naučiť sa syntax a sémantiku funkcií pre prácu s adresármi:</strong>
-            <p style={{ textDecoration: 'underline' }}>Syntax:</p>
+            <p style={{textDecoration: 'underline'}}>Syntax:</p>
             <pre>{`
     #include <sys/types.h> 
     #include <dirent.h> 
@@ -111,7 +114,8 @@ const FourthSubtopic = ({ onComplete, completed }) => {
                     </pre>
                 </li>
                 <li>
-                    Vráti: ukazovateľ na štruktúru <code>dirent</code> keď OK, inak <code>NULL</code> pri chybe alebo pri konci súboru
+                    Vráti: ukazovateľ na štruktúru <code>dirent</code> keď OK, inak <code>NULL</code> pri chybe alebo
+                    pri konci súboru
                     <pre>
                         <code>
                             void rewinddir(DIR *dp);
@@ -128,8 +132,8 @@ const FourthSubtopic = ({ onComplete, completed }) => {
                     Vráti: 0 keď OK alebo -1 pri chybe
                 </li>
             </ul>
-            <br />
-            <strong>KROK3 – pochopiť parametre funkcií </strong> <br />
+            <br/>
+            <strong>KROK3 – pochopiť parametre funkcií </strong> <br/>
             Funkcia <i>opendir()</i> nám otvorí adresár uvedený v parametri <i>pathname</i>. Pomocou
             funkcie <i>readdir()</i> prečítame obsah adresára, ktorý je prístupný cez adresárový prúd
             DIR *dp (dp – deskriptor adresára), pričom nám funkcia readdir() vracia ukazovateľ
@@ -138,32 +142,32 @@ const FourthSubtopic = ({ onComplete, completed }) => {
             v rovnakom adresári iné procesy vytvárajú alebo mažú súbory.
             Funkcia <i>rewinddir()</i> nám resetne pozíciu v adresárovom prúde <i>DIR *dp</i> na začiatok
             a <i>closedir()</i> zavrie adresárový prúd a uvoľní s ním združené zdroje.
-            <br />
-            <br />
+            <br/>
+            <br/>
             <strong>KROK4 – oboznámiť sa s ďalšími funkciami <i>telldir() a seekdir()</i>:</strong>
-            <p style={{ textDecoration: 'underline' }}>Syntax:</p>
+            <p style={{textDecoration: 'underline'}}>Syntax:</p>
             <pre>{`
         #include <sys/types.h> 
         #include <dirent.h> 
         long int telldir(DIR *dirp); 
                     `}
             </pre>
-            <p style={{ textDecoration: 'underline' }}>Sémantika: :</p>
+            <p style={{textDecoration: 'underline'}}>Sémantika: :</p>
             Funkcia <i>telldir()</i> vracia hodnotu, ktorá udáva aktuálnu pozíciu v adresárovom prúde.
             Môže ju potom využiť na nastavenie prehľadávania adresára od aktuálnej pozície.
-            <p style={{ textDecoration: 'underline' }}>Syntax:</p>
+            <p style={{textDecoration: 'underline'}}>Syntax:</p>
             <pre>{`
         #include <sys/types.h> 
         #include <dirent.h> 
         void seekdir (DIR *dirp, long int loc); 
                     `}
             </pre>
-            <p style={{ textDecoration: 'underline' }}>Sémantika: :</p>
+            <p style={{textDecoration: 'underline'}}>Sémantika: :</p>
             Táto funkcia nastavuje smerník na adresárovú položku adresárového prúdu <i>dirp</i>.
             Hodnota <i>loc</i>, ktorá definuje príslušnú pozíciu, by mohla byť získaná z volania funkcie
             <i>telldir()</i>. Nemá žiadnu návratovú hodnotu.
-            <br /><br />
-            <strong>KROK5 – aplikovanie služieb v programe: </strong> <br />
+            <br/><br/>
+            <strong>KROK5 – aplikovanie služieb v programe: </strong> <br/>
             <strong>1. program</strong> -Tento program nám vypíše obsah aktuálneho adresára.
             <pre>{`
         #include <stdio.h> 
@@ -182,19 +186,19 @@ const FourthSubtopic = ({ onComplete, completed }) => {
         } 
                     `}
             </pre>
-            <br />
+            <br/>
             Funkcia <i>opendir()</i> otvorí adresár, ktorého názov je zadaný v programe (pripadne aj
             s cestou). V tomto prípade je to aktuálny adresár. Funkcia vráti ukazovateľ na adresárový
             prúd <i>DIR *adresar</i>, ktorý obsahuje informácie o adresári a pomocou ktorého sa
-            k adresáru bude ďalej pristupovať. <br />
+            k adresáru bude ďalej pristupovať. <br/>
             Položky zapísané v adresári prečítame pomocou funkcie <i>readdir()</i>. Táto funkcia
             postupne číta položky adresára, pri každom volaní vráti nasledujúcu položku. Ak
             v adresári žiadna ďalšia položka nie je, vráti <i>NULL</i>. Položka adresára je vrátená ako
             ukazovateľ na štruktúru <i>dirent</i>. Štruktúra <i>dirent</i> obsahuje informácie o súbore, ktoré
             sú uložené v adresári. Pre nás bude zaujímavá iba položka <i>d_name</i>, čo je reťazec
-            obsahujúci názov súboru, ku ktorému položka patri. <br /> <br />
+            obsahujúci názov súboru, ku ktorému položka patri. <br/> <br/>
             <strong>2. program</strong> - Tento program prehľadá adresár zadaný z príkazového riadku a pomocou
-            funkcii <i>seekdir()</i> a <i>telldir()</i> sa následne vrátime na položku  adresára zadanú ako
+            funkcii <i>seekdir()</i> a <i>telldir()</i> sa následne vrátime na položku adresára zadanú ako
             argument programu.
             <pre>{`
         #include <stdio.h>
@@ -246,8 +250,8 @@ const FourthSubtopic = ({ onComplete, completed }) => {
 
                     `}
             </pre>
-            <br />
-            Príklad spustenia predchádzajúceho programu:  
+            <br/>
+            Príklad spustenia predchádzajúceho programu:
             <pre>{
                 ` 
         $  
@@ -255,23 +259,29 @@ const FourthSubtopic = ({ onComplete, completed }) => {
         $  
                 `
             }</pre>
-            <p style={{ textDecoration: 'underline' }}>Takže zhrnutie postupu ako prečítať všetky položky adresára: </p>
+            <p style={{textDecoration: 'underline'}}>Takže zhrnutie postupu ako prečítať všetky položky adresára: </p>
             <ol>
-                <li>Otvoriť adresár pomocou <i>opendir()</i>. </li>
-                <li>Čítať položky adresára pomocou <i>readdir()</i> až kým nevráti NULL. </li>
-                <li> Zatvoriť adresár pomocou <i>closedir()</i>. </li>
+                <li>Otvoriť adresár pomocou <i>opendir()</i>.</li>
+                <li>Čítať položky adresára pomocou <i>readdir()</i> až kým nevráti NULL.</li>
+                <li> Zatvoriť adresár pomocou <i>closedir()</i>.</li>
             </ol>
             <div className="title-box">
                 <strong>ÚLOHY NA SAMOSTATNÚ PRÁCU:</strong>
             </div>
             <ul>
-                <li>Vyskúšajte si prácu s adresárom  pomocou  služieb jadra <i>
+                <li>Vyskúšajte si prácu s adresárom pomocou služieb jadra <i>
                     stat(), opendir(),
                     readdir(), closedir()
-                </i> a pod. </li>
-                <li>Vytvorte program, ktorý výpiše celú adresárovú štruktúru aktuálne nastaveného  
-                adresára. </li>
+                </i> a pod.
+                </li>
+                <li>Vytvorte program, ktorý výpiše celú adresárovú štruktúru aktuálne nastaveného
+                    adresára.
+                </li>
             </ul>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

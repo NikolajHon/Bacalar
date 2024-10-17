@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/UploadPhotoModal.css'
 const UploadPhotoModal = ({ onClose, onUpload }) => {
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -15,11 +16,11 @@ const UploadPhotoModal = ({ onClose, onUpload }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <h2>Загрузить фото</h2>
+                <h2>Upload photo</h2>
                 <input type="file" onChange={handleFileChange} />
                 <div className="modal-buttons">
-                    <button onClick={onClose}>Отмена</button>
-                    <button onClick={handleUpload} disabled={!selectedFile}>Загрузить</button>
+                    <button onClick={onClose}>Cancel</button>
+                    <button onClick={handleUpload} disabled={!selectedFile}>Upload</button>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const ThirdSubtopicEleventh = () => {
+const ThirdSubtopicEleventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -87,7 +87,8 @@ int listen (int socket, int backlog);
                 </code>
             </pre>
             <p style={{textDecoration: 'underline'}}>Sémantika:</p>
-            <li><code>listen()</code> vracia - 0 pri úspešnom vykonaní alebo -1, ak nastane chyba</li> <br/>
+            <li><code>listen()</code> vracia - 0 pri úspešnom vykonaní alebo -1, ak nastane chyba</li>
+            <br/>
             <div className={'annotations'}>Pre podrobnejšie informácie - <strong><code>man 2 listen</code></strong>.
             </div>
             <br/>
@@ -97,8 +98,13 @@ int listen (int socket, int backlog);
             vytvorený službou <code>socket()</code> s adresou priradenou službou <code>bind()</code>. Druhým
             parametrom je <code>backlog</code>. Argument backlog určuje maximálne množstvo simultánnych
             požiadaviek na spojenie. Horný limit je špecifikovaný symbolickou konštantou
-            <code>SOMAXCONN</code> v hlavičkovom súbore &lt;<code>sys/socket.h</code>&gt;. Hodnota parametra <code>backlog</code> je
+            <code>SOMAXCONN</code> v hlavičkovom súbore &lt;<code>sys/socket.h</code>&gt;. Hodnota
+            parametra <code>backlog</code> je
             nastavená štandardne na hodnotu 5.
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

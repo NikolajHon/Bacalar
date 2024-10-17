@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FourthSubtopicEighth = () => {
+const FourthSubtopicEighth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -118,6 +118,10 @@ int main()
                 koniec<br/>
                 $
             </div>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

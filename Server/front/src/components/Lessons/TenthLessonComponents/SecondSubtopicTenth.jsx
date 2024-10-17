@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const SecondSubtopicTenth = () => {
+const SecondSubtopicTenth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -34,8 +34,8 @@ const SecondSubtopicTenth = () => {
                             <td className="section-title">Porozumieť:</td>
                             <td>
                                 <li>argumentom služby</li>
-                                <li>návratovým hodnotám </li>
-                                <li>chybovým hláseniam </li>
+                                <li>návratovým hodnotám</li>
+                                <li>chybovým hláseniam</li>
                             </td>
                         </tr>
                         <tr>
@@ -56,7 +56,7 @@ const SecondSubtopicTenth = () => {
                 </tr>
                 <tr>
                     <td className="section-title"> Scenár</td>
-                    <td>Sofia už si  vie vytvoriť sadu semaforov. Aby ju mohla využívať
+                    <td>Sofia už si vie vytvoriť sadu semaforov. Aby ju mohla využívať
                         pre svoje procesy a pre riešenie zadanej úlohy, musí ju najprv
                         inicializovať na hodnoty, ktoré potrebuje pre synchronizáciu
                         procesov. Zistila, že na vyriešenie tohto problému sa používa
@@ -92,7 +92,8 @@ int semctl (int sem_id, int sem_num, int command, …);
                 Služba <code>semctl()</code> vracia rôzne hodnoty v závislosti na parametri <code>command</code>.
                 V prípade hodnôt <code>SETVAL</code> a <code>IPC_RMID</code> vracia po úspešnom vykonaní 0, alebo pri
                 chybe -1.
-            </li> <br/>
+            </li>
+            <br/>
             <strong>KROK2 - pochopiť parametre služby:</strong> <br/>
             Prvý parameter <code>sem_id</code> je identifikátor sady semaforov, ktorý získame službou
             <code>semget()</code>. Parameter <code>sem_id</code> určuje, s ktorou sadou semaforov sa má pracovať. S tým
@@ -120,9 +121,12 @@ union semun {
             <li><code>SETVAL</code> – slúži k inicializácii semafora určitou hodnotou. Požadovaná
                 hodnota je odovzdaná ako prvok <code>val</code> štruktúry <code>union semun</code>. Semafor
                 je potrebné nastaviť ešte pred prvým použitím.</li>
-            <li><code>GETVAL</code> – slúži na zistenie nastavenej hodnoty semaforu. </li>
-            <li><code>IPC_RMID</code> – slúži na zmazanie sady semaforov, keď už nie je potrebná. </li> <br/>
-            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2 semctl</code></strong>.</div>
+            <li><code>GETVAL</code> – slúži na zistenie nastavenej hodnoty semaforu.</li>
+            <li><code>IPC_RMID</code> – slúži na zmazanie sady semaforov, keď už nie je potrebná.</li>
+            <br/>
+            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2
+                semctl</code></strong>.
+            </div>
             <br/>
             <strong>KROK3 – aplikovanie služby v programe: </strong> <br/>
             Sofia dostala za úlohu vytvoriť sadu semaforov s troma semaformi a s prístupovými
@@ -171,6 +175,10 @@ int main(void)
                     }
                 </code>
             </pre>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

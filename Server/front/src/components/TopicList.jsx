@@ -16,7 +16,6 @@ const TopicList = () => {
             if (savedProgress) {
                 const { percent } = JSON.parse(savedProgress); // Извлекаем процент
                 progress = percent;
-                toast.info(`Progress for ${element.h3}: ${percent}%`); // Debugging toast
             }
 
             return {

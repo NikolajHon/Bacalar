@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LessonOverview = () => {
+const LessonOverview = ({onComplete, completed}) => {
     return (
         <div className="lesson-overview" id="section-0">
             <table>
@@ -88,12 +88,16 @@ const LessonOverview = () => {
                 <strong>KRÁTKY ÚVOD :</strong>
             </div>
             Čo je to proces? – je to prostredie, v ktorom sa realizujú programy (ako vesmír,
-            v ktorom sa nachádza planéta,  čiže náš „program“). Toto prostredie má napr. svoj
+            v ktorom sa nachádza planéta, čiže náš „program“). Toto prostredie má napr. svoj
             adresný priestor, sú mu pridelené systémové zdroje. Proces ma pri svojom vzniku
             pridelené PID, ktoré je v systéme unikátne. Pre získanie PID aktívnych procesov slúži
             príkaz ps (jeho parametre si Sofia samostatne naštuduje). Každý proces môže vytvoriť
             ďalší proces. Medzi procesmi takto vzniká vzťah „rodič – potomok“. Bližšie informácie
             o procesoch – študijná literatúra (viď prednáška).
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

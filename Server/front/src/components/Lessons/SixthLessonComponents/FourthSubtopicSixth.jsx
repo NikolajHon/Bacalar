@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FourthSubtopicSixth = () => {
+const FourthSubtopicSixth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -211,7 +211,7 @@ int main()
                 003 Z 500 1604 1603 0 75 0 - 0 do_exit pts/1 00:00:00 fork &lt;defunct&gt;<br/>
                 000 R 500 1605 1262 0 81 0 - 781 - pts/1 00:00:00 ps<br/>
             </div> <br/>
-            Keď potomok ukončí svoju činnosť, musí odovzdať svoju návratovú hodnotu  svojmu
+            Keď potomok ukončí svoju činnosť, musí odovzdať svoju návratovú hodnotu svojmu
             rodičovi. Ak však rodič tuto hodnotu neprevezme pomocou služby jadra <code>wait()</code>,
             potomok nemôže ukončiť svoju činnosť. Je potrebné si uvedomiť, že rodič nečaká na
             ukončenie potomka. Vykonávanie rodiča prebieha paralelne s vykonávaním potomka
@@ -220,7 +220,10 @@ int main()
             v tabuľke procesov dovtedy, pokým sa o jeho odstránenie nepostará proces <code>init</code> s PID 1.
             Čím väčšia je tabuľka procesov, tým je systém pomalší, preto by sa používatelia mali
             vyvarovať zombie procesov, nakoľko vyčerpávajú systémové zdroje.
-
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

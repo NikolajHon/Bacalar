@@ -75,18 +75,21 @@ const SecondLesson = () => {
             <LessonContent subtopics={listOfSubtopicSecond}/>
             <div className="second-lessons-page">
 
-                <LessonOverview />
+                <LessonOverview/>
 
                 <FirstSubtopic
                     onComplete={() => handleCompleteSubtopic(1)}
                     completed={completedSubtopics.includes(1)}
                 />
-                <SecondSubtopic onComplete={() => handleCompleteSubtopic(2)} completed={completedSubtopics.includes(2)} />
-                <ThirdSubtopic onComplete={() => handleCompleteSubtopic(3)} completed={completedSubtopics.includes(3)} />
-                <FourthSubtopic onComplete={() => handleCompleteSubtopic(4)} completed={completedSubtopics.includes(4)} />
-                <FifthSubtopic onComplete={() => handleCompleteSubtopic(5)} completed={completedSubtopics.includes(5)} />
-                <SixthSubtopic onComplete={() => handleCompleteSubtopic(6)} completed={completedSubtopics.includes(6)} />
-                <SeventhSubtopic onComplete={() => handleCompleteSubtopic(7)} completed={completedSubtopics.includes(7)} />
+                <SecondSubtopic onComplete={() => handleCompleteSubtopic(2)}
+                                completed={completedSubtopics.includes(2)}/>
+                <ThirdSubtopic onComplete={() => handleCompleteSubtopic(3)} completed={completedSubtopics.includes(3)}/>
+                <FourthSubtopic onComplete={() => handleCompleteSubtopic(4)}
+                                completed={completedSubtopics.includes(4)}/>
+                <FifthSubtopic onComplete={() => handleCompleteSubtopic(5)} completed={completedSubtopics.includes(5)}/>
+                <SixthSubtopic onComplete={() => handleCompleteSubtopic(6)} completed={completedSubtopics.includes(6)}/>
+                <SeventhSubtopic onComplete={() => handleCompleteSubtopic(7)}
+                                 completed={completedSubtopics.includes(7)}/>
 
                 {/* Прогресс отображается */}
                 <div className="progress-bar">
@@ -95,14 +98,14 @@ const SecondLesson = () => {
 
                 <div className='footer'>
                     <button>
-                        Посмотреть курс
+                        View the course
                     </button>
-                    <button className="primary">Отметить как завершенное</button>
+                    <button className="primary">Mark as complete</button>
                     <button>
-                        Следующий урок
+                        Next lesson
                     </button>
                     <button className="primary" onClick={handleResetProgress}>
-                        Сбросить прогресс
+                        Reset progress
                     </button>
                 </div>
 
@@ -112,7 +115,6 @@ const SecondLesson = () => {
 };
 
 export default SecondLesson;
-
 
 
 //lessonProgress_processes_and_threads

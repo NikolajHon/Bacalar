@@ -2,7 +2,7 @@ import React from 'react';
 import Obr1 from '../../../images/ThirdPageImages/Obr1.png';
 import Obr2 from '../../../images/ThirdPageImages/Obr2.png';
 
-const LessonOverview = () => {
+const LessonOverview = ({onComplete, completed}) => {
     return (
         <div className="lesson-overview" id="section-0">
             <table>
@@ -226,6 +226,11 @@ const LessonOverview = () => {
                 Operácia V zvýši hodnotu semaforu a môže spôsobiť odblokovanie
                 zablokovaného procesu.
             </li>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
+
         </div>
     );
 };

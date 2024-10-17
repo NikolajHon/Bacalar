@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import Obr2 from "../../../images/SeventhPageImg/Obr2.png"
 import Obr1 from "../../../images/SeventhPageImg/Obr1.png";
 
-const SecondSubtopicSeventh = () => {
+const SecondSubtopicSeventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -77,7 +77,8 @@ const SecondSubtopicSeventh = () => {
             </pre>
             Na začiatku rodičovský proces vytvorí dva deskriptory súborov ako pole deskriptorov o
             dvoch prvkoch, napr. <code>int file_pipes[2]</code>. Deskriptor <code>file_pipes</code> [0] sa zvyčajne
-            používa na čítanie z rúry a <code>file_pipes</code> [1] na zápis do rúry. Volaním služby <code>pipe()</code> sa
+            používa na čítanie z rúry a <code>file_pipes</code> [1] na zápis do rúry. Volaním
+            služby <code>pipe()</code> sa
             otvoria deskriptory rúry a sú prístupné na čítanie a zápis. Jadro nám teda poskytuje
             pamäť, pomocou ktorej môžu tieto procesy komunikovať. <br/> <br/>
             <strong>KROK2 – aplikovanie služby v programe:</strong> <br/>
@@ -128,7 +129,8 @@ int main()
                         `
                     }
                 </code>
-            </pre> <br/>
+            </pre>
+            <br/>
 
             Výstup z programu:
             <div className={'terminal-command'}>
@@ -141,8 +143,12 @@ int main()
             Deskriptory súboru získané procesom, ktorý rúru vytvára, sú prístupné iba procesom -
             potomkom. Pri volaní služby <code>fork()</code>, deskriptory súboru sa dedia procesom potomkom.
             Odtiaľ vyplýva, že rúry môžu spojovať iba príbuzné procesy. V Program 2 služba
-            <code>fork()</code> vytvorí potomka. Ten zdedí deskriptor súboru pre rúru. Rodičovský  proces
+            <code>fork()</code> vytvorí potomka. Ten zdedí deskriptor súboru pre rúru. Rodičovský proces
             zapíše do rúry dáta, ktoré potom proces – potomok prečíta.
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

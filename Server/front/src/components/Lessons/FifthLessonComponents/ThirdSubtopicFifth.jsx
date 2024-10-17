@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import Obr1 from '../../../images/FifthPageImg/Obr1.png'
 import {languages} from "monaco-editor";
 
-const ThirdSubtopicFifth = () => {
+const ThirdSubtopicFifth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -325,28 +325,40 @@ const ThirdSubtopicFifth = () => {
                 <strong>ÚLOHY NA SAMOSTATNÚ PRÁCU: </strong>
             </div>
             <ul>
-                <li style={{border: '1px solid black', padding: '5px'}}>Vyskúšajte si ďalšie funkcie, ktoré poskytujú príkazy <code>stty</code> a <code>tty</code>.</li>
-                <li style={{border: '1px solid black', padding: '5px'}}>Vyskúšajte si ďalšie funkcie, ktoré poskytuje služba jadra <code>ioctl()</code>.</li>
-                <li style={{border: '1px solid black', padding: '5px'}}>Do už existujúceho programu s určitou funkciou implementujte zadávanie hesla
+                <li style={{border: '1px solid black', padding: '5px'}}>Vyskúšajte si ďalšie funkcie, ktoré poskytujú
+                    príkazy <code>stty</code> a <code>tty</code>.
+                </li> <br/>
+                <li style={{border: '1px solid black', padding: '5px'}}>Vyskúšajte si ďalšie funkcie, ktoré poskytuje
+                    služba jadra <code>ioctl()</code>.
+                </li> <br/>
+                <li style={{border: '1px solid black', padding: '5px'}}>Do už existujúceho programu s určitou funkciou
+                    implementujte zadávanie hesla
                     na začiatku behu programu. Rozhranie pre zadávanie hesla navrhnite tak, aby sa
                     heslo nezobrazovalo a aby každé heslo malo konštantnú dĺžku 5 znakov. Pri
                     zadaní piateho znaku hesla sa overovanie správnosti vykoná automaticky (t.j.
-                    bez použitia klávesu Enter).</li>
-                <li style={{border: '1px solid black', padding: '5px'}}>Vytvorte program, ktorý načíta vstup z klávesnice a vypíšte ho na štandardný
+                    bez použitia klávesu Enter).
+                </li> <br/>
+                <li style={{border: '1px solid black', padding: '5px'}}>Vytvorte program, ktorý načíta vstup z
+                    klávesnice a vypíšte ho na štandardný
                     výstup. Po vypísaní vstupu opäť program načíta vstup z klávesnice, ale pred
                     vstupom z klávesnice potlačí vypisovanie echo pomocou štruktúry <code>termios</code>.
-                    (Nastavenie terminálu na konci programu vráťte do pôvodného stavu!).</li>
-                <li style={{border: '1px solid black', padding: '5px'}}>Vytvorte program, ktorý pred vstupom z klávesnice potlačí vypisovanie echa
+                    (Nastavenie terminálu na konci programu vráťte do pôvodného stavu!).
+                </li> <br/>
+                <li style={{border: '1px solid black', padding: '5px'}}>Vytvorte program, ktorý pred vstupom z
+                    klávesnice potlačí vypisovanie echa
                     pomocou štruktúry <code>termios</code> s využitím nekanonického režimu (Nastavenie
                     terminálu vráťte do pôvodného stavu!). Nastavte nekanonický režim a hodnoty
                     MIN a TIME:
                     <ul>
-                        <li>1. MIN = 2, TIME = 0 </li>
+                        <li>1. MIN = 2, TIME = 0</li>
                         <li>2. MIN = 0, TIME = 5000</li>
                         <li>3. MIN = 5, TIME = 2000</li>
                     </ul>
                 </li>
             </ul>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

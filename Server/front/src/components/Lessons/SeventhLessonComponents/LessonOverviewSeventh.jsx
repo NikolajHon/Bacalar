@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LessonOverview = () => {
+const LessonOverview = ({onComplete, completed}) => {
     return (
         <div className="lesson-overview" id="section-0">
             <table>
@@ -96,19 +96,23 @@ const LessonOverview = () => {
             UNIX/Linux -ových systémoch sa stretávame s nasledovnými možnosťami IPC:
             <li><strong>signály</strong> - jedná sa o spôsob upozornenia procesu o výskyte asynchrónnej
                 udalosti. Nie sú posielané žiadne dáta. Procesy si môžu zasielať signály alebo
-                samotné jadro môže vyvolať signál interne pri výskyte asynchrónnej udalosti  </li>
+                samotné jadro môže vyvolať signál interne pri výskyte asynchrónnej udalosti </li>
             <li><strong>rúry</strong> - sú najstarším komunikačným mechanizmom vo všetkých
-                typoch UNIX/Linux -ov a majú obmedzujúce vlastnosti.</li>
-            <li><strong>pomenované rúry</strong> - dovoľujú komunikovať aj procesom, ktoré nie sú príbuzné. </li>
+                typoch UNIX/Linux -ov a majú obmedzujúce vlastnosti.
+            </li>
+            <li><strong>pomenované rúry</strong> - dovoľujú komunikovať aj procesom, ktoré nie sú príbuzné.</li>
             <li><strong>System V IPC</strong> - obsahuje mechanizmy komunikácie známe z komerčných
                 implementácií UNIX/Linux-u, ako sú mechanizmy <code>frontov správ</code> umožňujúcich
                 procesom zasielať formátované postupnosti dát, <code>zdieľanej pamäte</code>, keď procesy
                 môžu zdieľať časti ich virtuálneho adresného priestoru a <code>semaforov</code>, pomocou
-                ktorých procesy synchronizujú svoju činnosť  </li>
+                ktorých procesy synchronizujú svoju činnosť
+            </li>
             <li><strong>sockety</strong> - umožňujú medziprocesovú komunikáciu nielen na lokálnej úrovni
                 v rámci toho istého počítača, ale pomocou komplikovanejších sieťových
                 protokolov umožňujúcich komunikovať procesom medzi počítačmi v rámci
-                počítačovej siete spôsobom klient - server.  </li> <br/>
+                počítačovej siete spôsobom klient - server.
+            </li>
+            <br/>
             <strong>KROK2 - oboznámiť sa s pojmom rúra: </strong> <br/>
             <strong>Nepomenovaná rúra</strong> (<code>pipe</code>) je komunikačný prostriedok, ktorý umožňuje dátovú
             komunikáciu medzi dvoma procesmi. Je dôležité poznamenať, že tieto procesy musia
@@ -121,27 +125,33 @@ const LessonOverview = () => {
             druhom konci rúry prečítané v rovnakom poradí. <br/> <br/>
             <i>Nevýhody</i> nepomenovanej rúry sú:
             <li>Rúra je jednosmerný komunikačný prostriedok. Údaje zapisované na jednom
-                konci rúry sú prečítané na druhom konci rúry (jednosmerný tok dát).  </li>
+                konci rúry sú prečítané na druhom konci rúry (jednosmerný tok dát). </li>
             <li>Rúra je vytvorená volaním jadra <code>pipe()</code>. Pri vytvorení rúry systém obsadí dve
                 pozície tabuľky otvorených súborov procesu. Takto vzniknutú rúru dedí každý
                 potomok. Ten sa môže na rúru pripojiť pre čítanie i zápis, rovnako ako sa na ňu
                 môže pripojiť rodič, ale nikto iný mimo stromu potomkov, pretože rúra je
                 súčasťou dedičstva, ktoré nemožno exportovať do iného prostredia. Tento
                 mechanizmus neumožňuje spojenie dvoch ľubovoľných procesov. Snaha
-                odstrániť túto nevýhodu viedla k vytvoreniu tzv. pomenovaných rúr (FIFO).</li>
+                odstrániť túto nevýhodu viedla k vytvoreniu tzv. pomenovaných rúr (FIFO).
+            </li>
             <li>Rúry predstavujú samosynchronizujúci prostriedok, ale len na úrovni jedného
                 volania jadra pre čítanie. Pri rozdelení čítania na viac volaní môže dochádzať ku
-                konfliktom medzi procesmi, ktoré môžu z rúry čítať údaje.</li>
+                konfliktom medzi procesmi, ktoré môžu z rúry čítať údaje.
+            </li>
             <strong>Poznámka: </strong> <br/>
-            Pravdepodobne ste už s rúrami pracovali v príkazovom priadku.  V príkazovom priadku
+            Pravdepodobne ste už s rúrami pracovali v príkazovom priadku. V príkazovom priadku
             sa rúra vytvorí pomocou znaku „|“. Napríklad nasledujúci príkaz vytvorí 2 procesy,
             jeden pre <code>ls</code> a jeden pre <code>less</code>. <br/> <br/>
-            <div className={'terminal-command'}> % ls | less </div> <br/>
+            <div className={'terminal-command'}> % ls | less</div>
+            <br/>
             Príkazový procesor medzi týmito procesmi vytvorí rúru spojujúcu štandardný výstup
             procesu <code>ls</code> so štandardným vstupom procesu <code>less</code>. Mená súborov na výstupe
             z programu <code>ls</code> sa odosielajú programu <code>less</code> v rovnakom poradí, v akom by sa
             vypisovali na terminál.
-
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

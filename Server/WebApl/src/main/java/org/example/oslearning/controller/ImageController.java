@@ -29,12 +29,10 @@ public class ImageController {
             @RequestParam("file") MultipartFile file
     ) {
         try {
-            // Находим пользователя по ID
             Optional<User> userOptional = userService.getUserById(userId);
             if (userOptional.isPresent()) {
                 User user = userOptional.get();
 
-                // Сохраняем изображение и связываем с пользователем
                 Image savedImage = imageService.saveImage(file, user);
                 System.out.println("SMTH 2");
                 return ResponseEntity.ok("Image uploaded successfully for user with ID: " + user.getId() + " and image ID: " + savedImage.getId());

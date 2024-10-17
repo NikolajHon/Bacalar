@@ -32,7 +32,7 @@
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
     z-index: 1;
-    background: linear-gradient(145deg, #f7f6f6, #b1a6a6); 
+    background: #d8d8d8;
     overflow: hidden; 
     display: flex;
     flex-direction: column; 

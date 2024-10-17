@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const ThirdSubtopicEighth = () => {
+const ThirdSubtopicEighth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -12,7 +12,7 @@ const ThirdSubtopicEighth = () => {
             <table>
                 <thead>
                 <tr>
-                    <th colSpan="2">Podtéma:  Služba jadra - kill()</th>
+                    <th colSpan="2">Podtéma: Služba jadra - kill()</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,8 @@ const ThirdSubtopicEighth = () => {
                             <tr>
                                 <td className="section-title">Aplikovať:</td>
                                 <td>získané vedomosti pri posielaní signálov iným
-                                    procesom v rámci programu aj mimo neho </td>
+                                    procesom v rámci programu aj mimo neho
+                                </td>
                             </tr>
                             <tr>
                                 <td className="section-title">Vyriešiť:</td>
@@ -84,11 +85,14 @@ int kill(pid_t pid, int sig);
                         `
                     }
                 </code>
-            </pre> <br/>
-            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2 kill</code></strong>.</div>
+            </pre>
+            <br/>
+            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2
+                kill</code></strong>.
+            </div>
             <br/>
             <strong>Doplňte</strong> návratové hodnoty služby kill():
-            <li>služba kill() vracia ___________, pri chybe __________  </li>
+            <li>služba kill() vracia ___________, pri chybe __________ </li>
             <strong>KROK2 – aplikovanie služby v programe:</strong> <br/>
             V nasledujúcom príklade, po 5 sekundách pošle proces - potomok signál SIGALRM
             procesu – rodič a proces - potomok sa ukončí. Po prijatí signálu sa proces – rodič
@@ -152,6 +156,10 @@ int main()
                 koniec<br/>
                 $
             </div>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

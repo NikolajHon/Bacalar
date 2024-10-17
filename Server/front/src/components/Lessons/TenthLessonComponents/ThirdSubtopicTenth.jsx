@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import Obr1 from '../../../images/TenthPageImg/Obr1.png'
 import {languages} from "monaco-editor";
 
-const ThirdSubtopicTenth = () => {
+const ThirdSubtopicTenth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -475,6 +475,10 @@ printf("vyhral to A");                          printf("vyhral to B")
             a konzument musí mať vždy pripravené dáta na výber. Ak tomu tak nie je, proces, ktorý
             nemôže pokračovať v činnosti, musí počkať - producent na uvoľnenie miesta vo
             vyrovnávacej pamäti, konzument na uloženie dát.
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

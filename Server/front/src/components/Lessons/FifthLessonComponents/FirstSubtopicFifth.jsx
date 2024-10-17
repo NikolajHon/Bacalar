@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FirstSubtopicFifth = () => {
+const FirstSubtopicFifth = ({onComplete, completed}) => {
     return (
         <div className="first-subtopic" id="section-1">
             <table>
@@ -137,6 +137,10 @@ const FirstSubtopicFifth = () => {
             V poslednom príklade je zrejmé, že ak zadáme parameter príkazu <code>stty</code> so znakom ‘-‘
             (<code>stty –echo</code>), tak sa dané nastavenie vypne a ak zadáme parameter príkazu <code>stty</code> bez
             znaku ‘-‘ (stty <code>echo</code>), tak sa dané nastavenie zapne.
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FifthSubtopicEighth = () => {
+const FifthSubtopicEighth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -461,6 +461,9 @@ signál:
                 synchronizáciu zápisu do rúry a čítania z rúry použite signály. Proces rodič
                 počká na ukončenie svojich potomkov.
             </li>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

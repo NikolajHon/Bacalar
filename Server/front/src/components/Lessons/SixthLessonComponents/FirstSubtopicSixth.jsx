@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FirstSubtopicSixth = () => {
+const FirstSubtopicSixth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -106,9 +106,13 @@ const FirstSubtopicSixth = () => {
             Výstup z programu:
             <div className='terminal-command'>
                 $ <br/>
-                ID procesu je  ............... <br/>
+                ID procesu je ............... <br/>
                 $
             </div>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

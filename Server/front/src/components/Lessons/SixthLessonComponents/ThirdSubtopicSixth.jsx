@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import Obr1 from '../../../images/FifthPageImg/Obr1.png'
 import {languages} from "monaco-editor";
 
-const ThirdSubtopicSixth = () => {
+const ThirdSubtopicSixth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -297,10 +297,15 @@ int main()
                     }
                 </code>
             </pre> <br/>
-            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong>man system</strong>. </div>
+            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong>man system</strong>.</div>
             <br/>
-            Program zavolá službu <code>system()</code> s parametrom <code>ps –ax</code>. Služba <code>system()</code> spúšťa
+            Program zavolá službu <code>system()</code> s parametrom <code>ps –ax</code>.
+            Služba <code>system()</code> spúšťa
             program v shelli.
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

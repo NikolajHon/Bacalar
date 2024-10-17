@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const SecondSubtopicEleventh = () => {
+const SecondSubtopicEleventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -94,7 +94,8 @@ int bind (int socket, struct sockaddr *address, int address_len);
             <li><code>bind()</code> vracia - 0 pri úspešnom vykonaní alebo -1, ak nastala chyba</li>
             <div className={'annotations'}>
                 Pre podrobnejšie informácie - <strong><code>man 2 bind.</code></strong>
-            </div> <br/>
+            </div>
+            <br/>
             <strong>KROK2 - pochopiť parametre služby:</strong> <br/>
             Prvým parametrom je <code>socket</code>. Parameter špecifikuje socket (prostredníctvom jeho
             deskriptora), ktorý má byť “zviazaný” s adresou. (deskriptor sme získali pomocou
@@ -221,12 +222,17 @@ struct hostent {
             postupnosti). Ak chceme získať IP adresu v čitateľnom tvare, použijeme funkciu
             <code>inet_ntoa()</code>. Preklad čísel do sieťovej postupnosti vykonávajú nasledujúce funkcie:
             <li><code>htons()</code> – krátke celé čísla z hostovej postupnosti do sieťovej (pre porty).</li>
-            <li><code>ntohs()</code> – krátke celé čísla zo sieťovej do hostovej postupnosti (pre porty). </li>
-            <li><code>htonl()</code> – dlhé celé čísla z hostovej do sieťovej postupnosti (pre IP adresy). </li>
-            <li><code>ntohl()</code> – dlhé celé čísla zo sieťovej do hostovej postupnosti (pre IP adresy). </li> <br/>
+            <li><code>ntohs()</code> – krátke celé čísla zo sieťovej do hostovej postupnosti (pre porty).</li>
+            <li><code>htonl()</code> – dlhé celé čísla z hostovej do sieťovej postupnosti (pre IP adresy).</li>
+            <li><code>ntohl()</code> – dlhé celé čísla zo sieťovej do hostovej postupnosti (pre IP adresy).</li>
+            <br/>
             <strong>Sformovanie adresy</strong> <br/>
             Formovanie adresy pre internetové protokoly sa uskutočňuje pomocou štruktúry
             <code>sockaddr_in.</code>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FifthSubtopicEleventh = () => {
+const FifthSubtopicEleventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -323,7 +323,7 @@ int main(int argc, char *argv[])
             akceptuje spojenia), ktorý získame ako parameter odovzdaný programu server. Potom
             musíme vytvoriť front, do ktorého sa budú ukladať požiadavky na spojenie (službou
             <code>listen()</code>). Požiadavky na spojenie musíme z frontu vyberať postupne (služba
-            <code>accept()</code>). Ak vo fronte nie je žiadna požiadavka na spojenie, proces server  počká,
+            <code>accept()</code>). Ak vo fronte nie je žiadna požiadavka na spojenie, proces server počká,
             kým nejaká požiadavka nedôjde. Služba <code>accept()</code> nám vráti nový socket, pomocou
             ktorého budeme komunikovať s procesom-klientom. Na príjem a odosielanie dát
             využívame služby <code>read()</code> a <code>write()</code>, ktoré obsahujú počet znakov prečítaných alebo
@@ -335,23 +335,32 @@ int main(int argc, char *argv[])
             mohli komunikovať v rámci počítačovej siete so serverom, potrebujeme jeho IP adresu
             a port, ktoré získame ako parametre odovzdané programu klient. IP adresu počítača
             môžeme zadať ako hostname (názov počítača). K identifikácii počítača potrebujeme IP
-            adresu, ktorú získame funkciu <code>gethostbyname()</code> (vyplní štruktúru <code>hostent *server</code> – informácie o vzdialenom počítači). Keď už sme získali IP adresu a port, program
+            adresu, ktorú získame funkciu <code>gethostbyname()</code> (vyplní štruktúru <code>hostent *server</code> –
+            informácie o vzdialenom počítači). Keď už sme získali IP adresu a port, program
             vyplní štruktúru <code>sockaddr_in serv_addr</code>. Proces-klient sa pripája na proces server
             systémovým volaním <code>connect()</code>,ktoré využíva štruktúru <code>sockaddr_in serv_addr</code>.
-            Na príjem a odosielanie dát využívame služby <code>read()</code> a <code>write()</code>, ktoré obsahujú počet
+            Na príjem a odosielanie dát využívame služby <code>read()</code> a <code>write()</code>, ktoré obsahujú
+            počet
             znakov prečítaných alebo zapísaných. Klient vás požiada, aby ste zadali správu a odošle
             ju. Zobrazí potvrdzujúcu správu od servera a skončí.
             <div className={'title-box'}>ÚLOHY NA SAMOSTATNÚ PRÁCU:</div>
             <li>Vytvorte socket, ktorý bude využívať protokol UDP. Overte si činnosť služby
-                <code>socket()</code> aj pre ostatné protokoly.  </li>
-            <li>Aký je rozdiel medzi socketmi na strane servera a na strane klienta?  </li>
+                <code>socket()</code> aj pre ostatné protokoly.
+            </li>
+            <li>Aký je rozdiel medzi socketmi na strane servera a na strane klienta?</li>
             <li>Modifikujte predchádzajúci program <code>server.c</code> tak, aby na ošetrenie
                 prichádzajúceho spojenia využíval nový proces (<code>fork()</code>). Proces rodič
                 programu server prijíma požiadavky na spojenie a jeho proces potomok
                 vykonáva komunikáciu s klientom (prijíma dáta). Proces rodič pokračuje
-                v akceptovaní ďalších požiadaviek o spojenie. </li>
+                v akceptovaní ďalších požiadaviek o spojenie.
+            </li>
             <li>Vytvorte dva nezávislé programy, ktoré používajú na komunikáciu
-                sockety nespojovanej služby (protokol UDP) v Internetovej doméne. </li>
+                sockety nespojovanej služby (protokol UDP) v Internetovej doméne.
+            </li>
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

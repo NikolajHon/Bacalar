@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const SecondSubtopicSixth = () => {
+const SecondSubtopicSixth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -12,13 +12,13 @@ const SecondSubtopicSixth = () => {
             <table>
                 <thead>
                 <tr>
-                    <th colSpan="2">Podtéma:  Služba jadra – fork(), getppid()</th>
+                    <th colSpan="2">Podtéma: Služba jadra – fork(), getppid()</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td className="section-title">Kľúčové slová</td>
-                    <td><code>fork(), man fork(), getppid()</code>, return value, </td>
+                    <td><code>fork(), man fork(), getppid()</code>, return value,</td>
                 </tr>
                 <tr>
                     <td className="section-title">Ciele</td>
@@ -34,9 +34,11 @@ const SecondSubtopicSixth = () => {
                                 <ul>
                                     <li> hlavne návratovým kódom</li>
                                     <li>tvorbe podriadeného procesu
-                                        (zdedenie vlastností rodiča ) </li>
+                                        (zdedenie vlastností rodiča )
+                                    </li>
                                     <li>vykonávaniu programu po vytvorení
-                                        nového procesu </li>
+                                        nového procesu
+                                    </li>
                                 </ul>
                             </td>
                         </tr>
@@ -44,10 +46,10 @@ const SecondSubtopicSixth = () => {
                             <td className="section-title">Aplikovať:</td>
                             <td>
                                 <ul>
-                                    <li>  tieto služby pri tvorbe nových
+                                    <li> tieto služby pri tvorbe nových
                                         procesov
                                     </li>
-                                    <li> návratové hodnoty služieb </li>
+                                    <li> návratové hodnoty služieb</li>
                                 </ul>
                             </td>
                         </tr>
@@ -77,12 +79,13 @@ const SecondSubtopicSixth = () => {
                 <strong>POSTUP:</strong>
             </div>
             <strong>KROK1 - naučiť sa syntax a sémantiku služby jadra <code>fork()</code>:</strong>
-            Pri vytváraní procesov služba <code>fork()</code>  vytvorí (takmer) identický proces – klon (to,
+            Pri vytváraní procesov služba <code>fork()</code> vytvorí (takmer) identický proces – klon (to,
             ktoré vlastnosti zdedí potomok od rodiča, si Sofia pozrie v študijnej literatúre.). Keďže
             v oboch procesoch spracovanie pokračuje za volaním <code>fork()</code> , je veľmi dôležité
             rozumieť návratovým hodnotám služby v jednotlivých procesoch: <br/>
             <li><strong>Návratovou hodnotou služby <code>fork()</code> v rodičovskom procese je ID jeho potomka
-                a v potomkovi je návratovou hodnotou „0“</strong>.</li>
+                a v potomkovi je návratovou hodnotou „0“</strong>.
+            </li>
             <div className={'annotations'}>
                 Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2 fork</code></strong>.
             </div>
@@ -125,7 +128,7 @@ int main(void)
             existujú prostriedky, ako zabezpečiť, aby rodič počkal, kým sa jeho potomok neukončí,
             ale o tom si povieme neskôr. <br/> <br/>
 
-            <strong>2. program</strong> -  Sofia chce vytvoriť program, ktorý bude testovať na základe návratovej
+            <strong>2. program</strong> - Sofia chce vytvoriť program, ktorý bude testovať na základe návratovej
             hodnoty, či vytvorenie procesu potomok prebehlo v poriadku.
 
             <pre>
@@ -176,10 +179,12 @@ int main(void)
             </div>
             <br/>
             <strong>KROK4 - využitie služby <code>getppid()</code>: </strong>
-            Služba jadra <code>getppid()</code> ma rovnakú syntax, ako služba <code>getpid()</code>, len s tým rozdielom,
+            Služba jadra <code>getppid()</code> ma rovnakú syntax, ako služba <code>getpid()</code>, len s tým
+            rozdielom,
             že jej návratová hodnota je ID rodiča volajúceho procesu!
-            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2 getppid</code></strong>.</div>
-            Sofia pripojí  potrebné hlavičkové súbory a vypíše na štandardný výstup ID procesov
+            <div className={'annotations'}>Pre podrobnejšie informácie zadaj príkaz <strong><code>man 2
+                getppid</code></strong>.</div>
+            Sofia pripojí potrebné hlavičkové súbory a vypíše na štandardný výstup ID procesov
             pomocou služieb <code>getppid()</code> a <code>getpid()</code>.
             <pre>
                 <code className={'language-c'}>
@@ -202,6 +207,10 @@ int main()
             Službu <code>getppid()</code> skúste použiť v prípade, keď si sami vytvoríte potomka (jedného,
             dvoch) nejakého procesu. Kombinujte ju so službou <code>getpid()</code> a sledujte návratové
             hodnoty.
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

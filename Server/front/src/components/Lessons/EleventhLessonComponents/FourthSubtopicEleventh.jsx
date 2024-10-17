@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FourthSubtopicEleventh = () => {
+const FourthSubtopicEleventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -12,7 +12,7 @@ const FourthSubtopicEleventh = () => {
             <table>
                 <thead>
                 <tr>
-                    <th colSpan="2">Podtéma: Služba jadra - accept() </th>
+                    <th colSpan="2">Podtéma: Služba jadra - accept()</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,8 +31,8 @@ const FourthSubtopicEleventh = () => {
                         <tr>
                             <td className="section-title">Porozumieť:</td>
                             <td>
-                                <li>prijatiu – vyžiadaniu - ukončeniu spojenia </li>
-                                <li>chybovým hláseniam </li>
+                                <li>prijatiu – vyžiadaniu - ukončeniu spojenia</li>
+                                <li>chybovým hláseniam</li>
                                 <li>parametrom služby <code>accept()</code></li>
                             </td>
                         </tr>
@@ -89,11 +89,14 @@ socklen_t *restrict len);
                     }
                 </code>
             </pre>
-            <p style={{textDecoration:'underline'}}>Sémantika:</p>
-            <li><code>accept()</code> vracia  - nezáporný (socket) descriptor pri úspešnom vykonaní alebo -1,
-                ak nastane chyba</li> <br/>
-            <div className={'annotations'}>Pre podrobnejšie informácie - <strong><code>man 2 accept</code></strong>. </div>
- <br/>
+            <p style={{textDecoration: 'underline'}}>Sémantika:</p>
+            <li><code>accept()</code> vracia - nezáporný (socket) descriptor pri úspešnom vykonaní alebo -1,
+                ak nastane chyba
+            </li>
+            <br/>
+            <div className={'annotations'}>Pre podrobnejšie informácie - <strong><code>man 2 accept</code></strong>.
+            </div>
+            <br/>
             <strong>KROK2 - pochopiť parametre služby:</strong> <br/>
             Prvým parametrom je <code>socket</code>. Určuje socket, ktorý bol vytvorený službou <code>socket()</code>,
             bol zviazaný s adresou a má vytvorený backlog službou listen(). Druhým
@@ -104,6 +107,10 @@ socklen_t *restrict len);
             Tretím parametrom je <code>address_len</code>. Určuje dĺžku štruktúry <code>sockaddr</code>, určenú
             parametrom <code>address.</code> Ak je parameter address nastavený na NULL, potom je tento
             parameter ignorovaný.
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

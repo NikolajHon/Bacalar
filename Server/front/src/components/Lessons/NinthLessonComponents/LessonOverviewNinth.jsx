@@ -1,7 +1,7 @@
 import React from 'react';
 import Obr1 from '../../../images/NinthPageImg/Obr1.png'
 
-const LessonOverview = () => {
+const LessonOverview = ({onComplete, completed}) => {
     return (
         <div className="lesson-overview" id="section-0">
             <table>
@@ -83,7 +83,7 @@ const LessonOverview = () => {
                 <strong>Systémové volania: </strong>
                 <li className="custom-item"><code>shmat() </code></li>
                 <li className="custom-item"><code>shmget() </code></li>
-                <li className="custom-item"><code>shmdt()  </code></li>
+                <li className="custom-item"><code>shmdt() </code></li>
                 <li className="custom-item"><code>shmctl() </code></li>
             </ul>
             <div className="title-box">
@@ -105,14 +105,17 @@ const LessonOverview = () => {
             Ak do zdieľanej pamäte zapíše jeden proces, tieto zmeny budú ihneď viditeľné
             všetkým ostatným procesom, ktoré pristupujú k rovnakej zdieľanej pamäti. Pri
             súbežnom prístupe k zdieľaným dátam je potrebné zaistiť synchronizáciu prístupu,
-            pretože  zdieľaná pamäť neposkytuje žiadny spôsob synchronizácie. V tomto prípade
+            pretože zdieľaná pamäť neposkytuje žiadny spôsob synchronizácie. V tomto prípade
             zodpovednosť za komunikáciu padá na programátora, operačný systém poskytuje len
             prostriedky pre jej uskutočňovanie. Problémy spojené so synchronizáciou prístupu budú
             podrobnejšie vysvetlené v téme Synchronizácia procesov.
             <pre className={'image-container'}>
-                <img src= {Obr1} alt="Obr1"/>
+                <img src={Obr1} alt="Obr1"/>
             </pre>
-
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

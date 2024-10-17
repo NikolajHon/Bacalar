@@ -1,5 +1,6 @@
 package org.example.oslearning.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.oslearning.model.Image;
 import org.example.oslearning.model.User;
 import org.example.oslearning.repository.ImageRepository;
@@ -16,12 +17,20 @@ public class ImageServiceImpl implements ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
+    @Transactional
     @Override
     public Image saveImage(MultipartFile file, User user) throws Exception {
         String fileName = file.getOriginalFilename();
         byte[] fileData = file.getBytes();
         System.out.println(user.getId());
-        Optional<Image> existingImageOpt = imageRepository.findByUser(user);
+        Optional<Image> existingImageOpt = null;
+        try {
+            existingImageOpt = imageRepository.findByUser(user);
+            System.out.println(existingImageOpt.isPresent());
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+
         System.out.println(existingImageOpt.isPresent());
         Image image;
 

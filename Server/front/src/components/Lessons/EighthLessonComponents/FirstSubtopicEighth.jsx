@@ -3,7 +3,7 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import Obr1 from "../../../images/SeventhPageImg/Obr1.png"
 
-const FirstSubtopicEighth = () => {
+const FirstSubtopicEighth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -170,7 +170,10 @@ const FirstSubtopicEighth = () => {
             <p>Najčastejšie však Sofia pravdepodobne použije poslanie signálu SIGKILL parametrom „-9“.</p>
 
             <p><span className="command">kill -9 2888</span> odošle signál SIGKILL procesu s PID = 2888</p>
-
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

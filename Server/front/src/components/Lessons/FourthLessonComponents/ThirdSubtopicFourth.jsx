@@ -1,92 +1,92 @@
 import React from 'react';
-const ThirdSubtopicFourth = () => {
+const ThirdSubtopicFourth = ({onComplete, completed}) => {
     return (
         <div className="third-subtopic" id="section-3">
             <table>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: Služba jadra – chown()   </th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: Služba jadra – chown()</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><code>chown() , fchown(),  lchown()</code>, príkaz <code>chown</code></td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <tr>
-                                <td className="section-title">Zapamätať si:</td>
-                                <td>
-                                    syntax služieb - prečítať si manuálové stránky
-                                    v Unixe/Linuxe, Linux dokumentačný projekt,
-                                    zdroje na internete
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Porozumieť:</td>
-                                <td>
-                                    <ul>
-                                        <li>príkazu chown</li>
-                                        <li>službám <code>chown() , fchown(),  lchown()</code></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Aplikovať:</td>
-                                <td>služby jadra spojené s riadením prístupových práv </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Vedieť:</td>
-                                <td>využiť získané skúsenosti pri tvorbe programov</td>
-                            </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>10 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Sofia má kamaráta, ktorý potrebuje zmeniť vlastníka súboru. Sofia
-                            mu poradila, aby použil príkaz <code>chown</code> alebo službu jadra <code>chown()</code>.
-                        </td>
-                    </tr>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><code>chown() , fchown(), lchown()</code>, príkaz <code>chown</code></td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <tr>
+                            <td className="section-title">Zapamätať si:</td>
+                            <td>
+                                syntax služieb - prečítať si manuálové stránky
+                                v Unixe/Linuxe, Linux dokumentačný projekt,
+                                zdroje na internete
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Porozumieť:</td>
+                            <td>
+                                <ul>
+                                    <li>príkazu chown</li>
+                                    <li>službám <code>chown() , fchown(), lchown()</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Aplikovať:</td>
+                            <td>služby jadra spojené s riadením prístupových práv</td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Vedieť:</td>
+                            <td>využiť získané skúsenosti pri tvorbe programov</td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>10 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title"> Scenár</td>
+                    <td>Sofia má kamaráta, ktorý potrebuje zmeniť vlastníka súboru. Sofia
+                        mu poradila, aby použil príkaz <code>chown</code> alebo službu jadra <code>chown()</code>.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div className="title-box">
                 <strong>POSTUP:</strong>
             </div>
-            Pokiaľ vlastníte nejaký súbor, môžete zmeniť jeho vlastníka alebo skupinu (len  takú
+            Pokiaľ vlastníte nejaký súbor, môžete zmeniť jeho vlastníka alebo skupinu (len takú
             skupinu, ktorej sme členmi.). Akonáhle niekomu pridelíte vlastnícke práva, stratíte
             s tým spojené privilégiá ako schopnosť zmeniť oprávnenie prístupu a zmeniť vlastníka
             alebo skupinu. Administrátor smie zmeniť vlastníctvo aj skupinu ktoréhokoľvek súboru.
-            <br /> <br />
+            <br/> <br/>
             <strong>KROK 1 – naučiť sa syntax a sémantiku služby jadra <code>chown()</code>: </strong>
-            <br />
-            <p style={{ textDecoration: 'underline' }}>Syntax:</p>
+            <br/>
+            <p style={{textDecoration: 'underline'}}>Syntax:</p>
             <pre>
                 {`
             #include <unistd.h> 
             int chown(const char *path, uid_t owner, gid_t group);      
             `}
             </pre>
-            <p style={{ textDecoration: 'underline' }}>Semantika:</p>
-            Návratová hodnota:  0 ak OK alebo -1, ak sa vyskytla chyba <br /><br />
-            <code><strong>KROK 2 – pochopiť parametre služby: </strong><br /></code>
+            <p style={{textDecoration: 'underline'}}>Semantika:</p>
+            Návratová hodnota: 0 ak OK alebo -1, ak sa vyskytla chyba <br/><br/>
+            <code><strong>KROK 2 – pochopiť parametre služby: </strong><br/></code>
             ID vlastníka a ID skupiny súboru, pomenovaného parametrom<code> path</code>, sa mení
             špecifikáciou argumentov <code>owner</code> a <code>group</code>. Vlastník súboru môže zmeniť skupinu na
-            skupinu, v ktorej je jej členom, avšak táto možnosť povolená len pre superpoužívateľa.  <br /><br />
+            skupinu, v ktorej je jej členom, avšak táto možnosť povolená len pre superpoužívateľa. <br/><br/>
             Služba jadra <code>chown()</code> vymaže set-user-id a set-group-id bity súboru ako prevenciu pred
             neúmyselným alebo zlým vytvorením programov nastavujúcich tieto bity, ak nie sú
-            vykonávané s právami superpoužívateľa.  <br /><br />
+            vykonávané s právami superpoužívateľa. <br/><br/>
             <div className='annotation'>
-                Pre podrobnejšie informácie zadaj príkaz  man 2 chown.
+                Pre podrobnejšie informácie zadaj príkaz man 2 chown.
             </div>
-            <br />
-            <strong>KROK3 – aplikovanie služby v programoch</strong> <br />
-            Vytvoríme program,  ktorý zmení skupinu súboru na základe id alebo názvu existujúcej
+            <br/>
+            <strong>KROK3 – aplikovanie služby v programoch</strong> <br/>
+            Vytvoríme program, ktorý zmení skupinu súboru na základe id alebo názvu existujúcej
             skupiny. ID alebo názov skupiny a meno súboru sú programu odovzdané ako
             argumenty.
             <pre>
@@ -141,10 +141,10 @@ const ThirdSubtopicFourth = () => {
         `
                 }
             </pre>
-            <br /><br />
+            <br/><br/>
 
             Po spustení programu môžeme pozorovať zmenu skupiny súboru:
-            <br /><br />
+            <br/><br/>
             <pre>
                 {
                     `
@@ -163,14 +163,20 @@ $ls –l file
             </div>
             <ul>
                 <li>Vyskúšajte si zistenie aktuálnej hodnoty masky práv. Nastavenie masky práv
-                    tak, aby každý mal prístup k vytvorenému súboru. </li>
+                    tak, aby každý mal prístup k vytvorenému súboru.
+                </li>
                 <li>Vyskúšajte si zmeniť práva súboru vo vašom adresári pomocou príkazu <code>chmod</code>
                     aj službou jadra <code>chmod()</code>. Zistite rozdiel medzi použitím služby <code>chmod()</code>
-                    a <code>fchmod()</code>. </li>
+                    a <code>fchmod()</code>.
+                </li>
                 <li>Vyskúšajte si zmeniť vlastníka súboru vo vašom adresári pomocou príkazu
                     chown aj službou <code>chown()</code>. Zistite rozdiel medzi použitím služieb <code>chown()</code> ,
-                    <code>fchown()</code>,  <code>lchown()</code>.</li>
+                    <code>fchown()</code>, <code>lchown()</code>.
+                </li>
             </ul>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

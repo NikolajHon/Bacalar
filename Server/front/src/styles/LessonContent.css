@@ -14,7 +14,9 @@
 .lesson-content h3{
     color: black
 }
-
+.dark-theme .lesson-content h3{
+    color: white;
+}
 .content-list {
     list-style: none; /* Убираем маркеры списка */
     padding: 0; /* Убираем отступы */

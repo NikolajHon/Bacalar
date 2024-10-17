@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Prism from "prismjs";
 
-const FirstSubtopicNinth = () => {
+const FirstSubtopicNinth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -474,15 +474,21 @@ int main()
             <li>Vytvorte program, ktorý ilustruje použitie zdieľanej pamäte:
                 <li>Alokujte segment zdieľanej pamäte, pripojte sa k segmentu a zapíšte doň
                     reťazec znakov.</li>
-                <li>Odpojte segment zdieľanej pamäte. </li>
-                <li>Následne znovu  pripojte segment zdieľanej pamäte, tentokrát na inej
+                <li>Odpojte segment zdieľanej pamäte.</li>
+                <li>Následne znovu pripojte segment zdieľanej pamäte, tentokrát na inej
                     adrese, vypíšte reťazec zo zdieľanej pamäte, odpojte segment a dealokujte
-                    ho</li>
+                    ho
+                </li>
             </li>
             <li>Vytvorte program, ktorý vytvorí zdieľanú pamäť a nový proces-potomok, ktorý
                 zapíše dáta do zdieľanej pamäte zadané z príkazového riadku. Proces rodič
                 prečíta tieto dáta a vypíše na štandardný výstup. Synchronizácia medzi procesmi
-                rodič a potomok sa realizuje pomocou signálov. </li>
+                rodič a potomok sa realizuje pomocou signálov.
+            </li>
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

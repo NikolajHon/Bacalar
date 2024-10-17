@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const SecondSubtopicEighth = () => {
+const SecondSubtopicEighth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -95,7 +95,8 @@ sighandler_t signal(int signum, sighandler_t handler);
             <strong>Doplňte</strong> návratové hodnoty služby <code>signal()</code>: <br/>
             <li>
                 služba signal() vracia _________________________________, pri chybe _______________________
-            </li> <br/>
+            </li>
+            <br/>
             <strong>KROK2 – aplikovanie služby v programe:</strong> <br/>
             Sofia si vytvorí program, ktorý vypisuje reťazec „Hello world“ v sekundových
             intervaloch, pokiaľ nedostane signál SIGINT, ktorý pri normálnom nastavení terminálu
@@ -132,7 +133,7 @@ int main(){
             </pre>
             <br/>
             Tento program bude čakať na signál SIGINT (poslaný Sofiou pri stlačení CTRL+C).
-            Počas doby čakania bude vypisovať „Hello world“.  Po prijatí signálu sa aktivuje
+            Počas doby čakania bude vypisovať „Hello world“. Po prijatí signálu sa aktivuje
             obslužná funkcia <code>odchytenie</code>(), v ktorej sa vypíše číslo prijatého signálu a pomocou
             argumentu SIG_DFL sa nastaví pôvodná reakcia na signál SIGINT, teda ukončenie
             programu. Ak by v obslužnej funkcii nebolo nastavenie pôvodnej reakcie, program by
@@ -156,6 +157,10 @@ int main(){
                 ^C<br/>
                 $<br/>
             </div>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

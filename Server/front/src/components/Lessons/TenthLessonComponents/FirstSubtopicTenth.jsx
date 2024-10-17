@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FirstSubtopicTenth = () => {
+const FirstSubtopicTenth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -33,8 +33,8 @@ const FirstSubtopicTenth = () => {
                         <tr>
                             <td className="section-title">Porozumieť:</td>
                             <td>
-                                <li>argumentom služby </li>
-                                <li>návratovým hodnotám </li>
+                                <li>argumentom služby</li>
+                                <li>návratovým hodnotám</li>
                                 <li>chybovým hláseniam</li>
                             </td>
                         </tr>
@@ -76,7 +76,7 @@ const FirstSubtopicTenth = () => {
             identifikátorom. V takejto sade môžeme mať viacero semaforov a identifikujete ich
             poradím (začínajúc od nuly). Operácie sa vykonávajú atomicky nad celou sadou (buď sa
             vykonajú všetky požadované, alebo sa nevykonajú vôbec). <br/> <br/>
-            <p style={{textDecoration:'underline'}}>Syntax: </p>
+            <p style={{textDecoration: 'underline'}}>Syntax: </p>
             <pre>
                 <code className={'language-c'}>
                     {
@@ -90,7 +90,9 @@ int semget (key_t key, int num_sems, int sem_flags);
                 </code>
             </pre>
             <p style={{textDecoration: 'underline'}}>Sémantika: </p>
-            <li>Služba <code>semget()</code> vracia identifikátor sady semaforov (nezáporné celé číslo), alebo –1 pri chybe. </li>
+            <li>Služba <code>semget()</code> vracia identifikátor sady semaforov (nezáporné celé číslo), alebo –1 pri
+                chybe.
+            </li>
             <br/>
             <strong>KROK2 - pochopiť parametre služby: </strong> <br/>
             Prvý parameter <code>key</code> je celočíselná hodnota, ktorá umožňuje nezávislým procesom
@@ -113,7 +115,8 @@ int semget (key_t key, int num_sems, int sem_flags);
             <strong>KROK3 – aplikovanie služby v programe:</strong> <br/>
             Sofia má za úlohu urobiť program, ktorý má vytvoriť tri sady semaforov s týmito
             nastavenými príznakmi <code>IPC_CREAT|IPC_EXCL, IPC_PRIVATE</code> a prístupovými pravami
-            nastavenými  na hodnotu <code>0666</code>. K získaniu kľúča pre službu <code>semget()</code> sa použije služba
+            nastavenými na hodnotu <code>0666</code>. K získaniu kľúča pre službu <code>semget()</code> sa použije
+            služba
             <code>ftok()</code>a príznak <code>IPC_CREAT</code>.
             <pre>
                 <code className={'language-c'}>
@@ -160,6 +163,10 @@ int main(void)
             sady semaforov ostanú v systéme. Môže použiť príkaz <i>ipcs –s</i>, ten jej ukáže aktuálny
             stav vytvorených semaforov. Ak Sofia potrebuje odstrániť semafor zo systému, môže
             použiť príkaz <strong>ipcrm -s sem_id</strong>, kde <i>sem_id</i> je identifikátor sady semaforov.
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

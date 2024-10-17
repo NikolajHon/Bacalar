@@ -4,7 +4,7 @@ import phone from '../../../images/EleventhPageImg/phone.png'
 import letter from '../../../images/EleventhPageImg/letter.png'
 import Obr2 from '../../../images/EleventhPageImg/Obr2.png'
 
-const LessonOverview = () => {
+const LessonOverview = ({onComplete, completed}) => {
     return (
         <div className="lesson-overview" id="section-0">
             <table>
@@ -173,6 +173,10 @@ const LessonOverview = () => {
             Služba <code>accept()</code>
             nám vráti nový socket, pomocou ktorého budeme komunikovať s procesom-klientom, ktorý sa pripája na proces
             server systémovým volaním <code>connect()</code>.<code></code>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

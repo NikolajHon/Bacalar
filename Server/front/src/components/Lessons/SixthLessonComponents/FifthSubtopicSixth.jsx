@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-const FifthSubtopicSixth = () => {
+const FifthSubtopicSixth = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -138,17 +138,23 @@ int main()
             </div>
             <div className={'title-box'}> ÚLOHY NA SAMOSTATNÚ PRÁCU:</div>
             <li>Vyskúšajte si ďalšie služby skupiny <code>exec</code> a zistite rozdiel použitia medzi
-                jednotlivými službami <code>exec</code>. </li>
+                jednotlivými službami <code>exec</code>.
+            </li>
             <li>Vytvorte program, v ktorom hlavný proces vytvorí jedného potomka. Proces
                 potomok spustí vykonávanie programu "ls -al". Nepoužívajte službu <code>system()</code>.
                 Proces rodič počká na ukončenie svojho potomka a vypíše jeho návratovú
-                hodnotu a pid obidvoch procesoch. </li>
+                hodnotu a pid obidvoch procesoch.
+            </li>
             <li>Vytvorte program, ktorý bude prijímať dve číslice ako argumenty. Nech hlavný
                 proces vytvorí proces potomok, ktorý spočíta tieto číslice. Súčet týchto číslic
                 potomok bude vraciať ako svoj návratový kód. Hlavný proces tento výsledok
-                nakoniec vypíše.</li>
+                nakoniec vypíše.
+            </li>
 
-
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
 
     );

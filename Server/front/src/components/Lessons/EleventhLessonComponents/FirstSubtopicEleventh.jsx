@@ -3,7 +3,7 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import '../../../styles/LessonsStyles/SecondLesson.css'
 
-const FirstSubtopicEleventh = () => {
+const FirstSubtopicEleventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -227,6 +227,10 @@ Socket vytvoreny <br/>
 jeho deskriptor je __________<br/>
 $
             </pre>
+            <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

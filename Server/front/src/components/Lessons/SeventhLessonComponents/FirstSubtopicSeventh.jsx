@@ -3,7 +3,7 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import Obr1 from "../../../images/SeventhPageImg/Obr1.png"
 
-const FirstSubtopicSeventh = () => {
+const FirstSubtopicSeventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -137,14 +137,17 @@ const FirstSubtopicSeventh = () => {
                 </tbody>
             </table>
             <br/>
-            <div className={'annotations'}>Podrobnejšie informácie o službe <code>pipe()</code> si môžete pozrieť <strong><code>v
-                man 2 pipe</code></strong>.</div>
+            <div className={'annotations'}>Podrobnejšie informácie o službe <code>pipe()</code> si môžete
+                pozrieť <strong><code>v
+                    man 2 pipe</code></strong>.
+            </div>
             <br/>
             <strong>KROK2 – aplikovanie služby v programe:</strong> <br/>
-            <strong>1. program</strong> - Program vytvorí rúru prostredníctvom volania <code>pipe()</code> a sprístupní ju
+            <strong>1. program</strong> - Program vytvorí rúru prostredníctvom volania <code>pipe()</code> a sprístupní
+            ju
             pomocou dvoch deskriptorov v poli <code>file_pipes</code>. Do rúry sa zapíšu dáta pomocou
             deskriptora <code>file_pipes[1]</code>, prostredníctvom deskriptora <code>file_pipes[0]</code> ich môže
-            proces  prečítať. Rúra používa vyrovnávaciu pamäť obmedzenej veľkosti (zvyčajne
+            proces prečítať. Rúra používa vyrovnávaciu pamäť obmedzenej veľkosti (zvyčajne
             4KB), ktorá slúži na uloženie dát medzi volaniami <code>write()</code> a <code>read()</code>. Spravidla sa
             volania <code>read()</code> a <code>write()</code> vyskytujú v rôznych procesoch.
             <br/> <br/>
@@ -194,6 +197,10 @@ int main()
             rúru v rámci jedného procesu rozšírte Program 1 o službu <code>execve()</code>. Služba <code>execve()</code>
             nám spusti vykonávanie programu, ktorý prečíta dáta, ktoré boli zapísané pred volaním
             služby <code>execve().</code>
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };

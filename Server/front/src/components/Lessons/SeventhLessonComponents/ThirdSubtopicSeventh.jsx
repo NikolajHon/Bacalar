@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import Obr1 from '../../../images/FifthPageImg/Obr1.png'
 import {languages} from "monaco-editor";
 
-const ThirdSubtopicSeventh = () => {
+const ThirdSubtopicSeventh = ({onComplete, completed}) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -160,7 +160,8 @@ int main()
             <code>unlink().</code>
             <div className={'title-box'}>
                 Prístup k rúre FIFO:
-            </div> <br/>
+            </div>
+            <br/>
             Pretože pomenované rúry sú súčasťou súborového systému, majú jednu veľmi užitočnú
             vlastnosť - môžeme ich používať v príkazoch na mieste, kde môžeme normálne použiť
             názov súboru. Teraz si opíšeme správanie pomenovanej rúry v spojitosti s normálnymi
@@ -202,7 +203,8 @@ $
                     }
                 </code>
             </pre>
-            <div className={'annotations'}>Ako to funguje:</div> <br/>
+            <div className={'annotations'}>Ako to funguje:</div>
+            <br/>
             <strong>Prípad 1-2:</strong> <br/> <br/>
             V rúre neboli žiadne dáta preto príkazy <code>cat</code> a echo čakali kým do rúry nejaké dáta
             dorazia, resp. až ich začne nejaký iný proces čítať. <br/> <br/>
@@ -217,17 +219,24 @@ $
             <div className={'title-box'}>ÚLOHY NA SAMOSTATNÚ PRÁCU:</div>
             <li>Vytvorte program, ktorý pozostáva z 2 procesov a komunikácia medzi týmito
                 procesmi prebieha pomocou rúr. (rodičovský proces teda načítava čísla
-                z terminálu a proces - potomok ich vypisuje).</li>
+                z terminálu a proces - potomok ich vypisuje).
+            </li>
             <li>Vytvorte rodiča aj potomka. Nech medzi sebou komunikujú pomocou dvoch rúr.
                 Do jednej zapisuje rodič a do druhej syn. Nech obidvaja vypisujú to, čo prečítali
-                z rúry.</li>
+                z rúry.
+            </li>
             <li>Zamyslite sa, ako by ste realizovali komunikáciu medzi dvoma procesmi
-                v oboch smeroch pomocou jedinej rúry.</li>
+                v oboch smeroch pomocou jedinej rúry.
+            </li>
             <li>Vytvorte dva nezávislé programy, ktoré medzi sebou komunikujú pomocou
                 pomenovanej rúry. Prvý program vytvorí pomenovanú rúru a zapíše do nej
                 reťazec. Druhý program prečíta reťazec. Nech obidva programy vypíšu reťazec,
-                ktorý bol zapísaný do rúry a prečítaný z rúry. </li>
-
+                ktorý bol zapísaný do rúry a prečítaný z rúry.
+            </li>
+            <br/> <br/>
+            <button onClick={onComplete} disabled={completed}>
+                {completed ? "Completed" : "Mark as Complete"}
+            </button>
         </div>
     );
 };
