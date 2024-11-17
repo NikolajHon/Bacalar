@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
-import axios from 'axios'; // Импортируем axios
-import '../../styles/forum/NewDiscussionForm.css';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import { UserContext } from '../../contexts/UserContext';
+import '../../styles/Forum.css';
 
-const NewDiscussionForm = ({ onSuccess }) => {
-    const {user} = useContext(UserContext)
+const NewDiscussionForm = ({ lessonId, onSuccess }) => {
+    const { user } = useContext(UserContext);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
@@ -14,36 +14,41 @@ const NewDiscussionForm = ({ onSuccess }) => {
         const newDiscussion = {
             title,
             content,
-            author: user.name  // Здесь можно использовать настоящее имя пользователя
+            author: user.name || 'Anonymous',
+            lessonId: lessonId
         };
 
-        // POST-запрос для создания нового обсуждения
+        console.log('Отправляемый JSON:', JSON.stringify(newDiscussion, null, 2));
+
         axios.post('http://localhost:8080/api/discussions', newDiscussion)
             .then(response => {
                 console.log('Discussion created:', response.data);
-                onSuccess();  // Вызываем onSuccess для обновления списка обсуждений
+                onSuccess();
             })
             .catch(error => {
-                console.error('Ошибка при создании обсуждения:', error);
+                console.error('Error when creating a discussion:', error);
             });
     };
 
     return (
         <form className="new-discussion-form" onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                value={title} 
-                onChange={(e) => setTitle(e.target.value)} 
-                placeholder="Title" 
-                required 
+            <p>Vytvoríte otázku pre lekciu s identifikátorom: {lessonId}</p> {/* Отображение ID урока */}
+            <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Téma"
+                required
+                className="input-field"
             />
-            <input 
-                value={content} 
-                onChange={(e) => setContent(e.target.value)} 
-                placeholder="Content" 
-                required 
-            />
-            <button type="submit">Create Discussion</button>
+            <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Obsah"
+                required
+                className="textarea-field"
+            ></textarea>
+            <button type="submit" className="submit-button">Vytvorenie diskusie</button>
         </form>
     );
 };

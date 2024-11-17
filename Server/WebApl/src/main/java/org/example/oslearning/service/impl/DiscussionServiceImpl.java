@@ -25,13 +25,17 @@ public class DiscussionServiceImpl implements DiscussionService {
     }
 
     @Override
-    public Optional<Discussion> getDiscussionById(Long id) { // Реализация нового метода
+    public Optional<Discussion> getDiscussionById(Long id) {
         return discussionRepository.findById(id);
+    }
+
+    @Override
+    public List<Discussion> getDiscussionsByLessonId(Long lessonId) { // Implementation for new method
+        return discussionRepository.findByLessonId(lessonId);
     }
 
     @Override
     public void deleteDiscussionById(Long id) {
         discussionRepository.deleteById(id);
     }
-
 }

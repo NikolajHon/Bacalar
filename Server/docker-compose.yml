@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # Бэкенд на Spring Boot
   backend:
     build:
       context: ./WebApl
@@ -21,7 +20,6 @@ services:
     networks:
       - app-network
 
-  # Фронтенд на React
   frontend:
     build:
       context: ./front

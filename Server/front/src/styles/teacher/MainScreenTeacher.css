@@ -17,33 +17,7 @@
     background-color: #45a049;
 }
 
-.topic-list {
-    width: 50%;
-    /* Ширина блока на половину экрана */
-    margin: 0 auto;
-    /* Центрирование блока по горизонтали */
-    padding: 20px;
-    /* Внутренние отступы для красоты */
-    background-color: #f4f4f4;
-    /* Цвет фона для выделения */
-    border-radius: 10px;
-    /* Закругленные углы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Тень для визуального эффекта */
-}
 
-.topic-item {
-    margin-bottom: 20px;
-    /* Отступ между темами */
-    padding: 15px;
-    /* Внутренний отступ внутри каждой темы */
-    border: 1px solid #ccc;
-    /* Рамка вокруг каждой темы */
-    border-radius: 5px;
-    /* Закругленные углы рамки */
-    background-color: #ffffff;
-    /* Фон темы */
-}
 
 .lesson-link {
     display: inline-block;
@@ -80,57 +54,57 @@
     animation: fadeInDown 0.5s forwards;
 }
 
-.topic-item:nth-child(1) {
-    animation-delay: 0.1s;
-}
+/*.topic-item:nth-child(1) {*/
+/*    animation-delay: 0.1s;*/
+/*}*/
 
-.topic-item:nth-child(2) {
-    animation-delay: 0.2s;
-}
+/*.topic-item:nth-child(2) {*/
+/*    animation-delay: 0.2s;*/
+/*}*/
 
-.topic-item:nth-child(3) {
-    animation-delay: 0.3s;
-}
+/*.topic-item:nth-child(3) {*/
+/*    animation-delay: 0.3s;*/
+/*}*/
 
-.topic-item:nth-child(4) {
-    animation-delay: 0.4s;
-}
+/*.topic-item:nth-child(4) {*/
+/*    animation-delay: 0.4s;*/
+/*}*/
 
-.topic-item:nth-child(5) {
-    animation-delay: 0.5s;
-}
+/*.topic-item:nth-child(5) {*/
+/*    animation-delay: 0.5s;*/
+/*}*/
 
-.topic-item:nth-child(6) {
-    animation-delay: 0.6s;
-}
+/*.topic-item:nth-child(6) {*/
+/*    animation-delay: 0.6s;*/
+/*}*/
 
-.topic-item:nth-child(7) {
-    animation-delay: 0.7s;
-}
+/*.topic-item:nth-child(7) {*/
+/*    animation-delay: 0.7s;*/
+/*}*/
 
-.topic-item:nth-child(8) {
-    animation-delay: 0.8s;
-}
+/*.topic-item:nth-child(8) {*/
+/*    animation-delay: 0.8s;*/
+/*}*/
 
-.topic-item:nth-child(9) {
-    animation-delay: 0.9s;
-}
+/*.topic-item:nth-child(9) {*/
+/*    animation-delay: 0.9s;*/
+/*}*/
 
-.topic-item:nth-child(10) {
-    animation-delay: 0.10s;
-}
+/*.topic-item:nth-child(10) {*/
+/*    animation-delay: 0.10s;*/
+/*}*/
 
-.topic-item:nth-child(11) {
-    animation-delay: 0.11s;
-}
+/*.topic-item:nth-child(11) {*/
+/*    animation-delay: 0.11s;*/
+/*}*/
 
-.topic-item:nth-child(12) {
-    animation-delay: 0.12s;
-}
+/*.topic-item:nth-child(12) {*/
+/*    animation-delay: 0.12s;*/
+/*}*/
 
-.topic-item:nth-child(13) {
-    animation-delay: 0.13s;
-}
+/*.topic-item:nth-child(13) {*/
+/*    animation-delay: 0.13s;*/
+/*}*/
 
 .progress-circle {
     width: 50px;

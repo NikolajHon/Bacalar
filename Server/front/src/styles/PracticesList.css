@@ -205,9 +205,6 @@
 .dark-theme .practices-list-container{
   background-color: #111828;
 }
-.dark-theme button{
-  background-color: #0f7770;
-}
 button{
   background-color: #bdbec0;
 }
@@ -289,7 +286,7 @@ button {
 
 .add-testcase-button {
   width: 80%;
-  background-color: #4CAF50; /* Зеленый цвет кнопки для добавления */
+  background-color: #274477; /* Зеленый цвет кнопки для добавления */
   color: white;
   border: none;
   border-radius: 4px;

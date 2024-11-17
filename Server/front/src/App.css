@@ -42,8 +42,8 @@
 }
 
 body.dark-theme {
-  --background-color: #111828; 
-  --text-color: #ffffff; 
+  --background-color: #111828;
+  --text-color: #ffffff;
 }
 
 
@@ -52,4 +52,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+body.dark-theme {
+  background-color: #111828;
+  color: #ffffff;
 }

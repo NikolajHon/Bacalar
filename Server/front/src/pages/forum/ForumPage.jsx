@@ -1,64 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Импортируем axios
+import axios from 'axios';
 import DiscussionList from '../../components/forum/DiscussionList';
 import NewDiscussionForm from '../../components/forum/NewDiscussionForm';
 import AppBar from '../../components/AppBar';
-import '../../styles/forum/ForumPage.css';
+import TopicSwitcher from '../../components/TopicSwitcher';
+import '../../styles/Forum.css';
 
 const ForumPage = () => {
     const [discussions, setDiscussions] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [selectedTopic, setSelectedTopic] = useState(null);
 
     useEffect(() => {
-        // GET-запрос с использованием axios
-        axios.get('http://localhost:8080/api/discussions')
-            .then(response => {
-                setDiscussions(response.data);
-            })
-            .catch(error => {
-                console.error('Ошибка при получении обсуждений:', error);
-            });
-    }, []); // Эффект вызывается один раз при монтировании компонента
+        if (selectedTopic) {
+            fetchDiscussions();
+        }
+    }, [selectedTopic]);
+
+    const fetchDiscussions = () => {
+        if (selectedTopic) {
+            axios.get(`http://localhost:8080/api/discussions/lesson/${selectedTopic}`)
+                .then(response => {
+                    // Проверяем, что response.data — это массив
+                    const discussionsData = Array.isArray(response.data) ? response.data : [response.data];
+                    setDiscussions(discussionsData); // Заменяет старый список новым
+                    console.log('Discussions got:', discussionsData);
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении обсуждений:', error);
+                });
+        }
+    };
 
     const toggleForm = () => {
         setShowForm(!showForm);
     };
 
     const handleNewDiscussion = () => {
-        axios.get('http://localhost:8080/api/discussions')
-            .then(response => {
-                setDiscussions(response.data);
-                setShowForm(false);  // Закрываем форму после успешного добавления
-            })
-            .catch(error => {
-                console.error('Ошибка при обновлении списка обсуждений:', error);
-            });
+        fetchDiscussions();
+        setShowForm(false);
     };
 
-    // Функция для удаления обсуждения по ID
     const handleDeleteDiscussion = (id) => {
         setDiscussions(prevDiscussions => prevDiscussions.filter(discussion => discussion.id !== id));
     };
-    
+
+    const handleSelectTopic = (topic) => {
+        setSelectedTopic(topic);
+        // fetchDiscussions(); // Удалите этот вызов, так как он уже запускается через useEffect при изменении selectedTopic
+    };
 
     return (
-        <div className='forum-body'>
+        <div className='forum-page'>
             <AppBar />
-            <div className="forum-page">
+            <div className="content-wrapper">
+                <div className="content-grid-forum">
+                    <div className="topic-list">
+                        <TopicSwitcher selectedTopic={selectedTopic} onSelectTopic={handleSelectTopic} />
+                    </div>
+                    <div className="discussion-section">
+                        <div className="forum-header">
+                            <h1>Fórum</h1>
+                            <button className="toggle-form-button" onClick={toggleForm}>
+                                {showForm ? "Zrušiť" : "Nová diskusia"}
+                            </button>
+                        </div>
 
-                <div className="forum-header">
-                    <h1>Forum</h1>
-                    <button className="toggle-form-button" onClick={toggleForm}>
-                        {showForm ? "Cancel" : "New Discussion"}
-                    </button>
+                        {showForm && <NewDiscussionForm lessonId={selectedTopic} onSuccess={handleNewDiscussion} />}
+
+                        <DiscussionList
+                            discussions={discussions}
+                            onDelete={handleDeleteDiscussion}
+                        />
+                    </div>
                 </div>
-
-                {showForm && <NewDiscussionForm onSuccess={handleNewDiscussion} />}
-
-                <DiscussionList 
-                    discussions={discussions} 
-                    onDelete={handleDeleteDiscussion} 
-                />
             </div>
         </div>
     );

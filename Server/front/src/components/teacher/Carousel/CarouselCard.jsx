@@ -97,7 +97,7 @@ const Slider = () => {
             )}
         </div>
     );
-    
+
 
 
 };

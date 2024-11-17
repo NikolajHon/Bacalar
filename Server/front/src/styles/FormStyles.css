@@ -137,10 +137,6 @@
 .dark-theme label{
     color: white;
 }
-.dark-theme button{
-    background-color: #0c7970;
-    color: white;
-}
 .dark-theme button.active{
     background-color: #1b1648;
 }

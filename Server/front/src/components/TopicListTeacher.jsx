@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/TopicListData';
-import '../styles/teacher/MainScreenTeacher.css'; // Создайте или измените существующий CSS файл
+import { FaArrowRight, FaBook, FaCheckCircle, FaTasks, FaFlask } from 'react-icons/fa'; // Импорт иконок
+import '../styles/teacher/TopicListTeacher.css';
 
 const TopicListTeacher = () => {
     return (
@@ -13,22 +14,21 @@ const TopicListTeacher = () => {
             {data.map((element, index) => {
                 return (
                     <div className="topic-item" key={index}>
-                        {/* Удален блок с кругом прогресса */}
                         <div className="topic-content">
                             <h3>{element.h3}</h3>
                             <p>{element.p}</p>
                             <div className="link-container">
                                 <Link to={`/lessons/${element.Link}`} className="lesson-link">
-                                    Перейти к уроку
+                                    <FaBook /> Go to Lesson
                                 </Link>
                                 <Link to={`/lessons/test/${index}`} className="test-link">
-                                    Check your knowledge
+                                    <FaCheckCircle /> Check your knowledge
                                 </Link>
                                 <Link to={`/lessons/tasks/${index}`} className="test-link">
-                                    Tasks                    
+                                    <FaTasks /> Tasks
                                 </Link>
                                 <Link to={`/lessons/practice/${index}`} className="test-link">
-                                    Practise
+                                    <FaFlask /> Practise
                                 </Link>
                             </div>
                         </div>

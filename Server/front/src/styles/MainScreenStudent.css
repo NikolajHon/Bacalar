@@ -1,65 +1,137 @@
 
-.topic-list {
-    width: 50%; /* Ширина блока на половину экрана */
-    margin: 0 auto; /* Центрирование блока по горизонтали */
-    padding: 20px; /* Внутренние отступы для красоты */
-    border-radius: 10px; /* Закругленные углы */
-    
+:root {
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --primary-color: #00adb5;
+    --secondary-color: #f0f0f0;
+    --border-color: #dddddd;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #393e46;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --progress-bg-color: #eeeeee;
+    --progress-color: #00adb5;
+    --input-background-color: #ffffff;
+}
+
+/* Темная тема */
+.dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #eeeeee;
+    --primary-color: #00adb5;
+    --secondary-color: #222831;
+    --border-color: #393e46;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #00adb5;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --progress-bg-color: #393e46;
+    --progress-color: #00adb5;
+    --input-background-color: #393e46;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Основной контейнер */
+.main-screen {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Контейнер для центрирования контента */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Основная сетка для контента */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+
+.topic-list .colon {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.topic-list .colon h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.topic-list .colon h4 {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-color);
 }
 
 .topic-item {
-    margin-bottom: 20px; /* Отступ между темами */
-    padding: 15px; /* Внутренний отступ внутри каждой темы */
-    border: 1px solid #ccc; /* Рамка вокруг каждой темы */
-    border-radius: 5px; /* Закругленные углы рамки */
-    background-color: #ffffff; /* Фон темы */
-}
-
-.lesson-link {
-    display: inline-block; /* Блоковая модель для ссылки */
-    margin-top: 10px; /* Отступ сверху */
-    padding: 10px 20px; /* Внутренний отступ для кнопки */
-    background-color: black; /* Цвет фона кнопки */
-    color: white; /* Цвет текста */
-    text-decoration: none; /* Убираем подчеркивание */
-    border-radius: 5px; /* Закругленные углы кнопки */
-    transition: background-color 0.3s ease; /* Плавный переход для фона */
-}
-
-.lesson-link:hover {
-    background-color: #0056b3; /* Изменение фона при наведении */
-}
-.main-div{
-    background-color: #ffffff;;
-}
-.topic-item {
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    margin-bottom: 40px;
+    padding: 30px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    position: relative; /* Для позиционирования псевдоэлементов */
+    overflow: hidden;
+    transition: transform 0.3s;
     opacity: 0;
-    transform: translateY(-20px);
     animation: fadeInDown 0.5s forwards;
-    background-color: #fff; 
-    border-radius: 5px; 
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.16);
 }
 
-.topic-item:nth-child(1) { animation-delay: 0.1s; }
-.topic-item:nth-child(2) { animation-delay: 0.2s; }
-.topic-item:nth-child(3) { animation-delay: 0.3s; }
-.topic-item:nth-child(4) { animation-delay: 0.4s; }
-.topic-item:nth-child(5) { animation-delay: 0.5s; }
-.topic-item:nth-child(6) { animation-delay: 0.6s; }
-.topic-item:nth-child(7) { animation-delay: 0.7s; }
-.topic-item:nth-child(8) { animation-delay: 0.8s; }
-.topic-item:nth-child(9) { animation-delay: 0.9s; }
-.topic-item:nth-child(10) { animation-delay: 0.10s; }
-.topic-item:nth-child(11) { animation-delay: 0.11s; }
-.topic-item:nth-child(12) { animation-delay: 0.12s; }
-.topic-item:nth-child(13) { animation-delay: 0.13s; }
+.topic-item:nth-child(n) {
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.topic-item:hover {
+    transform: translateY(-10px);
+}
+
+.topic-item::before {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 200%;
+    height: 200%;
+    background-color: var(--hover-color);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none; /* Позволяет клики через псевдоэлемент */
+    z-index: 1; /* Размещает позади контента */
+}
+
+.topic-item:hover::before {
+    opacity: 0.05;
+}
+
+.topic-item-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2; /* Размещает поверх псевдоэлемента */
+}
 
 .progress-circle {
-    width: 50px; /* Circle size */
-    height: 50px;
-    margin-right: 20px;
+    width: 80px;
+    height: 80px;
     position: relative;
+    flex-shrink: 0;
 }
 
 .progress-circle svg {
@@ -69,13 +141,13 @@
 
 .circle-bg {
     fill: none;
-    stroke: #eee; /* Background circle color */
+    stroke: var(--progress-bg-color);
     stroke-width: 3.8;
 }
 
 .circle {
     fill: none;
-    stroke: #00bcd4; /* Progress color */
+    stroke: var(--progress-color);
     stroke-width: 3.8;
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
@@ -86,85 +158,169 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 12px;
-    color: black;
+    font-size: 16px;
+    color: var(--text-color);
+    font-weight: bold;
 }
+
+.topic-content h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.topic-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.link-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.lesson-link,
+.test-link {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 173, 181, 0.2);
+}
+
+.lesson-link:hover,
+.test-link:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 173, 181, 0.3);
+}
+
+/* Стили для UserList */
+.user-list-container {
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInDown 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+.user-list-container:hover {
+    transform: translateY(-10px);
+}
+
+.user-list-container::before {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 200%;
+    height: 200%;
+    background-color: var(--hover-color);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none; /* Позволяет клики через псевдоэлемент */
+    z-index: 1; /* Размещает позади контента */
+}
+
+.user-list-container:hover::before {
+    opacity: 0.05;
+}
+
+.user-list-container h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-background-color);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 2; /* Размещает поверх псевдоэлемента */
+}
+
+.user-item:hover {
+    transform: translateY(-5px);
+}
+
+.user-item::before {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 200%;
+    height: 200%;
+    background-color: var(--hover-color);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none; /* Позволяет клики через псевдоэлемент */
+    z-index: 1; /* Размещает позади контента */
+}
+
+.user-item:hover::before {
+    opacity: 0.05;
+}
+
+.user-rank {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.user-info h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.user-info p {
+    font-size: 16px;
+    margin: 5px 0 0 0;
+    color: var(--text-color);
+}
+
+/* Анимация появления */
 @keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-.main-div{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
-}
-.app-bar{
-    grid-column: 1/4;
-    grid-row: 1;
-}
-.topic-list.fade-in{
-    grid-column: 1/3;
-    grid-row: 2/4;
-    width: 80%;
-    margin-top: 0px;
 
-}
-.user-list-container.fade-in{
-    margin-top: 70px;
-    grid-column: 3;
-    grid-row: 2;
-    width: 80%;
-}
-.test-link {
-    display: inline-block; 
-    
-    margin-top: 10px;
-    padding: 10px 20px; 
-    background-color: #bcbec0; 
-    color: white; 
-    text-decoration: none;
-    border-radius: 5px; 
-    transition: background-color 0.3s ease; 
-    
-}
-.lesson-link, .test-link {
-    display: inline-block; /* Или 'block' если хотите, чтобы ссылки были на отдельных линиях */
-    margin: 0 10px; /* Отступы между ссылками */
-    padding: 10px 20px; /* Внутренние отступы */
-    text-decoration: none; /* Убирает подчеркивание */
-    color: #ffffff; /* Цвет текста */
-    border-radius: 5px; /* Радиус закругления углов */
-    background-color: black;
-}
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
 
-.lesson-link:hover, .test-link:hover {
-    background-color: #979797; /* Цвет фона при наведении */
-}
-.colon {
-    text-align: center; 
-    margin: 0 auto;
-    padding: 10px; 
-}
-.dark-theme .test-link,
-.dark-theme .lesson-link{
-    background-color: #0f7770;
-}
-.dark-theme .test-link:hover{
-    background-color: #0a524d;
-}
-.dark-theme .lesson-link:hover{
-    background-color: #0a524d;
-}
-.dark-theme .topic-list{
-    background-color: #111828;
-    color: white;
-}
-.topic-list-teacher{
-    margin-top: 40px;
-}
-.dark-theme .topic-item{
-    box-shadow: 10px 10px 10px rgba(240, 3, 137, 0.25);
+    .user-list-container {
+        margin-top: 20px;
+    }
 }

@@ -1,254 +1,416 @@
-
 :root {
-    --primary-bg-color: #ffffff; 
-    --primary-text-color: #000000;
-    --secondary-bg-color: #0c7970;
-    --secondary-text-color: red;
-    --border-color: #ccc;
-    --hover-color: #0056b3;
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --primary-color: #00adb5;
+    --secondary-color: #f0f0f0;
+    --border-color: #dddddd;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #393e46;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --progress-bg-color: #eeeeee;
+    --progress-color: #00adb5;
+    --input-background-color: #ffffff;
+    --delete-button-color: #ff4b4b; /* Цвет кнопки удаления для светлой темы */
 }
 
+/* Темная тема */
 .dark-theme {
-    --primary-bg-color: #1e2430; 
-    --primary-text-color: #ffffff; 
-    --border-color: #34495e;
+    --background-color: #1a1a1a;
+    --text-color: #eeeeee;
+    --primary-color: #00adb5;
+    --secondary-color: #222831;
+    --border-color: #393e46;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #00adb5;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --progress-bg-color: #393e46;
+    --progress-color: #00adb5;
+    --input-background-color: #393e46;
+    --delete-button-color: #ff6b6b; /* Цвет кнопки удаления для темной темы */
 }
 
-/* Общие стили */
-body {
-    background-color: var(--primary-bg-color);
-    color: var(--primary-text-color);
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s, color 0.3s; 
-}
-
-p {
-    margin: 10px 0;
-    color: var(--primary-text-color);
+.main-container {
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: center;
 }
 
 .task-container {
-    padding-top: 10px; 
+    max-width: 80%; /* Увеличение максимальной ширины */
+    margin: 20px auto 0; /* Отступ сверху и центрирование по горизонтали */
+    padding: 30px; /* Увеличение отступов внутри контейнера */
+    box-shadow: 0 6px 20px var(--shadow-color); /* Увеличение тени для лучшего эффекта */
+    background-color: var(--secondary-color);
+    border-radius: 20px; /* Увеличение скругления углов */
+    transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
-    border: solid white 1px;
-    color: white;
-    
 }
 
 
 .task-item {
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
     position: relative;
-    padding: 15px;
-    border: solid white 1px;
-    margin: 10px 0;
-    border-radius: 8px;
-    background-color: var(--primary-bg-color);
-    flex-direction: column;
-    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInDown 0.5s forwards;
     text-align: center;
-    transition: background-color 0.3s, border-color 0.3s;
+
 }
 
-.task-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+.task-item:hover {
+    transform: translateY(-10px);
+}
+
+.task-item::before {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 200%;
+    height: 200%;
+    background-color: var(--hover-color);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.task-item:hover::before {
+    opacity: 0.05;
+}
+
+.task-item h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.task-item p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.mark {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
-.task-title {
-    margin: 0;
-    font-size: 24px;
-    color: var(--primary-text-color);
-}
-
-/* Кнопки */
-button,
-.custom-delete-button,
-.modal-button {
-    margin-top: 20px;
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-    width: auto;
-    display: inline-block;
-    transition: background-color 0.3s, color 0.3s;
-    box-sizing: border-box;
-}
-
-button:hover,
-.modal-button:hover {
-    background-color: var(--hover-color);
-}
-
 .custom-delete-button {
-    background-color: transparent;
-    border: 1px solid var(--secondary-text-color);
-    color: var(--secondary-text-color);
-    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--delete-button-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 173, 181, 0.2);
 }
 
 .custom-delete-button:hover {
-    background-color: var(--secondary-text-color);
-    color: var(--primary-text-color);
+    background-color: var(--delete-button-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 173, 181, 0.3);
 }
 
-/* Модальное окно */
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.monaco-editor-container {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.submit-button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 173, 181, 0.2);
+}
+
+.submit-button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 173, 181, 0.3);
+}
+
+/* Анимация появления */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .task-container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .task-item h2 {
+        font-size: 20px;
+    }
+
+    .task-item p {
+        font-size: 14px;
+    }
+
+    .submit-button,
+    .custom-delete-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+/* Стили для пользовательского модального окна */
+.custom-dialog-overlay {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1000;
-    border: solid white 1px;
 }
 
-.modal-content {
-    border: solid white 1px;
-    background-color: var(--primary-bg-color);
-    border-radius: 8px;
+.custom-dialog {
+    background-color: var(--secondary-color);
+    border-radius: 15px;
     padding: 30px;
-    width: 400px;
-    max-width: 90%;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    width: 90%;
+    max-width: 500px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, border-color 0.3s;
+    animation: fadeIn 0.3s ease;
 }
 
-/* Формы */
+.dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.dialog-button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 173, 181, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 150px;
+}
+
+.dialog-button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 173, 181, 0.3);
+}
+
+.cancel-button {
+    background-color: var(--border-color);
+}
+
+.delete-button {
+    background-color: var(--primary-color);
+}
+
+/* Анимация появления модального окна */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .custom-dialog {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .dialog-button {
+        padding: 8px 16px;
+        font-size: 14px;
+        width: 130px;
+    }
+}
+
+/* Иконки для кнопок */
+.dialog-button .icon {
+    font-size: 18px;
+}
+
+/* Добавление иконок для отмены и удаления */
+.cancel-button::before {
+    content: '\2716'; /* Иконка крестика */
+    font-size: 18px;
+}
+
+.delete-button::before {
+    content: '\1F5D1'; /* Иконка мусорной корзины */
+    font-size: 18px;
+}
+.new-task-button{
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 173, 181, 0.2);
+    margin-top: 20px;
+}
+
+/* Основной стиль для модального окна */
+.modal-content-task {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* Стили для заголовка */
+.modal-content-task h2 {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили для формы */
 .form-group {
     margin-bottom: 15px;
-    text-align: left;
 }
 
 .form-input {
     width: 100%;
     padding: 10px;
+    font-size: 16px;
+    color: var(--text-color);
+    background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    font-size: 16px;
-    margin-top: 5px;
-    box-sizing: border-box;
-    background-color: var(--primary-bg-color);
-    color: var(--primary-text-color);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-.task-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    border: solid 1px black;
-}
-.modal-input {
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 10px; 
-    padding: 10px; 
-  }
-  
-  textarea.modal-input {
-    width: 100%; 
-    height: auto; 
-    min-height: 80px; 
-  }
-  .mark {
-    font-size: 18px;
-    font-weight: bold;
-    color: rgb(62, 62, 62); 
-    background-color: #f0f0f0; 
-    padding: 5px 10px; 
-    border-radius: 5px;
-    display: inline-block;
-    text-align: center; 
-    margin-top: 10px; 
-    border: solid white 1px;
-}
-.dark-theme .mark{
-    background-color: #111828;
-    color: #ffffff;
-}
-html, body {
-    height: 100%; 
-    margin: 0;
-    padding: 0;
-    background-color: #111828; 
+    outline: none;
+    transition: border-color 0.3s;
 }
 
-.main-container {
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: white;
+.form-input:focus {
+    border-color: var(--primary-color);
 }
-.custom-delete-button,
+
+/* Стили для кнопок */
 .modal-button {
-    margin: 10px; 
-    background-color: var(--secondary-bg-color);
-    border: none;
-    color: var(--primary-text-color);
-    padding: 10px 20px; 
-    cursor: pointer;
-    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
     font-size: 16px;
-    text-align: center;
-    width: auto;
-    display: inline-block;
-    transition: background-color 0.3s, color 0.3s;
-    box-sizing: border-box;
-}
-.task-item{
-    text-align: center;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease; 
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #ffffff;
-    border: 1px solid black;
+    font-weight: bold;
+    color: var(--button-text-color);
+    background-color: var(--button-background-color);
+    border: none;
     border-radius: 5px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
 }
-.dark-theme .task-item{
-    background-color: #1b2435;
-    border-radius: 20px;
-    border: solid white 1px;
+
+.modal-button:hover {
+    background-color: var(--hover-color);
 }
-.dark-theme .task-container{
-    background-color: #0e1b2b;
-    border: solid white 1px;
+
+/* Кнопка удаления */
+.modal-button.delete-button {
+    background-color: var(--delete-button-color);
 }
-.main-container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+
+.modal-button.delete-button:hover {
+    background-color: #d85a5a; /* Более темный оттенок для кнопки удаления */
 }
-.dark-theme .main-container{
-    background-color: #111828;
+.form-input {
+
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--input-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+    min-height: 40px; /* Минимальная высота для одиночных полей */
 }
-.app-bar {
-    grid-column: 1/4;
-    grid-row: 1;
+
+.form-input:focus {
+
+    border-color: var(--primary-color);
 }
-.task-container{
-    grid-column: 1 / 4; /* Centers the div by starting in the second column */
-    grid-row: 3;
-    width: 85%; /* Takes full width of the available space */
-    justify-self: center; /* Centers the div horizontally */
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+
+/* Специальный стиль для многострочного поля */
+.form-textarea {
+    margin-bottom: 20px;
+    min-height: 100px; /* Задает высоту многострочного поля */
+    max-height: 200px; /* Ограничение по высоте */
+    overflow-y: auto; /* Полоса прокрутки при большом количестве текста */
+    white-space: pre-wrap; /* Сохраняет переносы строк */
+}
+
+.dark-theme .form-input {
+    color: var(--text-color); /* Белый текст */
+    background-color: var(--input-background-color); /* Темный фон */
+    border: 1px solid var(--border-color); /* Темная граница */
+}
+
+.dark-theme .form-input:focus {
+    border-color: var(--primary-color); /* Основной цвет для акцента */
+}
+
+.dark-theme .form-textarea {
+    color: var(--text-color); /* Белый текст */
+    background-color: var(--input-background-color); /* Темный фон */
+    border: 1px solid var(--border-color); /* Темная граница */
 }

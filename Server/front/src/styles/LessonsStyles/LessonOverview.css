@@ -1,0 +1,81 @@
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-table th {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+.info-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.section-title {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-cell {
+    background-color: #ffffff;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.card {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.card-content {
+    color: #555;
+}
+
+.time-box {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.postup {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.terminal-command {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: inline-block;
+}

@@ -19,8 +19,6 @@ public interface UserService {
     Optional<User> findById(Long id);
     User assignUserToGroup(Long userId, Long groupId);
     List<User> searchUsersByName(String name);
-    User uploadUserPhoto(Long userId, MultipartFile file) throws IOException;
-
 
 
 }

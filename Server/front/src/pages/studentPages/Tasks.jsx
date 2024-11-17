@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import "../../styles/Tasks.css";
 import AppBar from "../../components/AppBar";
-import { UserContext } from "../../contexts/UserContext";
+import {UserContext} from "../../contexts/UserContext";
 import MonacoEditor from "@monaco-editor/react";
 
 import Button from "@mui/material/Button";
@@ -13,12 +13,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import { ToastContainer, toast } from "react-toastify";
+import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Tasks = () => {
-    const { id } = useParams();
-    const { user } = useContext(UserContext);
+    const {id} = useParams();
+    const {user} = useContext(UserContext);
     const [tasks, setTasks] = useState([]);
     const [solutions, setSolutions] = useState({});
     const [grade, setGrade] = useState({});
@@ -32,22 +32,21 @@ const Tasks = () => {
         deadline: "",
         lessonId: id,
     });
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true); 
+        setLoading(true);
         axios
             .get(`http://localhost:8080/api/tasks?lessonId=${id}`)
             .then((response) => {
                 setTasks(response.data);
-                setLoading(false); 
+                setLoading(false);
             })
             .catch((error) => {
-                console.error("Ошибка при получении заданий:", error);
-                toast.error("Ошибка при получении заданий.");
-                setLoading(false); 
+                console.error("Chyba pri získavaní úloh:", error);
+                setLoading(false);
             });
-    
+
         if (user.id) {
             axios
                 .get(`http://localhost:8080/api/solutions?userId=${user.id}&taskid=${id}`)
@@ -55,7 +54,7 @@ const Tasks = () => {
                     const userSolutions = response.data;
                     const formattedSolutions = {};
                     const formattedGrade = {};
-    
+
                     userSolutions.forEach((solution) => {
                         const taskId = solution.id;
                         if (taskId) {
@@ -67,12 +66,11 @@ const Tasks = () => {
                     setGrade(formattedGrade);
                 })
                 .catch((error) => {
-                    console.error("Ошибка при получении решений:", error);
-                    toast.error("Ошибка при получении решений.");
+                    console.error("Chyba pri získavaní riešení:", error);
                 });
         }
-    }, [id, user.id]); 
-    
+    }, [id, user.id]);
+
     const handleSolutionChange = (taskId, value) => {
         setSolutions((prevSolutions) => ({
             ...prevSolutions,
@@ -82,7 +80,6 @@ const Tasks = () => {
 
     const handleSubmitSolution = (taskId) => {
         if (!user.id) {
-            toast.error("Необходимо войти в систему для отправки решения.");
             return;
         }
 
@@ -95,23 +92,21 @@ const Tasks = () => {
         };
 
         console.log(
-            "Отправляемый JSON на бэкэнд:",
+            "Odosielané JSON na server:",
             JSON.stringify(solution, null, 2)
         );
 
         axios
             .post("http://localhost:8080/api/solutions", solution)
             .then((response) => {
-                toast.success("Решение отправлено успешно");
             })
             .catch((error) => {
-                console.error("Ошибка при отправке решения:", error);
-                toast.error("Не удалось отправить решение.");
+                console.error("Chyba pri odosielaní riešenia:", error);
             });
     };
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setNewTask((prevState) => ({
             ...prevState,
             [name]: value,
@@ -120,7 +115,6 @@ const Tasks = () => {
 
     const handleCreateTask = () => {
         if (!newTask.title || !newTask.description || !newTask.deadline) {
-            toast.error("Пожалуйста, заполните все поля.");
             return;
         }
 
@@ -132,7 +126,6 @@ const Tasks = () => {
                 lessonId: id,
             })
             .then((response) => {
-                toast.success("Задание создано успешно");
                 setTasks([...tasks, response.data]);
                 setShowModal(false);
                 setNewTask({
@@ -144,8 +137,7 @@ const Tasks = () => {
                 });
             })
             .catch((error) => {
-                console.error("Ошибка при создании задания:", error);
-                toast.error("Не удалось создать задание.");
+                console.error("Chyba pri vytváraní úlohy:", error);
             });
     };
 
@@ -159,27 +151,25 @@ const Tasks = () => {
         axios
             .delete(`http://localhost:8080/api/tasks/${selectedTaskId}`)
             .then((response) => {
-                toast.success("Задание удалено успешно");
                 setTasks(tasks.filter((task) => task.id !== selectedTaskId));
             })
             .catch((error) => {
-                console.error("Ошибка при удалении задания:", error);
-                toast.error("Не удалось удалить задание.");
+                console.error("Chyba pri odstraňovaní úlohy:", error);
             });
     };
 
     if (loading) {
-        return <p>Loading...</p>; 
+        return <p>Načítavam...</p>;
     }
 
     return (
         <div className="main-container">
-            <AppBar />
+            <AppBar/>
             <div className="task-container">
                 <h1>
                     {user.role === "ROLE_TEACHER"
-                        ? `Задания для урока ${id}`
-                        : `Questions for Lesson ${id}`}
+                        ? `Úlohy pre lekciu ${id}`
+                        : `Otázky pre lekciu ${id}`}
                 </h1>
 
                 {tasks.map((task) => (
@@ -189,13 +179,13 @@ const Tasks = () => {
                                 grade[task.id] !== undefined ? (
                                     <p className="mark">{grade[task.id]}</p>
                                 ) : (
-                                    <p>You dont have mark</p>
+                                    <p>Nemáte hodnotenie</p>
                                 )
                             ) : (
                                 <p></p>
                             )
                         ) : (
-                            <p>Нет решения</p>
+                            <p>Žiadne riešenie</p>
                         )}
 
                         <h2>{task.title}</h2>
@@ -203,17 +193,18 @@ const Tasks = () => {
 
                         {user.role === "ROLE_TEACHER" ? (
                             <>
-                                    <button
-                                        className="custom-delete-button"
-                                        onClick={() => handleDeleteClick(task.id)}
-                                    >
-                                        DELETE TASK
-                                    </button>
+                                <button
+                                    className="custom-delete-button"
+                                    onClick={() => handleDeleteClick(task.id)}
+                                >
+                                    ODSTRÁNIŤ ÚLOHU
+                                </button>
                             </>
                         ) : (
                             <>
                                 <MonacoEditor
-                                    height="300px"
+                                    height="500px"
+                                    width="1000px"
                                     language="c"
                                     theme="vs-dark"
                                     value={solutions[task.id] || ""}
@@ -225,19 +216,19 @@ const Tasks = () => {
                                         formatOnType: true,
                                         wordWrap: "on",
                                         suggestOnTriggerCharacters: true,
-                                        minimap: { enabled: false },
+                                        minimap: {enabled: false},
                                         quickSuggestions: {
                                             other: true,
                                             comments: true,
                                             strings: true,
                                         },
-                                        parameterHints: { enabled: true },
+                                        parameterHints: {enabled: true},
                                         tabCompletion: "on",
                                     }}
                                 />
 
-                                <button onClick={() => handleSubmitSolution(task.id)}>
-                                    Send Code
+                                <button className={'new-task-button'} onClick={() => handleSubmitSolution(task.id)}>
+                                    Odoslať kód
                                 </button>
                             </>
                         )}
@@ -246,74 +237,76 @@ const Tasks = () => {
 
                 {user.role === "ROLE_TEACHER" && (
                     <>
-                        <button onClick={() => setShowModal(true)}>
-                            Добавить новое задание
+                        <button className={'new-task-button'} onClick={() => setShowModal(true)}>
+                            Pridať novú úlohu
                         </button>
 
                         {showModal && (
-                            <div className="modal">
-                                <div className="modal-content">
-                                    <h2 style={{ textAlign: "center", color: "#fff" }}>
-                                        Добавить новое задание
-                                    </h2>
-                                    <div className="form-group">
-                                        <input
-                                            type="text"
-                                            name="title"
-                                            placeholder="Заголовок"
-                                            value={newTask.title}
-                                            onChange={handleInputChange}
-                                            className="form-input"
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <textarea
-                                            name="description"
-                                            placeholder="Описание"
-                                            value={newTask.description}
-                                            onChange={handleInputChange}
-                                            className="form-input"
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <input
-                                            type="datetime-local"
-                                            name="deadline"
-                                            placeholder="Крайний срок"
-                                            value={newTask.deadline}
-                                            onChange={handleInputChange}
-                                            className="form-input"
-                                        />
-                                    </div>
-                                    <button onClick={handleCreateTask} className="modal-button">
-                                        CREATE TASK
-                                    </button>
-                                    <button
-                                        onClick={() => setShowModal(false)}
-                                        className="modal-button"
-                                    >
-                                        BACK
-                                    </button>
+                            <div className="modal-content-task">
+                                <h2 style={{textAlign: "center", color: "#fff"}}>
+                                    Pridať novú úlohu
+                                </h2>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        placeholder="Názov"
+                                        value={newTask.title}
+                                        onChange={handleInputChange}
+                                        className="form-input"
+                                    />
                                 </div>
+                                <div
+                                    name="description"
+                                    placeholder="Popis"
+                                    contentEditable="true"
+                                    onInput={(e) => handleInputChange({
+                                        target: {
+                                            name: "description",
+                                            value: e.currentTarget.textContent
+                                        }
+                                    })}
+                                    className="form-input form-textarea"
+                                />
+
+                                <div className="form-group">
+                                    <input
+                                        type="datetime-local"
+                                        name="deadline"
+                                        placeholder="Termín"
+                                        value={newTask.deadline}
+                                        onChange={handleInputChange}
+                                        className="form-input"
+                                    />
+                                </div>
+                                <button onClick={handleCreateTask} className="new-task-button">
+                                    VYTVORIŤ ÚLOHU
+                                </button>
+                                <button
+                                    onClick={() => setShowModal(false)}
+                                    className="new-task-button"
+                                >
+                                    SPÄŤ
+                                </button>
                             </div>
                         )}
 
                         <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-                            <DialogTitle>Confirm Delete</DialogTitle>
+                            <DialogTitle>Potvrdiť odstránenie</DialogTitle>
                             <DialogContent>
                                 <DialogContentText>
-                                    Are you sure you want to delete this task?
+                                    Ste si istí, že chcete odstrániť túto úlohu?
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+                                <Button onClick={() => setOpenDialog(false)}>Zrušiť</Button>
                                 <Button onClick={handleConfirmDelete} color="error">
-                                    Delete
+                                    Odstrániť
                                 </Button>
                             </DialogActions>
                         </Dialog>
 
-                        <ToastContainer />
+                        <ToastContainer/>
                     </>
                 )}
             </div>

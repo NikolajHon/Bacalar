@@ -19,9 +19,20 @@ public class Discussion {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    private Long lessonId; // New field for lesson ID
+
     @OneToMany(mappedBy = "discussion", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Comment> comments;
+
+    // Getters and setters for new field
+    public Long getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(Long lessonId) {
+        this.lessonId = lessonId;
+    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

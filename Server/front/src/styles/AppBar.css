@@ -1,20 +1,72 @@
-/* Base styles */
+/* Подключаем цветовую гамму */
+:root {
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --primary-color: #00adb5;
+    --secondary-color: #f0f0f0;
+    --border-color: #dddddd;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #393e46;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --progress-bg-color: #eeeeee;
+    --progress-color: #00adb5;
+    --input-background-color: #ffffff;
+}
+
+/* Темная тема */
+.dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #eeeeee;
+    --primary-color: #00adb5;
+    --secondary-color: #222831;
+    --border-color: #393e46;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #00adb5;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --progress-bg-color: #393e46;
+    --progress-color: #00adb5;
+    --input-background-color: #393e46;
+}
+
+/* Базовые стили */
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     transition: background-color 0.5s, color 0.5s;
-    overflow-x: hidden; /* Предотвращает горизонтальную прокрутку, если контент смещается */
+    overflow-x: hidden;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-/* Light theme styles */
+/* Стили AppBar */
 .app-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: white;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    position: relative;
+}
+
+.app-bar:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, transparent, var(--hover-color));
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.app-bar:hover:before {
+    opacity: 0.1;
 }
 
 .app-bar-title {
@@ -22,115 +74,135 @@ body {
     font-weight: bold;
     flex-grow: 1;
     text-align: center;
-    margin-right: 20px; /* Отступ для разделения элементов */
+    margin-right: 20px;
+    color: var(--text-color);
+    transition: color 0.3s;
 }
 
 .theme-toggle {
     cursor: pointer;
     font-size: 24px;
-    margin-right: 20px; /* Отступ для разделения элементов */
-    color: black;
+    margin-right: 20px;
+    color: var(--text-color);
+    transition: color 0.3s, transform 0.5s;
 }
-.dark-theme .theme-toggle{
-    color: white;
-}
-.dark-theme .time-date{
-    color: white;
+
+.theme-toggle:hover {
+    color: var(--hover-color);
+    transform: rotate(20deg);
 }
 
 .profile-button {
+    position: relative;
     cursor: pointer;
-    padding: 5px 10px;
-    color: #3f51b5;
-    border: none;
-    border-radius: 5px;
-    margin-left: auto;
-    margin-right: 20px; /* Отступ для разделения элементов */
-}
-.dark-theme .profile-button{
-    background-color: #0e1b2b;
+    display: flex;
+    align-items: center;
 }
 
-/* Time and Date */
-.time-date {
-    color: black;
-    margin-right: 20px;
-    font-size: 1.2em;
-}
-
-/* Dark theme styles */
-.dark-theme {
-    color: #e7ebf2;
-}
-
-.dark-theme .app-bar {
-    background-color: #0d1b2a;
-}
-
-
-/* Content-specific dark theme styles */
-.dark-theme .second-lessons-page div {
-    background-color: #324558;
-}
-
-.dark-theme .user-list-container {
-    background-color: #111828;
-}
-
-.dark-theme .user-list-container .user-item {
-    background-color: #1b263b;
-}
-
-.dark-theme .section-title {
-    background-color: #35394b;
-}
-
-.dark-theme th {
-    background-color: #35394b;
-}
-
-.dark-theme .main-div {
-    background-color: #111828;
-}
-
-.dark-theme .main-div .topic-list.fade-in {
-    background-color: #111828;
-}
-
-.dark-theme .topic-item {
-    background-color: #1b263b;
-}
-
-.dark-theme .questions-container {
-    background-color: #1b263b;
-}
-
-.dark-theme a {
-    background-color: #111828;
-}
-
-.dark-theme .lesson-content {
-    background-color: #111828; 
-    color: white; 
-}
-
-.dark-theme .main-second {
-    background-color: #111828;
-}
 .user-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.user-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--secondary-color);
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownItemFadeIn 0.3s forwards;
+    animation-delay: calc(var(--order) * 0.1s);
+}
+
+@keyframes dropdownItemFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+    background-color: var(--hover-color);
+    color: var(--button-text-color);
+}
+
+.time-date {
+    color: var(--text-color);
+    margin-right: 20px;
+    font-size: 1.2em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+}
+
 .notification-popup {
     position: absolute;
     top: 10px;
     right: 10px;
     padding: 10px;
-    color: white;
+    color: var(--button-text-color);
     border-radius: 5px;
     z-index: 1000;
     font-size: 14px;
+    background-color: var(--primary-color);
 }
 
+/* Дополнительные стили для темной темы */
+.dark-theme .app-bar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.dark-theme .app-bar-title,
+.dark-theme .theme-toggle,
+.dark-theme .time-date {
+    color: var(--text-color);
+}
+
+.dark-theme .dropdown-menu {
+    background-color: var(--secondary-color);
+}
+
+.dark-theme .dropdown-menu a,
+.dark-theme .dropdown-menu button {
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+}
+
+.dark-theme .dropdown-menu a:hover,
+.dark-theme .dropdown-menu button:hover {
+    background-color: var(--hover-color);
+    color: var(--button-text-color);
+}

@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UploadPhotoModal from './UploadPhotoModal';
 
 const AppBar = ({ title }) => {
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [photoUrl, setPhotoUrl] = useState('');
     const [isPhotoLoaded, setIsPhotoLoaded] = useState(() => {
         return localStorage.getItem('isPhotoLoaded') === 'true';
@@ -23,7 +23,7 @@ const AppBar = ({ title }) => {
         return new Date().toLocaleString();
     });
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для открытия/закрытия модального окна
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -65,7 +65,7 @@ const AppBar = ({ title }) => {
     };
 
     useEffect(() => {
-        fetchPhoto(); // Загружаем фото при монтировании компонента
+        fetchPhoto();
     }, [user]);
 
     const toggleMenu = () => {
@@ -77,11 +77,11 @@ const AppBar = ({ title }) => {
     };
 
     const openModal = () => {
-        setIsModalOpen(true); // Открываем модальное окно
+        setIsModalOpen(true);
     };
 
     const closeModal = () => {
-        setIsModalOpen(false); // Закрываем модальное окно
+        setIsModalOpen(false);
     };
 
     const handlePhotoUpload = async (file) => {
@@ -91,13 +91,13 @@ const AppBar = ({ title }) => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post(`http://localhost:8080/api/images/upload/user/${user.id}`, formData, {
+            await axios.post(`http://localhost:8080/api/images/upload/user/${user.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
             toast.success('Фото успешно загружено!');
-            fetchPhoto(); // Обновляем фото после загрузки
+            fetchPhoto();
             setIsModalOpen(false);
         } catch (error) {
             console.error('Ошибка при загрузке фото:', error);
@@ -112,29 +112,26 @@ const AppBar = ({ title }) => {
                 <FontAwesomeIcon icon={isDarkTheme ? faMoon : faSun} />
             </div>
             <div className="app-bar-title">{title}</div>
-
-            <button onClick={openModal}>Upload Photo</button> {/* Кнопка для открытия модального окна */}
             <div className="time-date">
                 {currentTime}
             </div>
-
             {user && photoUrl ? (
                 <div className="profile-button" onClick={toggleMenu}>
                     <img src={photoUrl} alt="User Avatar" className="user-avatar" />
-                    {isMenuOpen && (
-                        <div className="dropdown-menu">
-                            <Link to="/profile" onClick={closeMenu}>Profile</Link>
-                            <Link to="/forum" onClick={closeMenu}>Forum</Link>
-                            <button onClick={() => { /* добавьте логику выхода */ closeMenu(); }}>Log out</button>
-                        </div>
-                    )}
+                    <div className={`dropdown-menu ${isMenuOpen ? 'show' : ''}`}>
+                        <Link to="/profile" onClick={closeMenu} style={{ '--order': 1 }}>Profil</Link>
+                        <Link to="/forum" onClick={closeMenu} style={{ '--order': 2 }}>Fórum</Link>
+                        <Link onClick={() => {
+                            closeMenu();
+                        }} style={{ '--order': 3 }}>Vystúpiť</Link>
+                        <Link onClick={openModal} style={{ '--order': 4 }}>Nahrať fotografiu</Link>
+                    </div>
                 </div>
             ) : (
                 <div className="profile-button">
-                    {user ? user.name : 'Guest'}
+                    {user ? user.name : 'Гость'}
                 </div>
             )}
-
             {isModalOpen && (
                 <UploadPhotoModal onClose={closeModal} onUpload={handlePhotoUpload} />
             )}

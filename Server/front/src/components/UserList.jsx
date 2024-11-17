@@ -1,7 +1,7 @@
 // src/components/UserList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/UserList.css';
+import '../styles/MainScreenStudent.css';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
@@ -12,27 +12,24 @@ const UserList = () => {
                 const response = await axios.get('http://localhost:8080/api/users/top-five');
                 setUsers(response.data);
             } catch (error) {
-                console.error('There was an error fetching the users!', error);
+                console.error('Ошибка при получении списка пользователей!', error);
             }
         };
 
         fetchUsers();
-
-        // Add 'fade-in' class after component mounts
-        const container = document.querySelector('.user-list-container');
-        if (container) {
-            container.classList.add('fade-in');
-        }
     }, []);
 
     return (
-        <div className="user-list-container">
-            <h2>Top Users</h2>
-            <ul>
+        <div className="user-list-container fade-in">
+            <h2>Najlepší používatelia</h2>
+            <ul className="user-list">
                 {users.map((user, index) => (
                     <li key={user.id} className={`user-item place-${index + 1}`}>
-                        <h3>{user.username}</h3>
-                        <p>Rating: {user.rating}</p>
+                        <div className="user-rank">#{index + 1}</div>
+                        <div className="user-info">
+                            <h3>{user.username}</h3>
+                            <p>Hodnotenie: {user.rating}</p>
+                        </div>
                     </li>
                 ))}
             </ul>
