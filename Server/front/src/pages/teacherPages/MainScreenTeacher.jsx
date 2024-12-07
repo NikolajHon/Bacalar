@@ -1,26 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useRef } from 'react';
 import CarouselCard from '../../components/teacher/Carousel/CarouselCard';
 import StudentList from '../../components/teacher/StudentList';
 import AppBar from '../../components/AppBar';
 import Modal from '../../components/Modal';
 import CreateGroupForm from '../../components/CreateGroupForm';
 import UserRegistrationForm from '../../components/UserRegistrationForm';
-import '../../styles/teacher/MainScreenTeacher.css'
 import TopicListTeacher from '../../components/TopicListTeacher';
+import styles from '../../styles/MainScreenTeacher/MainScreenTeacher.module.css';
+
+const mockGroups = [
+    {
+        id: 1,
+        content: "Math Group 101",
+        teacher: {
+            username: "Buchek",
+        },
+    },
+    {
+        id: 2,
+        content: "Physics Group 201",
+        teacher: {
+            username: "Smith",
+        },
+    },
+    {
+        id: 3,
+        content: "Chemistry Group 301",
+        teacher: {
+            username: "Johnson",
+        },
+    },
+    {
+        id: 4,
+        content: "Biology Group 401",
+        teacher: {
+            username: "Williams",
+        },
+    },
+];
+
 
 const MainScreen = () => {
-    const [groups, setGroups] = useState([]);
+    const [groups, setGroups] = useState(mockGroups);
     const [selectedGroupId, setSelectedGroupId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isCreateGroupModalOpen, setIsCreateGroupModalOpen] = useState(false);
     const [isUserRegistrationModalOpen, setIsUserRegistrationModalOpen] = useState(false);
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/groups')
-            .then(response => setGroups(response.data))
-            .catch(error => console.error('Ошибка при получении групп:', error));
-    }, []);
+    const userFormRef = useRef(null);
 
     const handleCardClick = (groupId) => {
         setSelectedGroupId(groupId);
@@ -58,11 +85,40 @@ const MainScreen = () => {
         closeUserRegistrationModal();
     };
 
+    // Обработчик клика за пределами формы
+    useEffect(() => {
+        const handleOutsideClick = (e) => {
+            console.log('Clicked element:', e.target);
+            console.log('User form ref:', userFormRef.current);
+
+            if (
+                isUserRegistrationModalOpen &&
+                userFormRef.current &&
+                !userFormRef.current.contains(e.target)
+            ) {
+                console.log('Closing modal');
+                closeUserRegistrationModal();
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [isUserRegistrationModalOpen]);
+
+
     return (
-        <div className='main-page-teacher'>
+        <div className={styles.main_page_teacher}>
             <AppBar />
-            <div className='teacher-page'>
-                {isModalOpen && <StudentList groupId={selectedGroupId} onClose={closeModal} />}
+            <div className={styles.teacher_page}>
+                {isModalOpen && (
+                    <StudentList
+                        groupId={selectedGroupId}
+                        onClose={closeModal}
+                    />
+                )}
                 {isCreateGroupModalOpen && (
                     <Modal onClose={closeCreateGroupModal}>
                         <CreateGroupForm onGroupCreated={handleGroupCreated} />
@@ -70,17 +126,32 @@ const MainScreen = () => {
                 )}
                 {isUserRegistrationModalOpen && (
                     <Modal onClose={closeUserRegistrationModal}>
-                        <UserRegistrationForm onUserCreated={handleUserCreated} onClose={closeUserRegistrationModal} />
+                        <div ref={userFormRef}>
+                            <UserRegistrationForm
+                                onUserCreated={handleUserCreated}
+                                onClose={closeUserRegistrationModal}
+                            />
+                        </div>
                     </Modal>
                 )}
-                <div className='groups-page'>
+                <div className={styles.groups_page}>
                     <CarouselCard groups={groups} onCardClick={handleCardClick} />
-                    <div className='button-container'>
-                        <button onClick={handleCreateGroupClick}>ADD GROUP</button>
-                        <button onClick={handleUserRegistrationClick}> ADD USER</button>
+                    <div className={styles.button_container}>
+                        <button
+                            onClick={handleCreateGroupClick}
+                            className={styles.main_teacher_button}
+                        >
+                            ADD GROUP
+                        </button>
+                        <button
+                            onClick={handleUserRegistrationClick}
+                            className={styles.main_teacher_button}
+                        >
+                            ADD USER
+                        </button>
                     </div>
                 </div>
-                <div className='topic-list-teacher'>
+                <div className={styles.topic_list_teacher}>
                     <TopicListTeacher />
                 </div>
             </div>

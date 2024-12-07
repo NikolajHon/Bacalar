@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import AppBar from '../../../components/AppBar';
 import LessonOverview from '../../../components/Lessons/ThirdLessonComponents/LessonOverviewThird';
-import '../../../styles/LessonsStyles/SecondLesson.css';
 import LessonContent from '../../../components/LessonContent';
 import listOfSubtopicThird from '../../../components/Lessons/ThirdLessonComponents/ListOfSubtopicThird';
 import FirstSubtopic from '../../../components/Lessons/ThirdLessonComponents/FirstSubtopicThird';

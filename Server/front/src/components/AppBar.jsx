@@ -2,26 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
-import '../styles/AppBar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import UploadPhotoModal from './UploadPhotoModal';
+import Switch from './Switch';
+import styles from '../styles/AppBar.module.css';
 
 const AppBar = ({ title }) => {
     const { user } = useContext(UserContext);
     const [photoUrl, setPhotoUrl] = useState('');
-    const [isPhotoLoaded, setIsPhotoLoaded] = useState(() => {
-        return localStorage.getItem('isPhotoLoaded') === 'true';
-    });
-    const [isDarkTheme, setIsDarkTheme] = useState(() => {
-        const storedTheme = localStorage.getItem('theme');
-        return storedTheme === 'dark';
-    });
-    const [currentTime, setCurrentTime] = useState(() => {
-        return new Date().toLocaleString();
-    });
+    const [isPhotoLoaded, setIsPhotoLoaded] = useState(() => localStorage.getItem('isPhotoLoaded') === 'true');
+    const [isDarkTheme, setIsDarkTheme] = useState(() => localStorage.getItem('theme') === 'dark');
+    const [currentTime, setCurrentTime] = useState(() => new Date().toLocaleString());
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,7 +19,6 @@ const AppBar = ({ title }) => {
         const intervalId = setInterval(() => {
             setCurrentTime(new Date().toLocaleString());
         }, 1000);
-
         return () => clearInterval(intervalId);
     }, []);
 
@@ -54,13 +43,11 @@ const AppBar = ({ title }) => {
             setPhotoUrl(url);
 
             if (!isPhotoLoaded) {
-                toast.success('Фото успешно загружено!');
                 setIsPhotoLoaded(true);
                 localStorage.setItem('isPhotoLoaded', 'true');
             }
         } catch (error) {
             console.error('Ошибка при загрузке фото:', error);
-            toast.error('Ошибка при загрузке фото.');
         }
     };
 
@@ -68,21 +55,10 @@ const AppBar = ({ title }) => {
         fetchPhoto();
     }, [user]);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-    };
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const closeMenu = () => setIsMenuOpen(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     const handlePhotoUpload = async (file) => {
         if (!user || !user.id) return;
@@ -92,43 +68,35 @@ const AppBar = ({ title }) => {
 
         try {
             await axios.post(`http://localhost:8080/api/images/upload/user/${user.id}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
-            toast.success('Фото успешно загружено!');
             fetchPhoto();
             setIsModalOpen(false);
         } catch (error) {
             console.error('Ошибка при загрузке фото:', error);
-            toast.error('Ошибка при загрузке фото.');
         }
     };
 
     return (
-        <div className='app-bar'>
-            <ToastContainer />
-            <div className="theme-toggle" onClick={toggleTheme}>
-                <FontAwesomeIcon icon={isDarkTheme ? faMoon : faSun} />
+        <div className={styles.appBar}>
+            {/* Используем компонент Switch */}
+            <div className={styles.themeToggle}>
+                <Switch isChecked={isDarkTheme} onChange={toggleTheme} />
             </div>
-            <div className="app-bar-title">{title}</div>
-            <div className="time-date">
-                {currentTime}
-            </div>
+            <div className={styles.appBarTitle}>{title}</div>
+            <div className={styles.timeDate}>{currentTime}</div>
             {user && photoUrl ? (
-                <div className="profile-button" onClick={toggleMenu}>
-                    <img src={photoUrl} alt="User Avatar" className="user-avatar" />
-                    <div className={`dropdown-menu ${isMenuOpen ? 'show' : ''}`}>
+                <div className={styles.profileButton} onClick={toggleMenu}>
+                    <img src={photoUrl} alt="User Avatar" className={styles.userAvatar} />
+                    <div className={`${styles.dropdownMenu} ${isMenuOpen ? styles.show : ''}`}>
                         <Link to="/profile" onClick={closeMenu} style={{ '--order': 1 }}>Profil</Link>
                         <Link to="/forum" onClick={closeMenu} style={{ '--order': 2 }}>Fórum</Link>
-                        <Link onClick={() => {
-                            closeMenu();
-                        }} style={{ '--order': 3 }}>Vystúpiť</Link>
-                        <Link onClick={openModal} style={{ '--order': 4 }}>Nahrať fotografiu</Link>
+                        <Link onClick={closeMenu} style={{ '--order': 3 }}>Vystúpiť</Link>
+                        <Link onClick={openModal} style={{ '--order': 4 }}>Nahrať фотографию</Link>
                     </div>
                 </div>
             ) : (
-                <div className="profile-button">
+                <div className={styles.profileButton}>
                     {user ? user.name : 'Гость'}
                 </div>
             )}

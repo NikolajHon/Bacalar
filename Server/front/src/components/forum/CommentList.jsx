@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/Forum.css'
 const CommentList = ({ comments }) => {
   if (!Array.isArray(comments)) {
     comments = [];

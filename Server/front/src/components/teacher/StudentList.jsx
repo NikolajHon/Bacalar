@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../../styles/teacher/StudentList.css';
 import StudentSearchModal from './StudentSearchModal';
 import { useNavigate } from 'react-router-dom';
-
-// Import FontAwesome components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 

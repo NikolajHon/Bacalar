@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import '../../styles/Forum.css'
 const NewCommentForm = ({ discussionId, onClose, onCommentAdded }) => {
   const [content, setContent] = useState('');
   const { user } = useContext(UserContext);

@@ -1,6 +1,5 @@
 import React from 'react';
 import data from '../data/TopicListData';
-import '../styles/Forum.css';
 
 const TopicSwitcher = ({ selectedTopic, onSelectTopic }) => {
     return (

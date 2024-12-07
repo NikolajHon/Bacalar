@@ -7,6 +7,7 @@
     position: relative;
     width: 70%;
     margin: 20px auto;
+    background-color: var(--secondary-color);
 }
 
 .groups-carousel {
@@ -18,7 +19,6 @@
 .slider {
     display: flex;
     position: relative;
-    width: 300px;
     justify-content: center;
     align-items: center;
 }
@@ -28,77 +28,75 @@
     width: 250px;
     height: 350px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color), 0 8px 16px var(--shadow-color);
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     z-index: 1;
-    background: #d8d8d8;
+    background: var(--background-color);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 15px;
-    color: #fff;
-
+    color: var(--text-color);
 }
-.dark-theme .slider-card{
-    background: linear-gradient(145deg, #19132c, #292a4f);
-}
-/* .dark-theme .slider-card{
-    background: linear-gradient(145deg, #1e1e1e, #2e2e2e);
-} */
 
+.dark-theme .slider-card {
+    background: var(--secondary-color);
+}
+
+/* Стили для предыдущей и следующей карточки */
 .slider-card.prev {
-    border: solid black 1px;
     transform: translateX(-120%) scale(0.8);
     opacity: 0.7;
     z-index: 0;
 }
 
 .slider-card.next {
-    border: solid black 1px;
     transform: translateX(120%) scale(0.8);
     opacity: 0.7;
     z-index: 0;
 }
 
+/* Стили для активной карточки */
 .slider-card.active {
     transform: translateX(0) scale(1.1);
     opacity: 1;
     z-index: 2;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-    border: 2px solid #0f7770;
+    box-shadow: 0 16px 32px var(--shadow-color);
+    border: 2px solid var(--primary-color);
 }
 
 .slider-card.hidden {
     display: none;
 }
 
+/* Анимация при наведении */
 .slider-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px var(--hover-color);
 }
 
 /* Стили для заголовков и метаданных внутри карточек */
 .group-title {
     font-size: 20px;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text-color);
     text-align: center;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px var(--shadow-color);
 }
 
 .group-meta {
     font-size: 14px;
-    color: #b3b3b3;
+    color: var(--text-color);
     text-align: center;
     margin-top: auto;
 }
 
 /* Стили для кнопок внутри карточек */
 .card-button {
-    background-color: #0f7770;
-    color: #ffffff;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -110,38 +108,32 @@
 }
 
 .card-button:hover {
-    background-color: #0a524d;
+    background-color: var(--hover-color);
 }
 
 .dark-theme .slider-card:hover {
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 16px var(--shadow-color);
 }
 
 .dark-theme .slider-card.active {
-    border: 2px solid #fffffc;
-}
-
-.dark-theme .slider-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    border: 2px solid var(--primary-color);
 }
 
 .dark-theme .group-title {
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 .dark-theme .card-button {
-    background-color: #00bcd4;
-    color: #121212;
+    background-color: var(--primary-color);
+    color: var(--background-color);
 }
 
 .dark-theme .card-button:hover {
-    background-color: #008ba3;
+    background-color: var(--hover-color);
 }
 
-/* Стили для кнопок переключения слайдов */
 .slider-button {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--button-background-color);
     border: none;
     padding: 10px;
     cursor: pointer;
@@ -151,12 +143,26 @@
     z-index: 3;
 }
 
-.prev {
+.slider-button.prev {
     left: -4px;
 }
 
-.next {
+.slider-button.next {
     right: -4px;
+}
+
+/* Стили изображения преподавателя */
+.teacher-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Темная тема */
+.dark-theme .teacher-image {
+    border-bottom: 1px solid var(--primary-color);
 }
 
 /* Анимация появления элементов */
@@ -169,16 +175,4 @@
         opacity: 1;
         transform: translateY(0);
     }
-}
-.teacher-image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.dark-theme span{
-    color: white;
-}
-.group-meta strong{
-    color: white;
 }

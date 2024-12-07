@@ -1,0 +1,11 @@
+.main_teacher_button{
+    padding: 10px 15px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.button_container{
+    text-align: center;
+}

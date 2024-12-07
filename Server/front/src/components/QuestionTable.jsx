@@ -1,3 +1,6 @@
+import React from 'react';
+import styles from '../styles/QuestionTable.module.css';
+
 const QuestionTable = ({ questions, answers, feedback, onHighlight }) => {
     const scrollToQuestion = (questionId) => {
         const element = document.getElementById(`question-${questionId}`);
@@ -8,27 +11,29 @@ const QuestionTable = ({ questions, answers, feedback, onHighlight }) => {
     };
 
     return (
-        <div className="question-table-container">
-            {questions.map((question, index) => { // Используем index для перечисления
+        <div className={styles.questionTableContainer}>
+            {questions.map((question, index) => {
                 const answer = answers[question.id];
                 const status = feedback[question.id];
 
-                let boxClass = 'question-box';
+                let boxClass = styles.questionBox;
                 if (answer) {
-                    boxClass += ' yellow';
+                    boxClass += ` ${styles.yellow}`;
                 }
                 if (status) {
-                    boxClass += status.startsWith('Correct') ? ' green' : ' red';
+                    boxClass += status.startsWith('Correct')
+                        ? ` ${styles.green}`
+                        : ` ${styles.red}`;
                 }
 
                 return (
-                    <div 
-                        key={question.id} 
-                        className={boxClass} 
+                    <div
+                        key={question.id}
+                        className={boxClass}
                         onClick={() => scrollToQuestion(question.id)}
                         style={{ cursor: 'pointer' }}
                     >
-                        {index + 1} {/* Отображаем порядковый номер вопроса, начиная с 1 */}
+                        {index + 1}
                     </div>
                 );
             })}

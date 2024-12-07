@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/CreateGroupForm.css'
 
 const CreateGroupForm = ({ onGroupCreated }) => {
     const [name, setName] = useState(''); // Стейт для имени группы

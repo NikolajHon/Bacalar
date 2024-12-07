@@ -1,0 +1,141 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --primary-color: #00adb5;
+    --secondary-color: #f0f0f0;
+    --border-color: #dddddd;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #393e46;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --progress-bg-color: #eeeeee;
+    --progress-color: #00adb5;
+    --input-background-color: #ffffff;
+}
+
+.bodyOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formBox {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.4s ease-out;
+    z-index: 9999;
+    border-radius: 25px;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.inputContainer {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.roleSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roleButtons {
+    display: flex;
+    margin-top: 5px;
+}
+
+.roleButtons button.active {
+    display: block;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 0.375em .75em;
+    position: relative;
+    margin-left: .0625em;
+    box-shadow: 0 0 0 0.0625em #b5bfd9;
+    letter-spacing: .05em;
+    color: #3e4963;
+    text-align: center;
+    transition: background-color .5s ease;
+}
+
+.buttonSubmit {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.message {
+    margin-top: 15px;
+    text-align: center;
+    color: var(--primary-color);
+}
+.inputField{
+    padding: 10px;
+    border-radius: 25px;
+}
+.roleButtons {
+    display: flex;
+    margin-top: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.roleButtons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.roleButtons button.active {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    font-weight: bold;
+}
+
+.roleButtons button:not(:last-child) {
+    border-right: 1px solid var(--border-color);
+}
+
+.roleButtons button:hover {
+    background-color: var(--hover-color);
+    color: var(--button-text-color);
+}

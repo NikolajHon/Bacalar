@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
-import '../../../styles/LessonsStyles/SecondLesson.css'
 
 const FirstSubtopicEleventh = ({onComplete, completed}) => {
     useEffect(() => {

@@ -13,9 +13,10 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<Task> getAllTasksById(Long id) {
+        return taskRepository.findByLessonId(id);
     }
+
 
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElse(null);

@@ -1,0 +1,150 @@
+/* Основные стили для компонента */
+.lessonQuestions {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    opacity: 0; /* Для плавного появления */
+    animation: fadeIn 0.5s ease-out forwards; /* Плавное появление */
+}
+
+/* Анимация плавного появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Секция с навигацией */
+.navigation {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Переход для темы */
+}
+
+.navigation h3 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.questionsSection {
+    text-align: center;
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.questionsSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Карточка вопроса */
+.questionItem {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: var(--input-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0; /* Для плавного появления */
+    animation: fadeIn 0.5s ease-out forwards; /* Плавное появление */
+}
+
+.questionItem:hover {
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.questionItem h3 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+}
+
+.highlight {
+    border: 2px solid var(--primary-color);
+    background-color: var(--progress-bg-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Кнопки */
+.checkAnswersButton,
+.deleteButton,
+.addQuestionButton {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkAnswersButton:hover,
+.deleteButton:hover,
+.addQuestionButton:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+/* Обратная связь (feedback) */
+.feedback {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: var(--hover-color);
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards; /* Плавное появление текста */
+}
+
+/* Кнопки внутри диалога */
+.dialogActions button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dialogActions button:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05);
+}
+
+/* Основной контент */
+.mainContent {
+    display: flex;
+    gap: 20px;
+    opacity: 0; /* Для плавного появления */
+    animation: fadeIn 0.5s ease-out forwards; /* Плавное появление */
+}
+
+.mainContent > .navigation {
+    flex: 1;
+}
+
+.mainContent > .questionsSection {
+    flex: 3;
+}
+.inputField{
+    padding: 10px;
+    border-radius: 25px;
+    width: 50%;
+}

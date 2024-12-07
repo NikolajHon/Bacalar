@@ -1,0 +1,305 @@
+/* Основной контейнер */
+.mainContainer {
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Контейнер для задач */
+.taskContainer {
+    margin: 0 auto; /* Центрирование блока по горизонтали */
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Задаем вертикальную ориентацию */
+    align-items: center; /* Центрирование содержимого */
+    justify-content: center; /* Центрирование содержимого */
+    text-align: center; /* Центрирование текста */
+    gap: 20px;
+    width: 50%;
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    margin-top: 35px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* Заголовок */
+.taskContainer h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+/* Элемент задачи */
+.taskItem {
+    background-color: var(--input-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    padding: 15px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Для плавного появления */
+    animation: fadeIn 0.5s ease-out forwards;
+    width: 100%;
+}
+
+.taskItem:hover {
+    box-shadow: 0 6px 15px var(--shadow-color);
+    transform: translateY(-5px);
+}
+
+/* Заголовок задачи */
+.taskItem h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+.taskItem h4 {
+    color: var(--primary-color);
+}
+
+/* Текст задачи */
+.taskItem p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Метка оценки */
+.mark {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Кнопка удаления задачи */
+.customDeleteButton {
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.customDeleteButton:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05);
+}
+
+/* Кнопка создания или отправки */
+.newTaskButton {
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.newTaskButton:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05);
+}
+
+
+.modalContentTask h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.formInput:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.formTextarea {
+    min-height: 100px;
+    resize: none;
+}
+
+/* Диалог */
+.dialogActions {
+    padding: 10px;
+}
+
+.dialogActions button {
+    padding: 10px 15px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dialogActions button:hover {
+    background-color: var(--hover-color);
+}
+.editorContainer {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--input-background-color);
+    overflow: hidden;
+    transition: height 0.3s ease, width 0.3s ease;
+}
+
+.editorContainer:hover {
+    height: 400px;
+}
+
+/* Редактор Monaco внутри контейнера */
+.editorContainer .monaco-editor {
+    width: 100%;
+    height: 100%;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+    .editorContainer {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .editorContainer {
+        height: 200px;
+    }
+}
+
+.tasksList{
+    align-items: center;
+}
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+.modalContentTask input,
+.modalContentTask .formTextarea {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Анимация появления модального окна */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Для адаптивности */
+@media (max-width: 768px) {
+    .modalContentTask {
+        width: 90%;
+    }
+}
+.modalContentTask {
+    background-color: var(--background-color);
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    animation: fadeIn 0.3s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Отступ между элементами */
+    max-width: 90%;
+    width: 400px; /* Фиксированная ширина */
+}
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--notification-success-text);
+    background-color: var(--notification-success-bg);
+    box-shadow: 0px 4px 6px var(--shadow-color);
+    animation: slideIn 0.3s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+}
+
+.notification.error {
+    color: var(--notification-error-text);
+    background-color: var(--notification-error-bg);
+}
+
+
+/* Анимация появления и исчезновения */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}

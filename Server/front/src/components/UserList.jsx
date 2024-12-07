@@ -1,7 +1,8 @@
-// src/components/UserList.jsx
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/MainScreenStudent.css';
+import styles from '../styles/MainScreenStudent/UserList.module.css';
+
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
@@ -20,13 +21,13 @@ const UserList = () => {
     }, []);
 
     return (
-        <div className="user-list-container fade-in">
+        <div className={styles.userListContainer}>
             <h2>Najlepší používatelia</h2>
-            <ul className="user-list">
+            <ul className={styles.userList}>
                 {users.map((user, index) => (
-                    <li key={user.id} className={`user-item place-${index + 1}`}>
-                        <div className="user-rank">#{index + 1}</div>
-                        <div className="user-info">
+                    <li key={user.id} className={`${styles.userItem} ${styles[`place-${index + 1}`]}`}>
+                        <div className={styles.userRank}>#{index + 1}</div>
+                        <div className={styles.userInfo}>
                             <h3>{user.username}</h3>
                             <p>Hodnotenie: {user.rating}</p>
                         </div>
@@ -34,6 +35,7 @@ const UserList = () => {
                 ))}
             </ul>
         </div>
+
     );
 };
 

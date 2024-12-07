@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/Forum.css'
 const CommentItem = ({ comment }) => {
   return (
     <div>

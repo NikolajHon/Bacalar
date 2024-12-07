@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/TopicListData';
-import '../styles/MainScreenStudent.css';
+import styles from '../styles/MainScreenStudent/TopicList.module.css'; 
 
 const TopicList = () => {
     const [progressData, setProgressData] = useState([]);
@@ -13,7 +13,7 @@ const TopicList = () => {
             let progress = 0;
 
             if (savedProgress) {
-                const { percent } = JSON.parse(savedProgress); // Извлекаем процент
+                const { percent } = JSON.parse(savedProgress);
                 progress = percent;
             }
 
@@ -23,10 +23,10 @@ const TopicList = () => {
             };
         });
         setProgressData(updatedData);
-    }, []); // Обновление при монтировании
+    }, []);
 
     return (
-        <div className="topic-list fade-in">
+        <div className={`${styles.topicList} fade-in`}>
             <div className="colon">
                 <h1>Pokrok v zručnostiach</h1>
                 <h4>Nasledujúce kurzy by sa mali absolvovať v poradí</h4>
@@ -34,40 +34,40 @@ const TopicList = () => {
             {progressData.map((element, index) => {
                 const progress = element.progress || 0;
                 return (
-                    <div className="topic-item" key={index}>
-                        <div className="topic-item-content">
-                            <div className="progress-circle">
+                    <div className={styles.topicItem} key={index}>
+                        <div className={styles.topicItemContent}>
+                            <div className={styles.progressCircle}>
                                 <svg viewBox="0 0 36 36">
                                     <path
-                                        className="circle-bg"
+                                        className={styles.circleBg}
                                         d="M18 2.0845
                                            a 15.9155 15.9155 0 0 1 0 31.831
                                            a 15.9155 15.9155 0 0 1 0 -31.831"
                                     />
                                     <path
-                                        className="circle"
+                                        className={styles.circle}
                                         strokeDasharray={`${progress}, 100`}
                                         d="M18 2.0845
                                            a 15.9155 15.9155 0 0 1 0 31.831
                                            a 15.9155 15.9155 0 0 1 0 -31.831"
                                     />
                                 </svg>
-                                <span className="percentage">{progress}%</span>
+                                <span className={styles.percentage}>{progress}%</span>
                             </div>
-                            <div className="topic-content">
+                            <div className={styles.topicContent}>
                                 <h3>{element.h3}</h3>
                                 <p>{element.p}</p>
-                                <div className="link-container">
-                                    <Link to={`/lessons/${element.Link}`} className="lesson-link">
+                                <div className={styles.linkContainer}>
+                                    <Link to={`/lessons/${element.Link}`} className={styles.lessonLink}>
                                         Prejsť na lekciu
                                     </Link>
-                                    <Link to={`/lessons/test/${index}`} className="test-link">
+                                    <Link to={`/lessons/test/${index}`} className={styles.testLink}>
                                         Testovanie vedomostí
                                     </Link>
-                                    <Link to={`/lessons/tasks/${index}`} className="test-link">
+                                    <Link to={`/lessons/tasks/${index}`} className={styles.testLink}>
                                         Úlohy
                                     </Link>
-                                    <Link to={`lessons/practice/${index}`} className="test-link">
+                                    <Link to={`lessons/practice/${index}`} className={styles.testLink}>
                                         Prax
                                     </Link>
                                 </div>

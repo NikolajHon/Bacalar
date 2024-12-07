@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../contexts/UserContext';
-import '../../styles/Forum.css';
 
 const NewDiscussionForm = ({ lessonId, onSuccess }) => {
     const { user } = useContext(UserContext);

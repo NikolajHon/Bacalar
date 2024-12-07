@@ -1,30 +1,29 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import {useParams} from "react-router-dom";
-import "../../styles/Tasks.css";
+import { useParams } from "react-router-dom";
 import AppBar from "../../components/AppBar";
-import {UserContext} from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import MonacoEditor from "@monaco-editor/react";
-
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
-import {ToastContainer, toast} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import styles from "../../styles/Task.module.css";
 
 const Tasks = () => {
-    const {id} = useParams();
-    const {user} = useContext(UserContext);
+    const { id } = useParams();
+    console.log("ID lekcie z URL:", id);
+    const { user } = useContext(UserContext);
     const [tasks, setTasks] = useState([]);
     const [solutions, setSolutions] = useState({});
     const [grade, setGrade] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedTaskId, setSelectedTaskId] = useState(null);
+    const [notification, setNotification] = useState(null);
+
     const [newTask, setNewTask] = useState({
         title: "",
         description: "",
@@ -34,22 +33,33 @@ const Tasks = () => {
     });
     const [loading, setLoading] = useState(true);
 
+    const handleOutsideClick = (e) => {
+        if (e.target.className.includes("modalOverlay")) {
+            setShowModal(false);
+        }
+    };
+
+    const showNotification = (message, type = "success") => {
+        setNotification({ message, type });
+        setTimeout(() => setNotification(null), 3000);
+    };
+
     useEffect(() => {
         setLoading(true);
         axios
-            .get(`http://localhost:8080/api/tasks?lessonId=${id}`)
+            .get(`http://localhost:8080/api/tasks/getByLesson/${id}`)
             .then((response) => {
                 setTasks(response.data);
                 setLoading(false);
             })
             .catch((error) => {
-                console.error("Chyba pri získavaní úloh:", error);
+                console.error("Chyba pri načítavaní úloh:", error);
                 setLoading(false);
             });
 
         if (user.id) {
             axios
-                .get(`http://localhost:8080/api/solutions?userId=${user.id}&taskid=${id}`)
+                .get(`http://localhost:8080/api/solutions?userId=${user.id}&lessonId=${id}`)
                 .then((response) => {
                     const userSolutions = response.data;
                     const formattedSolutions = {};
@@ -66,7 +76,7 @@ const Tasks = () => {
                     setGrade(formattedGrade);
                 })
                 .catch((error) => {
-                    console.error("Chyba pri získavaní riešení:", error);
+                    console.error("Chyba pri načítavaní riešení:", error);
                 });
         }
     }, [id, user.id]);
@@ -91,22 +101,20 @@ const Tasks = () => {
             grade: 0,
         };
 
-        console.log(
-            "Odosielané JSON na server:",
-            JSON.stringify(solution, null, 2)
-        );
-
         axios
             .post("http://localhost:8080/api/solutions", solution)
-            .then((response) => {
+            .then(() => {
+                console.log("Riešenie odoslané");
+                showNotification("Riešenie bolo úspešne odoslané!");
             })
             .catch((error) => {
                 console.error("Chyba pri odosielaní riešenia:", error);
+                showNotification("Chyba pri odosielaní riešenia", "error");
             });
     };
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setNewTask((prevState) => ({
             ...prevState,
             [name]: value,
@@ -115,6 +123,7 @@ const Tasks = () => {
 
     const handleCreateTask = () => {
         if (!newTask.title || !newTask.description || !newTask.deadline) {
+            showNotification("Vyplňte všetky polia", "error");
             return;
         }
 
@@ -135,9 +144,11 @@ const Tasks = () => {
                     deadline: "",
                     lessonId: id,
                 });
+                showNotification("Úloha bola úspešne pridaná!");
             })
             .catch((error) => {
-                console.error("Chyba pri vytváraní úlohy:", error);
+                console.error("Chyba pri pridávaní úlohy:", error);
+                showNotification("Nepodarilo sa pridať úlohu", "error");
             });
     };
 
@@ -150,148 +161,149 @@ const Tasks = () => {
         setOpenDialog(false);
         axios
             .delete(`http://localhost:8080/api/tasks/${selectedTaskId}`)
-            .then((response) => {
+            .then(() => {
                 setTasks(tasks.filter((task) => task.id !== selectedTaskId));
+                showNotification("Úloha bola úspešne odstránená!");
             })
             .catch((error) => {
                 console.error("Chyba pri odstraňovaní úlohy:", error);
+                showNotification("Nepodarilo sa odstrániť úlohu", "error");
             });
     };
 
     if (loading) {
-        return <p>Načítavam...</p>;
+        return <p>Načítavanie...</p>;
     }
 
     return (
-        <div className="main-container">
-            <AppBar/>
-            <div className="task-container">
-                <h1>
-                    {user.role === "ROLE_TEACHER"
-                        ? `Úlohy pre lekciu ${id}`
-                        : `Otázky pre lekciu ${id}`}
-                </h1>
+        <div>
+            <AppBar />
+
+            {notification && (
+                <div
+                    className={`${styles.notification} ${
+                        notification.type === "error" ? styles.error : styles.success
+                    }`}
+                >
+                    {notification.message}
+                </div>
+            )}
+
+            <div className={styles.taskContainer}>
+                <h1>Úlohy pre lekciu {+id+1}</h1>
 
                 {tasks.map((task) => (
-                    <div key={task.id} className="task-item">
-                        {solutions[task.id] ? (
-                            user.role !== "ROLE_TEACHER" ? (
-                                grade[task.id] !== undefined ? (
-                                    <p className="mark">{grade[task.id]}</p>
-                                ) : (
-                                    <p>Nemáte hodnotenie</p>
-                                )
-                            ) : (
-                                <p></p>
-                            )
-                        ) : (
-                            <p>Žiadne riešenie</p>
-                        )}
-
+                    <div key={task.id} className={styles.taskItem}>
                         <h2>{task.title}</h2>
-                        <p>{task.description}</p>
+                        <h4>{task.description}</h4>
 
                         {user.role === "ROLE_TEACHER" ? (
-                            <>
-                                <button
-                                    className="custom-delete-button"
-                                    onClick={() => handleDeleteClick(task.id)}
-                                >
-                                    ODSTRÁNIŤ ÚLOHU
-                                </button>
-                            </>
+                            <button
+                                className={styles.customDeleteButton}
+                                onClick={() => handleDeleteClick(task.id)}
+                            >
+                                ODSTRÁNIŤ ÚLOHU
+                            </button>
                         ) : (
-                            <>
-                                <MonacoEditor
-                                    height="500px"
-                                    width="1000px"
-                                    language="c"
-                                    theme="vs-dark"
-                                    value={solutions[task.id] || ""}
-                                    onChange={(value) => handleSolutionChange(task.id, value)}
-                                    options={{
-                                        selectOnLineNumbers: true,
-                                        autoClosingBrackets: "always",
-                                        autoClosingQuotes: "always",
-                                        formatOnType: true,
-                                        wordWrap: "on",
-                                        suggestOnTriggerCharacters: true,
-                                        minimap: {enabled: false},
-                                        quickSuggestions: {
-                                            other: true,
-                                            comments: true,
-                                            strings: true,
-                                        },
-                                        parameterHints: {enabled: true},
-                                        tabCompletion: "on",
-                                    }}
-                                />
+                            <div>
+                                <div className={styles.editorContainer}>
+                                    <MonacoEditor
+                                        className="monaco-editor"
+                                        language="c"
+                                        theme="vs-dark"
+                                        value={solutions[task.id] || ""}
+                                        options={{ automaticLayout: true }}
+                                        onChange={(value) =>
+                                            handleSolutionChange(task.id, value)
+                                        }
+                                    />
+                                </div>
 
-                                <button className={'new-task-button'} onClick={() => handleSubmitSolution(task.id)}>
+                                <button
+                                    className={styles.newTaskButton}
+                                    onClick={() => handleSubmitSolution(task.id)}
+                                >
                                     Odoslať kód
                                 </button>
-                            </>
+                            </div>
                         )}
                     </div>
                 ))}
 
                 {user.role === "ROLE_TEACHER" && (
                     <>
-                        <button className={'new-task-button'} onClick={() => setShowModal(true)}>
+                        <button
+                            className={styles.newTaskButton}
+                            onClick={() => setShowModal(true)}
+                        >
                             Pridať novú úlohu
                         </button>
 
                         {showModal && (
-                            <div className="modal-content-task">
-                                <h2 style={{textAlign: "center", color: "#fff"}}>
-                                    Pridať novú úlohu
-                                </h2>
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        name="title"
-                                        placeholder="Názov"
-                                        value={newTask.title}
-                                        onChange={handleInputChange}
-                                        className="form-input"
-                                    />
-                                </div>
-                                <div
-                                    name="description"
-                                    placeholder="Popis"
-                                    contentEditable="true"
-                                    onInput={(e) => handleInputChange({
-                                        target: {
-                                            name: "description",
-                                            value: e.currentTarget.textContent
-                                        }
-                                    })}
-                                    className="form-input form-textarea"
-                                />
+                            <div
+                                className={styles.modalOverlay}
+                                onClick={handleOutsideClick}
+                            >
+                                <div className={styles.modalContentTask}>
+                                    <h2>Pridať novú úlohu</h2>
+                                    <div className={styles.formGroup}>
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            placeholder="Názov"
+                                            value={newTask.title}
+                                            onChange={handleInputChange}
+                                            className={styles.formInput}
+                                        />
+                                    </div>
+                                    <div
+                                        name="description"
+                                        contentEditable="true"
+                                        onInput={(e) => {
+                                            const value = e.target.innerText;
+                                            handleInputChange({
+                                                target: {
+                                                    name: "description",
+                                                    value: value,
+                                                },
+                                            });
+                                        }}
+                                        className={`${styles.formInput} ${styles.formTextarea}`}
+                                        style={{ minHeight: "100px" }}
+                                    >
+                                        {newTask.description}
+                                    </div>
 
-                                <div className="form-group">
-                                    <input
-                                        type="datetime-local"
-                                        name="deadline"
-                                        placeholder="Termín"
-                                        value={newTask.deadline}
-                                        onChange={handleInputChange}
-                                        className="form-input"
-                                    />
+                                    <div className={styles.formGroup}>
+                                        <input
+                                            type="datetime-local"
+                                            name="deadline"
+                                            placeholder="Termín"
+                                            value={newTask.deadline}
+                                            onChange={handleInputChange}
+                                            className={styles.formInput}
+                                        />
+                                    </div>
+                                    <button
+                                        onClick={handleCreateTask}
+                                        className={styles.newTaskButton}
+                                    >
+                                        VYTVORIŤ ÚLOHU
+                                    </button>
+                                    <button
+                                        onClick={() => setShowModal(false)}
+                                        className={styles.newTaskButton}
+                                    >
+                                        SPÄŤ
+                                    </button>
                                 </div>
-                                <button onClick={handleCreateTask} className="new-task-button">
-                                    VYTVORIŤ ÚLOHU
-                                </button>
-                                <button
-                                    onClick={() => setShowModal(false)}
-                                    className="new-task-button"
-                                >
-                                    SPÄŤ
-                                </button>
                             </div>
                         )}
 
-                        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+                        <Dialog
+                            open={openDialog}
+                            onClose={() => setOpenDialog(false)}
+                        >
                             <DialogTitle>Potvrdiť odstránenie</DialogTitle>
                             <DialogContent>
                                 <DialogContentText>
@@ -299,14 +311,14 @@ const Tasks = () => {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={() => setOpenDialog(false)}>Zrušiť</Button>
+                                <Button onClick={() => setOpenDialog(false)}>
+                                    Zrušiť
+                                </Button>
                                 <Button onClick={handleConfirmDelete} color="error">
                                     Odstrániť
                                 </Button>
                             </DialogActions>
                         </Dialog>
-
-                        <ToastContainer/>
                     </>
                 )}
             </div>

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
-import '../../styles/Forum.css'
 const DiscussionItem = ({ discussion, onDelete }) => {
     const { user } = useContext(UserContext);
 

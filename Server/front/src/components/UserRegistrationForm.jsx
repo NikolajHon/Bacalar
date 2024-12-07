@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/FormStyles.css';
+import styles from '../styles/UserRegistrationForm.module.css';
 
-const UserRegistrationForm = ({ onUserCreated, onClose }) => {
+const UserRegistrationForm = React.forwardRef(({ onUserCreated, onClose }, ref) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
-        role: 'ROLE_USER', // Начальное значение роли
+        role: 'ROLE_USER',
     });
 
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        const form = document.querySelector('.form-box');
+        const form = document.querySelector(`.${styles.formBox}`);
         if (form) {
-            form.classList.add('fade-in');
+            form.classList.add(styles.fadeIn);
         }
     }, []);
 
@@ -40,8 +40,8 @@ const UserRegistrationForm = ({ onUserCreated, onClose }) => {
             const response = await axios.post('http://localhost:8080/api/users/register', formData);
             console.log(response.data);
             setMessage('User registered successfully. Check your email');
-            onUserCreated(response.data); // Передаем данные в основной компонент
-            onClose(); // Закрываем модальное окно после успешной регистрации
+            onUserCreated(response.data);
+            onClose();
         } catch (error) {
             console.error('There was an error registering the user!', error);
             if (error.response && error.response.data) {
@@ -53,70 +53,91 @@ const UserRegistrationForm = ({ onUserCreated, onClose }) => {
     };
 
     return (
-        <div className="form-box">
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="input-container">
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="input-container">
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="input-container role-selection">
-                    <label>Role:</label>
-                    <div className="role-buttons">
-                        <button
-                            type="button"
-                            className={formData.role === 'ROLE_USER' ? 'active' : ''}
-                            onClick={() => handleRoleChange('ROLE_USER')}
-                        >
-                            User
-                        </button>
-                        <button
-                            type="button"
-                            className={formData.role === 'ROLE_TEACHER' ? 'active' : ''}
-                            onClick={() => handleRoleChange('ROLE_TEACHER')}
-                        >
-                            Teacher
-                        </button>
-                        <button
-                            type="button"
-                            className={formData.role === 'ROLE_ADMIN' ? 'active' : ''}
-                            onClick={() => handleRoleChange('ROLE_ADMIN')}
-                        >
-                            Admin
-                        </button>
+        <div
+            ref={ref}
+            className={styles.bodyOverlay}
+            onClick={(e) => {
+                // Закрываем модальное окно, если клик был вне formBox
+                onClose();
+            }}
+        >
+            <div
+                className={styles.formBox}
+                onClick={(e) => {
+                    // Останавливаем всплытие события клика
+                    e.stopPropagation();
+                }}
+            >
+                <h2>Sign Up</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.inputContainer}>
+                        <label>Username:</label>
+                        <input
+                            className={styles.inputField}
+                            type="text"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                        />
                     </div>
-                </div>
-                <button type="submit">Sign Up</button>
-            </form>
-            {message && <p className="message">{message}</p>}
+                    <div className={styles.inputContainer}>
+                        <label>Email:</label>
+                        <input
+                            className={styles.inputField}
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label>Password:</label>
+                        <input
+                            className={styles.inputField}
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className={`${styles.inputContainer} ${styles.roleSelection}`}>
+                        <label>Role:</label>
+                        <div className={styles.roleButtons}>
+                            <button
+                                type="button"
+                                className={formData.role === 'ROLE_USER' ? styles.active : ''}
+                                onClick={() => handleRoleChange('ROLE_USER')}
+                            >
+                                User
+                            </button>
+                            <button
+                                type="button"
+                                className={formData.role === 'ROLE_TEACHER' ? styles.active : ''}
+                                onClick={() => handleRoleChange('ROLE_TEACHER')}
+                            >
+                                Teacher
+                            </button>
+                            <button
+                                type="button"
+                                className={formData.role === 'ROLE_ADMIN' ? styles.active : ''}
+                                onClick={() => handleRoleChange('ROLE_ADMIN')}
+                            >
+                                Admin
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" className={styles.buttonSubmit}>
+                        Sign Up
+                    </button>
+                </form>
+                {message && <p className={styles.message}>{message}</p>}
+            </div>
         </div>
     );
-};
+
+});
 
 export default UserRegistrationForm;

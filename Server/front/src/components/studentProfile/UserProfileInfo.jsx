@@ -1,4 +1,4 @@
-// UserProfileInfo.jsx
+
 import React from 'react';
 
 const UserProfileInfo = ({ user }) => {

@@ -4,7 +4,6 @@ import DiscussionList from '../../components/forum/DiscussionList';
 import NewDiscussionForm from '../../components/forum/NewDiscussionForm';
 import AppBar from '../../components/AppBar';
 import TopicSwitcher from '../../components/TopicSwitcher';
-import '../../styles/Forum.css';
 
 const ForumPage = () => {
     const [discussions, setDiscussions] = useState([]);

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
-import Obr1 from "../../../images/SeventhPageImg/Obr1.png"
 
 const FirstSubtopicEighth = ({onComplete, completed}) => {
     useEffect(() => {

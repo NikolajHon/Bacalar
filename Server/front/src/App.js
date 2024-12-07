@@ -53,7 +53,7 @@ const App = () => {
                         <Route path="/lessons/socket--networking" element={<EleventhLesson/>} />
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/lessons/test/:lessonId" element={<LessonQuestions />} />
-                        <Route path="/lessons/tasks/:lessonId" element={<TasksStudent />} />
+                        <Route path="/lessons/tasks/:id" element={<TasksStudent />} />
                         <Route path="lessons/practice/:lessonId" element={<PracticesList />} />
                         <Route path="/forum" element={<ForumPage />} />
                         <Route path="/discussion/:id" element={<DiscussionPage />} />

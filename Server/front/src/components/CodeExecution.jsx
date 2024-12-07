@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import Editor from '@monaco-editor/react';
 import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
-import '../styles/CodeExecution.css';
 import AppBar from './AppBar';
 import ErrorMessage from '../components/Error/ErrorMessage'; 
 

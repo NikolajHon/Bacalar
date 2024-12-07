@@ -1,0 +1,68 @@
+/* Контейнер для таблицы вопросов */
+.questionTableContainer {
+    display: flex;
+    flex-wrap: wrap; /* Чтобы элементы переносились на новую строку */
+    gap: 10px; /* Расстояние между блоками */
+    padding: 10px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* Стиль для каждого блока вопроса */
+.questionBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--input-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    animation: fadeIn 0.5s ease-out forwards; /* Анимация плавного появления */
+    opacity: 0; /* Для плавного появления */
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Указатель наводится */
+.questionBox:hover {
+    background-color: var(--hover-color);
+    color: var(--button-text-color);
+    transform: scale(1.1); /* Увеличение при наведении */
+    cursor: pointer;
+}
+
+/* Жёлтая подсветка для вопросов с введённым ответом */
+.yellow {
+    background-color: #fdd835; /* Жёлтый цвет */
+    color: #1a1a1a; /* Тёмный текст для контраста */
+}
+
+/* Зелёная подсветка для правильных ответов */
+.green {
+    background-color: #4caf50; /* Зелёный цвет */
+    color: #ffffff; /* Белый текст */
+}
+
+/* Красная подсветка для неправильных ответов */
+.red {
+    background-color: #f44336; /* Красный цвет */
+    color: #ffffff; /* Белый текст */
+}

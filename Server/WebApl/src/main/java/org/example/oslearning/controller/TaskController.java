@@ -15,9 +15,9 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    @GetMapping("getByLesson/{id}")
+    public List<Task> getAllTasksById(@PathVariable Long id) {
+        return taskService.getAllTasksById(id);
     }
 
     @GetMapping("/{id}")

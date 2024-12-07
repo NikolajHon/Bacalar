@@ -23,7 +23,8 @@ public class EmailServiceImpl implements EmailService {
         String subject = "Подтверждение регистрации на гея";
         String confirmationUrl = "http://localhost:8080/api/users/confirm?token=" + token;
         System.out.println("Generated confirmation URL: " + confirmationUrl);
-        String message = "Пожалуйста, нажмите кнопку ниже, чтобы подтвердить что вы гей : ";
+        String message = "Good afternoon!\n" +
+                "We would like to inform you that there was an error in our company and we sent you an offer by mistake. We apologize to you. We remain in contact with you and if anything we will write to you. : ";
         String buttonHtml = "<a href=\"" + confirmationUrl + "\">Подтвердить</a>";
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();

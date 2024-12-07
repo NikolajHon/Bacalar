@@ -5,12 +5,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  animation: App-logo-spin infinite 20s linear;
 }
 
 .App-header {
@@ -37,23 +32,48 @@
   }
 }
 :root {
-  --background-color: #f0f0f0;
-  --text-color: #111;
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --primary-color: #00adb5;
+  --secondary-color: #f0f0f0;
+  --border-color: #dddddd;
+  --button-background-color: #00adb5;
+  --button-text-color: #ffffff;
+  --hover-color: #393e46;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --progress-bg-color: #eeeeee;
+  --progress-color: #00adb5;
+  --input-background-color: #ffffff;
+  --notification-success-bg: #dff6f7; /* Светло-бирюзовый */
+  --notification-success-text: #007f82; /* Темно-бирюзовый */
+  --notification-error-bg: #fde4e4; /* Светло-красный */
+  --notification-error-text: #b71c1c; /* Темно-красный */
 }
 
-body.dark-theme {
-  --background-color: #111828;
-  --text-color: #ffffff;
+/* Темная тема */
+.dark-theme {
+  --background-color: #1a1a1a;
+  --text-color: #eeeeee;
+  --primary-color: #00adb5;
+  --secondary-color: #222831;
+  --border-color: #393e46;
+  --button-background-color: #00adb5;
+  --button-text-color: #ffffff;
+  --hover-color: #00adb5;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --progress-bg-color: #393e46;
+  --progress-color: #00adb5;
+  --input-background-color: #393e46;
+  --notification-success-bg: #00494d; /* Темный бирюзовый */
+  --notification-success-text: #a8e3e5; /* Светло-бирюзовый */
+  --notification-error-bg: #4d2020; /* Темный красный */
+  --notification-error-text: #f5a6a6; /* Светло-красный */
+
 }
-
-
-body {
-  color: var(--text-color);
+html, body {
+  height: 100%;
+  background-color: var(--secondary-color); /* Цвет из вашей палитры */
   margin: 0;
   padding: 0;
-  height: 100%;
-}
-body.dark-theme {
-  background-color: #111828;
-  color: #ffffff;
+  overflow-x: hidden;
 }

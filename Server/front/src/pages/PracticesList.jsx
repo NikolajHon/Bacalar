@@ -6,7 +6,6 @@ import AppBar from '../components/AppBar';
 import { UserContext } from '../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import '../styles/PracticesList.css';
 
 const PracticesList = () => {
   const { lessonId } = useParams();

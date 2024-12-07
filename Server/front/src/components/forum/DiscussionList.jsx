@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import DiscussionItem from './DiscussionItem';
-import '../../styles/Forum.css';
-
 const DiscussionList = ({ discussions, onDelete }) => {
     useEffect(() => {
         console.log('Обновленные обсуждения:', discussions);

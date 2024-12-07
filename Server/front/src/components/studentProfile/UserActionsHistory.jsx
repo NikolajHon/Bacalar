@@ -1,4 +1,4 @@
-// UserActionsHistory.jsx
+
 import React from 'react';
 
 const UserActionsHistory = ({ actions }) => {

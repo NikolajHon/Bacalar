@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/FormStyles.css';
 import { Link } from "react-router-dom";
 
 const RegistrationForm = () => {

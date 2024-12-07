@@ -1,6 +1,5 @@
 import React from 'react';
 import Slider from 'react-slick';
-import '../../styles/teacher/GroupsCarousel.css';
 
 const GroupsCarousel = ({ groups, onCardClick }) => {
     const settings = {

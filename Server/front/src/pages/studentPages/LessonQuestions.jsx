@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import '../../styles/LessonQuestions.css';
 import AppBar from '../../components/AppBar';
 import { UserContext } from '../../contexts/UserContext';
 import QuestionTable from '../../components/QuestionTable';
@@ -11,8 +10,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from '../../styles/LessonQuestions.module.css';
 
 const LessonQuestions = () => {
     const { lessonId } = useParams();
@@ -34,13 +33,13 @@ const LessonQuestions = () => {
                 const response = await axios.get(`http://localhost:8080/api/questions/lesson/${lessonId}`);
                 setQuestions(response.data);
             } catch (error) {
-                console.error('Ошибка при загрузке вопросов:', error);
+                console.error('Chyba pri načítaní otázok:', error);
             }
         };
 
         fetchQuestions();
 
-        // Устанавливаем начальную тему
+        // Nastavenie počiatočnej témy
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark-theme');
@@ -75,10 +74,10 @@ const LessonQuestions = () => {
                 answers[question.id] &&
                 answers[question.id].trim().toLowerCase() === question.answer.toLowerCase()
             ) {
-                newFeedback[question.id] = 'Верно!';
+                newFeedback[question.id] = 'Správne!';
                 correctAnswersCount++;
             } else {
-                newFeedback[question.id] = `Неверно! Правильный ответ: ${question.answer}`;
+                newFeedback[question.id] = `Nesprávne! Správna odpoveď: ${question.answer}`;
             }
         });
 
@@ -92,10 +91,10 @@ const LessonQuestions = () => {
             .post(`http://localhost:8080/api/users/changeRating?userId=${user.id}&ratingChange=${ratingIncrease}`)
             .then(() => {
                 setUser({ ...user, rating: newRating });
-                console.log('Рейтинг обновлен:', newRating);
+                console.log('Hodnotenie bolo aktualizované:', newRating);
             })
             .catch((error) => {
-                console.error('Ошибка при обновлении рейтинга:', error.response || error.message);
+                console.error('Chyba pri aktualizácii hodnotenia:', error.response || error.message);
             });
     };
 
@@ -112,16 +111,13 @@ const LessonQuestions = () => {
         try {
             await axios.delete(`http://localhost:8080/api/questions/${questionId}`);
             setQuestions(questions.filter((question) => question.id !== questionId));
-            toast.success('Вопрос успешно удален');
         } catch (error) {
-            console.error('Ошибка при удалении вопроса:', error);
-            toast.error('Не удалось удалить вопрос.');
+            console.error('Chyba pri odstraňovaní otázky:', error);
         }
     };
 
     const handleAddQuestion = async () => {
         if (!newQuestion.text || !newQuestion.answer) {
-            toast.error('Пожалуйста, заполните все поля.');
             return;
         }
 
@@ -137,19 +133,17 @@ const LessonQuestions = () => {
             setQuestions([...questions, ...response.data]);
             setNewQuestion({ text: '', answer: '', lessonId: lessonId });
             setShowAddModal(false);
-            toast.success('Вопрос успешно добавлен');
         } catch (error) {
-            console.error('Ошибка при добавлении вопроса:', error);
-            toast.error('Не удалось добавить вопрос.');
+            console.error('Chyba pri pridávaní otázky:', error);
         }
     };
 
     return (
-        <div className="lesson-questions">
+        <div className={styles.lessonQuestions}>
             <AppBar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-            <div className="main-content">
-                <div className="navigation">
-                    <h3>Навигация по тесту</h3>
+            <div className={styles.mainContent}>
+                <div className={styles.navigation}>
+                    <h3>Navigácia po teste</h3>
                     <QuestionTable
                         questions={questions}
                         answers={answers}
@@ -157,35 +151,38 @@ const LessonQuestions = () => {
                         onHighlight={handleHighlight}
                     />
                 </div>
-                <div className="questions-section">
-                    <h2>Вопросы для урока {lessonId}</h2>
+                <div className={styles.questionsSection}>
+                    <h2>Otázky pre lekciu {+lessonId+1}</h2>
                     {questions.map((question) => (
                         <div
                             key={question.id}
                             id={`question-${question.id}`}
-                            className={`question-item ${highlightedQuestion === question.id ? 'highlight' : ''}`}
+                            className={`${styles.questionItem} ${
+                                highlightedQuestion === question.id ? styles.highlight : ''
+                            }`}
                         >
                             <h3>{question.text}</h3>
                             {role === 'null' ? (
                                 <>
                                     <input
+                                        className={styles.inputField}
                                         type="text"
                                         value={answers[question.id] || ''}
                                         onChange={(e) => handleAnswerChange(e, question.id)}
                                     />
                                     {showAnswers && feedback[question.id] && (
-                                        <p className="feedback">{feedback[question.id]}</p>
+                                        <p className={styles.feedback}>{feedback[question.id]}</p>
                                     )}
                                 </>
                             ) : (
                                 <>
-                                    <p>Ответ: {question.answer}</p>
+                                    <p>Odpoveď: {question.answer}</p>
                                     {role === 'ROLE_TEACHER' && (
                                         <button
-                                            className="delete-button"
+                                            className={styles.deleteButton}
                                             onClick={() => handleDelete(question.id)}
                                         >
-                                            Удалить задачу
+                                            Odstrániť úlohu
                                         </button>
                                     )}
                                 </>
@@ -193,8 +190,8 @@ const LessonQuestions = () => {
                         </div>
                     ))}
                     {role === 'null' && (
-                        <button className="check-answers-button" onClick={checkAnswers}>
-                            Проверить ответы
+                        <button className={styles.checkAnswersButton} onClick={checkAnswers}>
+                            Skontrolovať odpovede
                         </button>
                     )}
                     {role === 'ROLE_TEACHER' && (
@@ -203,19 +200,19 @@ const LessonQuestions = () => {
                                 variant="contained"
                                 color="primary"
                                 onClick={() => setShowAddModal(true)}
-                                className="add-question-button"
+                                className={styles.addQuestionButton}
                             >
-                                Добавить новый вопрос
+                                Pridať novú otázku
                             </Button>
 
                             <Dialog open={showAddModal} onClose={() => setShowAddModal(false)}>
-                                <DialogTitle>Добавить новый вопрос</DialogTitle>
+                                <DialogTitle>Pridať novú otázku</DialogTitle>
                                 <DialogContent>
                                     <TextField
                                         autoFocus
                                         margin="dense"
                                         name="text"
-                                        label="Вопрос"
+                                        label="Otázka"
                                         type="text"
                                         fullWidth
                                         value={newQuestion.text}
@@ -226,7 +223,7 @@ const LessonQuestions = () => {
                                     <TextField
                                         margin="dense"
                                         name="answer"
-                                        label="Ответ"
+                                        label="Odpoveď"
                                         type="text"
                                         fullWidth
                                         value={newQuestion.answer}
@@ -235,20 +232,15 @@ const LessonQuestions = () => {
                                         }
                                     />
                                 </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={() => setShowAddModal(false)} color="primary">
-                                        Отмена
-                                    </Button>
-                                    <Button onClick={handleAddQuestion} color="primary">
-                                        Добавить вопрос
-                                    </Button>
+                                <DialogActions className={styles.dialogActions}>
+                                    <Button onClick={() => setShowAddModal(false)}>Zrušiť</Button>
+                                    <Button onClick={handleAddQuestion}>Pridať otázku</Button>
                                 </DialogActions>
                             </Dialog>
                         </>
                     )}
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 };

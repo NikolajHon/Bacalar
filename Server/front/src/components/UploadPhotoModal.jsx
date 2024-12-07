@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/UploadPhotoModal.css'
 const UploadPhotoModal = ({ onClose, onUpload }) => {
     const [selectedFile, setSelectedFile] = useState(null);
 

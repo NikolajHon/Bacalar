@@ -1,6 +1,4 @@
-// src/components/teacher/GroupItem.jsx
 import React from 'react';
-import '../../styles/teacher/GroupList.css';
 
 const GroupItem = ({ group }) => {
     return (

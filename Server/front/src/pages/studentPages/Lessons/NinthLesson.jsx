@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import '../../../styles/LessonsStyles/SecondLesson.css';
 import AppBar from '../../../components/AppBar';
 import LessonOverview from "../../../components/Lessons/NinthLessonComponents/LessonOverviewNinth";
 import FirstSubtopicNinth from "../../../components/Lessons/NinthLessonComponents/FirstSubtopicNinth";

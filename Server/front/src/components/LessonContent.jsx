@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/LessonContent.css';
 
 const LessonContent = ({ subtopics }) => {
     const [activeSection, setActiveSection] = useState(null);

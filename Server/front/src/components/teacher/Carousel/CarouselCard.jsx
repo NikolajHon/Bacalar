@@ -1,24 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import StudentList from '../StudentList';
-import buchek from '../../../images/buchek.jpg'
-import other from '../../../images/logo.png'
+import buchek from '../../../images/buchek.jpg';
+import other from '../../../images/logo.png';
 import './CarouselCard.css';
 
 const Slider = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([
+        {
+            id: 1,
+            content: 'Math Group 101',
+            teacher: {
+                username: 'Buchek',
+            },
+        },
+        {
+            id: 2,
+            content: 'Physics Group 201',
+            teacher: {
+                username: 'Smith',
+            },
+        },
+        {
+            id: 3,
+            content: 'Chemistry Group 301',
+            teacher: {
+                username: 'Johnson',
+            },
+        },
+        {
+            id: 4,
+            content: 'Biology Group 401',
+
+            teacher: {
+                username: 'Williams',
+            },
+        },
+    ]);
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isStudentListOpen, setIsStudentListOpen] = useState(false);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/groups')
-            .then(response => {
-                console.log('Data received from backend:', response.data);
-                setData(response.data);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
-
 
     const handleClick = (index) => {
         if (index === currentIndex) {
@@ -26,7 +46,7 @@ const Slider = () => {
         } else {
             setCurrentIndex(index);
         }
-        console.log(`ID группы: ${data[index].id}, ID учителя: ${data[index].teacher.username}`);
+        console.log(`ID группы: ${data[index].id}, Преподаватель: ${data[index].teacher.username}`);
     };
 
     const nextSlide = () => {
@@ -52,7 +72,8 @@ const Slider = () => {
     const closeStudentList = () => {
         setIsStudentListOpen(false);
     };
-    const [isDarkTheme, setIsDarkTheme] = useState(false); // Это состояние можно передавать из родительского компонента
+
+    const [isDarkTheme, setIsDarkTheme] = useState(false); // Темная тема
 
     return (
         <div className={`groups-carousel ${isDarkTheme ? 'dark-theme' : ''}`}>
@@ -68,7 +89,7 @@ const Slider = () => {
                                     : index === getNextIndex()
                                         ? 'next'
                                         : 'hidden'
-                                }`}
+                            }`}
                             onClick={() => handleClick(index)}
                         >
                             <img
@@ -97,9 +118,6 @@ const Slider = () => {
             )}
         </div>
     );
-
-
-
 };
 
 export default Slider;

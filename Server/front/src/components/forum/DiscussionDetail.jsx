@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NewCommentForm from './NewCommentForm';
-import '../../styles/Forum.css'
 
 const DiscussionDetail = ({ discussionId }) => {
     const [discussion, setDiscussion] = useState(null);
