@@ -1,81 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import DiscussionList from '../../components/forum/DiscussionList';
-import NewDiscussionForm from '../../components/forum/NewDiscussionForm';
 import AppBar from '../../components/AppBar';
-import TopicSwitcher from '../../components/TopicSwitcher';
+import ListOfTopics from "./ListOfTopis";
+import ListOfQuestions from "./ListOfQuestion";
+import ModalCreateNewDiscussion from "./ModalCreateNewDiscussion";
+import styles from '../../styles/Forum.module.css'
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../contexts/UserContext";
 
 const ForumPage = () => {
+    const [selectedTopic, setSelectedTopic] = useState(0);
+    const [listOfTopics, setListOfTopics] = useState([]);
     const [discussions, setDiscussions] = useState([]);
-    const [showForm, setShowForm] = useState(false);
-    const [selectedTopic, setSelectedTopic] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+    const {user} = useContext(UserContext);
 
     useEffect(() => {
-        if (selectedTopic) {
-            fetchDiscussions();
-        }
+        const fetchDiscussions = () => {
+            try {
+                if (selectedTopic !== null) {
+                    console.log("Selected topic:", selectedTopic);
+                    axios.get(`http://localhost:8080/api/discussions/lesson/${selectedTopic}`)
+                        .then(response => {
+                            console.log(response);
+                            setDiscussions(response.data);
+                        })
+                        .catch(error => {
+                            console.error("Error loading discussions:", error);
+                        });
+                }
+            } catch (error) {
+                console.error("Error handling discussions fetch:", error);
+            }
+        };
+
+        fetchDiscussions();
     }, [selectedTopic]);
 
-    const fetchDiscussions = () => {
-        if (selectedTopic) {
-            axios.get(`http://localhost:8080/api/discussions/lesson/${selectedTopic}`)
-                .then(response => {
-                    // Проверяем, что response.data — это массив
-                    const discussionsData = Array.isArray(response.data) ? response.data : [response.data];
-                    setDiscussions(discussionsData); // Заменяет старый список новым
-                    console.log('Discussions got:', discussionsData);
-                })
-                .catch(error => {
-                    console.error('Ошибка при получении обсуждений:', error);
-                });
+    function handleSelectedTopic(topicId) {
+        setSelectedTopic(prevTopic => {
+            console.log("Previous topic:", prevTopic, "New topic:", topicId);
+            return topicId;
+        });
+    }
+    function openModal() {
+        if (selectedTopic !== null) {
+            setTimeout(() => setIsModalOpen(true), 0); // Ensures latest state update
+        } else {
+            alert("Select a topic before creating a question!");
         }
-    };
+    }
+    function getBackToMainPage() {
 
-    const toggleForm = () => {
-        setShowForm(!showForm);
-    };
-
-    const handleNewDiscussion = () => {
-        fetchDiscussions();
-        setShowForm(false);
-    };
-
-    const handleDeleteDiscussion = (id) => {
-        setDiscussions(prevDiscussions => prevDiscussions.filter(discussion => discussion.id !== id));
-    };
-
-    const handleSelectTopic = (topic) => {
-        setSelectedTopic(topic);
-        // fetchDiscussions(); // Удалите этот вызов, так как он уже запускается через useEffect при изменении selectedTopic
-    };
+        console.log(user.role)
+        if (user.role === 'ROLE_TEACHER') {
+            navigate('/teacher/mainscreen');
+        } else if (user.role === 'ROLE_USER') {
+            navigate('/student/mainscreen');
+        } else {
+            navigate('/');
+        }
+    }
 
     return (
-        <div className='forum-page'>
-            <AppBar />
-            <div className="content-wrapper">
-                <div className="content-grid-forum">
-                    <div className="topic-list">
-                        <TopicSwitcher selectedTopic={selectedTopic} onSelectTopic={handleSelectTopic} />
-                    </div>
-                    <div className="discussion-section">
-                        <div className="forum-header">
-                            <h1>Fórum</h1>
-                            <button className="toggle-form-button" onClick={toggleForm}>
-                                {showForm ? "Zrušiť" : "Nová diskusia"}
-                            </button>
-                        </div>
+        <div className={styles.mainForumPage}>
+            <AppBar/>
+            <div className="row ">
 
-                        {showForm && <NewDiscussionForm lessonId={selectedTopic} onSuccess={handleNewDiscussion} />}
-
-                        <DiscussionList
-                            discussions={discussions}
-                            onDelete={handleDeleteDiscussion}
-                        />
-                    </div>
+                <div className="col-md-4">
+                    <ListOfTopics onClick={handleSelectedTopic}/>
+                </div>
+                <div className="col-md-8">
+                    <ListOfQuestions listOfQuestions={discussions}/>
+                    <button className={styles.creatingNewButton} onClick={openModal}>
+                        Create new Question
+                    </button>
+                    <button className={styles.creatingNewButton} onClick={getBackToMainPage}>BACK</button>
                 </div>
             </div>
+            {isModalOpen && selectedTopic !== null && (
+                <ModalCreateNewDiscussion lessonId={selectedTopic} onClose={() => setIsModalOpen(false)}/>
+            )}
         </div>
     );
+
 };
 
 export default ForumPage;

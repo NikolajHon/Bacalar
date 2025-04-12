@@ -40,36 +40,21 @@
     padding: 20px;
     margin: 0;
 }
-
-@media (max-width: 768px) {
-    .contentContainer {
-        flex-direction: column; /* Вертикальное расположение */
+@media (max-width: 480px) {
+    .mainScreen{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
-
-    .topicListContainer,
-    .userListContainer {
-        flex: none;
-        width: 100%;
+    .contentContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
     }
 }
 
-@media (max-width: 480px) {
-    .contentContainer {
-        padding: 10px;
-        gap: 10px;
-    }
 
-    .topicListContainer,
-    .userListContainer {
-        padding: 15px;
-        border-radius: 25px;
-    }
+@media (max-width: 768px) {
 
-    .topicListContainer {
-        box-shadow: 0 2px 4px var(--shadow-color);
-    }
-
-    .userListContainer {
-        box-shadow: 0 2px 4px var(--shadow-color);
-    }
 }

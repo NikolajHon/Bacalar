@@ -1,35 +1,43 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: WebApl
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 380631159244Kolya
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   backend:
     build:
       context: ./WebApl
-      dockerfile: Dockerfile
-    container_name: spring-backend
+    container_name: backend_service
+    restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/WebApl
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/WebApl
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 380631159244Kolya
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
-      AWS_ACCESS_KEY_ID: f5a875bea9d3261f9594ea8552e792cc
-      AWS_SECRET_ACCESS_KEY: 5f496f47f4d98f0451f7d3eec7311b8eaa24c5d35bb3face94eb40fc8e0e7958
     ports:
       - "8080:8080"
-    networks:
-      - app-network
+    depends_on:
+      - db
 
   frontend:
     build:
       context: ./front
-      dockerfile: Dockerfile
-    container_name: react-frontend
+    container_name: frontend_service
+    restart: always
     ports:
-      - "3000:3000"
-    networks:
-      - app-network
+      - "3000:80"
+    depends_on:
+      - backend
 
-networks:
-  app-network:
-    driver: bridge
+volumes:
+  postgres_data:

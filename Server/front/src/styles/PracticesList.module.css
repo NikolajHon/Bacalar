@@ -1,0 +1,322 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --primary-color: #00adb5;
+    --secondary-color: #f0f0f0;
+    --border-color: #dddddd;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #393e46;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --progress-bg-color: #eeeeee;
+    --progress-color: #00adb5;
+    --input-background-color: #ffffff;
+    --notification-success-bg: #dff6f7; /* Светло-бирюзовый */
+    --notification-success-text: #007f82; /* Темно-бирюзовый */
+    --notification-error-bg: #fde4e4; /* Светло-красный */
+    --notification-error-text: #b71c1c; /* Темно-красный */
+}
+
+/* Темная тема */
+.dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #eeeeee;
+    --primary-color: #00adb5;
+    --secondary-color: #222831;
+    --border-color: #393e46;
+    --button-background-color: #00adb5;
+    --button-text-color: #ffffff;
+    --hover-color: #00adb5;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --progress-bg-color: #393e46;
+    --progress-color: #00adb5;
+    --input-background-color: #393e46;
+    --notification-success-bg: #00494d; /* Темный бирюзовый */
+    --notification-success-text: #a8e3e5; /* Светло-бирюзовый */
+    --notification-error-bg: #4d2020; /* Темный красный */
+    --notification-error-text: #f5a6a6; /* Светло-красный */
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Основной контейнер (обёртка) */
+.mainPractice {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Контейнер для списка практик */
+.practicesListContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* Заголовок */
+.practicesListContainer h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Кнопка «Создать практику» (для преподавателя) */
+.createPracticeButton {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.createPracticeButton:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* Модальное окно для создания новой практики */
+.modalNewPractice {
+    position: relative;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    animation: scaleIn 0.3s ease forwards;
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
+/* Поля ввода внутри модалки */
+.modalInput {
+    width: 100%;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.modalInput:focus {
+    border-color: var(--primary-color);
+}
+
+/* Группа кнопок «сложности» */
+.difficultyGroup {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.difficultyButton {
+    flex: 1;
+    background-color: var(--border-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.difficultyButton:hover {
+    background-color: var(--hover-color);
+    color: #fff;
+}
+
+.selected {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+/* Сами тест-кейсы (строчки для ввода) */
+.testCase {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Небольшой размер некоторых инпутов */
+.smallInput {
+    max-width: 180px;
+}
+
+/* Селект для типа */
+.selectInput {
+    max-width: 120px;
+}
+
+/* Кнопка «Удалить тест» */
+.removeButton {
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.removeButton:hover {
+    color: var(--hover-color);
+}
+
+/* Кнопки внизу модалки (Добавить тест, Сохранить, Отмена) */
+.practiceButtonContainer {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.addTestcaseButton,
+.saveButton,
+.cancelButton {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    font-size: 0.95rem;
+}
+
+/* Общий стиль для трёх */
+.addTestcaseButton {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.addTestcaseButton:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.saveButton {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+.saveButton:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.cancelButton {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+.cancelButton:hover {
+    background-color: var(--hover-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Список практик (для преподавателя) */
+.practiceListTeacher {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+/* Общий элемент «задания» */
+.practiceItem {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    border-radius: 25px;
+    box-shadow: 0 1px 5px var(--shadow-color);
+    padding: 1rem;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.practiceItem h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Кнопка «Удалить задание» */
+.deletePracticeButton {
+    background-color: transparent;
+    color: var(--hover-color);
+    border: 1px solid var(--hover-color);
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    margin-top: 0.5rem;
+}
+
+.deletePracticeButton:hover {
+    background-color: var(--hover-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Для заголовка студенческого задания */
+.practiceItem h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .practicesListContainer {
+        padding: 1rem;
+    }
+
+    .modalNewPractice {
+        width: 90%;
+        margin: 1rem auto;
+    }
+
+    .testCase {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .createPracticeButton {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .practiceButtonContainer {
+        flex-direction: column;
+    }
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

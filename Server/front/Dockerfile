@@ -1,26 +1,16 @@
-# Базовый образ для Node.js
-FROM node:18-alpine
+FROM node:18 AS build
 
-# Установка рабочей директории
 WORKDIR /app
 
-# Копирование package.json и package-lock.json
-COPY package*.json ./
-
-# Установка зависимостей
+COPY package.json package-lock.json ./
 RUN npm install
 
-# Копирование всех файлов проекта
 COPY . .
-
-# Сборка приложения
 RUN npm run build
 
-# Установка сервера для обслуживания статических файлов
-RUN npm install -g serve
+FROM nginx:latest
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Экспонирование порта приложения
-EXPOSE 3000
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Запуск фронтенда
-CMD ["serve", "-s", "build", "-l", "3000"]
+EXPOSE 80

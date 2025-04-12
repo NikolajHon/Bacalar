@@ -2,15 +2,13 @@
 .lessonQuestions {
     display: flex;
     flex-direction: column;
-    background-color: var(--background-color);
     color: var(--text-color);
     border-radius: 25px;
     box-shadow: 0 4px 10px var(--shadow-color);
-    opacity: 0; /* Для плавного появления */
+    opacity: 0;
     animation: fadeIn 0.5s ease-out forwards; /* Плавное появление */
 }
 
-/* Анимация плавного появления */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -100,19 +98,17 @@
 .deleteButton:hover,
 .addQuestionButton:hover {
     background-color: var(--hover-color);
-    transform: scale(1.05); /* Увеличение при наведении */
+    transform: scale(1.05);
 }
 
-/* Обратная связь (feedback) */
 .feedback {
     font-size: 0.9rem;
     margin-top: 10px;
     color: var(--hover-color);
     opacity: 0;
-    animation: fadeIn 0.3s ease-out forwards; /* Плавное появление текста */
+    animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Кнопки внутри диалога */
 .dialogActions button {
     background-color: var(--button-background-color);
     color: var(--button-text-color);
@@ -147,4 +143,17 @@
     padding: 10px;
     border-radius: 25px;
     width: 50%;
+}
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+    .mainContent{
+        display: block;
+    }
 }

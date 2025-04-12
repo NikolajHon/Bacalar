@@ -1,10 +1,11 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
+import '../../../styles/Lessons/SecondLesson.css'
 
 const FifthSubtopic = ({ onComplete, completed }) => {
     return (
         <div className='fifth-subtopic' id="section-5">
-            <table>
+            <table className={'info-table'}>
                 <thead>
                     <tr>
                         <th colSpan="2">Podtéma: <strong>Služby jadra – stat(), fstat(), lstat()</strong></th>

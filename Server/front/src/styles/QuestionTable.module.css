@@ -41,14 +41,6 @@
     }
 }
 
-/* Указатель наводится */
-.questionBox:hover {
-    background-color: var(--hover-color);
-    color: var(--button-text-color);
-    transform: scale(1.1); /* Увеличение при наведении */
-    cursor: pointer;
-}
-
 /* Жёлтая подсветка для вопросов с введённым ответом */
 .yellow {
     background-color: #fdd835; /* Жёлтый цвет */

@@ -1,77 +1,83 @@
 import React from 'react';
+import '../../../styles/Lessons/SecondLesson.css'
 
 const SecondSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className="second-subtopic" id="section-2">
-            <table>
+            <table className={'info-table'}>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: Služby jadra – open() a close()</th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: Služby jadra – open() a close()</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><i>open(), close(),</i> flags, <i>inode.h</i></td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td className="section-title">Zapamätať si:</td>
-                                        <td>
-                                            syntax služieb - prečítať si manuálové stránky
-                                            v Unixe/Linuxe, Linux dokumentačný projekt,
-                                            zdroje na internete:
-                                            <br />
-                                            <a href="http://unixhelp.ed.ac.uk/" target="_blank" rel="noopener noreferrer">http://unixhelp.ed.ac.uk/</a>
-                                            <br />
-                                            <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/" target="_blank" rel="noopener noreferrer">http://www.ee.surrey.ac.uk/Teaching/Unix/</a>
-                                            <br />
-                                            <a href="http://linux.about.com/od/commands/l/blcmdl2_open.htm" target="_blank" rel="noopener noreferrer">http://linux.about.com/od/commands/l/blcmdl2_open.htm</a>
-                                            <br />
-                                            <a href="http://linux.about.com/library/cmd/blcmdl2_close.htm" target="_blank" rel="noopener noreferrer">http://linux.about.com/library/cmd/blcmdl2_close.htm</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="section-title">Porozumieť:</td>
-                                        <td>
-                                            <ul>
-                                                <li>parametrom <i>flags</i> a <i>mode</i></li>
-                                                <li>významu súvisiacich služieb
-                                                    ( <i>create()</i>, <i>lseek()</i>, <i>read()</i>,
-                                                    <i>umask()</i> ) </li>
-                                                <li>chybovým hláseniam</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="section-title">Aplikovať:</td>
-                                        <td>služby <i>open()</i> a <i>close()</i> pri práci so súbormi</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="section-title">Vedieť:</td>
-                                        <td>využiť získané skúsenosti pri tvorbe programov</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>20 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Scenár</td>
-                        <td>Sofia pri riešení svojej úlohy zistila, že pred prácou so súborom
-                            potrebuje daný súbor otvoriť. Použije na to službu <i>open()</i>, ale pre
-                            efektívnu prácu so súborom potrebuje sa naučiť pracovať s tzv.
-                            flagmi. Keď ukončí prácu so súborom, tak ho zatvorí pomocou
-                            služby <i>close()</i>.
-                        </td>
-                    </tr>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><i>open(), close(),</i> flags, <i>inode.h</i></td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td className="section-title">Zapamätať si:</td>
+                                <td>
+                                    syntax služieb - prečítať si manuálové stránky
+                                    v Unixe/Linuxe, Linux dokumentačný projekt,
+                                    zdroje na internete:
+                                    <br/>
+                                    <a href="http://unixhelp.ed.ac.uk/" target="_blank"
+                                       rel="noopener noreferrer">http://unixhelp.ed.ac.uk/</a>
+                                    <br/>
+                                    <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/" target="_blank"
+                                       rel="noopener noreferrer">http://www.ee.surrey.ac.uk/Teaching/Unix/</a>
+                                    <br/>
+                                    <a href="http://linux.about.com/od/commands/l/blcmdl2_open.htm" target="_blank"
+                                       rel="noopener noreferrer">http://linux.about.com/od/commands/l/blcmdl2_open.htm</a>
+                                    <br/>
+                                    <a href="http://linux.about.com/library/cmd/blcmdl2_close.htm" target="_blank"
+                                       rel="noopener noreferrer">http://linux.about.com/library/cmd/blcmdl2_close.htm</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="section-title">Porozumieť:</td>
+                                <td>
+                                    <ul>
+                                        <li>parametrom <i>flags</i> a <i>mode</i></li>
+                                        <li>významu súvisiacich služieb
+                                            ( <i>create()</i>, <i>lseek()</i>, <i>read()</i>,
+                                            <i>umask()</i> )
+                                        </li>
+                                        <li>chybovým hláseniam</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="section-title">Aplikovať:</td>
+                                <td>služby <i>open()</i> a <i>close()</i> pri práci so súbormi</td>
+                            </tr>
+                            <tr>
+                                <td className="section-title">Vedieť:</td>
+                                <td>využiť získané skúsenosti pri tvorbe programov</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>20 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title">Scenár</td>
+                    <td>Sofia pri riešení svojej úlohy zistila, že pred prácou so súborom
+                        potrebuje daný súbor otvoriť. Použije na to službu <i>open()</i>, ale pre
+                        efektívnu prácu so súborom potrebuje sa naučiť pracovať s tzv.
+                        flagmi. Keď ukončí prácu so súborom, tak ho zatvorí pomocou
+                        služby <i>close()</i>.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <h2>POSTUP:</h2>

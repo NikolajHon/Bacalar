@@ -1,82 +1,83 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
+import '../../../styles/Lessons/SecondLesson.css'
 
 const ThirdSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className='third-subtopic' id="section-3">
-            <table>
+            <table className={'info-table'}>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: <strong>Služba jadra – lseek()</strong></th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: <strong>Služba jadra – lseek()</strong></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><i>lseek()</i>, <strong>SEEK_SET, SEEK_END, SEEK_CUR</strong> </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <tr>
-                                <td className="section-title">Zapamätať si:</td>
-                                <td>
-                                    syntax služby - prečítať si manuálové stránky
-                                    v Unixe/Linuxe, Linux dokumentačný projekt,
-                                    zdroje na internete:
-                                    <br />
-                                    <a href="http://linux.about.com/library/cmd/blcmdl2_lseek.htm " target="_blank"
-                                        rel="noopener noreferrer">:
-                                        http://linux.about.com/library/cmd/blcmdl2_lseek.htm
-                                    </a>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><i>lseek()</i>, <strong>SEEK_SET, SEEK_END, SEEK_CUR</strong></td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <tr>
+                            <td className="section-title">Zapamätať si:</td>
+                            <td>
+                                syntax služby - prečítať si manuálové stránky
+                                v Unixe/Linuxe, Linux dokumentačný projekt,
+                                zdroje na internete:
+                                <br/>
+                                <a href="http://linux.about.com/library/cmd/blcmdl2_lseek.htm " target="_blank"
+                                   rel="noopener noreferrer">:
+                                    http://linux.about.com/library/cmd/blcmdl2_lseek.htm
+                                </a>
 
-                                </td>
+                            </td>
 
 
-                            </tr>
-                            <tr>
-                                <td className="section-title">Porozumieť:</td>
-                                <td>
-                                    <ul>
-                                        <li>pojmom:
-                                            <ul style={{ listStyleType: 'none' }}>
-                                                <li>- priamy prístup</li>
-                                                <li>- ukazovateľ súboru</li>
-                                            </ul>
-                                        </li>
-                                        <li>funkciám jednotlivých parametrov</li>
-                                        <li>chybovým hláseniam</li>
-                                    </ul>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Porozumieť:</td>
+                            <td>
+                                <ul>
+                                    <li>pojmom:
+                                        <ul style={{listStyleType: 'none'}}>
+                                            <li>- priamy prístup</li>
+                                            <li>- ukazovateľ súboru</li>
+                                        </ul>
+                                    </li>
+                                    <li>funkciám jednotlivých parametrov</li>
+                                    <li>chybovým hláseniam</li>
+                                </ul>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Aplikovať:</td>
-                                <td>službu lseek() pri práci so súbormi</td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Vedieť:</td>
-                                <td>využiť získané skúsenosti pri tvorbe programov
-                                </td>
-                            </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>15 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Sofia napreduje v riešení svojej úlohy a chce sa naučiť efektívnejšie
-                            pracovať so súbormi v OS UNIX/LINUX. Zistila, že k tomu by jej
-                            mohla pomôcť služba jadra <i>lseek()</i>, ktorou môže prechádzať súbor
-                            a nastavovať pozíciu v súbore, preto sa ju chce naučiť používať.
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Aplikovať:</td>
+                            <td>službu lseek() pri práci so súbormi</td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Vedieť:</td>
+                            <td>využiť získané skúsenosti pri tvorbe programov
+                            </td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>15 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title"> Scenár</td>
+                    <td>Sofia napreduje v riešení svojej úlohy a chce sa naučiť efektívnejšie
+                        pracovať so súbormi v OS UNIX/LINUX. Zistila, že k tomu by jej
+                        mohla pomôcť služba jadra <i>lseek()</i>, ktorou môže prechádzať súbor
+                        a nastavovať pozíciu v súbore, preto sa ju chce naučiť používať.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <p>
-                <h2>POSTUP: </h2>
+            <h2>POSTUP: </h2>
                 <i>Ukazovateľ aktuálnej pozície v súbore</i> je miesto v súbore (konkrétny bajt), na ktorom sa
                 bude vykonávať nasledujúca operácia <i>read()</i> alebo <i>write()</i>
                 <br />

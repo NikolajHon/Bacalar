@@ -3,38 +3,37 @@ import React from 'react';
 const FirstSubtopic = ({onComplete, completed}) => {
     return (
         <div className='first-subtopic' id="section-1">
-            <table>
+            <table className="info-table">
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: Služby jadra – read() a write()</th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: Služby jadra – read() a write()</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td>read(), write(), deskriptor</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td>read(), write(), deskriptor</td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <table className="nested-table">
+                            <tbody>
                             <tr>
                                 <td className="section-title">Zapamätať si:</td>
                                 <td>
                                     syntax služieb - prečítať si manuálové stránky v Unixe/Linuxe, Linux dokumentačný
                                     projekt, zdroje na internete:
-                                    <br />
+                                    <br/>
                                     <a href="http://unixhelp.ed.ac.uk/" target="_blank"
-                                        rel="noopener noreferrer">http://unixhelp.ed.ac.uk/</a>
-                                    <br />
+                                       rel="noopener noreferrer">http://unixhelp.ed.ac.uk/</a>
+                                    <br/>
                                     <a href="http://linux.about.com/od/commands/l/blcmdl2_read.htm" target="_blank"
-                                        rel="noopener noreferrer">http://linux.about.com/od/commands/l/blcmdl2_read.htm</a>
-                                    <br />
+                                       rel="noopener noreferrer">http://linux.about.com/od/commands/l/blcmdl2_read.htm</a>
+                                    <br/>
                                     <a href="http://linux.about.com/library/cmd/blcmdl2_write.htm" target="_blank"
-                                        rel="noopener noreferrer">http://linux.about.com/library/cmd/blcmdl2_write.htm</a>
-
+                                       rel="noopener noreferrer">http://linux.about.com/library/cmd/blcmdl2_write.htm</a>
                                 </td>
-
-
                             </tr>
                             <tr>
                                 <td className="section-title">Porozumieť:</td>
@@ -58,25 +57,29 @@ const FirstSubtopic = ({onComplete, completed}) => {
                                 <td className="section-title">Vedieť:</td>
                                 <td>využiť získané skúsenosti pri tvorbe programov</td>
                             </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>15 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Sofia má za úlohu načítať a upraviť súbor v jej adresári. Zistila, že
-                            pre vyriešenie tejto úlohy jej pomôžu služby read()a write().
-                            Aby však ich mohla využiť, potrebuje sa ich naučiť používať. .
-                        </td>
-                    </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>15 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title">Scenár</td>
+                    <td>
+                        Sofia má za úlohu načítať a upraviť súbor v jej adresári. Zistila, že
+                        pre vyriešenie tejto úlohy jej pomôžu služby read() a write().
+                        Aby však ich mohla využiť, potrebuje sa ich naučiť používať.
+                    </td>
+                </tr>
                 </tbody>
             </table>
+
             <h2>POSTUP:</h2>
             <h4>KROK1 - naučiť sa syntax a sémantiku služby jadra pre vstup/výstup:</h4>
             <p>Všetky vstupy a výstupy sa realizujú prostredníctvom funkcií: read()a write():</p>
-            <p style={{ textDecoration: 'underline' }}>Syntax:</p>
+            <p style={{textDecoration: 'underline'}}>Syntax:</p>
             <pre>{`
                     #include <unistd.h>
                     read(int fd, char *buf, size_t count);
@@ -84,7 +87,7 @@ const FirstSubtopic = ({onComplete, completed}) => {
                     `}
 
             </pre>
-            <p><p style={{ textDecoration: 'underline' }}>Semantika:</p>
+            <p><p style={{textDecoration: 'underline'}}>Semantika:</p>
                 <ul>
                     <li><strong>read()</strong> načíta <strong>count</strong> bajtov z kanálu fd do vyrovnávacej
                         pamäte buf a vráti počet
@@ -130,8 +133,8 @@ int main(int argc, char **argv)
                 }
             </pre>
             <p>Príklad skompilujeme <i>gcc</i> <b>sub1.c</b> a spustime <b>./a.out</b>
-                <br />
-                <br />
+                <br/>
+                <br/>
                 Každé volanie služby <i>read()</i> vráti počet bytov, ktoré boli skutočne systémom
                 prenesené. Ak je počet prenesených bajtov nižší, ako je zadaná (požadovaná) hodnota
                 uvedená vo volaní služby, <u>je to príznakom konca súboru</u>. Pri zápise službou <i>write()</i> je

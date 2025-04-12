@@ -1,5 +1,6 @@
 package org.example.oslearning.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.oslearning.model.Comment;
 import org.example.oslearning.model.CommentRequest;
 import org.example.oslearning.model.Discussion;
@@ -21,13 +22,20 @@ public class CommentController {
 
     @GetMapping("/discussion/{discussionId}")
     public List<Comment> getCommentsByDiscussionId(@PathVariable Long discussionId) {
-        System.out.println("we take all comments");
         return commentService.getCommentsByDiscussionId(discussionId);
     }
 
+
     @PostMapping
     public Comment createComment(@RequestBody CommentRequest commentRequest) {
-        System.out.println(commentRequest.getDiscussionId());
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String receivedJson = objectMapper.writeValueAsString(commentRequest);
+            System.out.println("Received JSON: " + receivedJson);
+        } catch (Exception e) {
+            System.err.println("Error logging received JSON: " + e.getMessage());
+        }
+
         Discussion discussion = discussionRepository.findById(commentRequest.getDiscussionId())
                 .orElseThrow(() -> new IllegalArgumentException("Discussion not found"));
 
@@ -38,4 +46,5 @@ public class CommentController {
 
         return commentService.createComment(comment);
     }
+
 }

@@ -52,17 +52,15 @@ public class CodeExecutionController {
         List<TestCase> testCases = testCaseService.getTestCasesByPracticeId(practiceId);
         CodeResponse[] responses = new CodeResponse[testCases.size()];
 
-        boolean allCorrect = true; // Флаг для отслеживания правильных результатов
+        boolean allCorrect = true;
 
         for (int i = 0; i < testCases.size(); i++) {
             TestCase testCase = testCases.get(i);
 
-            // Генерируем полный код, вставляя код ученика в шаблон main
             String completeCode = generateCompleteCode(mainTemplate, codeRequest.getCode(), testCase.getInputData(), methodSignature);
             System.out.println(completeCode);
             String actualOutput = executeCodeOnline(completeCode);
 
-            // Универсальное сравнение ожидаемого и фактического вывода
             boolean isCorrect = compareOutputs(testCase, actualOutput);
             if (!isCorrect) {
                 allCorrect = false;
@@ -87,17 +85,14 @@ public class CodeExecutionController {
         return ResponseEntity.ok(responses);
     }
 
-    // Генерация полного кода на основе mainTemplate и кода ученика
     private String generateCompleteCode(String mainTemplate, String userCode, String input, String methodSignature) {
         String methodName = extractMethodName(methodSignature);
 
-        // Подставляем код ученика и параметры в шаблон mainTemplate
         return mainTemplate.replace("{{userCode}}", userCode)
                 .replace("{{input}}", input)
                 .replace("{{methodName}}", methodName);
     }
 
-    // Универсальное сравнение выводов
     private boolean compareOutputs(TestCase testCase, String actualOutput) {
         String expectedOutput = testCase.getExpectedOutput();
 

@@ -1,75 +1,76 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
+import '../../../styles/Lessons/SecondLesson.css'
 
 const SeventhSubtopic = ({ onComplete, completed }) => {
     return (
         <div className='seventh-subtopic' id="section-7">
-            <table>
+            <table className={'info-table'}>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: <strong>Služba jadra – truncate()</strong></th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: <strong>Služba jadra – truncate()</strong></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><i>turncate() </i></td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <tr>
-                                <td className="section-title">Zapamätať si:</td>
-                                <td>
-                                    syntax služieb - prečítať si manuálové stránky
-                                    v Unixe/Linuxe, Linux dokumentačný projekt,
-                                    zdroje na internete:
-                                    <br />
-                                    <a href="http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2" target="_blank"
-                                        rel="noopener noreferrer">:
-                                        http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2
-                                    </a>
-                                    <br />
-                                    <a href="http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate" target="_blank"
-                                        rel="noopener noreferrer">:
-                                        http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate
-                                    </a>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><i>turncate() </i></td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <tr>
+                            <td className="section-title">Zapamätať si:</td>
+                            <td>
+                                syntax služieb - prečítať si manuálové stránky
+                                v Unixe/Linuxe, Linux dokumentačný projekt,
+                                zdroje na internete:
+                                <br/>
+                                <a href="http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2" target="_blank"
+                                   rel="noopener noreferrer">:
+                                    http://unixhelp.ed.ac.uk/CGI/man-cgi?truncate+2
+                                </a>
+                                <br/>
+                                <a href="http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate" target="_blank"
+                                   rel="noopener noreferrer">:
+                                    http://www.scit.wlv.ac.uk/cgibin/mansec?3C+truncate
+                                </a>
 
-                                </td>
+                            </td>
 
 
-                            </tr>
-                            <tr>
-                                <td className="section-title">Porozumieť:</td>
-                                <td>
-                                    <ul>
-                                        <li>parametrom služby <i>truncate()</i></li>
-                                        <li>chybovým hláseniam</li>
-                                    </ul>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Porozumieť:</td>
+                            <td>
+                                <ul>
+                                    <li>parametrom služby <i>truncate()</i></li>
+                                    <li>chybovým hláseniam</li>
+                                </ul>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Aplikovať:</td>
-                                <td>službu <i>truncate()</i> pri práci so súbormi </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Vedieť:</td>
-                                <td>využiť získané skúsenosti pri tvorbe programov
-                                </td>
-                            </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>5 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Sofia má súbor, ktorému potrebuje zmeniť veľkosť. Potrebuje zistiť,
-                            akými spôsobmi by to mohla urobiť.
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Aplikovať:</td>
+                            <td>službu <i>truncate()</i> pri práci so súbormi</td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Vedieť:</td>
+                            <td>využiť získané skúsenosti pri tvorbe programov
+                            </td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>5 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title"> Scenár</td>
+                    <td>Sofia má súbor, ktorému potrebuje zmeniť veľkosť. Potrebuje zistiť,
+                        akými spôsobmi by to mohla urobiť.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <h2>POSTUP:</h2>

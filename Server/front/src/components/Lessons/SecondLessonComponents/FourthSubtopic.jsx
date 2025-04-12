@@ -1,72 +1,73 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
+import '../../../styles/Lessons/SecondLesson.css'
 
 const FourthSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className='fourth-subtopic' id="section-4">
-            <table>
+            <table className={'info-table'}>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: <strong>Služby jadra – dup(), dup2()</strong></th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: <strong>Služby jadra – dup(), dup2()</strong></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><i>dup(), dup2()</i>, deskriptor </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <tr>
-                                <td className="section-title">Zapamätať si:</td>
-                                <td>
-                                    syntax služieb - prečítať si manuálové stránky
-                                    v Unixe/Linuxe, Linux dokumentačný projekt,
-                                    zdroje na internete:
-                                    <br />
-                                    <a href="https://linux.about.com/library/cmd/blcmdl2_dup.ht " target="_blank"
-                                        rel="noopener noreferrer">:
-                                        https://linux.about.com/library/cmd/blcmdl2_dup.ht
-                                    </a>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><i>dup(), dup2()</i>, deskriptor</td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <tr>
+                            <td className="section-title">Zapamätať si:</td>
+                            <td>
+                                syntax služieb - prečítať si manuálové stránky
+                                v Unixe/Linuxe, Linux dokumentačný projekt,
+                                zdroje na internete:
+                                <br/>
+                                <a href="https://linux.about.com/library/cmd/blcmdl2_dup.ht " target="_blank"
+                                   rel="noopener noreferrer">:
+                                    https://linux.about.com/library/cmd/blcmdl2_dup.ht
+                                </a>
 
-                                </td>
+                            </td>
 
 
-                            </tr>
-                            <tr>
-                                <td className="section-title">Porozumieť:</td>
-                                <td>
-                                    <ul>
-                                        <li>účelu jednotlivých parametrov </li>
-                                        <li>chybovým hláseniam </li>
-                                    </ul>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Porozumieť:</td>
+                            <td>
+                                <ul>
+                                    <li>účelu jednotlivých parametrov</li>
+                                    <li>chybovým hláseniam</li>
+                                </ul>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Aplikovať:</td>
-                                <td>služby <i>dup()</i> a <i>dup2()</i> pri práci s deskriptormi </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Vedieť:</td>
-                                <td>využiť získané skúsenosti pri tvorbe programov
-                                </td>
-                            </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>10 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Sofia sa chce naučiť použiť obyčajný súbor ako štandardný vstup
-                            alebo výstup. Zistila, že pre riešenie tohto problému jej pomôžu
-                            služby jadra <i>dup()</i> a <i>dup2()</i>. Tieto služby slúžia na duplikáciu
-                            deskriptora otvoreného súboru.
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Aplikovať:</td>
+                            <td>služby <i>dup()</i> a <i>dup2()</i> pri práci s deskriptormi</td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Vedieť:</td>
+                            <td>využiť získané skúsenosti pri tvorbe programov
+                            </td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>10 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title"> Scenár</td>
+                    <td>Sofia sa chce naučiť použiť obyčajný súbor ako štandardný vstup
+                        alebo výstup. Zistila, že pre riešenie tohto problému jej pomôžu
+                        služby jadra <i>dup()</i> a <i>dup2()</i>. Tieto služby slúžia na duplikáciu
+                        deskriptora otvoreného súboru.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <h2>POSTUP: </h2>

@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const LessonOverview = () => {
     return (
         <div className="lesson-overview" id="section-0">

@@ -151,7 +151,7 @@ const MainScreen = () => {
                         </button>
                     </div>
                 </div>
-                <div className={styles.topic_list_teacher}>
+                <div >
                     <TopicListTeacher />
                 </div>
             </div>

@@ -1,0 +1,74 @@
+.lesson-content {
+    background-color: var(--secondary-color);
+    width: fit-content;
+    padding: 20px;
+    border-radius: 25px;
+}
+.content-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-list li {
+    cursor: pointer;
+}
+.content-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-list li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.content-list li.active {
+    background-color: var(--notification-success-bg);
+    color: var(--notification-success-text);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.content-list li:hover {
+    background-color: var(--secondary-color);
+    color: var(--hover-color);
+}
+@media (max-width: 768px) {
+    .lesson-content {
+        width: 100%;
+        padding: 15px;
+        border-radius: 25px;
+    }
+
+    .content-list li {
+        padding: 8px 10px;
+        font-size: 0.95em;
+    }
+
+    .content-list li.active {
+        border-left: 3px solid var(--primary-color);
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson-content {
+        padding: 10px;
+        border-radius: 25px;
+        text-align: center;
+    }
+
+    .content-list li {
+        padding: 6px 8px;
+        font-size: 0.9em;
+    }
+
+    .content-list li.active {
+        border-left: 2px solid var(--primary-color);
+    }
+}

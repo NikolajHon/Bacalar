@@ -74,10 +74,10 @@ const LessonQuestions = () => {
                 answers[question.id] &&
                 answers[question.id].trim().toLowerCase() === question.answer.toLowerCase()
             ) {
-                newFeedback[question.id] = 'Správne!';
+                newFeedback[question.id] = 'Correct';
                 correctAnswersCount++;
             } else {
-                newFeedback[question.id] = `Nesprávne! Správna odpoveď: ${question.answer}`;
+                newFeedback[question.id] = `Incorrect`;
             }
         });
 
@@ -162,7 +162,7 @@ const LessonQuestions = () => {
                             }`}
                         >
                             <h3>{question.text}</h3>
-                            {role === 'null' ? (
+                            {role === 'ROLE_USER' ? (
                                 <>
                                     <input
                                         className={styles.inputField}
@@ -189,21 +189,19 @@ const LessonQuestions = () => {
                             )}
                         </div>
                     ))}
-                    {role === 'null' && (
+                    {role === 'ROLE_USER' && (
                         <button className={styles.checkAnswersButton} onClick={checkAnswers}>
                             Skontrolovať odpovede
                         </button>
                     )}
                     {role === 'ROLE_TEACHER' && (
                         <>
-                            <Button
-                                variant="contained"
-                                color="primary"
+                            <button
                                 onClick={() => setShowAddModal(true)}
-                                className={styles.addQuestionButton}
+                                className={styles.checkAnswersButton}
                             >
                                 Pridať novú otázku
-                            </Button>
+                            </button>
 
                             <Dialog open={showAddModal} onClose={() => setShowAddModal(false)}>
                                 <DialogTitle>Pridať novú otázku</DialogTitle>

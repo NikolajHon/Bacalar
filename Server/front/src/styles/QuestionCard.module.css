@@ -1,0 +1,75 @@
+.cardContainer {
+    /* Фоновый цвет */
+    background-color: #cde4ff;
+
+    /* Внутренние отступы */
+    padding: 16px;
+
+    /* Скругленные уголки */
+    border-radius: 12px;
+
+    /* Лёгкая тень */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    /* Авто-маржин и ограничение ширины */
+    max-width: 800px;
+    margin: 24px auto;
+
+    /* Различие между комментарием и обсуждением */
+    transition: all 0.3s ease-in-out;
+}
+
+.commentCard {
+    max-width: 700px; /* Комментарии уже, чем обсуждения */
+    background-color: #eef5ff; /* Светлее, чем обсуждение */
+    border-left: 4px solid #5596e6; /* Синяя полоса для выделения */
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 12px auto;
+}
+
+.cardContent {
+    margin-bottom: 12px;
+}
+
+.topicText {
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.bodyText {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Нижняя часть (автор, дата) */
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    border-top: 1px solid #b0c4d9; /* Линия сверху */
+    padding-top: 8px;
+}
+
+.authorSection {
+    display: flex;
+    align-items: center;
+}
+
+.authorSection > *:first-child {
+    margin-right: 8px;
+}
+
+.authorName {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.dateSection {
+    font-size: 0.9rem;
+    color: #555;
+}

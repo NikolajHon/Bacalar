@@ -8,7 +8,7 @@ import java.util.UUID;
 @Entity
 public class VerificationToken {
 
-    private static final int EXPIRATION = 60 * 24; // 24 hours
+    private static final int EXPIRATION = 60 * 24;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,6 @@ public class VerificationToken {
     }
 
     public VerificationToken() {
-        // Пустой конструктор для JPA
     }
 
     private LocalDateTime calculateExpiryDate(int expiryTimeInMinutes) {
@@ -37,7 +36,6 @@ public class VerificationToken {
         return now.plusMinutes(expiryTimeInMinutes);
     }
 
-    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }

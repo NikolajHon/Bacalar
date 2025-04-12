@@ -17,13 +17,13 @@ const QuestionTable = ({ questions, answers, feedback, onHighlight }) => {
                 const status = feedback[question.id];
 
                 let boxClass = styles.questionBox;
-                if (answer) {
-                    boxClass += ` ${styles.yellow}`;
-                }
-                if (status) {
-                    boxClass += status.startsWith('Correct')
-                        ? ` ${styles.green}`
-                        : ` ${styles.red}`;
+
+                if (status === 'Correct') {
+                    boxClass += ` ${styles.green}`; // Правильный ответ
+                } else if (status === 'Incorrect') {
+                    boxClass += ` ${styles.red}`; // Неправильный ответ
+                } else if (answer) {
+                    boxClass += ` ${styles.yellow}`; // Ответ есть, но не проверен
                 }
 
                 return (

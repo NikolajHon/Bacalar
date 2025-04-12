@@ -1,85 +1,87 @@
 import { dividerClasses } from '@mui/material';
 import React from 'react';
+import '../../../styles/Lessons/SecondLesson.css'
 
 const SixthSubtopic =  ({ onComplete, completed }) => {
     return (
         <div className='sixth-subtopic' id="section-6">
-            <table>
+            <table className={'info-table'}>
                 <thead>
-                    <tr>
-                        <th colSpan="2">Podtéma: <strong>Služby jadra link(),unlink() a remove()</strong></th>
-                    </tr>
+                <tr>
+                    <th colSpan="2">Podtéma: <strong>Služby jadra link(),unlink() a remove()</strong></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="section-title">Kľúčové slová</td>
-                        <td><i>link(), unlink(), remove()</i></td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Ciele</td>
-                        <td>
-                            <tr>
-                                <td className="section-title">Zapamätať si:</td>
-                                <td>
-                                    syntax služieb - prečítať si manuálové stránky
-                                    v Unixe/Linuxe, Linux dokumentačný projekt,
-                                    zdroje na internete:
-                                    <br />
-                                    <a href="http://linux.about.com/library/cmd/blcmdl2_link.htm" target="_blank"
-                                        rel="noopener noreferrer">:
-                                        http://linux.about.com/library/cmd/blcmdl2_link.htm
-                                    </a>
-                                    <br />
-                                    <a href="http://linux.about.com/library/cmd/blcmdl2_unlink.htm" target="_blank"
-                                        rel="noopener noreferrer">:
-                                        http://linux.about.com/library/cmd/blcmdl2_unlink.htm
-                                    </a>
-                                    <br />
-                                    <a href="http://linux.about.com/od/commands/l/blcmdl3_remove.htm" target="_blank"
-                                        rel="noopener noreferrer">:
-                                        http://linux.about.com/od/commands/l/blcmdl3_remove.htm
-                                    </a>
+                <tr>
+                    <td className="section-title">Kľúčové slová</td>
+                    <td><i>link(), unlink(), remove()</i></td>
+                </tr>
+                <tr>
+                    <td className="section-title">Ciele</td>
+                    <td>
+                        <tr>
+                            <td className="section-title">Zapamätať si:</td>
+                            <td>
+                                syntax služieb - prečítať si manuálové stránky
+                                v Unixe/Linuxe, Linux dokumentačný projekt,
+                                zdroje na internete:
+                                <br/>
+                                <a href="http://linux.about.com/library/cmd/blcmdl2_link.htm" target="_blank"
+                                   rel="noopener noreferrer">:
+                                    http://linux.about.com/library/cmd/blcmdl2_link.htm
+                                </a>
+                                <br/>
+                                <a href="http://linux.about.com/library/cmd/blcmdl2_unlink.htm" target="_blank"
+                                   rel="noopener noreferrer">:
+                                    http://linux.about.com/library/cmd/blcmdl2_unlink.htm
+                                </a>
+                                <br/>
+                                <a href="http://linux.about.com/od/commands/l/blcmdl3_remove.htm" target="_blank"
+                                   rel="noopener noreferrer">:
+                                    http://linux.about.com/od/commands/l/blcmdl3_remove.htm
+                                </a>
 
-                                </td>
+                            </td>
 
 
-                            </tr>
-                            <tr>
-                                <td className="section-title">Porozumieť:</td>
-                                <td>
-                                    <ul>
-                                        <li>pojmu link</li>
-                                        <li>funkciám jednotlivých parametrov</li>
-                                        <li>chybovým hláseniam</li>
-                                    </ul>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Porozumieť:</td>
+                            <td>
+                                <ul>
+                                    <li>pojmu link</li>
+                                    <li>funkciám jednotlivých parametrov</li>
+                                    <li>chybovým hláseniam</li>
+                                </ul>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Aplikovať:</td>
-                                <td>služby <i>link(),unlink(),remove()</i> pri práci so
-                                    súbormi a adresármi</td>
-                            </tr>
-                            <tr>
-                                <td className="section-title">Vedieť:</td>
-                                <td>využiť získané skúsenosti pri tvorbe programov
-                                </td>
-                            </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="section-title">Odhadovaný čas</td>
-                        <td>10 minút</td>
-                    </tr>
-                    <tr>
-                        <td className="section-title"> Scenár</td>
-                        <td>Aby Sofia mohla vytvoriť odkaz na súbor a vymazať súbor. Musí
-                            porozumieť pojmu link a naučiť sa používať služby <i>
-                                link(),
-                                unlink() a remove()
-                            </i>.
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Aplikovať:</td>
+                            <td>služby <i>link(),unlink(),remove()</i> pri práci so
+                                súbormi a adresármi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="section-title">Vedieť:</td>
+                            <td>využiť získané skúsenosti pri tvorbe programov
+                            </td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td className="section-title">Odhadovaný čas</td>
+                    <td>10 minút</td>
+                </tr>
+                <tr>
+                    <td className="section-title"> Scenár</td>
+                    <td>Aby Sofia mohla vytvoriť odkaz na súbor a vymazať súbor. Musí
+                        porozumieť pojmu link a naučiť sa používať služby <i>
+                            link(),
+                            unlink() a remove()
+                        </i>.
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <h2>POSTUP:</h2>

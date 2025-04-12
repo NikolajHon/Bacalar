@@ -5,7 +5,10 @@ import CarouselCard from './components/teacher/Carousel/CarouselCard';
 import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import PracticesList from './pages/PracticesList';
+import PracticesList from './pages/Practise/PracticesList';
+import 'antd/dist/reset.css';
+
+
 
 const Registration = lazy(() => import('./pages/Registration'));
 const LoginForm = lazy(() => import('./pages/LoginForm'));
@@ -25,7 +28,7 @@ const TeacherMainScreen = lazy(() => import('./pages/teacherPages/MainScreenTeac
 const LessonQuestions = lazy(() => import('./pages/studentPages/LessonQuestions'));
 const TasksStudent = lazy(() => import('./pages/studentPages/Tasks'));
 const ForumPage = lazy(() => import('./pages/forum/ForumPage'));
-const DiscussionPage = lazy(() => import('./pages/forum/DiscussionPage'));
+const DiscussionPage = lazy(() => import('./pages/forum/discussion/DiscussionPage'));
 const StudentProfile = lazy(() =>import('./pages/StudentProfile'));
 
 

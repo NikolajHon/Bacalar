@@ -1,0 +1,175 @@
+.listOfTopics {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.listOfTopics button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.listOfTopics button:hover {
+    background-color: var(--hover-color);
+}
+
+.listsButton:first-child {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.listsButton:last-child {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modalContent {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: fadeInUp 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.modalContent h2 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.modalContent input,
+.modalContent textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+}
+
+.modalContent button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modalContent button:hover {
+    background-color: var(--hover-color);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.listOfQuestions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.questionCard {
+    background-color: var(--background-color);
+    padding: 15px;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.questionCard:hover {
+    transform: scale(1.02);
+}
+
+.questionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.questionMeta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+.questionAuthor {
+    font-weight: bold;
+}
+
+.questionDate {
+    font-style: italic;
+}
+
+.creatingNewButton {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.creatingNewButton:hover {
+    background-color: var(--hover-color);
+}
+
+.mainForumPage {
+    background-color: var(--secondary-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+

@@ -1,159 +1,144 @@
+:root {
+    /* Цветовые переменные можно менять под свои нужды */
+    --background-color: #fff;
+    --text-color: #333;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --hover-color: #2196f3;
+}
+
+/* Тёмная тема (пример) */
+.dark-theme {
+    --background-color: #212121;
+    --text-color: #f5f5f5;
+    --border-color: #424242;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --hover-color: #90caf9;
+}
+
 .appBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 0.75rem 1.5rem;
+
+    /* Общий фон и тень */
     background-color: var(--background-color);
     color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 2px 4px var(--shadow-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+
     position: sticky;
     top: 0;
     z-index: 1000;
+
+    /* Плавность переключения темы */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.appBarTitle {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    margin-left: 1rem;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+/* Логотип */
+.logo {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+/* Переключатель темы */
 .themeToggle {
+    margin-left: 1rem;
     cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
+/* По ховеру цвет самой иконки/тоггла */
 .themeToggle:hover {
     color: var(--hover-color);
 }
 
-.appBarTitle {
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: center;
-    flex: 1;
-    color: var(--primary-color);
-}
-
+/* Часы и дата */
 .timeDate {
-    font-size: 1rem;
-    color: var(--text-color);
-    text-align: right;
+    font-size: 0.95rem;
+    margin-left: auto;
+    margin-right: 1.5rem;
+    white-space: nowrap;
 }
 
-.profileButton {
-    position: relative;
+/* Профиль/аватар */
+.profile {
     display: flex;
     align-items: center;
-    gap: 10px;
     cursor: pointer;
+    position: relative;
 }
 
-.userAvatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--primary-color);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.userAvatar:hover {
-    transform: scale(1.1);
-    border-color: var(--hover-color);
-}
-
-.dropdownMenu {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: 25px;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    padding: 10px 0;
-    display: none;
-    flex-direction: column;
-    animation: fadeIn 0.3s ease-in-out;
-    z-index: 1000;
-}
-
-.dropdownMenu.show {
-    display: flex;
-}
-
-.dropdownMenu a {
-    text-decoration: none;
-    padding: 10px 15px;
-    color: var(--text-color);
+/* Добавим стиль для Avatar MUI (если нужно переопределить) */
+.profile .MuiAvatar-root {
+    width: 36px;
+    height: 36px;
     font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    order: var(--order);
+    transition: transform 0.2s ease;
 }
 
-.dropdownMenu a:hover {
-    background-color: var(--hover-color);
-    color: var(--button-text-color);
-    transform: translateX(5px);
+.profile .MuiAvatar-root:hover {
+    transform: scale(1.05);
 }
 
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--background-color);
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 6px 12px var(--shadow-color);
-    z-index: 2000;
-}
-
+/* Анимация появления (при желании можно использовать на элементах) */
 .fadeIn {
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-5px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-/* Респонзивный дизайн */
-@media (max-width: 768px) {
+
+/* Респонсивный дизайн */
+
+/* Экран до 1024px */
+@media (max-width: 1024px) {
     .appBar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
+        flex-wrap: wrap;
+        padding: 1rem;
     }
 
     .appBarTitle {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
         text-align: left;
-        flex: unset;
+        font-size: 1.3rem;
+        flex: 1 1 100%;
+        margin-bottom: 0.5rem;
     }
 
     .timeDate {
+        margin-right: 0;
+        margin-left: 0;
         font-size: 0.9rem;
-        text-align: left;
-        margin-top: 5px;
-    }
-
-    .profileButton {
-        justify-content: center;
-        width: 100%;
-    }
-
-    .userAvatar {
-        width: 35px;
-        height: 35px;
+        margin-bottom: 0.5rem;
     }
 }
 
-@media (max-width: 480px) {
-    .appBar {
-        padding: 8px;
+@media (max-width: 768px) {
+    .themeToggle {
+        margin-left: 0.5rem;
     }
 
     .appBarTitle {
@@ -161,31 +146,34 @@
     }
 
     .timeDate {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 
-    .dropdownMenu a {
-        padding: 8px 10px;
+    .profile .MuiAvatar-root {
+        width: 32px;
+        height: 32px;
         font-size: 0.9rem;
-    }
-
-    .modal {
-        width: 90%;
-        padding: 15px;
     }
 }
 
-/* Дополнительный респонзив для выпадающего меню */
-@media (max-width: 600px) {
-    .dropdownMenu {
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
+@media (max-width: 480px) {
+    .appBar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    .dropdownMenu a {
-        font-size: 0.9rem;
-        padding: 8px 10px;
+    .appBarTitle {
+        font-size: 1.1rem;
+    }
+
+    .timeDate {
+        display: none; /* при нехватке места можно скрыть */
+    }
+
+    .profile .MuiAvatar-root {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
     }
 }

@@ -53,7 +53,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         User existingUser = userService.findByEmail(user.getEmail());
-        System.out.println("WE ARE HERE");
         if (existingUser != null) {
             return ResponseEntity.status(409).body("User with this email already exists.");
         }
@@ -66,12 +65,10 @@ public class UserController {
                 new CharacterRule(EnglishCharacterData.Special, 1),
                 new WhitespaceRule()
         ));
-        System.out.println("WE ARE NOT SENDING MAIL");
         RuleResult result = validator.validate(new PasswordData(user.getPassword()));
         if (!result.isValid()) {
             return ResponseEntity.status(422).body("Password is too weak.");
         }
-        System.out.println("WE ARE NOT SENDING MAIL");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userService.saveUser(user);
 

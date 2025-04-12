@@ -1,0 +1,142 @@
+.discussionDetailContainer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.discussionDetailHeader {
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    text-align: center;
+}
+
+.discussionTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.discussionMeta {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.discussionContent {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 16px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.commentList {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.commentItem {
+    background-color: var(--background-color);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.commentAuthor {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.commentAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.commentMeta {
+    font-size: 12px;
+    color: var(--text-color);
+    text-align: right;
+}
+
+.toggleFormButton {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.toggleFormButton:hover {
+    background-color: var(--hover-color);
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.buttonGroup button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mainPageDiscussion{
+    background-color: var(--secondary-color);
+    min-height: 100vh;
+}
+
+.buttonGroup button:hover {
+    background-color: var(--hover-color);
+}
+.creatingNewButton {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+}
+.buttonsDiv {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
