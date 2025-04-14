@@ -1,21 +1,13 @@
-// AppBar.js
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
 import Switch from './Switch';
-// import Avatar from '@mui/material/Avatar'; // ❌ Больше не нужно
-import UserAvatar from './UserAvatar';       // ✅ Новый импорт
+import UserAvatar from './UserAvatar';
 import styles from '../styles/AppBar.module.css';
 import TUKE_logo_dark from '../images/logo_tuke2.png';
 import TUKE_logo_white from '../images/tuke-logo-white.png';
 
 const AppBar = ({ title }) => {
     const { user } = useContext(UserContext);
-
-    // Можно удалить isPhotoLoaded, если оно не используется:
-    // const [isPhotoLoaded, setIsPhotoLoaded] = useState(
-    //     () => localStorage.getItem('isPhotoLoaded') === 'true'
-    // );
 
     const [isDarkTheme, setIsDarkTheme] = useState(() => localStorage.getItem('theme') === 'dark');
     const [currentTime, setCurrentTime] = useState(() => new Date().toLocaleString());

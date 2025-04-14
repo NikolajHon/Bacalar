@@ -44,13 +44,12 @@
   --progress-bg-color: #eeeeee;
   --progress-color: #00adb5;
   --input-background-color: #ffffff;
-  --notification-success-bg: #dff6f7; /* Светло-бирюзовый */
-  --notification-success-text: #007f82; /* Темно-бирюзовый */
-  --notification-error-bg: #fde4e4; /* Светло-красный */
-  --notification-error-text: #b71c1c; /* Темно-красный */
+  --notification-success-bg: #dff6f7;
+  --notification-success-text: #007f82;
+  --notification-error-bg: #fde4e4;
+  --notification-error-text: #b71c1c;
 }
 
-/* Темная тема */
 .dark-theme {
   --background-color: #1a1a1a;
   --text-color: #eeeeee;
@@ -64,15 +63,15 @@
   --progress-bg-color: #393e46;
   --progress-color: #00adb5;
   --input-background-color: #393e46;
-  --notification-success-bg: #00494d; /* Темный бирюзовый */
-  --notification-success-text: #a8e3e5; /* Светло-бирюзовый */
-  --notification-error-bg: #4d2020; /* Темный красный */
-  --notification-error-text: #f5a6a6; /* Светло-красный */
+  --notification-success-bg: #00494d;
+  --notification-success-text: #a8e3e5;
+  --notification-error-bg: #4d2020;
+  --notification-error-text: #f5a6a6;
 
 }
 html, body {
   height: 100%;
-  background-color: var(--secondary-color); /* Цвет из вашей палитры */
+  background-color: var(--secondary-color);
   margin: 0;
   padding: 0;
   overflow-x: hidden;

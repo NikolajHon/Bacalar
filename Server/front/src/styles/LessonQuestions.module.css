@@ -1,4 +1,11 @@
-/* Основные стили для компонента */
+html, body {
+    height: 100%;
+    background-color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 .lessonQuestions {
     display: flex;
     flex-direction: column;
@@ -6,9 +13,8 @@
     border-radius: 25px;
     box-shadow: 0 4px 10px var(--shadow-color);
     opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards; /* Плавное появление */
+    animation: fadeIn 0.5s ease-out forwards;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -20,7 +26,7 @@
     }
 }
 
-/* Секция с навигацией */
+
 .navigation {
     background-color: var(--secondary-color);
     padding: 15px;
@@ -124,12 +130,12 @@
     transform: scale(1.05);
 }
 
-/* Основной контент */
 .mainContent {
     display: flex;
     gap: 20px;
-    opacity: 0; /* Для плавного появления */
-    animation: fadeIn 0.5s ease-out forwards; /* Плавное появление */
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    background-color: var(--secondary-color);
 }
 
 .mainContent > .navigation {
